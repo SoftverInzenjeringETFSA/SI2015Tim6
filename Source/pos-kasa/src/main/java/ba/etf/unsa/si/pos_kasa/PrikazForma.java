@@ -62,6 +62,7 @@ public class PrikazForma {
 		KorisnickoIme.setColumns(10);
 		
 		Password = new JTextField();
+		Password.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		Password.setBounds(153, 53, 183, 20);
 		PrikazForma.getContentPane().add(Password);
 		Password.setColumns(10);
