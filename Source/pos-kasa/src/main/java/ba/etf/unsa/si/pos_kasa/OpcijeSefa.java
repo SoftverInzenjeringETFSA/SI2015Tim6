@@ -52,7 +52,7 @@ public class OpcijeSefa {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 128, 128));
 		panel.setToolTipText("Korisnici");
-		panel.setBorder(new LineBorder(new Color(0, 128, 128), 2));
+		panel.setBorder(new LineBorder(new Color(0, 128, 128)));
 		panel.setBounds(27, 27, 190, 307);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
@@ -79,7 +79,7 @@ public class OpcijeSefa {
 		panel.add(btnPretragaKorisnika);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(new Color(0, 128, 128), 2));
+		panel_1.setBorder(new LineBorder(new Color(0, 128, 128)));
 		panel_1.setBackground(new Color(0, 128, 128));
 		panel_1.setBounds(249, 27, 177, 307);
 		frame.getContentPane().add(panel_1);

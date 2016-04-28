@@ -55,7 +55,7 @@ public class DodavanjeNovogKorisnika {
 		
 		JButton btnSpremiNovogKorisnika = new JButton("Spremi novog korisnika");
 		btnSpremiNovogKorisnika.setForeground(Color.BLACK);
-		btnSpremiNovogKorisnika.setBackground(Color.GRAY);
+		btnSpremiNovogKorisnika.setBackground(new Color(128, 128, 128));
 		btnSpremiNovogKorisnika.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		btnSpremiNovogKorisnika.setBounds(120, 193, 167, 23);
 		DodavnjeNovogKorisnika.getContentPane().add(btnSpremiNovogKorisnika);
