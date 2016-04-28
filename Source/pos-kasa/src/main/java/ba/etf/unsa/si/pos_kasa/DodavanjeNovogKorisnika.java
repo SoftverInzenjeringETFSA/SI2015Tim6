@@ -71,6 +71,7 @@ public class DodavanjeNovogKorisnika {
 		DodavnjeNovogKorisnika.getContentPane().add(lblPrezime);
 		
 		JLabel lblJmbg = new JLabel("JMBG:");
+		lblJmbg.setBackground(new Color(255, 255, 255));
 		lblJmbg.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		lblJmbg.setBounds(64, 99, 36, 14);
 		DodavnjeNovogKorisnika.getContentPane().add(lblJmbg);

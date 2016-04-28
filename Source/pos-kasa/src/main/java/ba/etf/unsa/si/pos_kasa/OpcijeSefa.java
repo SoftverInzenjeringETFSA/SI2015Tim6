@@ -59,7 +59,7 @@ public class OpcijeSefa {
 		
 		JLabel lblKorisnici = DefaultComponentFactory.getInstance().createTitle("Korisnici");
 		lblKorisnici.setFont(new Font("Times New Roman", Font.BOLD, 13));
-		lblKorisnici.setForeground(Color.BLACK);
+		lblKorisnici.setForeground(new Color(0, 0, 0));
 		lblKorisnici.setBounds(10, 11, 77, 20);
 		panel.add(lblKorisnici);
 		
