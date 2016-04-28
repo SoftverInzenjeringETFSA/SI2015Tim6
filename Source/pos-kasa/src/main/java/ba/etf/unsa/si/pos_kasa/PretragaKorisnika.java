@@ -55,7 +55,7 @@ public class PretragaKorisnika {
 		textField.setColumns(10);
 		
 		JButton btnPronai = new JButton("Pronađi");
-		btnPronai.setBounds(207, 72, 107, 29);
+		btnPronai.setBounds(207, 72, 117, 29);
 		frmPretragaKorisnika.getContentPane().add(btnPronai);
 	}
 }
