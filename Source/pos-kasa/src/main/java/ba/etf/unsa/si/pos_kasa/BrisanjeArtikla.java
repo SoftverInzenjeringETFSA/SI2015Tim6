@@ -21,6 +21,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
 
 public class BrisanjeArtikla {
 
@@ -28,6 +30,8 @@ public class BrisanjeArtikla {
 	private JLabel lblUnesiteifruArtikla;
 	private JTextField SifraArtikla;
 	private JButton btnPretraga;
+	private JScrollPane scrollPane;
+	private JTable Artikli;
 
 	/**
 	 * Launch the application.
@@ -61,43 +65,45 @@ public class BrisanjeArtikla {
 		BrisanjeArtikla.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		lblUnesiteifruArtikla = new JLabel("Unesite šifru artikla:");
+		lblUnesiteifruArtikla.setBounds(42, 35, 116, 17);
 		lblUnesiteifruArtikla.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		
 		SifraArtikla = new JTextField();
+		SifraArtikla.setBounds(162, 30, 254, 20);
 		SifraArtikla.setColumns(10);
 		
 		btnPretraga = new JButton("Pretraga");
+		btnPretraga.setBounds(434, 27, 107, 25);
 		btnPretraga.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		
 		JButton btnObrisiArtikal = new JButton("Obriši Artikal");
+		btnObrisiArtikal.setBounds(434, 212, 107, 25);
 		btnObrisiArtikal.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		GroupLayout groupLayout = new GroupLayout(BrisanjeArtikla.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(42)
-					.addComponent(lblUnesiteifruArtikla, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(SifraArtikla, GroupLayout.PREFERRED_SIZE, 254, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(btnPretraga, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnObrisiArtikal, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addContainerGap(39, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(27)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(SifraArtikla, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(btnPretraga))
-						.addComponent(lblUnesiteifruArtikla))
-					.addPreferredGap(ComponentPlacement.RELATED, 234, Short.MAX_VALUE)
-					.addComponent(btnObrisiArtikal)
-					.addGap(22))
-		);
-		BrisanjeArtikla.getContentPane().setLayout(groupLayout);
+		BrisanjeArtikla.getContentPane().setLayout(null);
+		BrisanjeArtikla.getContentPane().add(lblUnesiteifruArtikla);
+		BrisanjeArtikla.getContentPane().add(SifraArtikla);
+		BrisanjeArtikla.getContentPane().add(btnPretraga);
+		BrisanjeArtikla.getContentPane().add(btnObrisiArtikal);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(52, 63, 459, 138);
+		BrisanjeArtikla.getContentPane().add(scrollPane);
+		
+		Artikli = new JTable();
+		Artikli.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+			},
+			new String[] {
+				"Naziv artikla", "Cijena artikla", "Koli\u010Dina", "\u0160ifra artikla"
+			}
+		));
+		scrollPane.setViewportView(Artikli);
 	}
 }

@@ -13,6 +13,9 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class KreiranjeRacuna {
 
@@ -26,6 +29,7 @@ public class KreiranjeRacuna {
 	private JTextField Cijena;
 	private JTextField Iznos;
 	private JTextField UkupniIznos;
+	private JTable Stavke;
 
 	/**
 	 * Launch the application.
@@ -101,99 +105,82 @@ public class KreiranjeRacuna {
 		);
 		
 		JLabel lblStavkeRauna = new JLabel("Stavke računa:");
+		lblStavkeRauna.setBounds(10, 11, 96, 18);
 		lblStavkeRauna.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
 		
 		JLabel lblBarkod = new JLabel("Barkod:");
+		lblBarkod.setBounds(10, 35, 41, 16);
 		lblBarkod.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		
 		JLabel lblNazivArtikla = new JLabel("Naziv artikla:");
+		lblNazivArtikla.setBounds(94, 35, 68, 16);
 		lblNazivArtikla.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		
 		JLabel lblKoliina = new JLabel("Količina:");
+		lblKoliina.setBounds(178, 35, 47, 16);
 		lblKoliina.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		
 		JLabel lblCijena = new JLabel("Cijena:");
+		lblCijena.setBounds(262, 35, 36, 16);
 		lblCijena.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		
 		JLabel lblIznos = new JLabel("Iznos:");
+		lblIznos.setBounds(346, 35, 32, 16);
 		lblIznos.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		
 		Barkod = new JTextField();
+		Barkod.setBounds(10, 57, 78, 20);
 		Barkod.setColumns(10);
 		
 		NazivArtikla = new JTextField();
+		NazivArtikla.setBounds(94, 57, 78, 20);
 		NazivArtikla.setColumns(10);
 		
 		Kolicina = new JTextField();
+		Kolicina.setBounds(178, 57, 78, 20);
 		Kolicina.setColumns(10);
 		
 		Cijena = new JTextField();
+		Cijena.setBounds(262, 57, 78, 20);
 		Cijena.setColumns(10);
 		
 		Iznos = new JTextField();
+		Iznos.setBounds(346, 57, 78, 20);
 		Iznos.setColumns(10);
 		
 		JButton btntStampajRacun = new JButton("Štampaj račun");
+		btntStampajRacun.setBounds(317, 187, 107, 25);
 		btntStampajRacun.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-		GroupLayout gl_StavkeRacuna = new GroupLayout(StavkeRacuna);
-		gl_StavkeRacuna.setHorizontalGroup(
-			gl_StavkeRacuna.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_StavkeRacuna.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_StavkeRacuna.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblStavkeRauna)
-						.addGroup(gl_StavkeRacuna.createSequentialGroup()
-							.addGroup(gl_StavkeRacuna.createParallelGroup(Alignment.LEADING)
-								.addComponent(Barkod, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblBarkod))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_StavkeRacuna.createParallelGroup(Alignment.LEADING)
-								.addComponent(NazivArtikla, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblNazivArtikla))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_StavkeRacuna.createParallelGroup(Alignment.LEADING)
-								.addComponent(Kolicina, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblKoliina))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_StavkeRacuna.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblCijena)
-								.addComponent(Cijena, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_StavkeRacuna.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblIznos)
-								.addComponent(Iznos, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, gl_StavkeRacuna.createSequentialGroup()
-					.addContainerGap(335, Short.MAX_VALUE)
-					.addComponent(btntStampajRacun)
-					.addContainerGap())
-		);
-		gl_StavkeRacuna.setVerticalGroup(
-			gl_StavkeRacuna.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_StavkeRacuna.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_StavkeRacuna.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_StavkeRacuna.createSequentialGroup()
-							.addComponent(lblStavkeRauna)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblBarkod))
-						.addGroup(gl_StavkeRacuna.createParallelGroup(Alignment.BASELINE)
-							.addComponent(lblKoliina)
-							.addComponent(lblCijena)
-							.addComponent(lblNazivArtikla)
-							.addComponent(lblIznos)))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_StavkeRacuna.createParallelGroup(Alignment.BASELINE)
-						.addComponent(Barkod, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(NazivArtikla, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(Kolicina, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(Cijena, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(Iznos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
-					.addComponent(btntStampajRacun)
-					.addContainerGap())
-		);
-		StavkeRacuna.setLayout(gl_StavkeRacuna);
+		StavkeRacuna.setLayout(null);
+		StavkeRacuna.add(lblStavkeRauna);
+		StavkeRacuna.add(Barkod);
+		StavkeRacuna.add(lblBarkod);
+		StavkeRacuna.add(NazivArtikla);
+		StavkeRacuna.add(lblNazivArtikla);
+		StavkeRacuna.add(Kolicina);
+		StavkeRacuna.add(lblKoliina);
+		StavkeRacuna.add(lblCijena);
+		StavkeRacuna.add(Cijena);
+		StavkeRacuna.add(lblIznos);
+		StavkeRacuna.add(Iznos);
+		StavkeRacuna.add(btntStampajRacun);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 88, 404, 74);
+		StavkeRacuna.add(scrollPane);
+		
+		Stavke = new JTable();
+		Stavke.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"Barkod", "Naziv artikla", "Koli\u010Dina", "Cijena", "Iznos"
+			}
+		));
+		scrollPane.setViewportView(Stavke);
 		
 		JLabel lblElementiRauna = new JLabel("Elementi računa:");
 		lblElementiRauna.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
