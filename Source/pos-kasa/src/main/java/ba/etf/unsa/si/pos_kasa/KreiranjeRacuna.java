@@ -65,6 +65,7 @@ public class KreiranjeRacuna {
 		JPanel ElementiRacuna = new JPanel();
 		
 		JPanel StavkeRacuna = new JPanel();
+	
 		
 		UkupniIznos = new JTextField();
 		UkupniIznos.setFont(new Font("Times New Roman", Font.BOLD, 70));
@@ -80,11 +81,11 @@ public class KreiranjeRacuna {
 					.addGap(21)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(ElementiRacuna, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
-						.addComponent(StavkeRacuna, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addComponent(StavkeRacuna, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(UkupniIznos, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnReklamniRacun, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addComponent(btnReklamniRacun, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -92,21 +93,18 @@ public class KreiranjeRacuna {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(UkupniIznos, Alignment.LEADING)
+						.addComponent(UkupniIznos, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(ElementiRacuna, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(StavkeRacuna, GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-							.addContainerGap())
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-							.addComponent(btnReklamniRacun)
-							.addGap(21))))
+						.addComponent(StavkeRacuna, GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+						.addComponent(btnReklamniRacun))
+					.addContainerGap())
 		);
 		
 		JLabel lblStavkeRauna = new JLabel("Stavke računa:");
-		lblStavkeRauna.setBounds(10, 11, 96, 18);
-		lblStavkeRauna.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
+		lblStavkeRauna.setBounds(10, 11, 115, 18);
+		lblStavkeRauna.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		
 		JLabel lblBarkod = new JLabel("Barkod:");
 		lblBarkod.setBounds(10, 35, 41, 16);
@@ -183,7 +181,7 @@ public class KreiranjeRacuna {
 		scrollPane.setViewportView(Stavke);
 		
 		JLabel lblElementiRauna = new JLabel("Elementi računa:");
-		lblElementiRauna.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
+		lblElementiRauna.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		
 		JLabel lblRaun = new JLabel("Račun:");
 		lblRaun.setFont(new Font("Times New Roman", Font.PLAIN, 13));

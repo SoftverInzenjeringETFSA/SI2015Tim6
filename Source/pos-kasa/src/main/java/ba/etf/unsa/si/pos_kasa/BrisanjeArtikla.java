@@ -19,6 +19,7 @@ import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import java.awt.SystemColor;
 
 public class BrisanjeArtikla {
 
@@ -57,7 +58,7 @@ public class BrisanjeArtikla {
 	 */
 	private void initialize() {
 		BrisanjeArtikla = new JFrame();
-		BrisanjeArtikla.setBounds(100, 100, 578, 369);
+		BrisanjeArtikla.setBounds(100, 100, 578, 324);
 		BrisanjeArtikla.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		lblUnesiteifruArtikla = new JLabel("Unesite šifru artikla:");
@@ -68,12 +69,13 @@ public class BrisanjeArtikla {
 		SifraArtikla.setBounds(162, 30, 254, 20);
 		SifraArtikla.setColumns(10);
 		
-		btnPretraga = new JButton("Pretraga");
+		btnPretraga = new JButton("Pretraži");
 		btnPretraga.setBounds(434, 27, 107, 25);
 		btnPretraga.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		
 		JButton btnObrisiArtikal = new JButton("Obriši Artikal");
-		btnObrisiArtikal.setBounds(434, 212, 107, 25);
+		btnObrisiArtikal.setBackground(SystemColor.text);
+		btnObrisiArtikal.setBounds(217, 229, 107, 25);
 		btnObrisiArtikal.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		BrisanjeArtikla.getContentPane().setLayout(null);
 		BrisanjeArtikla.getContentPane().add(lblUnesiteifruArtikla);

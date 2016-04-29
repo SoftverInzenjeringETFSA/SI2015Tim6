@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.SystemColor;
 
 public class PretragaKorisnika_prikaz {
 
@@ -48,7 +50,7 @@ public class PretragaKorisnika_prikaz {
 		PretragaKorisnika_prikaz.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblPodaciOKorisniku = new JLabel("Podaci o korisniku:");
-		lblPodaciOKorisniku.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 19));
+		lblPodaciOKorisniku.setFont(new Font("Times New Roman", Font.BOLD, 17));
 		
 		JLabel lblImeKorisnika = new JLabel("Ime korisnika");
 		lblImeKorisnika.setFont(new Font("Times New Roman", Font.PLAIN, 16));
@@ -59,8 +61,10 @@ public class PretragaKorisnika_prikaz {
 		JLabel lblJmbgKorisnika = new JLabel("JMBG korisnika");
 		lblJmbgKorisnika.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		
-		JButton btnZatvrori = new JButton("Zatvrori");
-		btnZatvrori.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		JButton btnClose = new JButton("Zatvori");
+		btnClose.setForeground(SystemColor.controlText);
+		btnClose.setBackground(SystemColor.textHighlight);
+		btnClose.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		GroupLayout groupLayout = new GroupLayout(PretragaKorisnika_prikaz.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -77,7 +81,7 @@ public class PretragaKorisnika_prikaz {
 							.addComponent(lblPodaciOKorisniku, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(169)
-							.addComponent(btnZatvrori)))
+							.addComponent(btnClose)))
 					.addContainerGap(174, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
@@ -92,7 +96,7 @@ public class PretragaKorisnika_prikaz {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(lblJmbgKorisnika)
 					.addGap(30)
-					.addComponent(btnZatvrori)
+					.addComponent(btnClose)
 					.addContainerGap(66, Short.MAX_VALUE))
 		);
 		PretragaKorisnika_prikaz.getContentPane().setLayout(groupLayout);

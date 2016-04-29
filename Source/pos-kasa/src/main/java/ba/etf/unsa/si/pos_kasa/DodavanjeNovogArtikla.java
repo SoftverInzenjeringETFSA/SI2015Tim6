@@ -56,11 +56,11 @@ public class DodavanjeNovogArtikla {
 		DodavanjeNovogArtikla.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		DodavanjeNovogArtikla.setBackground(Color.DARK_GRAY);
 		DodavanjeNovogArtikla.setForeground(Color.BLACK);
-		DodavanjeNovogArtikla.setBounds(100, 100, 516, 329);
+		DodavanjeNovogArtikla.setBounds(100, 100, 491, 329);
 		DodavanjeNovogArtikla.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblUnesitePodatkeO = new JLabel("Unesite podatke o artiklu:");
-		lblUnesitePodatkeO.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 19));
+		lblUnesitePodatkeO.setFont(new Font("Times New Roman", Font.BOLD, 17));
 		
 		JLabel lblNazivArtikla = new JLabel("Naziv artikla:");
 		lblNazivArtikla.setFont(new Font("Times New Roman", Font.PLAIN, 16));
@@ -87,32 +87,30 @@ public class DodavanjeNovogArtikla {
 		textField.setColumns(10);
 		
 		JButton btnDodaj = new JButton("Dodaj");
+		btnDodaj.setBackground(SystemColor.textHighlight);
 		btnDodaj.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		GroupLayout groupLayout = new GroupLayout(DodavanjeNovogArtikla.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(btnDodaj, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-							.addGroup(groupLayout.createSequentialGroup()
-								.addGap(21)
-								.addComponent(lblUnesitePodatkeO, GroupLayout.PREFERRED_SIZE, 225, GroupLayout.PREFERRED_SIZE))
-							.addGroup(groupLayout.createSequentialGroup()
-								.addGap(112)
-								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-									.addComponent(lblCijenaArtikla)
-									.addComponent(lblNazivArtikla)
-									.addComponent(lblKoliina)
-									.addComponent(lblifraArtikla))
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-									.addComponent(textField, GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-									.addComponent(CijenaArtikla)
-									.addComponent(Kolicina)
-									.addComponent(NazivArtikla, GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)))))
+							.addGap(21)
+							.addComponent(lblUnesitePodatkeO, GroupLayout.PREFERRED_SIZE, 225, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(112)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblCijenaArtikla)
+								.addComponent(lblNazivArtikla)
+								.addComponent(lblKoliina)
+								.addComponent(lblifraArtikla))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(textField, GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+								.addComponent(CijenaArtikla, 196, 196, 196)
+								.addComponent(Kolicina, 196, 196, 196)
+								.addComponent(NazivArtikla, GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+								.addComponent(btnDodaj, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE))))
 					.addGap(109))
 		);
 		groupLayout.setVerticalGroup(
@@ -136,9 +134,9 @@ public class DodavanjeNovogArtikla {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblifraArtikla)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(27)
+					.addGap(28)
 					.addComponent(btnDodaj)
-					.addContainerGap(57, Short.MAX_VALUE))
+					.addContainerGap(59, Short.MAX_VALUE))
 		);
 		DodavanjeNovogArtikla.getContentPane().setLayout(groupLayout);
 	}
