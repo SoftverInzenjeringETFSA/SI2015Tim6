@@ -38,7 +38,9 @@ public class FormaZaKasira {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	
+	/**
+	 * afjafjsfvsjf
+	 */
 	private void initialize() {
 		frmKasa = new JFrame();
 		frmKasa.setTitle("Kasa");
