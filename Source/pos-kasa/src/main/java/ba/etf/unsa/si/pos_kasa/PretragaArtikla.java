@@ -58,9 +58,7 @@ public class PretragaArtikla {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	/**
-	 * afjafjsfvsjf
-	 */
+	
 	private void initialize() {
 		frmPretragaArtikala = new JFrame();
 		frmPretragaArtikala.setTitle("Pretraga Artikala");

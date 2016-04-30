@@ -49,9 +49,7 @@ public class Popust {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	/**
-	 * afjafjsfvsjf
-	 */
+	
 	private void initialize() {
 		frmPopust = new JFrame();
 		frmPopust.setTitle("Popust");
