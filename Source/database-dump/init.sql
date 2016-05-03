@@ -2,7 +2,7 @@
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
 -- Schema mydb
@@ -102,7 +102,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`smjena` (
   `kraj_smjene` TIMESTAMP NOT NULL,
   `kasir_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_smjena_kasir1_idx` (),
   INDEX `fk_racun_smjena1_idx` (`kasir_id` ASC),
   CONSTRAINT `fk_racun_smjena1`
     FOREIGN KEY (`kasir_id`)
@@ -142,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`racun` (
     REFERENCES `mydb`.`akcijapopust` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_racun_smjena1`
+  CONSTRAINT `fk_racun_smjena11`
     FOREIGN KEY (`smjena_id`)
     REFERENCES `mydb`.`smjena` (`id`)
     ON DELETE NO ACTION
