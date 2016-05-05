@@ -1,4 +1,4 @@
-package ba.etf.unsa.si.pos_kasa;
+package ba.etf.unsa.si.pos_kasa.view;
 
 import java.awt.EventQueue;
 
