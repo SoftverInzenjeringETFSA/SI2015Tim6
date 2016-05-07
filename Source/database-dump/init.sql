@@ -5,19 +5,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema tim6
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema tim6
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `tim6` DEFAULT CHARACTER SET utf8 ;
+USE `tim6` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`kategorija`
+-- Table `tim6`.`kategorija`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`kategorija` (
+CREATE TABLE IF NOT EXISTS `tim6`.`kategorija` (
   `id` INT NOT NULL,
   `naziv` VARCHAR(45) NOT NULL,
   `opis` VARCHAR(45) NULL,
@@ -27,9 +27,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`uposlenik`
+-- Table `tim6`.`uposlenik`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`uposlenik` (
+CREATE TABLE IF NOT EXISTS `tim6`.`uposlenik` (
   `id` INT NOT NULL,
   `ime_prezime` VARCHAR(45) NOT NULL,
   `datum_rođenja` DATE NULL,
@@ -42,9 +42,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`artikal`
+-- Table `tim6`.`artikal`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`artikal` (
+CREATE TABLE IF NOT EXISTS `tim6`.`artikal` (
   `id` INT NOT NULL,
   `naziv` VARCHAR(205) NOT NULL,
   `barkod` VARCHAR(13) NOT NULL,
@@ -58,45 +58,45 @@ CREATE TABLE IF NOT EXISTS `mydb`.`artikal` (
   INDEX `fk_artikal_kategorija_idx` (`kategorija_id` ASC),
   CONSTRAINT `fk_artikal_kategorija`
     FOREIGN KEY (`kategorija_id`)
-    REFERENCES `mydb`.`kategorija` (`id`)
+    REFERENCES `tim6`.`kategorija` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`sef`
+-- Table `tim6`.`sef`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`sef` (
+CREATE TABLE IF NOT EXISTS `tim6`.`sef` (
   `uposlenik_id` INT NOT NULL,
   INDEX `fk_sef_uposlenik1_idx` (`uposlenik_id` ASC),
   CONSTRAINT `fk_sef_uposlenik1`
     FOREIGN KEY (`uposlenik_id`)
-    REFERENCES `mydb`.`uposlenik` (`id`)
+    REFERENCES `tim6`.`uposlenik` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`kasir`
+-- Table `tim6`.`kasir`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`kasir` (
+CREATE TABLE IF NOT EXISTS `tim6`.`kasir` (
   `datum_zaposlenja` DATE NULL,
   `uposlenik_id` INT NOT NULL,
   INDEX `fk_kasir_uposlenik1_idx` (`uposlenik_id` ASC),
   CONSTRAINT `fk_kasir_uposlenik1`
     FOREIGN KEY (`uposlenik_id`)
-    REFERENCES `mydb`.`uposlenik` (`id`)
+    REFERENCES `tim6`.`uposlenik` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`smjena`
+-- Table `tim6`.`smjena`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`smjena` (
+CREATE TABLE IF NOT EXISTS `tim6`.`smjena` (
   `id` INT NOT NULL,
   `pocetak_smjene` TIMESTAMP NOT NULL,
   `kraj_smjene` TIMESTAMP NOT NULL,
@@ -105,16 +105,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`smjena` (
   INDEX `fk_racun_smjena1_idx` (`kasir_id` ASC),
   CONSTRAINT `fk_racun_smjena1`
     FOREIGN KEY (`kasir_id`)
-    REFERENCES `mydb`.`kasir` (`uposlenik_id`)
+    REFERENCES `tim6`.`kasir` (`uposlenik_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`akcijapopust`
+-- Table `tim6`.`akcijapopust`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`akcijapopust` (
+CREATE TABLE IF NOT EXISTS `tim6`.`akcijapopust` (
   `id` INT NOT NULL,
   `datum_pocetka` DATETIME NOT NULL,
   `datum_kraja` DATETIME NOT NULL,
@@ -125,9 +125,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`racun`
+-- Table `tim6`.`racun`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`racun` (
+CREATE TABLE IF NOT EXISTS `tim6`.`racun` (
   `id` INT NOT NULL,
   `datum_i_vrijeme` DATETIME NULL,
   `broj_racuna` INT(11) NULL,
@@ -138,21 +138,21 @@ CREATE TABLE IF NOT EXISTS `mydb`.`racun` (
   INDEX `fk_racun_smjena1_idx` (`smjena_id` ASC),
   CONSTRAINT `fk_racun_akcijapopust1`
     FOREIGN KEY (`akcijapopust_id`)
-    REFERENCES `mydb`.`akcijapopust` (`id`)
+    REFERENCES `tim6`.`akcijapopust` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_racun_smjena11`
     FOREIGN KEY (`smjena_id`)
-    REFERENCES `mydb`.`smjena` (`id`)
+    REFERENCES `tim6`.`smjena` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`stavkaracuna`
+-- Table `tim6`.`stavkaracuna`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`stavkaracuna` (
+CREATE TABLE IF NOT EXISTS `tim6`.`stavkaracuna` (
   `id` INT NOT NULL,
   `kolicina` INT(11) NOT NULL,
   `ukupna_cijena` DECIMAL NOT NULL,
@@ -163,21 +163,21 @@ CREATE TABLE IF NOT EXISTS `mydb`.`stavkaracuna` (
   INDEX `fk_stavkaracuna_racun1_idx` (`racun_id` ASC),
   CONSTRAINT `fk_stavkaracuna_artikal1`
     FOREIGN KEY (`artikal_id`)
-    REFERENCES `mydb`.`artikal` (`id`)
+    REFERENCES `tim6`.`artikal` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_stavkaracuna_racun1`
     FOREIGN KEY (`racun_id`)
-    REFERENCES `mydb`.`racun` (`id`)
+    REFERENCES `tim6`.`racun` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`vrstaplacanja`
+-- Table `tim6`.`vrstaplacanja`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`vrstaplacanja` (
+CREATE TABLE IF NOT EXISTS `tim6`.`vrstaplacanja` (
   `id` INT NOT NULL,
   `naziv` VARCHAR(45) NOT NULL,
   `opis` VARCHAR(45) NOT NULL,
@@ -186,9 +186,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`nacinplacanja`
+-- Table `tim6`.`nacinplacanja`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`nacinplacanja` (
+CREATE TABLE IF NOT EXISTS `tim6`.`nacinplacanja` (
   `id` INT NOT NULL,
   `iznos` DECIMAL NOT NULL,
   `vrstaplacanja_id` INT NOT NULL,
@@ -198,12 +198,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`nacinplacanja` (
   INDEX `fk_nacinplacanja_racun1_idx` (`racun_id` ASC),
   CONSTRAINT `fk_nacinplacanja_vrstaplacanja1`
     FOREIGN KEY (`vrstaplacanja_id`)
-    REFERENCES `mydb`.`vrstaplacanja` (`id`)
+    REFERENCES `tim6`.`vrstaplacanja` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_nacinplacanja_racun1`
     FOREIGN KEY (`racun_id`)
-    REFERENCES `mydb`.`racun` (`id`)
+    REFERENCES `tim6`.`racun` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

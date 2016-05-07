@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 7, 2016 12:46:57 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="ba.etf.unsa.si.pos_kasa.model.Racun" table="RACUN">
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="datum_i_vrijeme" type="java.util.Date">
+            <column name="DATUM_I_VRIJEME" />
+        </property>
+        <property name="akcija_popust_id" type="long">
+            <column name="AKCIJA_POPUST_ID" />
+        </property>
+        <property name="broj_racuna" type="int">
+            <column name="BROJ_RACUNA" />
+        </property>
+    </class>
+</hibernate-mapping>
