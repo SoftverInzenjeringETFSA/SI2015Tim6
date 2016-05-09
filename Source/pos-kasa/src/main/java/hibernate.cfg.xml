@@ -10,7 +10,9 @@
   <property name="hibernate.default_schema">mydb</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
   <property name="hibernate.hbm2ddl.auto">update</property>
-  <mapping resource="ba/etf/unsa/si/pos_kasa/model/Racun.hbm.xml"/>
   <mapping class="ba.etf.unsa.si.pos_kasa.model.Kategorija"/>
+  <mapping class="ba.etf.unsa.si.pos_kasa.model.Racun"/>
+  <mapping class="ba.etf.unsa.si.pos_kasa.model.StavkaRacuna"/>
  </session-factory>
 </hibernate-configuration>
+
