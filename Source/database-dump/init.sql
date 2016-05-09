@@ -18,7 +18,7 @@ USE `tim6` ;
 -- Table `tim6`.`kategorija`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tim6`.`kategorija` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO INCEREMENT,
   `naziv` VARCHAR(45) NOT NULL,
   `opis` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
@@ -30,7 +30,7 @@ ENGINE = InnoDB;
 -- Table `tim6`.`uposlenik`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tim6`.`uposlenik` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO INCEREMENT,
   `ime_prezime` VARCHAR(45) NOT NULL,
   `datum_rođenja` DATE NULL,
   `jmbg` VARCHAR(45) NOT NULL,
@@ -45,7 +45,7 @@ ENGINE = InnoDB;
 -- Table `tim6`.`artikal`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tim6`.`artikal` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO INCEREMENT,
   `naziv` VARCHAR(205) NOT NULL,
   `barkod` VARCHAR(13) NOT NULL,
   `jedinica_mjere` VARCHAR(45) NOT NULL,
@@ -97,7 +97,7 @@ ENGINE = InnoDB;
 -- Table `tim6`.`smjena`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tim6`.`smjena` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO INCEREMENT,
   `pocetak_smjene` TIMESTAMP NOT NULL,
   `kraj_smjene` TIMESTAMP NOT NULL,
   `kasir_id` INT NOT NULL,
@@ -115,7 +115,7 @@ ENGINE = InnoDB;
 -- Table `tim6`.`akcijapopust`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tim6`.`akcijapopust` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO INCEREMENT,
   `datum_pocetka` DATETIME NOT NULL,
   `datum_kraja` DATETIME NOT NULL,
   `opis` VARCHAR(245) NOT NULL,
@@ -128,7 +128,7 @@ ENGINE = InnoDB;
 -- Table `tim6`.`racun`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tim6`.`racun` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `datum_i_vrijeme` DATETIME NULL,
   `broj_racuna` INT(11) NULL,
   `akcijapopust_id` INT NOT NULL,
@@ -153,7 +153,7 @@ ENGINE = InnoDB;
 -- Table `tim6`.`stavkaracuna`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tim6`.`stavkaracuna` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO INCEREMENT,
   `kolicina` INT(11) NOT NULL,
   `ukupna_cijena` DECIMAL NOT NULL,
   `artikal_id` INT NOT NULL,
@@ -178,7 +178,7 @@ ENGINE = InnoDB;
 -- Table `tim6`.`vrstaplacanja`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tim6`.`vrstaplacanja` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO INCEREMENT,
   `naziv` VARCHAR(45) NOT NULL,
   `opis` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
@@ -189,7 +189,7 @@ ENGINE = InnoDB;
 -- Table `tim6`.`nacinplacanja`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tim6`.`nacinplacanja` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO INCEREMENT,
   `iznos` DECIMAL NOT NULL,
   `vrstaplacanja_id` INT NOT NULL,
   `racun_id` INT NOT NULL,
