@@ -1,14 +1,9 @@
-package ba.etf.unsa.si.pos_kasa.controller;
-
-import java.util.Scanner;
+package Tools;
 
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import ba.etf.unsa.si.pos_kasa.model.Racun;
-
-public class ZaBrisanje {
+public class HibernateUtil {
 
 	  private static final SessionFactory sessionFactory = buildSessionFactory();
 
@@ -27,18 +22,4 @@ public class ZaBrisanje {
 	    public static SessionFactory getSessionFactory() {
 	        return sessionFactory;
 	    }
-	    private static Scanner sc = new Scanner(System.in);
-	    public static void main(String[] args) {
-	    Session session = HibernateUtil.getSessionFactory().openSession();
-	    dodajStudenta(session);
-	    session.close();
-	    }
-	    private static void dodajStudenta(Session session) {
-	    Transaction t = session.beginTransaction();
-	    Racun s = new Racun();
-	    s.setBroj_racuna(3123);
-	    System.out.println("Dodan student sa IDom "+id);
-	    t.commit();
-	    }
-
 }

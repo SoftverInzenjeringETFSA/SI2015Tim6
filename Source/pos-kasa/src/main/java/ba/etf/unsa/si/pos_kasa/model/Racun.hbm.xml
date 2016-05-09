@@ -12,7 +12,7 @@
             <column name="DATUM_I_VRIJEME" />
         </property>
         <property name="akcija_popust_id" type="long">
-            <column name="AKCIJA_POPUST_ID" />
+            <column name="AKCIJAPOPUST_ID" />
         </property>
         <property name="broj_racuna" type="int">
             <column name="BROJ_RACUNA" />
