@@ -2,6 +2,8 @@ package ba.etf.unsa.si.pos_kasa.controller;
 
 import ba.etf.unsa.si.pos_kasa.model.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -23,14 +25,9 @@ import org.hibernate.cfg.Configuration;
 public class Izvjestaji {
 
 	public static void main(String[] args) {
-        System.out.println("Hello World!"); // Display the string.
-        for(StavkaRacuna srac : dajRacuneOdDo(java.sql.Date.valueOf("2016-01-12") , java.sql.Date.valueOf("2016-01-22") ))
-        {
-        	System.out.println(srac.getUkupna_cijena());
-        }
     }
     
-    private static List<StavkaRacuna> dajRacuneOdDo(Date date1, Date date2){
+    private static List<StavkaRacuna> dajStavkeRacunaOdDo(Date date1, Date date2){
         Session session = HibernateUtil.getSessionFactory().openSession(); //otvaranje sesije, obavezno na pocetku metodeu
         
 
@@ -38,11 +35,26 @@ public class Izvjestaji {
 				+ "FROM Racun r, StavkaRacuna sr "
 				+ "WHERE r.datum_i_vrijeme BETWEEN STR_TO_DATE(:datum1, \'%Y-%m-%d\') AND STR_TO_DATE(:datum2, \'%Y-%m-%d\') AND sr.racun_id = r.id";
 		Query q = session.createQuery(hql);
-		q.setString("datum1", date1.toString());
-		q.setString("datum2", date2.toString());
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		q.setString("datum1",		df.format(date1));
+		q.setString("datum2", 		df.format(date2));
 		List redovi = q.list();
         session.close(); //zatvaranje konekcije, obavezno na kraju metode
         return redovi;
+    }
+    
+    public static double[] dajUkupanPrometIprodateArtikleOdDo(Date date1, Date date2){
+    	double[] returnValues = new double[2]; // 0-ukupno artikala, 1-ukupan promet u KM
+    	double ukupnoKm = 0;
+    	int ukupnoProdato = 0;
+    	for(StavkaRacuna sr : dajStavkeRacunaOdDo(date1 , date2))
+    	{
+    		ukupnoKm += sr.getUkupna_cijena();
+    		ukupnoProdato += sr.getKolicina();
+    	}
+    	returnValues[0] = ukupnoProdato;
+    	returnValues[1] = ukupnoKm;
+		return returnValues;
     }
     
     private static void dodajKategoriju(Session session) {
