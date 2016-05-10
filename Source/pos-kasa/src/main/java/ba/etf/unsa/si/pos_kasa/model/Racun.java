@@ -23,6 +23,8 @@ public class Racun implements java.io.Serializable {
 	long broj_racuna;
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,targetEntity=StavkaRacuna.class)
     List stavkeRacuna;
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,targetEntity=NacinPlacanja.class)
+    List naciniPlacanja;
 	public Racun(long id, Date datum_i_vrijeme, long akcijapopust_id, long broj_racuna) {
 		super();
 		this.id = id;
