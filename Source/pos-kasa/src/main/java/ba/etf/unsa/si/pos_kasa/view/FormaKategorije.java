@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
 import javax.swing.JTextField;
@@ -15,13 +17,21 @@ import javax.swing.JPanel;
 import java.awt.Label;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.Vector;
+import java.awt.event.ActionEvent;
+import ba.etf.unsa.si.pos_kasa.controller.KategorijaControler;
+import ba.etf.unsa.si.pos_kasa.model.Kategorija;
 
 public class FormaKategorije {
 
 	private JFrame frame;
 	private JTextField imeKategorijeText;
 	private JTextField opisKategorijeText;
-
+	private JList listKategorije;
+	private DefaultListModel dlm=new DefaultListModel();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -73,6 +83,16 @@ public class FormaKategorije {
 		frame.getContentPane().add(label_1);
 		
 		JButton dodajKategorijuButton = new JButton("Dodaj");
+		dodajKategorijuButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String ime=imeKategorijeText.getText();
+				String opis=opisKategorijeText.getText();
+				KategorijaControler kc =new KategorijaControler();
+				kc.dodajKategoriju(ime, opis);
+				prikazi();
+							
+			}
+		});
 		dodajKategorijuButton.setBounds(296, 47, 89, 37);
 		frame.getContentPane().add(dodajKategorijuButton);
 		
@@ -80,11 +100,52 @@ public class FormaKategorije {
 		scrollPane.setBounds(10, 98, 299, 153);
 		frame.getContentPane().add(scrollPane);
 		
-		JList listKategorije = new JList();
+		final JList listKategorije = new JList(dlm);
 		scrollPane.setViewportView(listKategorije);
 		
 		JButton btnObrisi = new JButton("Obrisi");
+		btnObrisi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				KategorijaControler kc =new KategorijaControler();
+				String selected=(String) listKategorije.getSelectedValue();
+				int n=listKategorije.getSelectedIndex();
+				dlm.removeElementAt(n);
+				String[] novo=selected.split(" ");
+				kc.obrisiKategoriju(Long.parseLong(novo[0]));
+				
+				
+			}
+		});
 		btnObrisi.setBounds(335, 219, 89, 32);
 		frame.getContentPane().add(btnObrisi);
+		
+		JButton btnPrikazi = new JButton("Prikazi");
+		btnPrikazi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				prikazi();
+			}
+		});
+		btnPrikazi.setBounds(336, 156, 88, 37);
+		frame.getContentPane().add(btnPrikazi);
+		
+	}
+	public void prikazi(){
+		KategorijaControler kc =new KategorijaControler();
+		List<Kategorija>kat=new Vector<Kategorija>();
+		kat=(List<Kategorija>)kc.vratiSveKategorije();
+		dlm.removeAllElements();
+		imeKategorijeText.setText("");
+		opisKategorijeText.setText("");
+		List<String> lista=new Vector<String>();
+		for(int i=0;i<kat.size();i++)
+		{
+			String str=kat.get(i).getId()+" "+kat.get(i).getNaziv()+"  "+kat.get(i).getOpis();
+			lista.add(str);
+		}
+		for(String dio:lista)
+		{
+			dlm.addElement(dio);
+		}
+		
 	}
 }
