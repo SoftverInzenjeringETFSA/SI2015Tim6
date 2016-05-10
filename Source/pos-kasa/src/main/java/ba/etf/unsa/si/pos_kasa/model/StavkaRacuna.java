@@ -1,5 +1,6 @@
 package ba.etf.unsa.si.pos_kasa.model;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -13,9 +14,18 @@ public class StavkaRacuna implements java.io.Serializable {
 	int kolicina;
 	double ukupna_cijena;
 	long artikal_id;
-    @ManyToOne
-    @JoinColumn(name="racun_id")
+	long racun_id;
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="racun_id", insertable = false, updatable = false)
     Racun racun;
+	public StavkaRacuna(long id, int kolicina, double ukupna_cijena, long artikal_id) {
+		super();
+		this.id = id;
+		this.kolicina = kolicina;
+		this.ukupna_cijena = ukupna_cijena;
+		this.artikal_id = artikal_id;
+		this.racun = racun;
+	}
 	public StavkaRacuna() {
 		// TODO Auto-generated constructor stub
 	}
