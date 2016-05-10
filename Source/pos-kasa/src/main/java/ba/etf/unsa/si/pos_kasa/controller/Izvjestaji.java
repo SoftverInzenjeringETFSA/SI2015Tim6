@@ -29,8 +29,6 @@ public class Izvjestaji {
     
     private static List<StavkaRacuna> dajStavkeRacunaOdDo(Date date1, Date date2){
         Session session = HibernateUtil.getSessionFactory().openSession(); //otvaranje sesije, obavezno na pocetku metodeu
-        
-
 		String hql = "Select new ba.etf.unsa.si.pos_kasa.model.StavkaRacuna(sr.id, sr.kolicina, sr.ukupna_cijena, sr.artikal_id) "
 				+ "FROM Racun r, StavkaRacuna sr "
 				+ "WHERE r.datum_i_vrijeme BETWEEN STR_TO_DATE(:datum1, \'%Y-%m-%d\') AND STR_TO_DATE(:datum2, \'%Y-%m-%d\') AND sr.racun_id = r.id";
@@ -55,6 +53,31 @@ public class Izvjestaji {
     	returnValues[0] = ukupnoProdato;
     	returnValues[1] = ukupnoKm;
 		return returnValues;
+    }
+    
+    private static double[] obracunajPoNacinuPlacanjaUkupanIznos(List<NacinPlacanja> records)
+    {
+    	double[] ukupno = new double[]{0,0,0,0}; // gotovina, kartica, ček, virman
+    	for(NacinPlacanja np : records)
+    	{
+    		ukupno[(int)np.getVrstaplacanja_id()-1] += np.getIznos();
+    	}
+    	return ukupno;
+    }
+    
+    public static double[] dajUkupanPrometPoVrstiPlacanjaOdDo(Date date1, Date date2)
+    {
+        Session session = HibernateUtil.getSessionFactory().openSession(); //otvaranje sesije, obavezno na pocetku metodeu
+		String hql = "Select new ba.etf.unsa.si.pos_kasa.model.NacinPlacanja(np.id, np.iznos, np.vrstaplacanja_id, np.racun_id) "
+				+ "FROM Racun r, NacinPlacanja np "
+				+ "WHERE r.datum_i_vrijeme BETWEEN STR_TO_DATE(:datum1, \'%Y-%m-%d\') AND STR_TO_DATE(:datum2, \'%Y-%m-%d\') AND np.racun_id = r.id";
+		Query q = session.createQuery(hql);
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		q.setString("datum1",		df.format(date1));
+		q.setString("datum2", 		df.format(date2));
+		List<NacinPlacanja> redovi = q.list();
+        session.close(); //zatvaranje konekcije, obavezno na kraju metode
+    	return obracunajPoNacinuPlacanjaUkupanIznos(redovi);    	
     }
     
     private static void dodajKategoriju(Session session) {

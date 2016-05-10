@@ -3,7 +3,7 @@
                                          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
  <session-factory name="">
- <property name="show_sql">true</property>
+  <property name="show_sql">true</property>
   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
   <property name="hibernate.connection.password">2015SIEtf</property>
   <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/tim6</property>
@@ -14,6 +14,6 @@
   <mapping class="ba.etf.unsa.si.pos_kasa.model.Kategorija"/>
   <mapping class="ba.etf.unsa.si.pos_kasa.model.Racun"/>
   <mapping class="ba.etf.unsa.si.pos_kasa.model.StavkaRacuna"/>
+  <mapping class="ba.etf.unsa.si.pos_kasa.model.NacinPlacanja"/>
  </session-factory>
 </hibernate-configuration>
-

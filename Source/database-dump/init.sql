@@ -155,7 +155,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `tim6`.`stavkaracuna` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `kolicina` INT(11) NOT NULL,
-  `ukupna_cijena` DECIMAL NOT NULL,
+  `ukupna_cijena` FLOAT NOT NULL,
   `artikal_id` INT NOT NULL,
   `racun_id` INT NOT NULL,
   PRIMARY KEY (`id`),
