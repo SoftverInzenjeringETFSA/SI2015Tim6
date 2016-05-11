@@ -25,6 +25,7 @@ public class Racun implements java.io.Serializable {
     List stavkeRacuna;
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,targetEntity=NacinPlacanja.class)
     List naciniPlacanja;
+    
 	public Racun(long id, Date datum_i_vrijeme, long akcijapopust_id, long broj_racuna) {
 		super();
 		this.id = id;
@@ -71,5 +72,4 @@ public class Racun implements java.io.Serializable {
 	public void setBroj_racuna(long broj_racuna) {
 		this.broj_racuna = broj_racuna;
 	}
-
 }
