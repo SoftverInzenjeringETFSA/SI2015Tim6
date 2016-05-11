@@ -1,11 +1,16 @@
 package ba.etf.unsa.si.pos_kasa.controller;
 
 import ba.etf.unsa.si.pos_kasa.model.*;
-import java.util.Date;
+import ba.etf.unsa.si.pos_kasa.view.*;
 
+import java.util.*;
+
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import Tools.HibernateUtil;
+
 
 public class RacunKontroler {
  
@@ -62,10 +67,27 @@ public class RacunKontroler {
 		 session.close();
 	}
 	
-	public static void ispisiSveRacune()
+/*	public static Racun ispisiSveRacune(long id)throws Exception
 	{
-		
+		session = HibernateUtil.getSessionFactory().openSession();
+	     Transaction t=session.beginTransaction(); 
+	     
+	     String hql = "Select new ba.etf.unsa.si.pos_kasa.model.StavkaRacuna(r.id, r.datum_i_vrijeme, r.akcijaPopust_id, r.broj_racuna) "
+					+ "FROM Racun r";
+					
+			Query q = session.createQuery(hql);
+			q.setLong("id", id);
+			List l = q.list();
+			t.commit();
+			if(l.isEmpty())
+			{
+				throw new Exception("Racun nije pronađen");
+			}
+			Racun _racun = (Racun) l.get(0);
+			return _racun;
+	
 	}
+	*/
 	
 	public static Racun pretraziRacunePoDatumu(Date _datum)throws Exception
 	{
@@ -83,10 +105,5 @@ public class RacunKontroler {
            
 	}
 	
-	//Dodaje racun u listu racuna
-	public static void dodajRacun()
-	{
-	  
-	}
 }
 
