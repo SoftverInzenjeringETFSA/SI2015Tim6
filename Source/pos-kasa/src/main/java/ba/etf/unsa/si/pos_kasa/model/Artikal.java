@@ -83,7 +83,8 @@ public class Artikal implements java.io.Serializable{
 	public void setKategorija_id(long kategorija_id) {
 		this.kategorija_id = kategorija_id;
 	}
-	
+	public Artikal() {
+	}
 	
 }
 

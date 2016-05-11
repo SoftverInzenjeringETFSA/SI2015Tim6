@@ -15,5 +15,6 @@
   <mapping class="ba.etf.unsa.si.pos_kasa.model.Racun"/>
   <mapping class="ba.etf.unsa.si.pos_kasa.model.StavkaRacuna"/>
   <mapping class="ba.etf.unsa.si.pos_kasa.model.NacinPlacanja"/>
+  <mapping class="ba.etf.unsa.si.pos_kasa.model.Artikal"/>
  </session-factory>
 </hibernate-configuration>
