@@ -10,7 +10,15 @@ public class Artikal implements java.io.Serializable{
 	@Id
 	@GeneratedValue
 	long id;
+	String naziv;
+	String barkod;
+	String jedinica_mjere;
+	double cijena;
+	long zalihe_stanje;
+	String opis;
+	long kategorija_id;
 
+	
 	public long getId() {
 		return id;
 	}
@@ -19,7 +27,7 @@ public class Artikal implements java.io.Serializable{
 		this.id = id;
 	}
 	
-	String naziv;
+	
 
 	public String getNaziv() {
 		return naziv;
@@ -29,7 +37,7 @@ public class Artikal implements java.io.Serializable{
 		this.naziv = naziv;
 	}
 	
-	String barkod;
+	
 
 	public String getBarkod() {
 		return barkod;
@@ -38,8 +46,7 @@ public class Artikal implements java.io.Serializable{
 	public void setBarkod(String barkod) {
 		this.barkod = barkod;
 	}
-	String jedinica_mjere;
-
+	
 	public String getJedinica_mjere() {
 		return jedinica_mjere;
 	}
@@ -47,7 +54,7 @@ public class Artikal implements java.io.Serializable{
 	public void setJedinica_mjere(String jedinica_mjere) {
 		this.jedinica_mjere = jedinica_mjere;
 	}
-	double cijena;
+	
 	public double getCijena() {
 		return cijena;
 	}
@@ -55,7 +62,7 @@ public class Artikal implements java.io.Serializable{
 	public void setCijena(double cijena) {
 		this.cijena = cijena;
 	}
-	long zalihe_stanje;
+	
 
 	public long getZalihe_stanje() {
 		return zalihe_stanje;
@@ -64,7 +71,7 @@ public class Artikal implements java.io.Serializable{
 	public void setZalihe_stanje(long zalihe_stanje) {
 		this.zalihe_stanje = zalihe_stanje;
 	}
-	String opis;
+	
 
 	public String getOpis() {
 		return opis;
@@ -74,8 +81,7 @@ public class Artikal implements java.io.Serializable{
 		this.opis = opis;
 	}
 	
-	long kategorija_id;
-
+	
 	public long getKategorija_id() {
 		return kategorija_id;
 	}
