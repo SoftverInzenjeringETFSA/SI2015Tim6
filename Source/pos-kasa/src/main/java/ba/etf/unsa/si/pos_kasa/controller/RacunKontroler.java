@@ -22,6 +22,7 @@ public class RacunKontroler {
 	
 	public static void dodajStavku (StavkaRacuna stavka)
 	{
+	
 		session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		StavkaRacuna sr = new StavkaRacuna();
