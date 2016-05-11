@@ -25,7 +25,6 @@ import ba.etf.unsa.si.pos_kasa.controller.KategorijaControler;
 import ba.etf.unsa.si.pos_kasa.model.Kategorija;
 
 public class FormaKategorije {
-
 	private JFrame frame;
 	private JTextField imeKategorijeText;
 	private JTextField opisKategorijeText;
