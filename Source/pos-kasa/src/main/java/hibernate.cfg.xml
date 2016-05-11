@@ -15,7 +15,5 @@
   <mapping class="ba.etf.unsa.si.pos_kasa.model.Racun"/>
   <mapping class="ba.etf.unsa.si.pos_kasa.model.StavkaRacuna"/>
   <mapping class="ba.etf.unsa.si.pos_kasa.model.NacinPlacanja"/>
-  <mapping class="ba.etf.unsa.si.pos_kasa.model.Prijava" />
-  <mapping class="ba.etf.unsa.si.pos_kasa.model.Odjava" />
  </session-factory>
 </hibernate-configuration>
