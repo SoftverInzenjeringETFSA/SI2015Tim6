@@ -69,6 +69,7 @@ public class RacunKontroler {
 	
 /*	public static Racun ispisiSveRacune(long id)throws Exception
 	{
+	//
 		session = HibernateUtil.getSessionFactory().openSession();
 	     Transaction t=session.beginTransaction(); 
 	     
