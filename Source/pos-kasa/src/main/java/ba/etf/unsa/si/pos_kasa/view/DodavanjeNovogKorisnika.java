@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+
 import ba.etf.unsa.si.pos_kasa.controller.UposlenikKontroler;
 import ba.etf.unsa.si.pos_kasa.model.Kasir;
 

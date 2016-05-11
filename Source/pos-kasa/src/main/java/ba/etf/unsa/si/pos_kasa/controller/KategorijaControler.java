@@ -23,7 +23,7 @@ public class KategorijaControler {
 		
 	}
 
-	public static void dodajKategoriju(String ime, String opis) {
+	public static Long dodajKategoriju(String ime, String opis) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		Kategorija kat = new Kategorija();
@@ -32,6 +32,7 @@ public class KategorijaControler {
 		Long id = (Long) session.save(kat);
 		t.commit();
 		session.close();
+		return id;
 
 	}
 

@@ -5,16 +5,33 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import java.awt.EventQueue;
+
 import javax.swing.JLabel;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
 import java.awt.Font;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class OpcijeSefa {
 
 	private JFrame frame;
-	private SefKontroler sefKontroler;
+	private static SefKontroler sefKontroler;
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					OpcijeSefa window = new OpcijeSefa(sefKontroler);
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	/**
 	 * Create the application.
