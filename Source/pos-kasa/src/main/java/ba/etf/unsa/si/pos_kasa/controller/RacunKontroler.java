@@ -21,7 +21,7 @@ public class RacunKontroler {
 	{
 	}
 	
-	public static void dodajStavku(long _id, int _kolicina, double _ukupna_cijena, long _artikal_id)
+	public static Long dodajStavku(long _id, int _kolicina, double _ukupna_cijena, long _artikal_id)
 	{
 	 
 		session = HibernateUtil.getSessionFactory().openSession();
@@ -36,6 +36,7 @@ public class RacunKontroler {
 		Long id = (Long) session.save(sr);
 		t.commit();
 		session.close();
+		return id;
 	}
 	public static void ukloniStavku(long _id)
 	{
@@ -58,7 +59,7 @@ public class RacunKontroler {
 		session.close();
 	}
 	
-	public static void dodajNacinPlacanja(long _id, double _iznos, long _vrsteplacanja_id, long _racun_id)
+	public static Long dodajNacinPlacanja(long _id, double _iznos, long _vrsteplacanja_id, long _racun_id)
 	{
 		session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
@@ -72,6 +73,7 @@ public class RacunKontroler {
 		 Long id = (Long) session.save(np);
 		 t.commit(); 
 		 session.close();
+		 return id;
 	}
 	
 	public static List<?> vratiSveRacune()
