@@ -1,0 +1,77 @@
+package ba.etf.unsa.si.pos_kasa.model;
+
+import java.sql.Timestamp;
+
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+
+@Entity
+
+public class Smjena implements java.io.Serializable {
+		@Id
+		@GeneratedValue
+		long id;
+		Timestamp pocetak_smjene;
+		Timestamp kraj_smjene;
+		long kasir_id;
+		
+	    @ManyToOne(fetch=FetchType.EAGER)
+	    @JoinColumn(name="smjena_id", insertable = false, updatable = false)
+	    Smjena smjena;
+		
+	    public long getId() {
+			return id;
+		}
+		public void setId(long id) {
+			this.id = id;
+		}
+		public Timestamp getPocetakSmjene() {
+			return pocetak_smjene;
+		}
+		public void setPocetakSmjene(Timestamp pocetak_smjene) {
+			this.pocetak_smjene = pocetak_smjene;
+		}
+		public Timestamp getKrajSmjene() {
+			return kraj_smjene;
+		}
+		public void setKrajSmjene(Timestamp kraj_smjene) {
+			this.kraj_smjene = kraj_smjene;
+		}
+		
+		public long getKasir_id() {
+			return kasir_id;
+		}
+		public void setKasir_id(long kasir_id) {
+			this.kasir_id = kasir_id;
+		}
+		public Smjena getSmjena() {
+			return smjena;
+		}
+		public void setSmjena(Smjena smjena) {
+			this.smjena = smjena;
+		}
+		public Smjena() {
+			super();
+		}
+		public Smjena(long id, Timestamp pocetak_smjene, Timestamp kraj_smjene, long kasir_id) {
+			super();
+			this.id = id;
+			this.pocetak_smjene = pocetak_smjene;
+			this.kraj_smjene = kraj_smjene;
+			this.kasir_id = kasir_id;
+		}
+	}
+
+
+	
+	
+	
+	
+	
+
