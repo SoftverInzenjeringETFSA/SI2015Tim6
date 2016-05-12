@@ -79,7 +79,19 @@ public class Artikal implements java.io.Serializable{
 		this.opis = opis;
 	}
 	
-	
+	public Artikal(long id, String naziv, String barkod, String jedinica_mjere, double cijena, int zalihe_stanje,
+			String opis, long kategorija_id) {
+		super();
+		this.id = id;
+		this.naziv = naziv;
+		this.barkod = barkod;
+		this.jedinica_mjere = jedinica_mjere;
+		this.cijena = cijena;
+		this.zalihe_stanje = zalihe_stanje;
+		this.opis = opis;
+		this.kategorija_id = kategorija_id;
+	}
+
 	public long getKategorija_id() {
 		return kategorija_id;
 	}

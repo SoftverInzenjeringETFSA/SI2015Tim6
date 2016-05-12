@@ -15,7 +15,6 @@ import javax.swing.JTextField;
 
 
 import ba.etf.unsa.si.pos_kasa.controller.UposlenikKontroler;
-import ba.etf.unsa.si.pos_kasa.model.Kasir;
 
 public class DodavanjeNovogKorisnika {
 
@@ -75,13 +74,13 @@ public class DodavanjeNovogKorisnika {
 				//System.out.println(pIme+" "+pPrezime+" "+pJMBG+" "+pKorisnickoIme+" "+pPassword+" "+pPasswordConfirm+" "+pBrojTel);
 				//TODO Uraditi validacije sve
 				//Umjesto datuma rodjenja je new date 
-				Kasir kasir = new Kasir(pIme+" "+pPrezime, new Date(),pJMBG,pBrojTel);
+				/*Kasir kasir = new Kasir(pIme+" "+pPrezime, new Date(),pJMBG,pBrojTel);
 		        if(new UposlenikKontroler().dodajNovogKorisnika(kasir)) {
 		        	//uspjesno spasen novi korisnik
 		        	//odradi nesto
 		        }else {
 		        	//korisnik nije spasen odradi nesto
-		        }
+		        }*/
 				
 			}
 		});

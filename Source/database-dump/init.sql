@@ -36,7 +36,8 @@ CREATE TABLE IF NOT EXISTS `tim6`.`uposlenik` (
   `jmbg` VARCHAR(45) NOT NULL,
   `broj_telefona` VARCHAR(45) NOT NULL,
   `username` VARCHAR(20) NOT NULL,
-  `passqord` VARCHAR(20) NOT NULL,
+  `password` VARCHAR(20) NOT NULL,
+  `uloga` VARCHAR(20) NOT NULL DEFAULT 'kasir',
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   UNIQUE INDEX `jmbg_UNIQUE` (`jmbg` ASC))
@@ -67,47 +68,18 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `tim6`.`sef`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tim6`.`sef` (
-  `uposlenik_id` INT NOT NULL,
-  INDEX `fk_sef_uposlenik1_idx` (`uposlenik_id` ASC),
-  CONSTRAINT `fk_sef_uposlenik1`
-    FOREIGN KEY (`uposlenik_id`)
-    REFERENCES `tim6`.`uposlenik` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `tim6`.`kasir`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tim6`.`kasir` (
-  `datum_zaposlenja` DATE NULL,
-  `uposlenik_id` INT NOT NULL,
-  INDEX `fk_kasir_uposlenik1_idx` (`uposlenik_id` ASC),
-  CONSTRAINT `fk_kasir_uposlenik1`
-    FOREIGN KEY (`uposlenik_id`)
-    REFERENCES `tim6`.`uposlenik` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `tim6`.`smjena`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tim6`.`smjena` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `pocetak_smjene` TIMESTAMP NOT NULL,
   `kraj_smjene` TIMESTAMP NOT NULL,
-  `kasir_id` INT NOT NULL,
+  `uposlenik_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_racun_smjena1_idx` (`kasir_id` ASC),
+  INDEX `fk_racun_smjena1_idx` (`uposlenik_id` ASC),
   CONSTRAINT `fk_racun_smjena1`
-    FOREIGN KEY (`kasir_id`)
-    REFERENCES `tim6`.`kasir` (`uposlenik_id`)
+    FOREIGN KEY (`uposlenik_id`)
+    REFERENCES `tim6`.`uposlenik` (`uposlenik_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

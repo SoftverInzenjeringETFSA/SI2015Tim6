@@ -21,6 +21,7 @@ public class Racun implements java.io.Serializable {
 	long akcijapopust_id;
 	//long smjena_id;
 	long broj_racuna;
+	long smjena_id;
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,targetEntity=StavkaRacuna.class)
     List stavkeRacuna;
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,targetEntity=NacinPlacanja.class)
@@ -68,12 +69,12 @@ public class Racun implements java.io.Serializable {
 	public void setAkcijapopust_id(long akcija_popust_id) {
 		this.akcijapopust_id = akcija_popust_id;
 	}
-	/*public long getSmjena_id() {
+	public long getSmjena_id() {
 		return smjena_id;
 	}
 	public void setSmjena_id(long smjena_id) {
 		this.smjena_id = smjena_id;
-	}*/
+	}
 	public long getBroj_racuna() {
 		return broj_racuna;
 	}

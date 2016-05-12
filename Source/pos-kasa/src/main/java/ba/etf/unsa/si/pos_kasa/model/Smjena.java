@@ -19,12 +19,8 @@ public class Smjena implements java.io.Serializable {
 		long id;
 		Timestamp pocetak_smjene;
 		Timestamp kraj_smjene;
-		long kasir_id;
-		
-	    @ManyToOne(fetch=FetchType.EAGER)
-	    @JoinColumn(name="smjena_id", insertable = false, updatable = false)
-	    Smjena smjena;
-		
+		long uposlenik_id;
+				
 	    public long getId() {
 			return id;
 		}
@@ -44,17 +40,11 @@ public class Smjena implements java.io.Serializable {
 			this.kraj_smjene = kraj_smjene;
 		}
 		
-		public long getKasir_id() {
-			return kasir_id;
+		public long getUposlenik_id() {
+			return uposlenik_id;
 		}
-		public void setKasir_id(long kasir_id) {
-			this.kasir_id = kasir_id;
-		}
-		public Smjena getSmjena() {
-			return smjena;
-		}
-		public void setSmjena(Smjena smjena) {
-			this.smjena = smjena;
+		public void setUposlenik_id(long uposlenik_id) {
+			this.uposlenik_id = uposlenik_id;
 		}
 		public Smjena() {
 			super();
@@ -64,7 +54,7 @@ public class Smjena implements java.io.Serializable {
 			this.id = id;
 			this.pocetak_smjene = pocetak_smjene;
 			this.kraj_smjene = kraj_smjene;
-			this.kasir_id = kasir_id;
+			this.uposlenik_id = uposlenik_id;
 		}
 	}
 
