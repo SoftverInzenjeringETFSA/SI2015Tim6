@@ -174,7 +174,7 @@ public class KreiranjeRacuna {
 		StavkeRacuna.add(btnDodajStavku);
 		
 		JLabel label = new JLabel("");
-		label.setBounds(10, 192, 46, 14);
+		label.setBounds(20, 161, 46, 14);
 		StavkeRacuna.add(label);
 
 		JLabel lblElementiRauna = new JLabel("Elementi računa:");
