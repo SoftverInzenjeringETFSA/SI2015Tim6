@@ -35,6 +35,8 @@ CREATE TABLE IF NOT EXISTS `tim6`.`uposlenik` (
   `datum_rođenja` DATE NULL,
   `jmbg` VARCHAR(45) NOT NULL,
   `broj_telefona` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(20) NOT NULL,
+  `passqord` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   UNIQUE INDEX `jmbg_UNIQUE` (`jmbg` ASC))
@@ -133,6 +135,8 @@ CREATE TABLE IF NOT EXISTS `tim6`.`racun` (
   `broj_racuna` INT(11) NULL,
   `akcijapopust_id` INT NOT NULL,
   `smjena_id` INT NOT NULL,
+  `racun_id` INT,
+  `je_li_storno` VARCHAR(2),
   PRIMARY KEY (`id`),
   INDEX `fk_racun_akcijapopust1_idx` (`akcijapopust_id` ASC),
   INDEX `fk_racun_smjena1_idx` (`smjena_id` ASC),
