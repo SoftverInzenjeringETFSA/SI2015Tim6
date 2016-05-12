@@ -18,6 +18,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import ba.etf.unsa.si.pos_kasa.controller.KasirKontroler;
+import ba.etf.unsa.si.pos_kasa.controller.RacunKontroler;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class KreiranjeRacuna {
 
@@ -160,9 +163,15 @@ public class KreiranjeRacuna {
 
 		Stavke = new JTable();
 		Stavke.setModel(new DefaultTableModel(
-				new Object[][] { { null, null, null, null, null }, { null, null, null, null, null },
-						{ null, null, null, null, null }, },
-				new String[] { "Barkod", "Naziv artikla", "Koli\u010Dina", "Cijena", "Iznos" }));
+			new Object[][] {
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"Barkod", "Naziv artikla", "Kolicina", "Cijena", "Iznos"
+			}
+		));
 		scrollPane.setViewportView(Stavke);
 		
 		JButton btnObrisiStavku = new JButton("Obriši stavku");
@@ -170,6 +179,13 @@ public class KreiranjeRacuna {
 		StavkeRacuna.add(btnObrisiStavku);
 		
 		JButton btnDodajStavku = new JButton("Dodaj stavku");
+		btnDodajStavku.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0)
+			{
+				//RacunKontroler rk = new RacunKontroler();
+	
+			}
+		});
 		btnDodajStavku.setBounds(192, 188, 106, 23);
 		StavkeRacuna.add(btnDodajStavku);
 		
