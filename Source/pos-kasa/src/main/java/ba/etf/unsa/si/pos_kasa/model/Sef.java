@@ -2,7 +2,7 @@ package ba.etf.unsa.si.pos_kasa.model;
 
 import java.util.Date;
 
-public class Sef extends Uposlenik{
+public class Sef extends Uposlenik implements java.io.Serializable{
 
 	@Override
 	public void promjeniImePrezime(String pImePrezime) {

@@ -2,7 +2,12 @@ package ba.etf.unsa.si.pos_kasa.model;
 
 import java.util.Date;
 
-public abstract class Uposlenik {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public abstract class Uposlenik implements java.io.Serializable{
 
 	String imePrezime;
 	Date datumRodjenja;

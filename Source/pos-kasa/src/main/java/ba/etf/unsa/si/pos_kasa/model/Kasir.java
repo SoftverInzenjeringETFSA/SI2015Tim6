@@ -3,11 +3,15 @@ package ba.etf.unsa.si.pos_kasa.model;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 
 
-public class Kasir extends Uposlenik {
-	
+public class Kasir extends Uposlenik implements java.io.Serializable{
+	@Id
+	@GeneratedValue
+	long uposlenik_id;
 	Date datumZaposljenja;
 	
 public Kasir() {
