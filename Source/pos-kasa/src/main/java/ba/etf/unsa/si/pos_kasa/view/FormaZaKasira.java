@@ -1,44 +1,36 @@
 package ba.etf.unsa.si.pos_kasa.view;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JFrame;
+import ba.etf.unsa.si.pos_kasa.controller.KasirKontroler;
 
-public class FormaZaKasira {
+public class FormaZaKasira  {
 
 	private JFrame frmKasa;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FormaZaKasira window = new FormaZaKasira();
-					window.frmKasa.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	private KasirKontroler kasirKontroler;
+	
+	
+	
+	public void setVisible(boolean visible) {
+		this.frmKasa.setVisible(visible);
 	}
-
+	
+	
 	/**
 	 * Create the application.
 	 */
-	public FormaZaKasira() {
+	public FormaZaKasira(KasirKontroler kasirKontroler) {
+		this.kasirKontroler = kasirKontroler;
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	
 	private void initialize() {
 		frmKasa = new JFrame();
 		frmKasa.setTitle("Kasa");
@@ -46,6 +38,13 @@ public class FormaZaKasira {
 		frmKasa.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JButton btnKreiranjeRacuna = new JButton("Kreiranje Računa");
+		btnKreiranjeRacuna.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				kasirKontroler.prikaziFormuZaKreiranjeRacuna();
+				
+			}
+		});
 		
 		JButton btnKreiranjeIzvjestaja = new JButton("Kreiranje izvještaja po završetku smjene");
 		

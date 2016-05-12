@@ -1,11 +1,13 @@
 package ba.etf.unsa.si.pos_kasa.view;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JTextField;
+import ba.etf.unsa.si.pos_kasa.controller.LoginKontroler;
 import javax.swing.JButton;
 
 public class PrikazForma {
@@ -13,28 +15,19 @@ public class PrikazForma {
 	private JFrame PrikazForma;
 	private JTextField KorisnickoIme;
 	private JTextField Password;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PrikazForma window = new PrikazForma();
-					window.PrikazForma.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private LoginKontroler loginKontroler;
+	
 
 	/**
 	 * Create the application.
 	 */
-	public PrikazForma() {
+	public PrikazForma(LoginKontroler loginKontroler) {
+		this.loginKontroler = loginKontroler;
 		initialize();
+	}
+	
+	public void setVisible(boolean visible) {
+		this.PrikazForma.setVisible(visible);
 	}
 
 	/**
@@ -71,5 +64,13 @@ public class PrikazForma {
 		btnPrijava.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		btnPrijava.setBounds(267, 84, 69, 19);
 		PrikazForma.getContentPane().add(btnPrijava);
+		
+		
+		btnPrijava.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				loginKontroler.login(KorisnickoIme.getText(), Password.getText());
+			}
+		});
 	}
 }

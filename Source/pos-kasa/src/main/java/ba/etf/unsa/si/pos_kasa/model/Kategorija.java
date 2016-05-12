@@ -3,8 +3,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import org.hibernate.annotations.Table;
-
+@SuppressWarnings("serial")
 @Entity
 public class Kategorija  implements java.io.Serializable {
 	@Id
