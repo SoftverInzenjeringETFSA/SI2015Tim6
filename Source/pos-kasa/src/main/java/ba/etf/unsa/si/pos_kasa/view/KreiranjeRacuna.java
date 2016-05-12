@@ -179,13 +179,14 @@ public class KreiranjeRacuna {
 		StavkeRacuna.add(btnObrisiStavku);
 		
 		JButton btnDodajStavku = new JButton("Dodaj stavku");
-		btnDodajStavku.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0)
+/*		btnDodajStavku.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0)
 			{
-				//RacunKontroler rk = new RacunKontroler();
+				RacunKontroler rk = new RacunKontroler();
 	
 			}
-		});
+		});*/
+		
 		btnDodajStavku.setBounds(192, 188, 106, 23);
 		StavkeRacuna.add(btnDodajStavku);
 		

@@ -21,7 +21,7 @@ public class RacunKontroler {
 	{
 	}
 	
-	public static void dodajStavkuRacuna(long _id, int _kolicina, double _ukupna_cijena, long _artikal_id)
+	public static void dodajStavku(long _id, int _kolicina, double _ukupna_cijena, long _artikal_id)
 	{
 	 
 		session = HibernateUtil.getSessionFactory().openSession();
@@ -37,7 +37,7 @@ public class RacunKontroler {
 		t.commit();
 		session.close();
 	}
-	public static void ukloniStavkuRacuna(long _id)
+	public static void ukloniStavku(long _id)
 	{
 		session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
@@ -100,6 +100,74 @@ public class RacunKontroler {
     	    	 throw new Exception("Pretraživanje nije uspjelo.");
     	    
 	}
+	
+	//PROVJERITI
+	
+/*	public static void dodajStavkuNaRacun (String _barkod, String _nazivArtikla, int _kolicina, double _cijena)
+	{
+	 
+		session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		
+		StavkaRacuna sr = new StavkaRacuna();
+		Racun r = new Racun();
+		Artikal a = new Artikal();
+		
+		a.setBarkod(_barkod);
+		a.setNaziv(_nazivArtikla);
+		sr.setKolicina(_kolicina);
+		sr.setUkupna_cijena(_cijena);
+		
+		
+		Long id_sr = (Long) session.save(sr);
+		Long id_a = (Long) session.save(a);
+		Long id_r = (Long) session.save(r);
+		t.commit();
+		session.close();
+	}
+	*/
+/*	public static void ukloniStavkuSaRacuna(String _barkod, String _nazivArtikla, int _kolicina, double _cijena)
+	{
+		session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		
+		StavkaRacuna sr = new StavkaRacuna();
+		Racun r = new Racun();
+		Artikal a = new Artikal();
+		
+		  if(a.getBarkod() == _barkod && a.getNaziv() == _nazivArtikla && sr.getKolicina() == _kolicina && sr.getUkupna_cijena() == _cijena)
+			
+		  {
+			session.delete(sr);
+			session.delete(a);
+			session.delete(r);
+			t.commit();
+		  }
+		
+		else
+		{
+			System.out.println("Ne postoji ta stavka na racunu");
+		}
+		
+		session.close();
+	}
+	*/
+/*	public static void StampajRacun(Long _brojRacuna, Date _datumIzdavanja, String _imeKasira, long _vrstaPlacanja, String _barkod, String _nazivArtikla, int _kolicina, double _cijena)
+	{
+		double _ukupanIznos = 0;
+		_ukupanIznos += _cijena*_kolicina;
+	
+		System.out.println("Racun"+
+	                        "Broj računa: " + _brojRacuna +
+	                        "Datum izdavanja računa: " + _datumIzdavanja + 
+	                         "Ime kasira: " + _imeKasira + 
+	                         "Vrsta plaćanja: " + _vrstaPlacanja + 
+	                         "Barkod: " + _barkod + " " + "Naziv artikla: " + _nazivArtikla + " " + "Količina" + _kolicina + " " + "Cijena: " + _cijena + " " +
+	                         "Ukupan iznos: " + _ukupanIznos);
+		
+		                     
+	}
+	*/
 	
 }
 
