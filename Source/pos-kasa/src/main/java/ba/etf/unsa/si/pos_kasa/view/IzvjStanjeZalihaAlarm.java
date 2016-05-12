@@ -12,14 +12,17 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
+import ba.etf.unsa.si.pos_kasa.controller.*;
 
 public class IzvjStanjeZalihaAlarm {
 
 	private JFrame frame;
 	private JTable table;
-	Object [] kolone={"Artikal","Sifra","Zalihe"};
-	DefaultTableModel dtm=new DefaultTableModel();
+	Object[] kolone = { "Artikal", "Sifra", "Zalihe" };
+	DefaultTableModel dtm = new DefaultTableModel();
 
 	/**
 	 * Launch the application.
@@ -52,37 +55,32 @@ public class IzvjStanjeZalihaAlarm {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 11, 414, 161);
 		frame.getContentPane().add(scrollPane);
-		
-		
+
 		table = new JTable();
 		dtm.setColumnIdentifiers(kolone);
-		
-		
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Artikal", "Sifra", "Zalihe"
-			}
-		));
+
+		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Artikal", "Sifra", "Zalihe" }));
 		table.setModel(dtm);
 		scrollPane.setViewportView(table);
-		
+
 		JButton btnIzvjestajZalihe = new JButton("Prikazi izvjestaj");
 		btnIzvjestajZalihe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Object [] redovi=new Object[3];
-				for(int i=0;i<5;i++)
-				{
-					redovi[0]="Kola";
-					redovi[1]="01231232";
-					redovi[2]="2";
+				Object[] redovi = new Object[3];
+				IzvjestajArtikliControler iac = new IzvjestajArtikliControler();
+				List<String> str = new Vector<String>(); 
+				str=iac.vratiArtikleZaIzvjestaj();
+				for (int i = 0; i < str.size(); i++) {
+					String[] rijec = iac.vratiRazdovojeno(str.get(i));
+					redovi[0] = rijec[0];
+					redovi[1] = rijec[1];
+					redovi[2] = rijec[2];
 					dtm.addRow(redovi);
-				}	
+				}
 			}
 		});
 		btnIzvjestajZalihe.setBounds(149, 205, 131, 46);

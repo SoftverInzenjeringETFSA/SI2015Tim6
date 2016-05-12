@@ -14,10 +14,9 @@ public class Artikal implements java.io.Serializable{
 	String barkod;
 	String jedinica_mjere;
 	double cijena;
-	long zalihe_stanje;
+	int zalihe_stanje;
 	String opis;
 	long kategorija_id;
-
 	
 	public long getId() {
 		return id;
@@ -28,7 +27,6 @@ public class Artikal implements java.io.Serializable{
 	}
 	
 	
-
 	public String getNaziv() {
 		return naziv;
 	}
@@ -68,7 +66,7 @@ public class Artikal implements java.io.Serializable{
 		return zalihe_stanje;
 	}
 
-	public void setZalihe_stanje(long zalihe_stanje) {
+	public void setZalihe_stanje(int zalihe_stanje) {
 		this.zalihe_stanje = zalihe_stanje;
 	}
 	
