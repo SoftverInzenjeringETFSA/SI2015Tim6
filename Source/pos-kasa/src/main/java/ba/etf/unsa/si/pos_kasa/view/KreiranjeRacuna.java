@@ -172,6 +172,10 @@ public class KreiranjeRacuna {
 		JButton btnDodajStavku = new JButton("Dodaj stavku");
 		btnDodajStavku.setBounds(192, 188, 106, 23);
 		StavkeRacuna.add(btnDodajStavku);
+		
+		JLabel label = new JLabel("");
+		label.setBounds(10, 192, 46, 14);
+		StavkeRacuna.add(label);
 
 		JLabel lblElementiRauna = new JLabel("Elementi računa:");
 		lblElementiRauna.setFont(new Font("Times New Roman", Font.BOLD, 15));
@@ -200,55 +204,49 @@ public class KreiranjeRacuna {
 		Kasir = new JTextField();
 		Kasir.setColumns(10);
 		GroupLayout gl_ElementiRacuna = new GroupLayout(ElementiRacuna);
-		gl_ElementiRacuna
-				.setHorizontalGroup(
-						gl_ElementiRacuna
-								.createParallelGroup(
-										Alignment.LEADING)
-								.addGroup(gl_ElementiRacuna.createSequentialGroup().addContainerGap()
-										.addGroup(gl_ElementiRacuna.createParallelGroup(Alignment.LEADING).addGroup(
-												gl_ElementiRacuna.createSequentialGroup().addGroup(gl_ElementiRacuna
-														.createParallelGroup(Alignment.LEADING).addComponent(lblRaun)
-														.addComponent(Racun, GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-														.addGap(5)
-														.addGroup(
-																gl_ElementiRacuna.createParallelGroup(Alignment.LEADING)
-																		.addComponent(lblDatum).addComponent(Datum,
-																				GroupLayout.PREFERRED_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.PREFERRED_SIZE))
-														.addPreferredGap(ComponentPlacement.RELATED)
-														.addGroup(
-																gl_ElementiRacuna.createParallelGroup(Alignment.LEADING)
-																		.addComponent(Kasir, GroupLayout.PREFERRED_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addComponent(lblProdavac))
-														.addPreferredGap(ComponentPlacement.RELATED)
-														.addGroup(gl_ElementiRacuna
-																.createParallelGroup(Alignment.LEADING)
-																.addComponent(NacinPlacanja, GroupLayout.PREFERRED_SIZE,
-																		120, GroupLayout.PREFERRED_SIZE)
-																.addComponent(lblNainPlaanja)))
-												.addComponent(lblElementiRauna))
-										.addContainerGap(92, Short.MAX_VALUE)));
-		gl_ElementiRacuna.setVerticalGroup(gl_ElementiRacuna.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_ElementiRacuna.createSequentialGroup().addContainerGap().addComponent(lblElementiRauna)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_ElementiRacuna.createParallelGroup(Alignment.BASELINE).addComponent(lblRaun)
-								.addComponent(lblNainPlaanja).addComponent(lblDatum).addComponent(lblProdavac))
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addGroup(gl_ElementiRacuna.createParallelGroup(Alignment.BASELINE)
-								.addComponent(Racun, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(Datum, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(Kasir, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(NacinPlacanja, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addContainerGap()));
+		gl_ElementiRacuna.setHorizontalGroup(
+			gl_ElementiRacuna.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_ElementiRacuna.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_ElementiRacuna.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_ElementiRacuna.createSequentialGroup()
+							.addGroup(gl_ElementiRacuna.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblRaun)
+								.addComponent(Racun, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(5)
+							.addGroup(gl_ElementiRacuna.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblDatum)
+								.addComponent(Datum, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_ElementiRacuna.createParallelGroup(Alignment.LEADING)
+								.addComponent(Kasir, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblProdavac))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_ElementiRacuna.createParallelGroup(Alignment.LEADING)
+								.addComponent(NacinPlacanja, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNainPlaanja)))
+						.addComponent(lblElementiRauna))
+					.addContainerGap(29, Short.MAX_VALUE))
+		);
+		gl_ElementiRacuna.setVerticalGroup(
+			gl_ElementiRacuna.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_ElementiRacuna.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblElementiRauna)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_ElementiRacuna.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblRaun)
+						.addComponent(lblNainPlaanja)
+						.addComponent(lblDatum)
+						.addComponent(lblProdavac))
+					.addGap(4)
+					.addGroup(gl_ElementiRacuna.createParallelGroup(Alignment.BASELINE)
+						.addComponent(Racun, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Datum, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Kasir, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(NacinPlacanja, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
 		ElementiRacuna.setLayout(gl_ElementiRacuna);
 		KreiranjeRacuna.getContentPane().setLayout(groupLayout);
 	}
