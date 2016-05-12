@@ -11,6 +11,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import Tools.HibernateUtil;
 
+@SuppressWarnings("unused")
 
 public class RacunKontroler {
  
@@ -20,28 +21,29 @@ public class RacunKontroler {
 	{
 	}
 	
-	public static void dodajStavku (StavkaRacuna stavka)
+	public static void dodajStavkuRacuna(long _id, int _kolicina, double _ukupna_cijena, long _artikal_id)
 	{
-	
+	 
 		session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		StavkaRacuna sr = new StavkaRacuna();
 		
-		//Fali jos stavki, bice dodano kada se dodaju sve klase
-		sr.setId(stavka.getId());
-		sr.setKolicina(stavka.getKolicina());
-		sr.setUkupna_cijena(stavka.getUkupna_cijena());
+		sr.setId(_id);
+		sr.setKolicina(_kolicina);
+		sr.setUkupna_cijena(_ukupna_cijena);
+		sr.setArtikal_id(_artikal_id);
+		
 		Long id = (Long) session.save(sr);
 		t.commit();
 		session.close();
 	}
-	public static void ukloniStavku(StavkaRacuna stavka)
+	public static void ukloniStavkuRacuna(long _id)
 	{
 		session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		StavkaRacuna sr = new StavkaRacuna();
 		
-		  if(sr.getId() == stavka.getId())
+		  if(sr.getId() == _id)
 			
 		  {
 			session.delete(sr);
@@ -56,40 +58,32 @@ public class RacunKontroler {
 		session.close();
 	}
 	
-	public static void dodajNacinPlacanja(NacinPlacanja nacin)
+	public static void dodajNacinPlacanja(long _id, double _iznos, long _vrsteplacanja_id, long _racun_id)
 	{
 		session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		 NacinPlacanja np = new NacinPlacanja();
 		 
-		 np.setVrstaplacanja_id(nacin.getId());
+		 np.setId(_id);
+		 np.setIznos(_iznos);
+		 np.setVrstaplacanja_id(_vrsteplacanja_id);
+		 np.setRacun_id(_racun_id);
+		 
 		 Long id = (Long) session.save(np);
 		 t.commit(); 
 		 session.close();
 	}
 	
-/*	public static Racun ispisiSveRacune(long id)throws Exception
+	public static List<?> vratiSveRacune()
 	{
-	//
-		session = HibernateUtil.getSessionFactory().openSession();
-	     Transaction t=session.beginTransaction(); 
-	     
-	     String hql = "Select new ba.etf.unsa.si.pos_kasa.model.StavkaRacuna(r.id, r.datum_i_vrijeme, r.akcijaPopust_id, r.broj_racuna) "
-					+ "FROM Racun r";
-					
-			Query q = session.createQuery(hql);
-			q.setLong("id", id);
-			List l = q.list();
-			t.commit();
-			if(l.isEmpty())
-			{
-				throw new Exception("Racun nije pronađen");
-			}
-			Racun _racun = (Racun) l.get(0);
-			return _racun;
-	
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		String sql = "select * from tim6.racun";
+		SQLQuery query = session.createSQLQuery(sql);
+		query.addEntity(Racun.class);	
+		List<?> results = query.list();
+		session.close();
+		return results;	
 	}
-	*/
 	
 	public static Racun pretraziRacunePoDatumu(Date _datum)throws Exception
 	{
@@ -102,9 +96,9 @@ public class RacunKontroler {
     	    	 return _racun;
     	     
     	     else 
-    	    
+    	    	 
     	    	 throw new Exception("Pretraživanje nije uspjelo.");
-           
+    	    
 	}
 	
 }
