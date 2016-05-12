@@ -20,7 +20,6 @@ public class KategorijaControler {
 
 	public static void main(String[] args){
 		
-		
 	}
 
 	public static Long dodajKategoriju(String ime, String opis) {
@@ -145,5 +144,15 @@ public class KategorijaControler {
 		session.close();
 		return results;
 		
+	}
+	public static List<String> vratiSvaImenaKategorije()
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		String sql = "select naziv from tim6.kategorija";
+		SQLQuery query = session.createSQLQuery(sql);
+		//query.addEntity(String.class);	
+		List<?> results = query.list();
+		session.close();
+		return (List<String>) results;
 	}
 }
