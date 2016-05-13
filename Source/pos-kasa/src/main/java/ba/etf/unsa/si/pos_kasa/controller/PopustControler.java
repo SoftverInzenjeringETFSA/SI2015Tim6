@@ -17,8 +17,6 @@ import org.hibernate.SessionFactory;
 @SuppressWarnings("unused")
 public class PopustControler {
 
-	private static Session session;
-
 	public static void main(String[] args) {
 		
 
