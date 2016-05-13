@@ -3,6 +3,7 @@ package ba.etf.unsa.si.pos_kasa.controller;
 import Tools.HibernateUtil;
 import ba.etf.unsa.si.pos_kasa.model.*;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +18,7 @@ import org.hibernate.SessionFactory;
 @SuppressWarnings("unused")
 public class PopustControler {
 
-	public static void main(String[] args) {
+	public static void main(String[] args){
 	}
 
 	public static Long dodajAkcijaPopust(Date pocetak, Date kraj, String opis, int iznos) throws Exception {
@@ -54,6 +55,31 @@ public class PopustControler {
 			return true;
 		}
 
+	}
+	public static boolean modificirajAkcijuPopust(Long id, Date pocetak,Date kraj, String opis, int iznos) throws Exception {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		AkcijaPopust ap = (AkcijaPopust) session.get(AkcijaPopust.class, id);
+		if (ap == null) {
+			session.close();
+			return false;
+		} else {
+
+			if (provjeriIspravnost(pocetak, kraj) == true) {
+
+				ap.setDatum_pocetka(pocetak);
+				ap.setDatum_kraja(kraj);
+				ap.setOpis(opis);
+				ap.setIznos_popusta(iznos);
+				session.update(ap);
+				t.commit();
+				session.close();
+				return true;
+			} else {
+				throw new Exception("Datum poceta je nakon datuma kraja!");
+			}
+
+		}
 	}
 
 	public static boolean modificirajAkcijuPopustPocetak(Long id, Date pocetak) throws Exception {
@@ -150,7 +176,7 @@ public class PopustControler {
 		Transaction t = session.beginTransaction();
 		String sql = "select * from tim6.akcijapopust";
 		SQLQuery query = session.createSQLQuery(sql);
-		query.addEntity(Kategorija.class);
+		query.addEntity(AkcijaPopust.class);
 		List<?> results = query.list();
 		session.close();
 		return results;
