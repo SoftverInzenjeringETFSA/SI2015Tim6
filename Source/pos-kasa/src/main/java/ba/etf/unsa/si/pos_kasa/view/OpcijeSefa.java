@@ -10,6 +10,7 @@ import java.awt.EventQueue;
 import javax.swing.JLabel;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
+import ba.etf.unsa.si.pos_kasa.controller.SmjenaKontroler;
 import ba.etf.unsa.si.pos_kasa.controller.UposlenikKontroler;
 
 import java.awt.Font;
@@ -21,7 +22,7 @@ public class OpcijeSefa {
 
 	private JFrame frmOpcijeefa;
 	private SefKontroler sefKontroler;
-	
+	private SmjenaKontroler smjenaKontroler;
 	
 
 	/**
@@ -29,6 +30,10 @@ public class OpcijeSefa {
 	 */
 	public OpcijeSefa(SefKontroler sefKontroler) {
 		this.sefKontroler = sefKontroler;
+		initialize();
+	}
+	public OpcijeSefa(SmjenaKontroler smjenaKontroler) {
+		this.smjenaKontroler = smjenaKontroler;
 		initialize();
 	}
 
@@ -179,6 +184,12 @@ public class OpcijeSefa {
 		panel_3.add(btnNewButton);
 
 		JButton btnKrajSmjene = new JButton("Kraj smjene");
+		btnKrajSmjene.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				smjenaKontroler.prikaziFormuZaZakljucivanje();
+			}
+		});
+
 		btnKrajSmjene.setFont(new Font("Times New Roman", Font.BOLD, 13));
 		btnKrajSmjene.setBounds(119, 33, 104, 53);
 		panel_3.add(btnKrajSmjene);

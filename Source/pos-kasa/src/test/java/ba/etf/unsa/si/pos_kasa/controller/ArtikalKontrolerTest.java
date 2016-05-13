@@ -1,15 +1,14 @@
 package ba.etf.unsa.si.pos_kasa.controller;
 
-import static org.junit.Assert.*;
+import junit.framework.TestCase;
 
-import org.junit.Test;
-import ba.etf.unsa.si.pos_kasa.model.*;
 import java.util.List;
 import java.util.Vector;
 
-public class ArtikalKontrolerTest {
+import ba.etf.unsa.si.pos_kasa.model.*;
 
-	@Test
+public class ArtikalKontrolerTest extends TestCase {
+	
 	public void DodajArtikalTest()
 	{
 		String _naziv = "NekiNaziv";
@@ -32,7 +31,7 @@ public class ArtikalKontrolerTest {
 		assertEquals(_rezultat.size(), _artikli.size()+1);
 	}
 	
-	@Test
+	
      public void ObrisiArtikalTest()
 	{
 		
@@ -59,7 +58,7 @@ public class ArtikalKontrolerTest {
 		
 	}
 	
-	@Test(expected = UnsupportedOperationException.class)
+	
 	public void ModificirajArtikalTest()
 	{
 		String _naziv = "NekiNaziv";
@@ -91,7 +90,7 @@ public class ArtikalKontrolerTest {
 		}
 	}
 	
-	@Test(expected = UnsupportedOperationException.class)
+	
 	public void ModificirajNazivArtiklaTest()
 	{
 		String _naziv = "NekiNaziv";
@@ -118,7 +117,7 @@ public class ArtikalKontrolerTest {
 		}
 	}
 	
-	@Test(expected = UnsupportedOperationException.class)
+	
 	public void ModificirajCijenuArtiklaTest()
 	{
 		String _naziv = "NekiNaziv";
@@ -145,7 +144,7 @@ public class ArtikalKontrolerTest {
 		}
 	}
 	
-	@Test(expected = UnsupportedOperationException.class)
+	
 	public void ModificirajJedinicuMjereTest()
 	{
 		String _naziv = "NekiNaziv";
@@ -171,7 +170,7 @@ public class ArtikalKontrolerTest {
 				assertEquals(e.getMessage(),"Trazeni artikal ne postoji!");
 		}
 	}
-	@Test(expected = UnsupportedOperationException.class)
+
 	public void ModificirajBarkodTest()
 	{
 		String _naziv = "NekiNaziv";
@@ -199,7 +198,7 @@ public class ArtikalKontrolerTest {
 		}
 	}
 	
-	@Test(expected = UnsupportedOperationException.class)
+	
 	public void testPronadjiArtikalPoID()
 	{
 		String _naziv = "NekiNaziv";
@@ -226,4 +225,5 @@ public class ArtikalKontrolerTest {
 			assertEquals(e.getMessage(),"Trazeni artikal ne postoji!");
 		}
 	}
+
 }
