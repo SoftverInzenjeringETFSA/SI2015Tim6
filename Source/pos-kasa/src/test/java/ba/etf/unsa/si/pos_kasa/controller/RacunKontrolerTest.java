@@ -9,7 +9,8 @@ import ba.etf.unsa.si.pos_kasa.model.*;
 
 public class RacunKontrolerTest extends TestCase {
 	
-	public void testDodajStavku()
+	//Napisati kad Vejsil zavrsiRacun
+	/*public void testDodajStavku()
 	{
 		Artikal a = new Artikal();
 
@@ -37,5 +38,6 @@ public class RacunKontrolerTest extends TestCase {
 		
 		assertEquals(_rezultat.size(), _stavke.size()+1);
 	}
+	*/
 
 }
