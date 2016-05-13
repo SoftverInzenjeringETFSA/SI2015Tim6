@@ -7,22 +7,27 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+@SuppressWarnings("serial")
 @Entity
 public class Uposlenik implements java.io.Serializable{
 	@Id
 	@GeneratedValue
-	long id;
+	long id=0;
 	@Column(name="ime_prezime")
 	String imePrezime;
-	@Column(name="datum_rodjenja")
+	@Column(name="datum_rođenja")
 	Date datumRodjenja;
+	@Column(name="jmbg")
 	String jmbg;
 	@Column(name="broj_telefona")
 	String brojTelefona;
 	@Column(name="datum_zaposlenja")
 	Date datumZaposlenja;
+	@Column(name="username")
 	String username;
+	@Column(name="password")
 	String password;
+	@Column(name="uloga")
 	String uloga;
 	
 

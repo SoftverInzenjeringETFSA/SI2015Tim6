@@ -7,15 +7,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import org.jboss.logging.Message;
+
+import com.sun.javafx.iio.common.PushbroomScaler;
+
 import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
 import ba.etf.unsa.si.pos_kasa.controller.UposlenikKontroler;
+import ba.etf.unsa.si.pos_kasa.model.Uposlenik;
+
 import javax.swing.JRadioButton;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JPanel;
 
 public class DodavanjeNovogKorisnika {
 
@@ -37,46 +47,23 @@ public class DodavanjeNovogKorisnika {
 	public DodavanjeNovogKorisnika(SefKontroler sefKontroler) {
 		this.sefKontroler = sefKontroler;
 		initialize();
+		//groupButton();
 	}
 	
 	public void setVisible(boolean visible) {
 		this.DodavnjeNovogKorisnika.setVisible(visible);
 	}
+	
+	
+	
 	private void initialize() {
 		DodavnjeNovogKorisnika = new JFrame();
+		DodavnjeNovogKorisnika.setTitle("Dodavanje Novog Korisnika");
 		DodavnjeNovogKorisnika.setBounds(100, 100, 391, 431);
 		DodavnjeNovogKorisnika.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		DodavnjeNovogKorisnika.getContentPane().setLayout(null);
 		
-		JButton btnSpremiNovogKorisnika = new JButton("Spremi novog korisnika");
-		btnSpremiNovogKorisnika.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String pIme=textIme.getText();
-				String pPrezime=textPrezime.getText();
-				String pJMBG=textJMBG.getText();
-				String pKorisnickoIme=textKorIme.getText();
-				String pPassword=new String(textPassword.getPassword());
-				String pPasswordConfirm=new String(textPasswordConfirm.getPassword());
-				String pBrojTel=textBrojTel.getText();
-				
-				//System.out.println(pIme+" "+pPrezime+" "+pJMBG+" "+pKorisnickoIme+" "+pPassword+" "+pPasswordConfirm+" "+pBrojTel);
-				//TODO Uraditi validacije sve
-				//Umjesto datuma rodjenja je new date 
-				/*Kasir kasir = new Kasir(pIme+" "+pPrezime, new Date(),pJMBG,pBrojTel);
-		        if(new UposlenikKontroler().dodajNovogKorisnika(kasir)) {
-		        	//uspjesno spasen novi korisnik
-		        	//odradi nesto
-		        }else {
-		        	//korisnik nije spasen odradi nesto
-		        }*/
-				
-			}
-		});
-		btnSpremiNovogKorisnika.setForeground(Color.BLACK);
-		btnSpremiNovogKorisnika.setBackground(new Color(128, 128, 128));
-		btnSpremiNovogKorisnika.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-		btnSpremiNovogKorisnika.setBounds(120, 306, 167, 23);
-		DodavnjeNovogKorisnika.getContentPane().add(btnSpremiNovogKorisnika);
+
 		
 		JLabel lblIme = new JLabel("Ime:");
 		lblIme.setFont(new Font("Times New Roman", Font.PLAIN, 13));
@@ -158,13 +145,99 @@ public class DodavanjeNovogKorisnika {
 		lblUloga.setBounds(10, 290, 46, 14);
 		DodavnjeNovogKorisnika.getContentPane().add(lblUloga);
 		
-		JRadioButton rdbtnSef = new JRadioButton("Sef");
-		rdbtnSef.setBounds(48, 287, 66, 23);
-		DodavnjeNovogKorisnika.getContentPane().add(rdbtnSef);
+		JPanel panel = new JPanel();
+		panel.setBounds(43, 291, 71, 69);
+		DodavnjeNovogKorisnika.getContentPane().add(panel);
+		//radio buttons location
+		final JRadioButton rdbtnKasir = new JRadioButton("Kasir");
+		panel.add(rdbtnKasir);
 		
-		JRadioButton rdbtnKasir = new JRadioButton("Kasir");
-		rdbtnKasir.setBounds(48, 317, 66, 23);
-		DodavnjeNovogKorisnika.getContentPane().add(rdbtnKasir);
+		final JRadioButton rdbtnSef = new JRadioButton("Sef");
+		panel.add(rdbtnSef);
+		//end of radio button location
+		
+		//gropuping radio buttons
+		ButtonGroup group = new ButtonGroup();
+		group.add(rdbtnSef);
+		group.add(rdbtnKasir);
+		
+		//adding action listeners to radiobuttons
+		//rdbtnSef.addActionListener( rdbtnSef.this);
+		//rdbtnKasir.addActionListener((ActionListener) this);
+		
+		
+		JButton btnDodajNovogKorisnika = new JButton("Dodaj Novog Korisnika");
+		//action listener za dodavanje novog korisnika 
+		btnDodajNovogKorisnika.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String pIme="";
+				String pPrezime="";
+				String pJMBG="";
+				String pKorisnickoIme=textKorIme.getText();
+				String pPassword=new String(textPassword.getPassword());
+				String pPasswordConfirm=new String(textPasswordConfirm.getPassword());
+				String pBrojTel=textBrojTel.getText();
+				String pDatumRodjenja= textDatumRodjenja.getText();
+				String pUloga="";
+				
+				//validacije polja ne rade
+				if(textIme.equals("")) {
+					
+					JOptionPane.showMessageDialog(textIme, "Niste unijeli Ime!!");
+				}
+				else {
+					pIme=textIme.getText();
+				}
+				
+				if(textPrezime.equals("")) {
+					JOptionPane.showMessageDialog(textPrezime, "Niste unijeli Prezime!!");
+				}
+				else {
+					pPrezime=textPrezime.getText();
+				}
+				
+				if(textJMBG.equals("")) {
+					JOptionPane.showMessageDialog(textJMBG, "Niste unijeli JMBG!!");
+				}
+				else {
+					pJMBG=textJMBG.getText();
+				}
+				
+				if(rdbtnKasir.isSelected()) 
+				{
+					pUloga=rdbtnKasir.getText();
+				}
+		
+				else if(rdbtnSef.isSelected())
+					{
+						pUloga=rdbtnSef.getText();
+						
+					}
+				else {
+					//TODO obavjesti korisnika da nije odabran radio button
+					System.out.println("niste odabrali ulogu!!!!");
+					
+				}
+				
+				
+				System.out.println(pIme+" "+pPrezime+" "+pJMBG+" "+pKorisnickoIme+" "+pPassword+" "+pPasswordConfirm+" "+pBrojTel+" "+pDatumRodjenja+" "+pUloga);
+				//TODO Uraditi validacije sve
+				//Umjesto datuma rodjenja je new date 
+				Uposlenik uposlenik = new Uposlenik(1,pIme+" "+pPrezime, new Date(),pJMBG,pBrojTel,pKorisnickoIme,pPassword,pUloga);
+		        if(new UposlenikKontroler().dodajNovogKorisnika(pIme+" "+pPrezime, new Date(),pJMBG,pBrojTel,pKorisnickoIme,pPassword,pUloga)) {
+		          System.out.println("Uspjesan unos.");
+		        	//odradi nesto
+		        }else {
+		        	System.out.println("NE VALJA IMPORT korisnika");
+		        }
+			}
+		});
+		btnDodajNovogKorisnika.setBounds(120, 302, 167, 23);
+		DodavnjeNovogKorisnika.getContentPane().add(btnDodajNovogKorisnika);
+		
+		
+		
 		
 		
 	}
