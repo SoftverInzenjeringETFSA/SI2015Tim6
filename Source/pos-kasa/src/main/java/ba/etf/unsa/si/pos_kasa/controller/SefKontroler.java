@@ -2,6 +2,13 @@ package ba.etf.unsa.si.pos_kasa.controller;
 
 import java.awt.EventQueue;
 
+import org.apache.log4j.Logger;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import Tools.HibernateUtil;
+import ba.etf.unsa.si.pos_kasa.model.Uposlenik;
 import ba.etf.unsa.si.pos_kasa.view.BrisanjeArtikla;
 import ba.etf.unsa.si.pos_kasa.view.BrisanjeKorisnika;
 import ba.etf.unsa.si.pos_kasa.view.DodavanjeNovogArtikla;
@@ -13,6 +20,7 @@ import ba.etf.unsa.si.pos_kasa.view.PretragaArtikla;
 import ba.etf.unsa.si.pos_kasa.view.PretragaKorisnika;
 
 public class SefKontroler {
+
 
 	OpcijeSefa formaZaSefa;
 	//instance formi za korisnike
@@ -53,6 +61,26 @@ public class SefKontroler {
 				}
 			}
 		});
+	}
+	
+	
+	public boolean dodajNovogKorisnika(Uposlenik uposlenik) {
+		Session session = null;
+		boolean success = true;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			Transaction t = session.beginTransaction();
+			session.save(uposlenik);
+			t.commit();
+		} catch (HibernateException e) {
+			Logger.getLogger(SefKontroler.class).error(e.getMessage());
+			success = false;
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return success;
 	}
 	
 public void prikaziFormuZaPretraguKorisnika() {
