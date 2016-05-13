@@ -35,15 +35,15 @@ public class PretragaKorisnika {
 		frmPretragaKorisnika = new JFrame();
 		frmPretragaKorisnika.setTitle("Pretraga korisnika");
 		frmPretragaKorisnika.setBounds(100, 100, 455, 196);
-		frmPretragaKorisnika.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmPretragaKorisnika.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmPretragaKorisnika.getContentPane().setLayout(null);
 		
 		JLabel lblUnesiteJmbgKorisnika = new JLabel("Unesite JMBG korisnika:");
-		lblUnesiteJmbgKorisnika.setBounds(31, 32, 157, 29);
+		lblUnesiteJmbgKorisnika.setBounds(31, 32, 120, 29);
 		frmPretragaKorisnika.getContentPane().add(lblUnesiteJmbgKorisnika);
 		
 		textField = new JTextField();
-		textField.setBounds(161, 36, 204, 25);
+		textField.setBounds(184, 34, 204, 25);
 		frmPretragaKorisnika.getContentPane().add(textField);
 		textField.setColumns(10);
 		

@@ -8,6 +8,9 @@ import java.awt.BorderLayout;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+
+import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
+
 import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.JList;
 import java.awt.GridBagLayout;
@@ -31,27 +34,14 @@ public class PretragaArtikla {
 	private JFrame frmPretragaArtikala;
 	private JTextField txtPretrazi;
 	private JTable tblRezultatiPretrage;
+	private SefKontroler sefKontroler;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PretragaArtikla window = new PretragaArtikla();
-					window.frmPretragaArtikala.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
 	 */
-	public PretragaArtikla() {
+	public PretragaArtikla(SefKontroler sefKontroler) {
+		this.sefKontroler=sefKontroler;
 		initialize();
 	}
 
@@ -59,11 +49,15 @@ public class PretragaArtikla {
 	 * Initialize the contents of the frame.
 	 */
 	
+	public void setVisible(boolean visible) {
+		this.frmPretragaArtikala.setVisible(visible);
+	}
+	
 	private void initialize() {
 		frmPretragaArtikala = new JFrame();
 		frmPretragaArtikala.setTitle("Pretraga Artikala");
 		frmPretragaArtikala.setBounds(100, 100, 516, 344);
-		frmPretragaArtikala.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmPretragaArtikala.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		JLabel lblNewLabel = new JLabel("Način pretrage artikla:");
 		

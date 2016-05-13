@@ -19,6 +19,8 @@ import javax.swing.table.DefaultTableModel;
 
 import ba.etf.unsa.si.pos_kasa.controller.KasirKontroler;
 import ba.etf.unsa.si.pos_kasa.controller.RacunKontroler;
+import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -36,10 +38,26 @@ public class KreiranjeRacuna {
 	private JTextField UkupniIznos;
 	private JTable Stavke;
 	private KasirKontroler kasirKontroler;
+	private SefKontroler sefKontroler;
+	
+	/**
+	  * @wbp.parser.entryPoint
+	  */
+	public KreiranjeRacuna()
+	{
+		initialize();
+		setVisible(true);
+	}
 
 	public KreiranjeRacuna(KasirKontroler kasirKontroler) {
 		this.kasirKontroler = kasirKontroler;
 		initialize();
+	}
+	
+	public KreiranjeRacuna(SefKontroler sefKontroler) {
+		this.sefKontroler=sefKontroler;
+		initialize();
+		
 	}
 	
 	
@@ -52,8 +70,8 @@ public class KreiranjeRacuna {
 	 */
 	private void initialize() {
 		KreiranjeRacuna = new JFrame();
-		KreiranjeRacuna.setBounds(100, 100, 635, 411);
-		KreiranjeRacuna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		KreiranjeRacuna.setBounds(100, 100, 726, 411);
+		KreiranjeRacuna.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		JPanel ElementiRacuna = new JPanel();
 

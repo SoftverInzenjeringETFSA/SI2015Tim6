@@ -26,6 +26,8 @@ import ba.etf.unsa.si.pos_kasa.model.Uposlenik;
 import javax.swing.JRadioButton;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JPanel;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class DodavanjeNovogKorisnika {
 
@@ -60,7 +62,7 @@ public class DodavanjeNovogKorisnika {
 		DodavnjeNovogKorisnika = new JFrame();
 		DodavnjeNovogKorisnika.setTitle("Dodavanje Novog Korisnika");
 		DodavnjeNovogKorisnika.setBounds(100, 100, 391, 431);
-		DodavnjeNovogKorisnika.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		DodavnjeNovogKorisnika.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		DodavnjeNovogKorisnika.getContentPane().setLayout(null);
 		
 
@@ -112,10 +114,12 @@ public class DodavanjeNovogKorisnika {
 		DodavnjeNovogKorisnika.getContentPane().add(textKorIme);
 		
 		JLabel lblPasswordConfirm_1 = new JLabel("Password Confirm:");
-		lblPasswordConfirm_1.setBounds(10, 257, 90, 23);
+		lblPasswordConfirm_1.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		lblPasswordConfirm_1.setBounds(10, 257, 100, 23);
 		DodavnjeNovogKorisnika.getContentPane().add(lblPasswordConfirm_1);
 		
 		lblBrojTel = new JLabel("Broj tel:");
+		lblBrojTel.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		lblBrojTel.setBounds(10, 158, 46, 14);
 		DodavnjeNovogKorisnika.getContentPane().add(lblBrojTel);
 		
@@ -133,7 +137,8 @@ public class DodavanjeNovogKorisnika {
 		DodavnjeNovogKorisnika.getContentPane().add(textPasswordConfirm);
 		
 		JLabel lblDatumRoenja = new JLabel("Datum Rođenja:");
-		lblDatumRoenja.setBounds(10, 194, 78, 14);
+		lblDatumRoenja.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		lblDatumRoenja.setBounds(10, 194, 90, 14);
 		DodavnjeNovogKorisnika.getContentPane().add(lblDatumRoenja);
 		
 		textDatumRodjenja = new JTextField();
@@ -142,17 +147,20 @@ public class DodavanjeNovogKorisnika {
 		textDatumRodjenja.setColumns(10);
 		
 		JLabel lblUloga = new JLabel("Uloga:");
-		lblUloga.setBounds(10, 290, 46, 14);
+		lblUloga.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		lblUloga.setBounds(10, 291, 47, 14);
 		DodavnjeNovogKorisnika.getContentPane().add(lblUloga);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(43, 291, 71, 69);
+		panel.setBounds(44, 281, 66, 69);
 		DodavnjeNovogKorisnika.getContentPane().add(panel);
 		//radio buttons location
 		final JRadioButton rdbtnKasir = new JRadioButton("Kasir");
+		rdbtnKasir.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		panel.add(rdbtnKasir);
 		
 		final JRadioButton rdbtnSef = new JRadioButton("Sef");
+		rdbtnSef.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		panel.add(rdbtnSef);
 		//end of radio button location
 		
@@ -161,12 +169,9 @@ public class DodavanjeNovogKorisnika {
 		group.add(rdbtnSef);
 		group.add(rdbtnKasir);
 		
-		//adding action listeners to radiobuttons
-		//rdbtnSef.addActionListener( rdbtnSef.this);
-		//rdbtnKasir.addActionListener((ActionListener) this);
-		
 		
 		JButton btnDodajNovogKorisnika = new JButton("Dodaj Novog Korisnika");
+		btnDodajNovogKorisnika.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		//action listener za dodavanje novog korisnika 
 		btnDodajNovogKorisnika.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
