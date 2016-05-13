@@ -17,8 +17,7 @@ public class KasirKontroler {
 					formaZaKasira = new FormaZaKasira(KasirKontroler.this);
 					formaZaKasira.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
-				}
+					}
 			}
 		});
 	}
