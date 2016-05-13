@@ -236,6 +236,7 @@ public class ArtikalKontrolerTest extends TestCase
 		catch (Exception e)
 		{
 				assertEquals(e.getMessage(),"Trazeni artikal ne postoji!");
+				//
 		}
 	}
 	
