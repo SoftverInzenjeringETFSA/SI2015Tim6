@@ -59,7 +59,7 @@ public class ArtikalKontrolerTest {
 		
 	}
 	
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void ModificirajArtikalTest()
 	{
 		String _naziv = "NekiNaziv";
@@ -91,7 +91,7 @@ public class ArtikalKontrolerTest {
 		}
 	}
 	
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void ModificirajNazivArtiklaTest()
 	{
 		String _naziv = "NekiNaziv";
@@ -118,7 +118,7 @@ public class ArtikalKontrolerTest {
 		}
 	}
 	
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void ModificirajCijenuArtiklaTest()
 	{
 		String _naziv = "NekiNaziv";
@@ -145,7 +145,7 @@ public class ArtikalKontrolerTest {
 		}
 	}
 	
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void ModificirajJedinicuMjereTest()
 	{
 		String _naziv = "NekiNaziv";
@@ -171,7 +171,7 @@ public class ArtikalKontrolerTest {
 				assertEquals(e.getMessage(),"Trazeni artikal ne postoji!");
 		}
 	}
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void ModificirajBarkodTest()
 	{
 		String _naziv = "NekiNaziv";
@@ -199,7 +199,7 @@ public class ArtikalKontrolerTest {
 		}
 	}
 	
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void testPronadjiArtikalPoID()
 	{
 		String _naziv = "NekiNaziv";
