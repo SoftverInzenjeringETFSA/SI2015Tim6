@@ -22,6 +22,6 @@ public class IzvjestajiTest extends TestCase {
 	     //
 	     double [] _rezultat = i.dajUkupanPrometIprodateArtikleOdDo(datum1, datum2);
 	 
-	   assertEquals(0,_rezultat[0]);  
+	   assertEquals(0.0,_rezultat[0]);  
 	}
 }
