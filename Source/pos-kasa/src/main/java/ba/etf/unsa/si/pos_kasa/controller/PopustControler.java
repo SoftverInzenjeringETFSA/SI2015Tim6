@@ -18,8 +18,6 @@ import org.hibernate.SessionFactory;
 public class PopustControler {
 
 	public static void main(String[] args) {
-		
-
 	}
 
 	public static Long dodajAkcijaPopust(Date pocetak, Date kraj, String opis, int iznos) throws Exception {
