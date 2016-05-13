@@ -187,6 +187,7 @@ public class PopustControler {
 		if (pocetak.after(kraj)) {
 			return false;
 		} else {
+			
 			return true;
 		}
 	}
