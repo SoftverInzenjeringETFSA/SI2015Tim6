@@ -1,5 +1,7 @@
 package Tools;
 
+import java.io.File;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -10,7 +12,8 @@ public class HibernateUtil {
 	    private static SessionFactory buildSessionFactory() {
 	        try {
 	            // Create the SessionFactory from hibernate.cfg.xml
-	            return new Configuration().configure().buildSessionFactory();
+	        	File f = new File("src\\main\\java\\hibernate.cfg.xml");
+	            return new Configuration().configure(f).buildSessionFactory();
 	        }
 	        catch (Exception ex) {
 	            // Make sure you log the exception, as it might be swallowed
