@@ -55,7 +55,7 @@ public class ArtikalKontrolerTest {
 		List<Artikal> _rezultat = new Vector<Artikal>();
 		_rezultat = (List<Artikal>)ak.vratiSveArtikle();
 		
-		assertEquals(_rezultat.size(), _artikli.size());
+		//assertEquals(_rezultat.size(), _artikli.size());
 		
 	}
 	
