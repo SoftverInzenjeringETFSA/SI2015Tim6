@@ -15,20 +15,8 @@ public class SefKontrolerTest extends TestCase {
 	     SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
 	     Date rodjenje = dt.parse(date_s);
 	     
-	     String date_z = "1993-04-08";  
-	     SimpleDateFormat dtz = new SimpleDateFormat("yyyy-MM-dd");
-	     Date zaposlenje = dtz.parse(date_z);
 	     
-		Uposlenik u = new Uposlenik();
-		u.setImePrezime("ImePrezime");
-		u.setBrojTelefona("BrojTelefona");
-		u.setDatum_zaposlenja(zaposlenje);
-		u.setDatumRodjenja(rodjenje);
-		u.setId(1);
-		u.setJmbg("jmbg");
-		u.setPassword("password");
-		u.setUloga("uloga");
-		u.setUsername("username");
+		Uposlenik u = new Uposlenik("imePrezime",rodjenje,"jmbg", "brojTelefona","username", "password","uloga");
 		
 		SefKontroler sk = new SefKontroler();
 		
