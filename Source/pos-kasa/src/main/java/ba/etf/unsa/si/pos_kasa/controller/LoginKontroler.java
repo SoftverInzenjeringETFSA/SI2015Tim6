@@ -60,6 +60,8 @@ public class LoginKontroler {
 				//po kraju smjene izvrsiti session.update(smjena)
 				//prije toga dodat kraj smjene u objekat smjena koji nedostaje
 				
+				//asdfas
+				
 				//TODO napravit zapis u bazu za smjenu pocetak 
 				if (uposlenik.getUloga().equals("Kasir")) {
 					kasirKontroler = new KasirKontroler();
