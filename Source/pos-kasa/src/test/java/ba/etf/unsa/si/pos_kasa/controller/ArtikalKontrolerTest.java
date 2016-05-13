@@ -7,17 +7,24 @@ import java.util.Vector;
 
 import ba.etf.unsa.si.pos_kasa.model.*;
 
-public class ArtikalKontrolerTest extends TestCase {
+public class ArtikalKontrolerTest extends TestCase 
+{
 	
-	public void DodajArtikalTest()
+	public void testDodajArtikal()
 	{
+		Kategorija k = new Kategorija();
+				
+		k.setId(1);
+		k.setNaziv("kategorija");
+		k.setOpis("opis");
+				
 		String _naziv = "NekiNaziv";
 		double _cijena = 2.2;
 		String _jedinica_mjere = "jedinicaMjere"; 
 		String _barkod = "Barkod";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
-		long _kategorija_id = 1;
+		long _kategorija_id = k.getId();
 		
 		ArtikalKontroler ak = new ArtikalKontroler();
 		List<Artikal> _artikli =new Vector<Artikal>();
@@ -32,16 +39,21 @@ public class ArtikalKontrolerTest extends TestCase {
 	}
 	
 	
-     public void ObrisiArtikalTest()
+     public void testObrisiArtikal()
 	{
-		
+    	 Kategorija k = new Kategorija();
+			
+ 		k.setId(1);
+ 		k.setNaziv("kategorija");
+ 		k.setOpis("opis");
+ 		
 		String _naziv = "NekiNaziv";
 		double _cijena = 2.2;
 		String _jedinica_mjere = "jedinicaMjere"; 
 		String _barkod = "Barkod";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
-		long _kategorija_id = 1;
+		long _kategorija_id = k.getId();
 		
 		ArtikalKontroler ak = new ArtikalKontroler();
 		List<Artikal> _artikli = new Vector<Artikal>();
@@ -59,19 +71,24 @@ public class ArtikalKontrolerTest extends TestCase {
 	}
 	
 	
-	public void ModificirajArtikalTest()
+	public void testModificirajArtikal()
 	{
+		Kategorija k = new Kategorija();
+		
+		k.setId(1);
+		k.setNaziv("kategorija");
+		k.setOpis("opis");
+		
 		String _naziv = "NekiNaziv";
 		double _cijena = 2.2;
 		String _jedinica_mjere = "jedinicaMjere"; 
 		String _barkod = "Barkod";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
-		long _kategorija_id = 1;
+		long _kategorija_id = k.getId();
 		
 		
 		ArtikalKontroler ak = new ArtikalKontroler();
-		List<Artikal> _artikli = new Vector<Artikal>();
 		
 		Long l = ak.dodajArtikal(_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, _kategorija_id);
 		
@@ -91,18 +108,24 @@ public class ArtikalKontrolerTest extends TestCase {
 	}
 	
 	
-	public void ModificirajNazivArtiklaTest()
+	public void testModificirajNazivArtikla()
 	{
+		Kategorija k = new Kategorija();
+		
+		k.setId(1);
+		k.setNaziv("kategorija");
+		k.setOpis("opis");
+		
 		String _naziv = "NekiNaziv";
 		double _cijena = 2.2;
 		String _jedinica_mjere = "jedinicaMjere"; 
 		String _barkod = "Barkod";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
-		long _kategorija_id = 1;
+		long _kategorija_id = k.getId();
 		
 		ArtikalKontroler ak = new ArtikalKontroler();
-		List<Artikal> _artikli = new Vector<Artikal>();
+		
 		Long l = ak.dodajArtikal(_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, _kategorija_id);
 		ak.modificirajNazivArtikla(l, "NoviNaziv");
 		
@@ -118,18 +141,24 @@ public class ArtikalKontrolerTest extends TestCase {
 	}
 	
 	
-	public void ModificirajCijenuArtiklaTest()
+	public void testModificirajCijenuArtikla()
 	{
+		Kategorija k = new Kategorija();
+		
+		k.setId(1);
+		k.setNaziv("kategorija");
+		k.setOpis("opis");
+		
 		String _naziv = "NekiNaziv";
 		double _cijena = 2.2;
 		String _jedinica_mjere = "jedinicaMjere"; 
 		String _barkod = "Barkod";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
-		long _kategorija_id = 1;
+		long _kategorija_id = k.getId();
 		
 		ArtikalKontroler ak = new ArtikalKontroler();
-		List<Artikal> _artikli = new Vector<Artikal>();
+		
 		Long l = ak.dodajArtikal(_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, _kategorija_id);
 		ak.modificirajCijenuArtikla(l,3);
 		
@@ -145,18 +174,24 @@ public class ArtikalKontrolerTest extends TestCase {
 	}
 	
 	
-	public void ModificirajJedinicuMjereTest()
+	public void testModificirajJedinicuMjere()
 	{
+		Kategorija k = new Kategorija();
+		
+		k.setId(1);
+		k.setNaziv("kategorija");
+		k.setOpis("opis");
+		
 		String _naziv = "NekiNaziv";
 		double _cijena = 2.2;
 		String _jedinica_mjere = "jedinicaMjere"; 
 		String _barkod = "Barkod";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
-		long _kategorija_id = 1;
+		long _kategorija_id = k.getId();
 		
 		ArtikalKontroler ak = new ArtikalKontroler();
-		List<Artikal> _artikli = new Vector<Artikal>();
+		
 		Long l = ak.dodajArtikal(_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, _kategorija_id);
 		ak.modificirajJedinicuMjere(l, "JedinicaNovo");
 		
@@ -171,18 +206,24 @@ public class ArtikalKontrolerTest extends TestCase {
 		}
 	}
 
-	public void ModificirajBarkodTest()
+	public void testModificirajBarkod()
 	{
+		Kategorija k = new Kategorija();
+		
+		k.setId(1);
+		k.setNaziv("kategorija");
+		k.setOpis("opis");
+		
 		String _naziv = "NekiNaziv";
 		double _cijena = 2.2;
 		String _jedinica_mjere = "jedinicaMjere"; 
 		String _barkod = "Barkod";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
-		long _kategorija_id = 1;
+		long _kategorija_id = k.getId();
 		
 		ArtikalKontroler ak = new ArtikalKontroler();
-		List<Artikal> _artikli = new Vector<Artikal>();
+		
 		Long l = ak.dodajArtikal(_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, _kategorija_id);
 		
 		ak.modificirajBarkod(l, "Novoo");
@@ -201,16 +242,22 @@ public class ArtikalKontrolerTest extends TestCase {
 	
 	public void testPronadjiArtikalPoID()
 	{
+		Kategorija k = new Kategorija();
+		
+		k.setId(1);
+		k.setNaziv("kategorija");
+		k.setOpis("opis");
+		
 		String _naziv = "NekiNaziv";
 		double _cijena = 2.2;
 		String _jedinica_mjere = "jedinicaMjere"; 
 		String _barkod = "Barkod";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
-		long _kategorija_id = 1;
+		long _kategorija_id = k.getId();
 		
 		ArtikalKontroler ak = new ArtikalKontroler();
-		List<Artikal> _artikli = new Vector<Artikal>();
+		
 		Long l = ak.dodajArtikal(_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, _kategorija_id);
 		
 		Artikal a = new Artikal();
