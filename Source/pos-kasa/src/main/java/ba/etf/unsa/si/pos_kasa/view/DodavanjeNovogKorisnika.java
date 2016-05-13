@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
 import ba.etf.unsa.si.pos_kasa.controller.UposlenikKontroler;
+import javax.swing.JRadioButton;
 
 public class DodavanjeNovogKorisnika {
 
@@ -28,6 +29,7 @@ public class DodavanjeNovogKorisnika {
 	private JPasswordField textPassword;
 	private JPasswordField textPasswordConfirm;
 	private SefKontroler sefKontroler;
+	private JTextField textDatumRodjenja;
 	
 	/**
 	 * Create the application.
@@ -42,7 +44,7 @@ public class DodavanjeNovogKorisnika {
 	}
 	private void initialize() {
 		DodavnjeNovogKorisnika = new JFrame();
-		DodavnjeNovogKorisnika.setBounds(100, 100, 404, 520);
+		DodavnjeNovogKorisnika.setBounds(100, 100, 391, 431);
 		DodavnjeNovogKorisnika.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		DodavnjeNovogKorisnika.getContentPane().setLayout(null);
 		
@@ -73,7 +75,7 @@ public class DodavanjeNovogKorisnika {
 		btnSpremiNovogKorisnika.setForeground(Color.BLACK);
 		btnSpremiNovogKorisnika.setBackground(new Color(128, 128, 128));
 		btnSpremiNovogKorisnika.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-		btnSpremiNovogKorisnika.setBounds(120, 359, 167, 23);
+		btnSpremiNovogKorisnika.setBounds(120, 306, 167, 23);
 		DodavnjeNovogKorisnika.getContentPane().add(btnSpremiNovogKorisnika);
 		
 		JLabel lblIme = new JLabel("Ime:");
@@ -142,6 +144,27 @@ public class DodavanjeNovogKorisnika {
 		textPasswordConfirm = new JPasswordField();
 		textPasswordConfirm.setBounds(120, 258, 167, 20);
 		DodavnjeNovogKorisnika.getContentPane().add(textPasswordConfirm);
+		
+		JLabel lblDatumRoenja = new JLabel("Datum Rođenja:");
+		lblDatumRoenja.setBounds(10, 194, 78, 14);
+		DodavnjeNovogKorisnika.getContentPane().add(lblDatumRoenja);
+		
+		textDatumRodjenja = new JTextField();
+		textDatumRodjenja.setBounds(120, 186, 167, 20);
+		DodavnjeNovogKorisnika.getContentPane().add(textDatumRodjenja);
+		textDatumRodjenja.setColumns(10);
+		
+		JLabel lblUloga = new JLabel("Uloga:");
+		lblUloga.setBounds(10, 290, 46, 14);
+		DodavnjeNovogKorisnika.getContentPane().add(lblUloga);
+		
+		JRadioButton rdbtnSef = new JRadioButton("Sef");
+		rdbtnSef.setBounds(48, 287, 66, 23);
+		DodavnjeNovogKorisnika.getContentPane().add(rdbtnSef);
+		
+		JRadioButton rdbtnKasir = new JRadioButton("Kasir");
+		rdbtnKasir.setBounds(48, 317, 66, 23);
+		DodavnjeNovogKorisnika.getContentPane().add(rdbtnKasir);
 		
 		
 	}
