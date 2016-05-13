@@ -56,9 +56,7 @@ public class AkcijaPopust implements java.io.Serializable {
 		this.iznos_popusta = iznos_popusta;
 	}
 	
-	public AkcijaPopust(){
-		
-	}
+	public AkcijaPopust(){	}
 	public AkcijaPopust(long id, Date datum_pocetka,Date datum_kraja,String opis,int iznos_popusta){
 		this.id=id;
 		this.datum_pocetka=datum_pocetka;
