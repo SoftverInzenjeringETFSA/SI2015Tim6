@@ -89,8 +89,8 @@ public class PopustKontrolerTest extends TestCase {
 		Long l = pc.dodajAkcijaPopust(datum_pocetka, datum_kraja, opis, iznos_popusta);
 		
 		//noviDatum
-	       String date_a = "Wed May 11 00:00:00 CEST 2016";  
-		    SimpleDateFormat dta = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
+	       String date_a = "2016-05-11";  
+		    SimpleDateFormat dta = new SimpleDateFormat("yyyy-MM-dd");
 		    Date datumaa = dta.parse(date_a);
 		    
 		pc.modificirajAkcijuPopustPocetak(l, datumaa);
@@ -128,8 +128,8 @@ public class PopustKontrolerTest extends TestCase {
 		Long l = pc.dodajAkcijaPopust(datum_pocetka, datum_kraja, opis, iznos_popusta);
 		
 		//noviDatum
-	       String date_a = "Sun May 14 00:00:00 CEST 2016";  
-		    SimpleDateFormat dta = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
+	       String date_a = "2016-05-04";  
+		    SimpleDateFormat dta = new SimpleDateFormat("yyyy-MM-dd");
 		    Date datumaa = dta.parse(date_a);
 		    
 		pc.modificirajAkcijuPopustKraj(l, datumaa);
