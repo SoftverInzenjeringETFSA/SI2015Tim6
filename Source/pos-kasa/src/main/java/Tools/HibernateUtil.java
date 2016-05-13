@@ -12,7 +12,7 @@ public class HibernateUtil {
 	    private static SessionFactory buildSessionFactory() {
 	        try {
 	            // Create the SessionFactory from hibernate.cfg.xml
-	        	File f = new File("src\\main\\java\\hibernate.cfg.xml");
+	        	File f = new File("src/main/java/hibernate.cfg.xml");
 	            return new Configuration().configure(f).buildSessionFactory();
 	        }
 	        catch (Exception ex) {
