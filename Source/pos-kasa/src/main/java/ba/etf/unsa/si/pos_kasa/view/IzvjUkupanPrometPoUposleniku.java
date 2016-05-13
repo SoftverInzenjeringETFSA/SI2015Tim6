@@ -20,6 +20,8 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
+import org.apache.log4j.Logger;
+
 public class IzvjUkupanPrometPoUposleniku {
 
 	private JFrame frame;
@@ -93,6 +95,7 @@ public class IzvjUkupanPrometPoUposleniku {
 					lblIzvjestajZa.setText("Izvjestaj o prometu za period " + sdf.format(pocDatum.getDate()) + " - " + sdf.format(krajDatum.getDate()) + " za: " + Izvjestaji.dajImePrezimeUposlenika(textField.getText()) + " .");
 					panelIzvjestaj.setVisible(true);
 				} catch (Exception e) {
+					Logger.getLogger(Izvjestaji.class).error(e.getMessage());
 			        JOptionPane.showMessageDialog(null, e.getMessage(), "Izuzetak", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
