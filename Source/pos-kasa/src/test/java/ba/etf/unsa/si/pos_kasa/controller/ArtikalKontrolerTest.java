@@ -32,7 +32,7 @@ public class ArtikalKontrolerTest {
 		assertEquals(_rezultat.size(), _artikli.size()+1);
 	}
 	
-	@Test
+	//@Test
      public void ObrisiArtikalTest()
 	{
 		
