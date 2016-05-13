@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
 
+import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
+
 public class Popust {
 
 	private JFrame frmPopust;
@@ -19,28 +21,17 @@ public class Popust {
 	private JTextField txtIznosPopusta;
 	private JButton btnKreirajPopust;
 	private JLabel label;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Popust window = new Popust();
-					window.frmPopust.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+    private SefKontroler sefKontroler;
 
 	/**
 	 * Create the application.
 	 */
+    public void setVisible(boolean visible) {
+		this.frmPopust.setVisible(visible);
+	}
 	
-	public Popust() {
+	public Popust(SefKontroler sefKontroler) {
+		this.sefKontroler=sefKontroler;
 		initialize();
 	}
 
@@ -52,7 +43,7 @@ public class Popust {
 		frmPopust = new JFrame();
 		frmPopust.setTitle("Popust");
 		frmPopust.setBounds(100, 100, 310, 234);
-		frmPopust.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmPopust.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		lblIznosRaunaS = new JLabel("Iznos popusta:");
 		
@@ -77,16 +68,16 @@ public class Popust {
 								.addComponent(lblOdaberiteDatum)
 								.addComponent(lblIznosRaunaS))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(txtIznosPopusta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(label))
-								.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+								.addComponent(dateChooser, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(65)
 							.addComponent(btnKreirajPopust, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(25, Short.MAX_VALUE))
+					.addContainerGap(60, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

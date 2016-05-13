@@ -19,7 +19,7 @@ import java.awt.event.ActionEvent;
 
 public class OpcijeSefa {
 
-	private JFrame frame;
+	private JFrame frmOpcijeefa;
 	private SefKontroler sefKontroler;
 	
 	
@@ -33,24 +33,25 @@ public class OpcijeSefa {
 	}
 
 	public void setVisible(boolean visible) {
-		this.frame.setVisible(visible);
+		this.frmOpcijeefa.setVisible(visible);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 765, 405);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmOpcijeefa = new JFrame();
+		frmOpcijeefa.setTitle("Opcije Šefa");
+		frmOpcijeefa.setBounds(100, 100, 765, 405);
+		frmOpcijeefa.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmOpcijeefa.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 128, 128));
 		panel.setToolTipText("Korisnici");
 		panel.setBorder(new LineBorder(new Color(0, 128, 128)));
 		panel.setBounds(27, 27, 190, 307);
-		frame.getContentPane().add(panel);
+		frmOpcijeefa.getContentPane().add(panel);
 		panel.setLayout(null);
 
 		JLabel lblKorisnici = DefaultComponentFactory.getInstance().createTitle("Korisnici");
@@ -95,7 +96,7 @@ public class OpcijeSefa {
 		panel_1.setBorder(new LineBorder(new Color(0, 128, 128)));
 		panel_1.setBackground(new Color(0, 128, 128));
 		panel_1.setBounds(249, 27, 177, 307);
-		frame.getContentPane().add(panel_1);
+		frmOpcijeefa.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 
 		JLabel lblArtikli = new JLabel("Artikli");
@@ -104,16 +105,31 @@ public class OpcijeSefa {
 		panel_1.add(lblArtikli);
 
 		JButton btnDodavanjeArtikla = new JButton("Dodavanje artikla");
+		btnDodavanjeArtikla.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				sefKontroler.prikaziFormuZaDodavanjeNovogArtikla();
+			}
+		});
 		btnDodavanjeArtikla.setFont(new Font("Times New Roman", Font.BOLD, 13));
 		btnDodavanjeArtikla.setBounds(10, 53, 155, 59);
 		panel_1.add(btnDodavanjeArtikla);
 
 		JButton btnBrisanjeArtikla = new JButton("Brisanje artikla");
+		btnBrisanjeArtikla.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			sefKontroler.prikaziFormuZaBrisanjeArtikla();
+			}
+		});
 		btnBrisanjeArtikla.setFont(new Font("Times New Roman", Font.BOLD, 13));
 		btnBrisanjeArtikla.setBounds(10, 130, 155, 59);
 		panel_1.add(btnBrisanjeArtikla);
 
 		JButton btnPretragaArtikla = new JButton("Pretraga artikla");
+		btnPretragaArtikla.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sefKontroler.prikaziFormuZaPretraguArtikla();
+			}
+		});
 		btnPretragaArtikla.setFont(new Font("Times New Roman", Font.BOLD, 13));
 		btnPretragaArtikla.setBounds(10, 206, 155, 59);
 		panel_1.add(btnPretragaArtikla);
@@ -122,7 +138,7 @@ public class OpcijeSefa {
 		panel_2.setBorder(new LineBorder(new Color(0, 128, 128), 2));
 		panel_2.setBackground(new Color(0, 128, 128));
 		panel_2.setBounds(478, 27, 233, 142);
-		frame.getContentPane().add(panel_2);
+		frmOpcijeefa.getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Fiksalni račun");
@@ -131,11 +147,21 @@ public class OpcijeSefa {
 		panel_2.add(lblNewLabel);
 
 		JButton btnKreiranjeRauna = new JButton("Kreiranje računa");
+		btnKreiranjeRauna.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sefKontroler.prikaziFormuZaKreiranjeRacuna();
+			}
+		});
 		btnKreiranjeRauna.setFont(new Font("Times New Roman", Font.BOLD, 13));
 		btnKreiranjeRauna.setBounds(32, 41, 162, 47);
 		panel_2.add(btnKreiranjeRauna);
 
 		JButton btnPopust = new JButton("Popust");
+		btnPopust.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sefKontroler.prikaziFormuZaDefinisanjePopusta();
+			}
+		});
 		btnPopust.setFont(new Font("Times New Roman", Font.BOLD, 13));
 		btnPopust.setBounds(64, 99, 94, 23);
 		panel_2.add(btnPopust);
@@ -143,7 +169,7 @@ public class OpcijeSefa {
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(128, 128, 128));
 		panel_3.setBounds(478, 219, 233, 115);
-		frame.getContentPane().add(panel_3);
+		frmOpcijeefa.getContentPane().add(panel_3);
 		panel_3.setLayout(null);
 
 		JButton btnNewButton = new JButton("Odjava");

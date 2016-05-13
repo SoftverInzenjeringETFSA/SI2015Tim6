@@ -17,6 +17,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
+
 public class DodavanjeNovogArtikla {
 
 	private JFrame DodavanjeNovogArtikla;
@@ -24,27 +26,16 @@ public class DodavanjeNovogArtikla {
 	private JTextField CijenaArtikla;
 	private JTextField Kolicina;
 	private JTextField textField;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DodavanjeNovogArtikla window = new DodavanjeNovogArtikla();
-					window.DodavanjeNovogArtikla.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+    private SefKontroler sefKontroler;
+	
 	/**
 	 * Create the application.
 	 */
-	public DodavanjeNovogArtikla() {
+    public void setVisible(boolean visible) {
+		this.DodavanjeNovogArtikla.setVisible(visible);
+	}
+	public DodavanjeNovogArtikla(SefKontroler sefKontroler) {
+		this.sefKontroler=sefKontroler;
 		initialize();
 	}
 
@@ -53,11 +44,12 @@ public class DodavanjeNovogArtikla {
 	 */
 	private void initialize() {
 		DodavanjeNovogArtikla = new JFrame();
+		DodavanjeNovogArtikla.setTitle("Dodavanje Novog Artikla");
 		DodavanjeNovogArtikla.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		DodavanjeNovogArtikla.setBackground(Color.DARK_GRAY);
 		DodavanjeNovogArtikla.setForeground(Color.BLACK);
 		DodavanjeNovogArtikla.setBounds(100, 100, 491, 329);
-		DodavanjeNovogArtikla.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		DodavanjeNovogArtikla.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		JLabel lblUnesitePodatkeO = new JLabel("Unesite podatke o artiklu:");
 		lblUnesitePodatkeO.setFont(new Font("Times New Roman", Font.BOLD, 17));

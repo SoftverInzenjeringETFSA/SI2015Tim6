@@ -19,6 +19,9 @@ import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+
+import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
+
 import java.awt.SystemColor;
 
 public class BrisanjeArtikla {
@@ -29,27 +32,18 @@ public class BrisanjeArtikla {
 	private JButton btnPretraga;
 	private JScrollPane scrollPane;
 	private JTable Artikli;
+    private SefKontroler sefKontroler;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BrisanjeArtikla window = new BrisanjeArtikla();
-					window.BrisanjeArtikla.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	
+	public void setVisible(boolean visible) {
+		this.BrisanjeArtikla.setVisible(visible);
 	}
 
 	/**
 	 * Create the application.
 	 */
-	public BrisanjeArtikla() {
+	public BrisanjeArtikla(SefKontroler sefKontroler) {
+		this.sefKontroler=sefKontroler;
 		initialize();
 	}
 
@@ -58,8 +52,9 @@ public class BrisanjeArtikla {
 	 */
 	private void initialize() {
 		BrisanjeArtikla = new JFrame();
+		BrisanjeArtikla.setTitle("Brisanje Artikla");
 		BrisanjeArtikla.setBounds(100, 100, 578, 324);
-		BrisanjeArtikla.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		BrisanjeArtikla.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		lblUnesiteifruArtikla = new JLabel("Unesite šifru artikla:");
 		lblUnesiteifruArtikla.setBounds(42, 35, 116, 17);

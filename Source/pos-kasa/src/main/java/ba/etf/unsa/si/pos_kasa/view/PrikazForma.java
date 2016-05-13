@@ -62,7 +62,7 @@ public class PrikazForma {
 		
 		JButton btnPrijava = new JButton("Prijava");
 		btnPrijava.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-		btnPrijava.setBounds(267, 84, 69, 19);
+		btnPrijava.setBounds(178, 84, 122, 25);
 		PrikazForma.getContentPane().add(btnPrijava);
 		
 		
