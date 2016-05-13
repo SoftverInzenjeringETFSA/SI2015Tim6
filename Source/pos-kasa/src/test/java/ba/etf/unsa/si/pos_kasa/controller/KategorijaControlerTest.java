@@ -14,13 +14,12 @@ public class KategorijaControlerTest extends TestCase {
 		String ime="Ime";
 		String opis="Opis";
 		KategorijaControler kc=new KategorijaControler();
-		List<Kategorija> lista1=new Vector<Kategorija>();
-		lista1=(List<Kategorija>)kc.vratiSveKategorije();
-		kc.dodajKategoriju(ime, opis);
-		
-		List<Kategorija> lista2=new Vector<Kategorija>();
-		lista2=(List<Kategorija>)kc.vratiSveKategorije();
-		assertEquals(lista2.size(), lista1.size()+1);
+		Long a=kc.dodajKategoriju(ime, opis);
+		try {
+			assertEquals("Ime", kc.pronadjiKategorijuPoID(a).getNaziv());
+		} catch (Exception e) {
+			assertEquals(e.getMessage(),"Trazena kategorija ne postoji!");
+		}
 		
 	}
 
@@ -29,16 +28,14 @@ public class KategorijaControlerTest extends TestCase {
 		String ime="Ime";
 		String opis="Opis";
 		KategorijaControler kc=new KategorijaControler();
-		List<Kategorija> lista1=new Vector<Kategorija>();
-		lista1=(List<Kategorija>)kc.vratiSveKategorije();
 		Long l;
-		
 		l=kc.dodajKategoriju(ime, opis);
 		kc.obrisiKategoriju(l);
-		List<Kategorija> lista2=new Vector<Kategorija>();
-		lista2=(List<Kategorija>)kc.vratiSveKategorije();
-		assertEquals(lista2.size(), lista1.size());
-		
+		try {
+			assertEquals("Ime", kc.pronadjiKategorijuPoID(l).getNaziv());
+		} catch (Exception e) {
+			assertEquals(e.getMessage(),"Trazena kategorija ne postoji!");
+		}	
 		
 	}
 
