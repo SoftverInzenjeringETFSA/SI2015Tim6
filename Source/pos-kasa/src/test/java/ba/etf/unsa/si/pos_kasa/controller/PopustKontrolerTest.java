@@ -89,7 +89,7 @@ public class PopustKontrolerTest extends TestCase {
 		Long l = pc.dodajAkcijaPopust(datum_pocetka, datum_kraja, opis, iznos_popusta);
 		
 		//noviDatum
-	       String date_a = "2016-05-12";  
+	       String date_a = "2016-05-11";  
 		    SimpleDateFormat dta = new SimpleDateFormat("yyyy-MM-dd");
 		    Date datumaa = dta.parse(date_a);
 		    
@@ -128,7 +128,7 @@ public class PopustKontrolerTest extends TestCase {
 		Long l = pc.dodajAkcijaPopust(datum_pocetka, datum_kraja, opis, iznos_popusta);
 		
 		//noviDatum
-	       String date_a = "2016-05-14";  
+	       String date_a = "2016-06-14";  
 		    SimpleDateFormat dta = new SimpleDateFormat("yyyy-MM-dd");
 		    Date datumaa = dta.parse(date_a);
 		    
