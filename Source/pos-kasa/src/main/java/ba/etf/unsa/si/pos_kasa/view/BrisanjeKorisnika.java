@@ -6,34 +6,28 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import javax.swing.JTextArea;
+
+import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
+
 import javax.swing.JButton;
 
 public class BrisanjeKorisnika {
 
 	private JFrame frmBrisanjeKorisnika;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BrisanjeKorisnika window = new BrisanjeKorisnika();
-					window.frmBrisanjeKorisnika.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private SefKontroler sefKontroler;
 
 	/**
 	 * Create the application.
 	 */
-	public BrisanjeKorisnika() {
+	public BrisanjeKorisnika(SefKontroler sefKontroler) {
+		this.sefKontroler = sefKontroler;
 		initialize();
 	}
+	
+	public void setVisible(boolean visible) {
+		this.frmBrisanjeKorisnika.setVisible(visible);
+	}
+	
 
 	/**
 	 * Initialize the contents of the frame.

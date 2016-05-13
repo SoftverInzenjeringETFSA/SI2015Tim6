@@ -10,6 +10,8 @@ import java.awt.EventQueue;
 import javax.swing.JLabel;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
+import ba.etf.unsa.si.pos_kasa.controller.UposlenikKontroler;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -18,20 +20,9 @@ import java.awt.event.ActionEvent;
 public class OpcijeSefa {
 
 	private JFrame frame;
-	private static SefKontroler sefKontroler;
+	private SefKontroler sefKontroler;
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					OpcijeSefa window = new OpcijeSefa(sefKontroler);
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the application.
@@ -69,16 +60,33 @@ public class OpcijeSefa {
 		panel.add(lblKorisnici);
 
 		JButton btnDodavanjeKorisnika = new JButton("Dodavanje korisnika");
+		btnDodavanjeKorisnika.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				sefKontroler.prikaziFormuZaUnosKorisnika();
+				
+			}
+		});
 		btnDodavanjeKorisnika.setFont(new Font("Times New Roman", Font.BOLD, 13));
 		btnDodavanjeKorisnika.setBounds(10, 52, 155, 57);
 		panel.add(btnDodavanjeKorisnika);
 
 		JButton btnBrisanjeKorisnika = new JButton("Brisanje korisnika");
+		btnBrisanjeKorisnika.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sefKontroler.prikaziFormuZaBrisanjeKorisnika();
+			}
+		});
 		btnBrisanjeKorisnika.setFont(new Font("Times New Roman", Font.BOLD, 13));
 		btnBrisanjeKorisnika.setBounds(10, 129, 155, 57);
 		panel.add(btnBrisanjeKorisnika);
 
 		JButton btnPretragaKorisnika = new JButton("Pretraga korisnika");
+		btnPretragaKorisnika.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sefKontroler.prikaziFormuZaPretraguKorisnika();
+			}
+		});
 		btnPretragaKorisnika.setFont(new Font("Times New Roman", Font.BOLD, 13));
 		btnPretragaKorisnika.setBounds(10, 204, 155, 57);
 		panel.add(btnPretragaKorisnika);

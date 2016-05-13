@@ -5,39 +5,32 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
+
 import javax.swing.JButton;
 
 public class PretragaKorisnika {
 
 	private JFrame frmPretragaKorisnika;
 	private JTextField textField;
+    private SefKontroler sefKontroler;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PretragaKorisnika window = new PretragaKorisnika();
-					window.frmPretragaKorisnika.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the application.
 	 */
-	public PretragaKorisnika() {
+	public PretragaKorisnika(SefKontroler sefKontroler) {
+		this.sefKontroler = sefKontroler;
 		initialize();
 	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	
+	public void setVisible(boolean visible) {
+		this.frmPretragaKorisnika.setVisible(visible);
+	}
+ 
+	
 	private void initialize() {
 		frmPretragaKorisnika = new JFrame();
 		frmPretragaKorisnika.setTitle("Pretraga korisnika");

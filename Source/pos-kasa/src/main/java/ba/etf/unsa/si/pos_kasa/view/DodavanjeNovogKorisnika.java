@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-
+import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
 import ba.etf.unsa.si.pos_kasa.controller.UposlenikKontroler;
 
 public class DodavanjeNovogKorisnika {
@@ -27,33 +27,19 @@ public class DodavanjeNovogKorisnika {
 	private JTextField textBrojTel;
 	private JPasswordField textPassword;
 	private JPasswordField textPasswordConfirm;
+	private SefKontroler sefKontroler;
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DodavanjeNovogKorisnika window = new DodavanjeNovogKorisnika();
-					window.DodavnjeNovogKorisnika.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the application.
 	 */
-	public DodavanjeNovogKorisnika() {
+	public DodavanjeNovogKorisnika(SefKontroler sefKontroler) {
+		this.sefKontroler = sefKontroler;
 		initialize();
 	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	
+	public void setVisible(boolean visible) {
+		this.DodavnjeNovogKorisnika.setVisible(visible);
+	}
 	private void initialize() {
 		DodavnjeNovogKorisnika = new JFrame();
 		DodavnjeNovogKorisnika.setBounds(100, 100, 404, 520);
