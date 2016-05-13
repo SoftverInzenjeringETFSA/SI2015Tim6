@@ -26,7 +26,6 @@ public class UposlenikKontrolerTest extends TestCase {
 		 
 		 UposlenikKontroler uk = new UposlenikKontroler ();
 		 
-		 assertEquals("true",uk.dodajNovogKorisnika(_imePrezime, _datumRodjenja, _jmbg, _brojTelefona, _username, _password, _uloga));
-		 
+		 assertTrue(uk.dodajNovogKorisnika(_imePrezime, _datumRodjenja, _jmbg, _brojTelefona, _username, _password, _uloga));
 	 }
 }
