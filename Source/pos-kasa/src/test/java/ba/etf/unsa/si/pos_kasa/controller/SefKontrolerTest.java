@@ -19,8 +19,9 @@ public class SefKontrolerTest extends TestCase {
 		Uposlenik u = new Uposlenik("imePrezime",rodjenje,"jmbg", "brojTelefona","username", "password","uloga");
 		
 		SefKontroler sk = new SefKontroler();
+		boolean b = sk.dodajNovogKorisnika(u);
 		
-		assertTrue(sk.dodajNovogKorisnika(u));
+		assertEquals("true",b);
 	}
 
 }
