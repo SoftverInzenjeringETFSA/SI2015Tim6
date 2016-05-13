@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `tim6`.`uposlenik` (
   `datum_rođenja` DATE NULL,
   `jmbg` VARCHAR(45) NOT NULL,
   `broj_telefona` VARCHAR(45) NOT NULL,
+  `datum_zaposlenja` DATE NULL,
   `username` VARCHAR(20) NOT NULL,
   `password` VARCHAR(20) NOT NULL,
   `uloga` VARCHAR(20) NOT NULL DEFAULT 'kasir',
