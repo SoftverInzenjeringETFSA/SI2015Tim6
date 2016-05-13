@@ -19,7 +19,10 @@ public class Smjena implements java.io.Serializable {
 		long id;
 		Timestamp pocetak_smjene;
 		Timestamp kraj_smjene;
-		long uposlenik_id;
+		long uposlenik_id; //ovdje ne moze bit long vec objekat uposlenika mapiran sa many to one anotacijom
+		//@ManyToOne
+		//Uposlenik uposlenik;
+		//promjenit u bazi
 				
 	    public long getId() {
 			return id;

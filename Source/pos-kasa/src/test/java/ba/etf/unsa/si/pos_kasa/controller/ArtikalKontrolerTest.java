@@ -54,22 +54,19 @@ public class ArtikalKontrolerTest extends TestCase
 		String _opis = "Opis";
 		
 		ArtikalKontroler ak = new ArtikalKontroler();
-		List<Artikal> _artikli = new Vector<Artikal>();
-		_artikli = (List<Artikal>)ak.vratiSveArtikle();
 		Long l;
 		
 		l = ak.dodajArtikal(_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, a);
 		ak.obrisiArtikal(l);
 		
-		Artikal artikal=new Artikal();
-		try {
-			artikal=ak.pronadjiArtikalPoID(l);
-		
-		} catch (Exception e) {
-			
-			assertEquals("1","1");
-			
-		}
+		try 
+		{
+			assertEquals("NekiNaziv", ak.pronadjiArtikalPoID(l).getNaziv());
+		} 
+		catch (Exception e)
+		{
+			assertEquals(e.getMessage(),"Trazeni artikal ne postoji!");
+		}	
 		
 	}
 	

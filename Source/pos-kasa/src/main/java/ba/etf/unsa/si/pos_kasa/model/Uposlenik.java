@@ -105,9 +105,7 @@ public long getId() {
 		this.uloga = uloga;
 	}
 
-public Uposlenik(long id, String imePrezime, Date datumRodjenja, String jmbg, String brojTelefona, String username, String password,String uloga) {
-		super();
-		this.id = id;
+public Uposlenik(String imePrezime, Date datumRodjenja, String jmbg, String brojTelefona, String username, String password,String uloga) {
 		this.uloga = uloga;
 		this.imePrezime = imePrezime;
 		this.datumRodjenja = datumRodjenja;

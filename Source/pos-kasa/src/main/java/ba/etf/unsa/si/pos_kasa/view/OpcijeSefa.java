@@ -5,14 +5,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
-import java.awt.EventQueue;
-
 import javax.swing.JLabel;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
 import ba.etf.unsa.si.pos_kasa.controller.SmjenaKontroler;
-import ba.etf.unsa.si.pos_kasa.controller.UposlenikKontroler;
-
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
