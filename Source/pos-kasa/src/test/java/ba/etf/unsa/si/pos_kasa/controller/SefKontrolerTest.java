@@ -20,7 +20,7 @@ public class SefKontrolerTest extends TestCase {
 		
 		SefKontroler sk = new SefKontroler();
 		boolean b = sk.dodajNovogKorisnika(u);
-		
+		//
 		assertEquals(false,b);
 	}
 

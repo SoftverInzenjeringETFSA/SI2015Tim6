@@ -19,7 +19,7 @@ public class IzvjestajiTest extends TestCase {
 	     Date datum2 = dtd.parse(date_d);
 	     
 	     Izvjestaji i = new Izvjestaji();
-	     
+	     //
 	     double [] _rezultat = i.dajUkupanPrometIprodateArtikleOdDo(datum1, datum2);
 	 
 	   assertEquals(0,_rezultat[0]);  
