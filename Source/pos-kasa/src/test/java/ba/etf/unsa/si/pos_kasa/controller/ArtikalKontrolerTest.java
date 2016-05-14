@@ -18,7 +18,6 @@ public class ArtikalKontrolerTest extends TestCase
 	public void testDodajArtikal()
 	{			
 		String _naziv = "NekiNaziv";
-		Long id=(long)1000;
 		double _cijena = 2.2;
 		String _jedinica_mjere = "jedinicaMjere"; 
 		String _barkod = "Barkod";
@@ -28,7 +27,7 @@ public class ArtikalKontrolerTest extends TestCase
 		ArtikalKontroler ak = new ArtikalKontroler();
 		
 		Long art;
-		art=ak.dodajArtikal(id,_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, a);
+		art=ak.dodajArtikal(_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, a);
 		
 		Artikal artikal=new Artikal();
 		try {
@@ -49,7 +48,6 @@ public class ArtikalKontrolerTest extends TestCase
  		
 		String _naziv = "NekiNaziv";
 		double _cijena = 2.2;
-		Long id=(long)1001;
 		String _jedinica_mjere = "jedinicaMjere"; 
 		String _barkod = "Barkod";
 		int _zalihe_stanje = 2;
@@ -58,7 +56,7 @@ public class ArtikalKontrolerTest extends TestCase
 		ArtikalKontroler ak = new ArtikalKontroler();
 		Long l;
 		
-		l = ak.dodajArtikal(id,_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, a);
+		l = ak.dodajArtikal(_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, a);
 		ak.obrisiArtikal(l);
 		
 		try 
@@ -82,11 +80,10 @@ public class ArtikalKontrolerTest extends TestCase
 		String _barkod = "Barkod";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
-		Long id=(long)1002;
 				
 		ArtikalKontroler ak = new ArtikalKontroler();
 		
-		Long l = ak.dodajArtikal(id,_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, a);
+		Long l = ak.dodajArtikal(_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, a);
 		
 		ak.modificirajArtikal(l, "NekiNazivNovi", 2, "jedinicaMjereNovi", "BarkodNovi", 3, "OpisNovi", 1);
 		
@@ -113,11 +110,10 @@ public class ArtikalKontrolerTest extends TestCase
 		String _barkod = "Barkod";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
-		Long id=(long)1003;
 		
 		ArtikalKontroler ak = new ArtikalKontroler();
 		
-		Long l = ak.dodajArtikal(id,_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis,a);
+		Long l = ak.dodajArtikal(_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis,a);
 		ak.modificirajNazivArtikla(l, "NoviNaziv");
 		
 		Artikal a = new Artikal();
@@ -140,11 +136,10 @@ public class ArtikalKontrolerTest extends TestCase
 		String _barkod = "Barkod";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
-		Long id=(long)1004;
 		
 		ArtikalKontroler ak = new ArtikalKontroler();
 		
-		Long l = ak.dodajArtikal(id,_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, a);
+		Long l = ak.dodajArtikal(_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, a);
 		ak.modificirajCijenuArtikla(l,3);
 		
 		Artikal a = new Artikal();
@@ -168,10 +163,9 @@ public class ArtikalKontrolerTest extends TestCase
 		String _barkod = "Barkod";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
-		Long id=(long)1005;
 		ArtikalKontroler ak = new ArtikalKontroler();
 		
-		Long l = ak.dodajArtikal(id,_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, a);
+		Long l = ak.dodajArtikal(_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, a);
 		ak.modificirajJedinicuMjere(l, "JedinicaNovo");
 		
 		Artikal a = new Artikal();
@@ -193,10 +187,9 @@ public class ArtikalKontrolerTest extends TestCase
 		String _barkod = "Barkod";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
-		Long id=(long)1006;
 		ArtikalKontroler ak = new ArtikalKontroler();
 		
-		Long l = ak.dodajArtikal(id,_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis,a);
+		Long l = ak.dodajArtikal(_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis,a);
 		
 		ak.modificirajBarkod(l, "Novoo");
 		
@@ -220,11 +213,10 @@ public class ArtikalKontrolerTest extends TestCase
 		String _barkod = "Barkod";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
-		Long id=(long)1007;
 		
 		ArtikalKontroler ak = new ArtikalKontroler();
 		
-		Long l = ak.dodajArtikal(id,_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, a);
+		Long l = ak.dodajArtikal(_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, a);
 		
 		Artikal a = new Artikal();
 		try 
