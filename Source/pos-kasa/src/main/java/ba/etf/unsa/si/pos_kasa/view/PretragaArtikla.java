@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
+import org.apache.log4j.Logger;
 
 public class PretragaArtikla {
 

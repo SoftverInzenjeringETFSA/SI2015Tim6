@@ -105,6 +105,19 @@ public class KategorijaControlerTest extends TestCase {
 			assertEquals(e.getMessage(),"Trazena kategorija ne postoji!");
 		}
 	}
-
+	
+	public void testVrati(){
+		KategorijaControler ac=new KategorijaControler();
+		String s="ADO ADO";
+		String[] niz=ac.vrati(s);
+		assertEquals(niz.length,2);
+		
+	}
+	public void testVratiRazdovojeno(){
+		KategorijaControler ac=new KategorijaControler();
+		String s="ADO;;ADO";
+		String[] niz=ac.vratiRazdovojeno(s);
+		assertEquals(niz.length,2);
+	}
 
 }

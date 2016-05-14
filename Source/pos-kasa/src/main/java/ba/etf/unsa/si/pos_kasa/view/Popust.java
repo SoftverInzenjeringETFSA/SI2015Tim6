@@ -17,6 +17,7 @@ import ba.etf.unsa.si.pos_kasa.controller.*;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import org.apache.log4j.Logger;
 
 public class Popust {
 

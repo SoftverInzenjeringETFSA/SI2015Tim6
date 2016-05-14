@@ -10,10 +10,13 @@ import ba.etf.unsa.si.pos_kasa.model.*;
 public class ArtikalKontrolerTest extends TestCase 
 {
 	Long a;
+	Long aTest;
 	protected void setUp(){
 		Kategorija k = new Kategorija();
 		KategorijaControler kc=new KategorijaControler();	
 	    a=kc.dodajKategoriju("Kategorija","Opis");
+	    Kategorija kTest = new Kategorija();	
+	    aTest=kc.dodajKategoriju("Kategorija","Opis");
 	}
 	public void testDodajArtikal()
 	{			
@@ -23,7 +26,6 @@ public class ArtikalKontrolerTest extends TestCase
 		String _barkod = "Barkod";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
-		//long _kategorija_id = k.getId();
 		ArtikalKontroler ak = new ArtikalKontroler();
 		
 		Long art;
@@ -230,5 +232,92 @@ public class ArtikalKontrolerTest extends TestCase
 			assertEquals(e.getMessage(),"Trazeni artikal ne postoji!");
 		}
 	}
+	public void testVratiRijeci(){
+		
+		List<String>rijeci=new Vector<String>();
+		String _naziv = "NekiNaziv";
+		double _cijena = 2.2;
+		String _jedinica_mjere = "jedinicaMjere"; 
+		String _barkod = "Barkodt";
+		int _zalihe_stanje = 2;
+		String _opis = "Opis";
+		ArtikalKontroler ak = new ArtikalKontroler();
+		
+		Long art;
+		art=ak.dodajArtikal(_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, a);
+		
+		try {
+			Artikal ar;
+			ar = ak.pronadjiArtikalPoID(art);
+			List<Artikal> lista=new Vector<Artikal>();
+			lista.add(ar);
+			List<String>str=new Vector<String>();
+			str=ak.vratiRijeci(lista);
+			assertEquals(str.size(),1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+	}
+	public void testVratiRazdovojeno(){
+		ArtikalKontroler ac=new ArtikalKontroler();
+		String s="ADO;;ADO";
+		String[] niz=ac.vratiRazdovojeno(s);
+		assertEquals(niz.length,2);
+	}
+	public void testVratiSveArtiklePoNazivu(){
+		
+		List<String>rijeci=new Vector<String>();
+		String _naziv = "Neki12345";
+		double _cijena = 2.2;
+		String _jedinica_mjere = "jedinicaMjere"; 
+		String _barkod = "Barkodt";
+		int _zalihe_stanje = 2;
+		String _opis = "Opis";
+		ArtikalKontroler ak = new ArtikalKontroler();
+		
+		Long art;
+		art=ak.dodajArtikal(_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, a);
+		List<Artikal> list=ak.vratiSveArtiklePoNazivu("Neki12345");
+		assertEquals(list.size(),1);
+		
+	}
+	public void testVratiSveArtiklePoBarkodu(){
+		List<String>rijeci=new Vector<String>();
+		String _naziv = "Neki";
+		double _cijena = 2.2;
+		String _jedinica_mjere = "jedinicaMjere"; 
+		String _barkod = "BarkodTest";
+		int _zalihe_stanje = 2;
+		String _opis = "Opis";
+		ArtikalKontroler ak = new ArtikalKontroler();
+		
+		Long art;
+		art=ak.dodajArtikal(_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, a);
+		List<Artikal> list=ak.vratiSveArtiklePoBarkodu("BarkodTest");
+		assertEquals(list.size(),1);
+	}
+	public void testVratiSveArtiklePoKategoriji(){
+		List<String>rijeci=new Vector<String>();
+		String _naziv = "Neki";
+		double _cijena = 2.2;
+		String _jedinica_mjere = "jedinicaMjere"; 
+		String _barkod = "BarkodTest";
+		int _zalihe_stanje = 2;
+		String _opis = "Opis";
+		ArtikalKontroler ak = new ArtikalKontroler();
+		
+		Long art;
+		art=ak.dodajArtikal(_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, aTest);
+		List<Artikal> list=ak.vratiSveArtiklePoKategoriji(aTest);
+		assertEquals(list.size(),1);
+		
+	}
+
+	
+	
 
 }

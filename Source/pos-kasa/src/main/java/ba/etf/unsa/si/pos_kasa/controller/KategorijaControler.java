@@ -160,7 +160,7 @@ public class KategorijaControler {
 		session.close();
 		return rezultati;
 	}
-	
+	//UPIT
 	public static List<String> vratiId(String id)
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -176,6 +176,7 @@ public class KategorijaControler {
 		session.close();
 		return rezultati;
 	}
+	
 	public String[] vratiRazdovojeno(String str)
 	{
 		String[] novo=str.split(";;");

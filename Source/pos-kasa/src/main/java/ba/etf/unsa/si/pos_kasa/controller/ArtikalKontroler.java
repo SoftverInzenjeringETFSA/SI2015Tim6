@@ -9,6 +9,7 @@ import java.util.Vector;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.apache.log4j.Logger;
 
 	@SuppressWarnings("unused")
 	public class ArtikalKontroler {
@@ -210,7 +211,7 @@ import org.hibernate.SessionFactory;
 			session.close();
 			return results;	
 		}
-		
+		//UPIT
 		public String vratiArtikleZaBrisanje(String bk){
 			
 			Session session = HibernateUtil.getSessionFactory().openSession();
