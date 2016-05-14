@@ -24,6 +24,9 @@ public class OpcijeSefa {
 	/**
 	 * Create the application.
 	 */
+	/**
+	  * @wbp.parser.entryPoint
+	  */
 	public OpcijeSefa(SefKontroler sefKontroler) {
 		this.sefKontroler = sefKontroler;
 		initialize();

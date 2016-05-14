@@ -7,14 +7,19 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
+import ba.etf.unsa.si.pos_kasa.model.Uposlenik;
+import ba.etf.unsa.si.pos_kasa.validator.JMBGVerifier;
 
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PretragaKorisnika {
 
 	private JFrame frmPretragaKorisnika;
-	private JTextField textField;
+	private JTextField textFieldJMBG;
     private SefKontroler sefKontroler;
+    private Uposlenik uposlenik=null;
 
 	
 
@@ -39,16 +44,26 @@ public class PretragaKorisnika {
 		frmPretragaKorisnika.getContentPane().setLayout(null);
 		
 		JLabel lblUnesiteJmbgKorisnika = new JLabel("Unesite JMBG korisnika:");
-		lblUnesiteJmbgKorisnika.setBounds(31, 32, 120, 29);
+		lblUnesiteJmbgKorisnika.setBounds(10, 32, 143, 29);
 		frmPretragaKorisnika.getContentPane().add(lblUnesiteJmbgKorisnika);
 		
-		textField = new JTextField();
-		textField.setBounds(184, 34, 204, 25);
-		frmPretragaKorisnika.getContentPane().add(textField);
-		textField.setColumns(10);
+		textFieldJMBG = new JTextField();
+		textFieldJMBG.setBounds(184, 34, 204, 25);
+		frmPretragaKorisnika.getContentPane().add(textFieldJMBG);
+		textFieldJMBG.setColumns(10);
+		textFieldJMBG.setInputVerifier(new JMBGVerifier(textFieldJMBG, "Unesite Validan JMBG!"));
 		
 		JButton btnPronai = new JButton("Pronađi");
-		btnPronai.setBounds(207, 72, 117, 29);
+		btnPronai.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				uposlenik=sefKontroler.pronadjiKorisnikaPoJMBG(textFieldJMBG.getText());
+				if(uposlenik!=null)
+				{
+				sefKontroler.prikaziFormuPretragaKorisnikaPrikaz(sefKontroler, uposlenik);
+				}
+			}
+		});
+		btnPronai.setBounds(217, 72, 117, 29);
 		frmPretragaKorisnika.getContentPane().add(btnPronai);
 	}
 }

@@ -4,34 +4,36 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
+import ba.etf.unsa.si.pos_kasa.model.Uposlenik;
+
 import java.awt.Font;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class BrisanjeKorisnika_PrikazRezultata {
 
 	private JFrame frmBrisanjeKorisnika;
 
+	private SefKontroler sefKontroler;
+	private Uposlenik uposlenikParam;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BrisanjeKorisnika_PrikazRezultata window = new BrisanjeKorisnika_PrikazRezultata();
-					window.frmBrisanjeKorisnika.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the application.
 	 */
-	public BrisanjeKorisnika_PrikazRezultata() {
+	public BrisanjeKorisnika_PrikazRezultata(SefKontroler sefKontroler, Uposlenik u) {
+		this.sefKontroler=sefKontroler;
+		this.uposlenikParam=u;
 		initialize();
+	}
+	public void setVisible(boolean visible) {
+		this.frmBrisanjeKorisnika.setVisible(visible);
 	}
 
 	/**
@@ -40,29 +42,55 @@ public class BrisanjeKorisnika_PrikazRezultata {
 	private void initialize() {
 		frmBrisanjeKorisnika = new JFrame();
 		frmBrisanjeKorisnika.setTitle("Brisanje korisnika");
-		frmBrisanjeKorisnika.setBounds(100, 100, 298, 250);
-		frmBrisanjeKorisnika.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmBrisanjeKorisnika.setBounds(100, 100, 407, 269);
+		frmBrisanjeKorisnika.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmBrisanjeKorisnika.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Podaci o korisniku:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel.setBounds(26, 23, 123, 19);
+		lblNewLabel.setBounds(10, 25, 123, 19);
 		frmBrisanjeKorisnika.getContentPane().add(lblNewLabel);
 		
-		JLabel lblImeKorisnika = new JLabel("Ime korisnika");
-		lblImeKorisnika.setBounds(92, 53, 101, 19);
+		JLabel lblImeKorisnika = new JLabel(uposlenikParam.getImePrezime());
+		lblImeKorisnika.setBounds(148, 53, 225, 19);
 		frmBrisanjeKorisnika.getContentPane().add(lblImeKorisnika);
 		
-		JLabel lblPrezimeKorisnika = new JLabel("Prezime korisnika");
-		lblPrezimeKorisnika.setBounds(92, 79, 101, 19);
-		frmBrisanjeKorisnika.getContentPane().add(lblPrezimeKorisnika);
-		
-		JLabel lblJmbgKorisnika = new JLabel("JMBG korisnika");
-		lblJmbgKorisnika.setBounds(92, 107, 101, 19);
+		JLabel lblJmbgKorisnika = new JLabel(uposlenikParam.getJmbg());
+		lblJmbgKorisnika.setBounds(148, 89, 233, 19);
 		frmBrisanjeKorisnika.getContentPane().add(lblJmbgKorisnika);
 		
 		JButton btnNewButton = new JButton("Izbriši");
-		btnNewButton.setBounds(87, 137, 89, 23);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sefKontroler.obrisiKorisnikaPoJMBG(uposlenikParam);
+				
+			}
+		});
+		btnNewButton.setBounds(148, 197, 89, 23);
 		frmBrisanjeKorisnika.getContentPane().add(btnNewButton);
+		
+		JLabel lblImeIPrezime = new JLabel("Ime i Prezime:");
+		lblImeIPrezime.setBounds(10, 61, 75, 14);
+		frmBrisanjeKorisnika.getContentPane().add(lblImeIPrezime);
+		
+		JLabel lblJmbg = new JLabel("JMBG:");
+		lblJmbg.setBounds(10, 91, 46, 14);
+		frmBrisanjeKorisnika.getContentPane().add(lblJmbg);
+		
+		JLabel lblDatumRoenja = new JLabel("Datum Rođenja:");
+		lblDatumRoenja.setBounds(10, 123, 100, 14);
+		frmBrisanjeKorisnika.getContentPane().add(lblDatumRoenja);
+		
+		JLabel lblDatumRodjenja = new JLabel(uposlenikParam.getDatumRodjenja());
+		lblDatumRodjenja.setBounds(148, 123, 225, 14);
+		frmBrisanjeKorisnika.getContentPane().add(lblDatumRodjenja);
+		
+		JLabel lblBrojTel = new JLabel("Broj Tel:");
+		lblBrojTel.setBounds(10, 153, 100, 14);
+		frmBrisanjeKorisnika.getContentPane().add(lblBrojTel);
+		
+		JLabel lblTel = new JLabel(uposlenikParam.getBrojTelefona());
+		lblTel.setBounds(148, 153, 225, 14);
+		frmBrisanjeKorisnika.getContentPane().add(lblTel);
 	}
 }

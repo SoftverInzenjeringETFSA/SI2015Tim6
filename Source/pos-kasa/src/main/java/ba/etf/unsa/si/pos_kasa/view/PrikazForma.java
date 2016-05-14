@@ -7,6 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 import ba.etf.unsa.si.pos_kasa.controller.LoginKontroler;
+import ba.etf.unsa.si.pos_kasa.validator.ImeVerifier;
+import ba.etf.unsa.si.pos_kasa.validator.PasswordVerifier;
+import ba.etf.unsa.si.pos_kasa.validator.userNameVerifier;
+
 import javax.swing.JButton;
 
 public class PrikazForma {
@@ -15,6 +19,7 @@ public class PrikazForma {
 	private JTextField korisnickoIme;
 	private JTextField password;
 	private LoginKontroler loginKontroler;
+	JButton btnPrijava;
 
 	/**
 	 * Create the application.
@@ -52,22 +57,28 @@ public class PrikazForma {
 		korisnickoIme.setBounds(153, 22, 183, 20);
 		prikazForma.getContentPane().add(korisnickoIme);
 		korisnickoIme.setColumns(10);
+		korisnickoIme.setInputVerifier(new userNameVerifier(korisnickoIme,"Polje za unos Username mora biti dužine minimalno 4 i maksimalno 20 slova. "));
 
 		password = new JTextField();
 		password.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		password.setBounds(153, 53, 183, 20);
 		prikazForma.getContentPane().add(password);
 		password.setColumns(10);
+		password.setInputVerifier(new PasswordVerifier(password, "Password mora biti minimalno 5 znakova!"));
 
-		JButton btnPrijava = new JButton("Prijava");
+	    btnPrijava = new JButton("Prijava");
 		btnPrijava.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		btnPrijava.setBounds(178, 84, 122, 25);
 		prikazForma.getContentPane().add(btnPrijava);
 
 		btnPrijava.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//if(password.getInputVerifier() != null)
 				loginKontroler.login(korisnickoIme.getText(), password.getText());
 			}
 		});
+	}
+	public void prikaziLoginButton(boolean postavi) {
+		btnPrijava.setEnabled(postavi);
 	}
 }

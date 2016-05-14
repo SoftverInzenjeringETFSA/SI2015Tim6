@@ -16,7 +16,7 @@ public class Uposlenik implements java.io.Serializable{
 	@Column(name="ime_prezime")
 	String imePrezime;
 	@Column(name="datum_rođenja")
-	Date datumRodjenja;
+	String datumRodjenja;
 	@Column(name="jmbg")
 	String jmbg;
 	@Column(name="broj_telefona")
@@ -49,11 +49,11 @@ public long getId() {
 		this.imePrezime = imePrezime;
 	}
 
-	public Date getDatumRodjenja() {
+	public String getDatumRodjenja() {
 		return datumRodjenja;
 	}
 
-	public void setDatumRodjenja(Date datumRodjenja) {
+	public void setDatumRodjenja(String datumRodjenja) {
 		this.datumRodjenja = datumRodjenja;
 	}
 
@@ -105,7 +105,7 @@ public long getId() {
 		this.uloga = uloga;
 	}
 
-public Uposlenik(String imePrezime, Date datumRodjenja, String jmbg, String brojTelefona, String username, String password,String uloga) {
+public Uposlenik(String imePrezime, String datumRodjenja, String jmbg, String brojTelefona, String username, String password,String uloga) {
 		this.uloga = uloga;
 		this.imePrezime = imePrezime;
 		this.datumRodjenja = datumRodjenja;
@@ -119,7 +119,7 @@ public Uposlenik(String imePrezime, Date datumRodjenja, String jmbg, String broj
 public Uposlenik()
 {
 	this.imePrezime = new String();
-	this.datumRodjenja = new Date();
+	this.datumRodjenja = new String();
 	this.jmbg = new String();
 	this.brojTelefona = new String();
 	this.id= 0;
