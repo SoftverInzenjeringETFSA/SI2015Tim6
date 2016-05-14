@@ -9,7 +9,7 @@ import org.hibernate.Transaction;
 
 import Tools.HibernateUtil;
 import ba.etf.unsa.si.pos_kasa.model.Uposlenik;
-import ba.etf.unsa.si.pos_kasa.view.BrisanjeArtikla;
+//import ba.etf.unsa.si.pos_kasa.view.BrisanjeArtikla;
 import ba.etf.unsa.si.pos_kasa.view.BrisanjeKorisnika;
 import ba.etf.unsa.si.pos_kasa.view.DodavanjeNovogArtikla;
 import ba.etf.unsa.si.pos_kasa.view.DodavanjeNovogKorisnika;
@@ -29,7 +29,7 @@ public class SefKontroler {
 	PretragaKorisnika pretragaKorisnika;
 	//instance formi za artikle
     DodavanjeNovogArtikla dodavanjeNovogArtikla;
-    BrisanjeArtikla brisanjeArtikla;
+    //BrisanjeArtikala brisanjeArtikla;
     PretragaArtikla pretragaArtikla;
     //instance formi za fiskalni racun
     KreiranjeRacuna kreiranjeRacuna;
@@ -116,8 +116,8 @@ public void prikaziFormuZaBrisanjeArtikla() {
 	EventQueue.invokeLater(new Runnable() {
 		public void run() {
 			try {
-				brisanjeArtikla  = new BrisanjeArtikla(SefKontroler.this);
-				brisanjeArtikla.setVisible(true);
+				//brisanjeArtikla  = new BrisanjeArtikla(SefKontroler.this);
+				//brisanjeArtikla.setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

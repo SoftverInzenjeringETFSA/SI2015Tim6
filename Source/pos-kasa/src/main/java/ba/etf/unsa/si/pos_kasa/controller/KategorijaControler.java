@@ -148,11 +148,42 @@ public class KategorijaControler {
 	public static List<String> vratiSvaImenaKategorije()
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		String sql = "select naziv from tim6.kategorija";
+		String sql = "select * from tim6.kategorija";
 		SQLQuery query = session.createSQLQuery(sql);
-		//query.addEntity(String.class);	
-		List<?> results = query.list();
+		query.addEntity(Kategorija.class);	
+		List<Kategorija> results = query.list();
+		List<String> rezultati=new Vector<String>();
+		for (int i=0;i<results.size();i++)
+		{
+			rezultati.add(results.get(i).getId()+";;"+results.get(i).getNaziv());
+		}
 		session.close();
-		return (List<String>) results;
+		return rezultati;
+	}
+	
+	public static List<String> vratiId(String id)
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		String sql = "select id from tim6.kategorija";
+		SQLQuery query = session.createSQLQuery(sql);
+		query.addEntity(Kategorija.class);	
+		List<Kategorija> results = query.list();
+		List<String> rezultati=new Vector<String>();
+		for (int i=0;i<results.size();i++)
+		{
+			rezultati.add(results.get(i).getId()+";;"+results.get(i).getNaziv());
+		}
+		session.close();
+		return rezultati;
+	}
+	public String[] vratiRazdovojeno(String str)
+	{
+		String[] novo=str.split(";;");
+		return novo;
+	}
+	public String[] vrati(String str)
+	{
+		String[] novo=str.split(" ");
+		return novo;
 	}
 }
