@@ -47,7 +47,7 @@ public class PopustKontrolerTest extends TestCase {
 	     String date_d = "2016-05-13";  
 	     SimpleDateFormat dtd = new SimpleDateFormat("yyyy-MM-dd");
 	     Date datum2 = dtd.parse(date_d);
-	     
+	     //
 		
 		Date datum_pocetka = datum1;
 		Date datum_kraja = datum2;
