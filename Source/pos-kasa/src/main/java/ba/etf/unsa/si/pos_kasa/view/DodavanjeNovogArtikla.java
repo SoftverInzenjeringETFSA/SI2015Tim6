@@ -101,9 +101,12 @@ public class DodavanjeNovogArtikla {
 								.addComponent(textField, GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
 								.addComponent(CijenaArtikla, 196, 196, 196)
 								.addComponent(Kolicina, 196, 196, 196)
-								.addComponent(NazivArtikla, GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-								.addComponent(btnDodaj, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE))))
+								.addComponent(NazivArtikla, GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))))
 					.addGap(109))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(208, Short.MAX_VALUE)
+					.addComponent(btnDodaj, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
+					.addGap(177))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -126,9 +129,9 @@ public class DodavanjeNovogArtikla {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblifraArtikla)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(28)
+					.addPreferredGap(ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
 					.addComponent(btnDodaj)
-					.addContainerGap(59, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		DodavanjeNovogArtikla.getContentPane().setLayout(groupLayout);
 	}
