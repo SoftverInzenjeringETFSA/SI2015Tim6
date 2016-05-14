@@ -8,6 +8,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.List;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -17,11 +19,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import antlr.collections.impl.Vector;
 import ba.etf.unsa.si.pos_kasa.controller.KasirKontroler;
 import ba.etf.unsa.si.pos_kasa.controller.RacunKontroler;
 import ba.etf.unsa.si.pos_kasa.model.Artikal;
 
 import java.awt.event.ActionListener;
+import java.util.Date;
 import java.util.Properties;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
@@ -39,6 +43,7 @@ public class KreiranjeRacuna {
 	private JTextField UkupniIznos;
 	private JTable Stavke;
 	private KasirKontroler kasirKontroler;
+	double ukupniIznos = 0;
 	JComboBox NacinPlacanja;
 	JLabel lblDatum;
 	JLabel lblKasir;
@@ -65,6 +70,8 @@ public class KreiranjeRacuna {
 	public KreiranjeRacuna(KasirKontroler kasirKontroler) {
 		this.kasirKontroler = kasirKontroler;
 		initialize();
+		lblDatum.setText(new Date().toString());
+		lblKasir.setText(System.getProperty("imePrezime"));
 	}
 	
 	public KreiranjeRacuna()
@@ -78,6 +85,7 @@ public class KreiranjeRacuna {
 		if(System.getProperty("logged") == "true") // logovan korisnik */
 		artikal = new Artikal(); artikal.setCijena(0.0);
 		initialize();
+		
 	}
 	
 	
@@ -201,6 +209,15 @@ public class KreiranjeRacuna {
 		));
 		scrollPane.setViewportView(Stavke);
 		JButton btnObrisiStavku = new JButton("Obriši stavku");
+		btnObrisiStavku.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int selRow = Stavke.getSelectedRow();
+				if(selRow != -1){
+					DefaultTableModel model = (DefaultTableModel) Stavke.getModel();
+					model.removeRow(selRow);
+				}
+			}
+		});
 		btnObrisiStavku.setBounds(274, 188, 140, 23);
 		StavkeRacuna.add(btnObrisiStavku);
 		
@@ -209,6 +226,8 @@ public class KreiranjeRacuna {
 			public void actionPerformed(ActionEvent arg0) {
 				DefaultTableModel model = (DefaultTableModel) Stavke.getModel();
 				model.addRow(new Object[]{artikal.getBarkod(), artikal.getNaziv(), spinner.getValue(), artikal.getCijena(), lblIznos.getText()});
+				ukupniIznos += Double.parseDouble(lblIznos.getText());
+				UkupniIznos.setText(Double.toString(ukupniIznos));
 			}
 		});
 /*		btnDodajStavku.addActionListener(new ActionListener() {
@@ -251,9 +270,6 @@ public class KreiranjeRacuna {
 		JLabel lblElementiRauna = new JLabel("Elementi računa:");
 		lblElementiRauna.setFont(new Font("Times New Roman", Font.BOLD, 15));
 
-		JLabel lblRaun = new JLabel("Račun:");
-		lblRaun.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-
 		JLabel lblDatuminf = new JLabel("Datum:");
 		lblDatuminf.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 
@@ -280,13 +296,13 @@ public class KreiranjeRacuna {
 					.addGroup(gl_ElementiRacuna.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_ElementiRacuna.createSequentialGroup()
 							.addGroup(gl_ElementiRacuna.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblRaun)
-								.addComponent(lblRacun))
-							.addGap(65)
-							.addGroup(gl_ElementiRacuna.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblDatuminf)
-								.addComponent(lblDatum))
-							.addGap(67)
+								.addComponent(lblRacun)
+								.addGroup(gl_ElementiRacuna.createSequentialGroup()
+									.addGap(21)
+									.addGroup(gl_ElementiRacuna.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblDatum)
+										.addComponent(lblDatuminf))))
+							.addGap(169)
 							.addGroup(gl_ElementiRacuna.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblKasir)
 								.addComponent(lblProdavac))
@@ -295,7 +311,7 @@ public class KreiranjeRacuna {
 								.addComponent(NacinPlacanja, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblNainPlaanja)))
 						.addComponent(lblElementiRauna))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addContainerGap(47, Short.MAX_VALUE))
 		);
 		gl_ElementiRacuna.setVerticalGroup(
 			gl_ElementiRacuna.createParallelGroup(Alignment.LEADING)
@@ -304,16 +320,15 @@ public class KreiranjeRacuna {
 					.addComponent(lblElementiRauna)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_ElementiRacuna.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblRaun)
 						.addComponent(lblNainPlaanja)
-						.addComponent(lblDatuminf)
-						.addComponent(lblProdavac))
+						.addComponent(lblProdavac)
+						.addComponent(lblDatuminf))
 					.addGap(4)
 					.addGroup(gl_ElementiRacuna.createParallelGroup(Alignment.BASELINE)
 						.addComponent(NacinPlacanja, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblDatum)
 						.addComponent(lblKasir)
-						.addComponent(lblRacun))
+						.addComponent(lblRacun)
+						.addComponent(lblDatum))
 					.addContainerGap())
 		);
 		ElementiRacuna.setLayout(gl_ElementiRacuna);

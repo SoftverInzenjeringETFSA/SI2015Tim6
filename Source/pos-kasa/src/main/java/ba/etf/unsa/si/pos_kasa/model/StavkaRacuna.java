@@ -15,16 +15,18 @@ public class StavkaRacuna implements java.io.Serializable {
 	double ukupna_cijena;
 	long artikal_id;
 	long racun_id;
-    @ManyToOne(fetch=FetchType.EAGER)
-    @JoinColumn(name="racun_id", insertable = false, updatable = false)
-    Racun racun;
+	public long getRacun_id() {
+		return racun_id;
+	}
+	public void setRacun_id(long racun_id) {
+		this.racun_id = racun_id;
+	}
 	public StavkaRacuna(long id, int kolicina, double ukupna_cijena, long artikal_id) {
 		super();
 		this.id = id;
 		this.kolicina = kolicina;
 		this.ukupna_cijena = ukupna_cijena;
 		this.artikal_id = artikal_id;
-		this.racun = racun;
 	}
 	public StavkaRacuna() {
 		// TODO Auto-generated constructor stub
