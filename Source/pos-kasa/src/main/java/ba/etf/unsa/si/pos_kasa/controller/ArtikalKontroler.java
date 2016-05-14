@@ -15,15 +15,18 @@ import org.hibernate.SessionFactory;
 		private static Session session;
 
 		public static void main(String[] args){
-
+			Long l=(long)130;
+			Long id=dodajArtikal(l,"KOla",2.2,"kom","1234435464",3,"Opis",67);
+			System.out.println(id);
 			
 		}
 
-		public static Long dodajArtikal(String naziv, double cijena, String jedinica_mjere, String barkod,int zalihe_stanje,String opis,long kategorija_id)
+		public static Long dodajArtikal(Long id1,String naziv, double cijena, String jedinica_mjere, String barkod,int zalihe_stanje,String opis,long kategorija_id)
 		{
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			Transaction t = session.beginTransaction();
 			Artikal a = new Artikal();
+			a.setId(id1);
 			a.setNaziv(naziv);
 			a.setCijena(cijena);
 			a.setJedinica_mjere(jedinica_mjere);
@@ -34,7 +37,7 @@ import org.hibernate.SessionFactory;
 			System.out.println(id);
 			t.commit();
 			session.close();
-			return id;
+			return a.getId();
 
 		}
 
