@@ -158,8 +158,8 @@ public void prikaziFormuZaKreiranjeRacuna() {
 	EventQueue.invokeLater(new Runnable() {
 		public void run() {
 			try {
-				kreiranjeRacuna = new KreiranjeRacuna(SefKontroler.this);
-				kreiranjeRacuna.setVisible(true);
+				//kreiranjeRacuna = new KreiranjeRacuna(SefKontroler.this);
+				//kreiranjeRacuna.setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

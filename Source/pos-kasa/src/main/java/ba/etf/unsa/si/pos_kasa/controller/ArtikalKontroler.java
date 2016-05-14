@@ -214,7 +214,6 @@ import org.hibernate.SessionFactory;
 		public String vratiArtikleZaBrisanje(String bk){
 			
 			Session session = HibernateUtil.getSessionFactory().openSession();
-			//Artikal a=new Artikal();
 			Transaction t=session.beginTransaction();
 			String sql = "select * from tim6.artikal where barkod ="+ bk;
 			SQLQuery query = session.createSQLQuery(sql);
@@ -227,6 +226,70 @@ import org.hibernate.SessionFactory;
 			
 		}
 		
+		public List<Artikal> vratiSveArtiklePoBarkodu(String barkod)
+		{
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Transaction t=session.beginTransaction();
+			List<Artikal> lista=session.createCriteria(Artikal.class).list();
+			List<Artikal> novaLista=new Vector<Artikal>();
+			for(int i=0;i<lista.size();i++)
+			{
+				if(barkod.equals(lista.get(i).getBarkod()))
+				{
+					novaLista.add(lista.get(i));
+				}
+			}
+			session.close();
+			return novaLista;
+		}
+		
+		public List<Artikal> vratiSveArtiklePoNazivu(String naziv)
+		{
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Transaction t=session.beginTransaction();
+			
+			List<Artikal> lista=session.createCriteria(Artikal.class).list();
+			List<Artikal> novaLista=new Vector<Artikal>();
+			
+			
+			for(int i=0;i<lista.size();i++)
+			{
+				if(naziv.equals(lista.get(i).getNaziv()))
+				{   
+					novaLista.add(lista.get(i));
+				}
+			}
+			
+			session.close();
+			return novaLista;
+		}
+		
+		public List<Artikal> vratiSveArtiklePoKategoriji(Long id)
+		{
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Transaction t=session.beginTransaction();
+			List<Artikal> lista=session.createCriteria(Artikal.class).list();
+			List<Artikal> novaLista=new Vector<Artikal>();
+			for(int i=0;i<lista.size();i++)
+			{
+				if(lista.get(i).getKategorija_id()==id)
+				{
+					novaLista.add(lista.get(i));
+				}
+			}
+			session.close();
+			return novaLista;
+		}
+		 
+		public List<String> vratiRijeci(List<Artikal> lista)
+		{
+			List<String>rijeci=new Vector<String>();
+			for(int i=0;i<lista.size();i++)
+			{
+				rijeci.add(lista.get(0).getNaziv()+";;"+lista.get(0).getCijena()+";;"+lista.get(0).getZalihe_stanje()+";;"+lista.get(0).getBarkod());
+			}
+			return rijeci;
+		}
 		public String[] vratiRazdovojeno(String str)
 		{
 			String[] novo=str.split(";;");
