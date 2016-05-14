@@ -113,6 +113,7 @@ public class PopustControler {
 			session.close();
 			return false;
 		} else {
+			
 			if (provjeriIspravnost(ap.getDatum_pocetka(), kraj) == true) {
 				ap.setDatum_kraja(kraj);
 				session.update(ap);

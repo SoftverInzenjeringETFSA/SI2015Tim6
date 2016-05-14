@@ -93,6 +93,7 @@ public class PopustKontrolerTest extends TestCase {
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 			AkcijaPopust ap = new AkcijaPopust();
 			ap=pc.pronadjiAkcijuPopustPoID(l);
+			
 			Date d=ap.getDatum_pocetka();
 			String str=df.format(d);
 		
