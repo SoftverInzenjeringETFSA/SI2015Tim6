@@ -325,6 +325,7 @@ public class ArtikalKontrolerTest extends TestCase
 		List<Artikal> list=ak.vratiSveArtiklePoKategoriji(aTest);
 		assertEquals(list.size(),1);
 		
+		
 	}
 
 	
