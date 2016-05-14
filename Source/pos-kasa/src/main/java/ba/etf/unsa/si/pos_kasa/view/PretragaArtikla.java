@@ -28,6 +28,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.DefaultComboBoxModel;
 
 public class PretragaArtikla {
 
@@ -62,6 +63,7 @@ public class PretragaArtikla {
 		JLabel lblNewLabel = new JLabel("Način pretrage artikla:");
 		
 		JComboBox cboOdabirNacinaPretrage = new JComboBox();
+		cboOdabirNacinaPretrage.setModel(new DefaultComboBoxModel(new String[] {"Naziv", "Barkod"}));
 		
 		txtPretrazi = new JTextField();
 		txtPretrazi.setColumns(10);
