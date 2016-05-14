@@ -58,11 +58,11 @@ public class PopustKontrolerTest extends TestCase {
 		Long l;
 		
 		l = pk.dodajAkcijaPopust(datum_pocetka, datum_kraja, opis, iznos_popusta);
-		pk.obrisiAkcijuPopust(l);
+		
 		
 		try 
 		{
-			assertEquals("opis", pk.pronadjiAkcijuPopustPoID(l).getOpis());
+			assertEquals(true, pk.obrisiAkcijuPopust(l));
 		} 
 		catch (Exception e)
 		{
