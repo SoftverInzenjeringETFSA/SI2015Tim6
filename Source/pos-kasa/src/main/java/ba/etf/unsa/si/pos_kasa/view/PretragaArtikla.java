@@ -10,6 +10,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
 import ba.etf.unsa.si.pos_kasa.controller.ArtikalKontroler;
+import ba.etf.unsa.si.pos_kasa.controller.KategorijaControler;
 import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
 import ba.etf.unsa.si.pos_kasa.model.Artikal;
 
@@ -63,6 +64,7 @@ public class PretragaArtikla {
 					PretragaArtikla window = new PretragaArtikla();
 					window.frmPretragaArtikala.setVisible(true);
 				} catch (Exception e) {
+					Logger.getLogger(PretragaArtikla.class).error(e.getMessage());
 					e.printStackTrace();
 				}
 			}

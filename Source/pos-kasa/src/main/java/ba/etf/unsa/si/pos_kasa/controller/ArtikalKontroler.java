@@ -10,12 +10,14 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.apache.log4j.Logger;
+import java.util.regex.*;
+
 
 	@SuppressWarnings("unused")
 	public class ArtikalKontroler {
 
 		private static Session session;
-
+		private static String pattern="[0-9]{13}";
 		public static void main(String[] args){
 			
 		}
@@ -24,6 +26,7 @@ import org.apache.log4j.Logger;
 		{
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			Transaction t = session.beginTransaction();
+			if(barkod.matches(pattern)&&barkod.length()==13){
 			Artikal a = new Artikal();
 			a.setNaziv(naziv);
 			a.setCijena(cijena);
@@ -34,9 +37,15 @@ import org.apache.log4j.Logger;
 			Long id = (Long) session.save(a);
 			System.out.println(id);
 			t.commit();
-			session.close();
+			session.close();			
 			return a.getId();
-
+			}
+			else {
+			session.close();
+			Long l=(long)-1;
+			return l;
+			}
+			
 		}
 
 		public static boolean obrisiArtikal(Long id)

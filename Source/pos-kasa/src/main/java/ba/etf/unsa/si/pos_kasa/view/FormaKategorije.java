@@ -12,6 +12,9 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
 import javax.swing.JTextField;
+
+import org.apache.log4j.Logger;
+
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
 import java.awt.Label;
@@ -21,6 +24,8 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
+
+import ba.etf.unsa.si.pos_kasa.controller.ArtikalKontroler;
 import ba.etf.unsa.si.pos_kasa.controller.KategorijaControler;
 import ba.etf.unsa.si.pos_kasa.model.Kategorija;
 
@@ -42,6 +47,7 @@ public class FormaKategorije {
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					Logger.getLogger(FormaKategorije.class).error(e.getMessage());
 				}
 			}
 		});

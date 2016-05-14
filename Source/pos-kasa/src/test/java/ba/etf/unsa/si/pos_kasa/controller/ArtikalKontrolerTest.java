@@ -5,6 +5,8 @@ import junit.framework.TestCase;
 import java.util.List;
 import java.util.Vector;
 
+import org.apache.log4j.Logger;
+
 import ba.etf.unsa.si.pos_kasa.model.*;
 
 public class ArtikalKontrolerTest extends TestCase 
@@ -23,7 +25,7 @@ public class ArtikalKontrolerTest extends TestCase
 		String _naziv = "NekiNaziv";
 		double _cijena = 2.2;
 		String _jedinica_mjere = "jedinicaMjere"; 
-		String _barkod = "Barkod";
+		String _barkod = "3871234567890";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
 		ArtikalKontroler ak = new ArtikalKontroler();
@@ -37,7 +39,7 @@ public class ArtikalKontrolerTest extends TestCase
 			artikal=ak.pronadjiArtikalPoID(art);
 		
 		} catch (Exception e) {
-			
+			Logger.getLogger(ArtikalKontroler.class).error(e.getMessage());
 		}
 		
 		assertEquals(artikal.getNaziv(),"NekiNaziv");
@@ -51,7 +53,7 @@ public class ArtikalKontrolerTest extends TestCase
 		String _naziv = "NekiNaziv";
 		double _cijena = 2.2;
 		String _jedinica_mjere = "jedinicaMjere"; 
-		String _barkod = "Barkod";
+		String _barkod = "3871234567891";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
 		
@@ -68,6 +70,7 @@ public class ArtikalKontrolerTest extends TestCase
 		catch (Exception e)
 		{
 			assertEquals(e.getMessage(),"Trazeni artikal ne postoji!");
+			Logger.getLogger(ArtikalKontroler.class).error(e.getMessage());
 		}	
 		
 	}
@@ -79,7 +82,7 @@ public class ArtikalKontrolerTest extends TestCase
 		String _naziv = "NekiNaziv";
 		double _cijena = 2.2;
 		String _jedinica_mjere = "jedinicaMjere"; 
-		String _barkod = "Barkod";
+		String _barkod = "3871234567892";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
 				
@@ -99,6 +102,7 @@ public class ArtikalKontrolerTest extends TestCase
 		catch (Exception e) 
 		{
 			assertEquals(e.getMessage(),"Trazeni artikal ne postoji!");
+			Logger.getLogger(ArtikalKontroler.class).error(e.getMessage());
 		}
 	}
 	
@@ -109,7 +113,7 @@ public class ArtikalKontrolerTest extends TestCase
 		String _naziv = "NekiNaziv";
 		double _cijena = 2.2;
 		String _jedinica_mjere = "jedinicaMjere"; 
-		String _barkod = "Barkod";
+		String _barkod = "3871234567893";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
 		
@@ -126,6 +130,7 @@ public class ArtikalKontrolerTest extends TestCase
 		catch (Exception e)
 		{
 				assertEquals(e.getMessage(),"Trazeni artikal ne postoji!");
+				Logger.getLogger(ArtikalKontroler.class).error(e.getMessage());
 		}
 	}
 	
@@ -135,7 +140,7 @@ public class ArtikalKontrolerTest extends TestCase
 		String _naziv = "NekiNaziv";
 		double _cijena = 2.2;
 		String _jedinica_mjere = "jedinicaMjere"; 
-		String _barkod = "Barkod";
+		String _barkod = "3871234567894";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
 		
@@ -152,6 +157,7 @@ public class ArtikalKontrolerTest extends TestCase
 		catch (Exception e)
 		{
 				assertEquals(e.getMessage(),"Trazeni artikal ne postoji!");
+				Logger.getLogger(ArtikalKontroler.class).error(e.getMessage());
 		}
 	}
 	
@@ -162,7 +168,7 @@ public class ArtikalKontrolerTest extends TestCase
 		String _naziv = "NekiNaziv";
 		double _cijena = 2.2;
 		String _jedinica_mjere = "jedinicaMjere"; 
-		String _barkod = "Barkod";
+		String _barkod = "3871234567895";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
 		ArtikalKontroler ak = new ArtikalKontroler();
@@ -178,6 +184,7 @@ public class ArtikalKontrolerTest extends TestCase
 		catch (Exception e)
 		{
 				assertEquals(e.getMessage(),"Trazeni artikal ne postoji!");
+				Logger.getLogger(ArtikalKontroler.class).error(e.getMessage());
 		}
 	}
 
@@ -186,7 +193,7 @@ public class ArtikalKontrolerTest extends TestCase
 		String _naziv = "NekiNaziv";
 		double _cijena = 2.2;
 		String _jedinica_mjere = "jedinicaMjere"; 
-		String _barkod = "Barkod";
+		String _barkod = "3871234567896";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
 		ArtikalKontroler ak = new ArtikalKontroler();
@@ -203,6 +210,7 @@ public class ArtikalKontrolerTest extends TestCase
 		catch (Exception e)
 		{
 				assertEquals(e.getMessage(),"Trazeni artikal ne postoji!");
+				Logger.getLogger(ArtikalKontroler.class).error(e.getMessage());
 		}
 	}
 	
@@ -212,7 +220,7 @@ public class ArtikalKontrolerTest extends TestCase
 		String _naziv = "NekiNaziv";
 		double _cijena = 2.2;
 		String _jedinica_mjere = "jedinicaMjere"; 
-		String _barkod = "Barkod";
+		String _barkod = "3871234567897";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
 		
@@ -230,6 +238,7 @@ public class ArtikalKontrolerTest extends TestCase
 		catch (Exception e) 
 		{
 			assertEquals(e.getMessage(),"Trazeni artikal ne postoji!");
+			Logger.getLogger(ArtikalKontroler.class).error(e.getMessage());
 		}
 	}
 	public void testVratiRijeci(){
@@ -238,7 +247,7 @@ public class ArtikalKontrolerTest extends TestCase
 		String _naziv = "NekiNaziv";
 		double _cijena = 2.2;
 		String _jedinica_mjere = "jedinicaMjere"; 
-		String _barkod = "Barkodt";
+		String _barkod = "3871234567898";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
 		ArtikalKontroler ak = new ArtikalKontroler();
@@ -255,6 +264,7 @@ public class ArtikalKontrolerTest extends TestCase
 			str=ak.vratiRijeci(lista);
 			assertEquals(str.size(),1);
 		} catch (Exception e) {
+			Logger.getLogger(ArtikalKontroler.class).error(e.getMessage());
 			e.printStackTrace();
 		}
 		
@@ -274,7 +284,7 @@ public class ArtikalKontrolerTest extends TestCase
 		String _naziv = "Neki12345";
 		double _cijena = 2.2;
 		String _jedinica_mjere = "jedinicaMjere"; 
-		String _barkod = "Barkodt";
+		String _barkod = "3871234567899";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
 		ArtikalKontroler ak = new ArtikalKontroler();
@@ -290,14 +300,14 @@ public class ArtikalKontrolerTest extends TestCase
 		String _naziv = "Neki";
 		double _cijena = 2.2;
 		String _jedinica_mjere = "jedinicaMjere"; 
-		String _barkod = "BarkodTest";
+		String _barkod = "3871234567888";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
 		ArtikalKontroler ak = new ArtikalKontroler();
 		
 		Long art;
 		art=ak.dodajArtikal(_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, a);
-		List<Artikal> list=ak.vratiSveArtiklePoBarkodu("BarkodTest");
+		List<Artikal> list=ak.vratiSveArtiklePoBarkodu("3871234567888");
 		assertEquals(list.size(),1);
 	}
 	public void testVratiSveArtiklePoKategoriji(){
@@ -305,7 +315,7 @@ public class ArtikalKontrolerTest extends TestCase
 		String _naziv = "Neki";
 		double _cijena = 2.2;
 		String _jedinica_mjere = "jedinicaMjere"; 
-		String _barkod = "BarkodTest";
+		String _barkod = "3871234567886";
 		int _zalihe_stanje = 2;
 		String _opis = "Opis";
 		ArtikalKontroler ak = new ArtikalKontroler();

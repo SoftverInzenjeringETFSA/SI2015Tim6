@@ -9,6 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import org.apache.log4j.Logger;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -35,7 +38,8 @@ public class BrisanjeArtikala {
 					BrisanjeArtikala window = new BrisanjeArtikala();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					Logger.getLogger(BrisanjeArtikala.class).error(e.getMessage());
+					
 				}
 			}
 		});

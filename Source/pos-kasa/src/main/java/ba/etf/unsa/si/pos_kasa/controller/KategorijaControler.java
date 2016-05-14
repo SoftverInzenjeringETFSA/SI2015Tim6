@@ -12,6 +12,7 @@ import org.hibernate.Transaction;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.apache.log4j.Logger;
 
 @SuppressWarnings("unused")
 public class KategorijaControler {

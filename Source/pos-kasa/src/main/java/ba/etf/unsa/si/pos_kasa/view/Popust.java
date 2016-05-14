@@ -50,7 +50,7 @@ public class Popust {
 					Popust window = new Popust();
 					window.frmPopust.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					Logger.getLogger(Popust.class).error(e.getMessage());
 				}
 			}
 		});
@@ -95,9 +95,11 @@ public class Popust {
 						pc.dodajAkcijaPopust(datePocetak.getDate(),dateKraj.getDate(), textAreaOpis.getText(), Integer.parseInt(txtIznosPopusta.getText()));
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(null, e.getMessage(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+						Logger.getLogger(PopustControler.class).error(e.getMessage());
 					}
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, e.getMessage(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+					Logger.getLogger(PopustControler.class).error(e.getMessage());
 				} 
 				
 			}

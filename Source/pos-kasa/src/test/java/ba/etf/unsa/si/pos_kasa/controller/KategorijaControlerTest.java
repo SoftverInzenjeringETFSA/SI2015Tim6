@@ -5,6 +5,8 @@ import junit.framework.TestCase;
 import java.util.List;
 import java.util.Vector;
 
+import org.apache.log4j.Logger;
+
 import ba.etf.unsa.si.pos_kasa.model.*;
 
 public class KategorijaControlerTest extends TestCase {
@@ -19,6 +21,7 @@ public class KategorijaControlerTest extends TestCase {
 			assertEquals("Ime", kc.pronadjiKategorijuPoID(a).getNaziv());
 		} catch (Exception e) {
 			assertEquals(e.getMessage(),"Trazena kategorija ne postoji!");
+			Logger.getLogger(KategorijaControler.class).error(e.getMessage());
 		}
 		
 	}
@@ -35,6 +38,7 @@ public class KategorijaControlerTest extends TestCase {
 			assertEquals("Ime", kc.pronadjiKategorijuPoID(l).getNaziv());
 		} catch (Exception e) {
 			assertEquals(e.getMessage(),"Trazena kategorija ne postoji!");
+			Logger.getLogger(KategorijaControler.class).error(e.getMessage());
 		}	
 		
 	}
@@ -52,6 +56,7 @@ public class KategorijaControlerTest extends TestCase {
 			assertEquals(kat.getNaziv(),"Nesto");
 		} catch (Exception e) {
 			assertEquals(e.getMessage(),"Trazena kategorija ne postoji!");
+			Logger.getLogger(KategorijaControler.class).error(e.getMessage());
 		}
 		
 	}
@@ -69,6 +74,7 @@ public class KategorijaControlerTest extends TestCase {
 				assertEquals(kat.getNaziv(),"Nesto");
 			} catch (Exception e) {
 				assertEquals(e.getMessage(),"Trazena kategorija ne postoji!");
+				Logger.getLogger(KategorijaControler.class).error(e.getMessage());
 			}
 			
 		
@@ -87,6 +93,7 @@ public class KategorijaControlerTest extends TestCase {
 				assertEquals(kat.getOpis(),"Nesto");
 			} catch (Exception e) {
 				assertEquals(e.getMessage(),"Trazena kategorija ne postoji!");
+				Logger.getLogger(KategorijaControler.class).error(e.getMessage());
 			}
 			
 	}
@@ -103,6 +110,7 @@ public class KategorijaControlerTest extends TestCase {
 			assertEquals(kat.getNaziv(),"Ime");
 		} catch (Exception e) {
 			assertEquals(e.getMessage(),"Trazena kategorija ne postoji!");
+			Logger.getLogger(KategorijaControler.class).error(e.getMessage());
 		}
 	}
 	

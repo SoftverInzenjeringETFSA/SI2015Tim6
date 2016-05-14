@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Panel;
@@ -26,6 +28,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
+import org.apache.log4j.Logger;
 
 public class DodavanjeNovogArtikla {
 
@@ -61,7 +64,7 @@ public class DodavanjeNovogArtikla {
 					DodavanjeNovogArtikla window = new DodavanjeNovogArtikla();
 					window.DodavanjeNovogArtikla.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					Logger.getLogger(DodavanjeNovogArtikla.class).error(e.getMessage());
 				}
 			}
 		});
@@ -132,7 +135,12 @@ public class DodavanjeNovogArtikla {
 				KategorijaControler kc=new KategorijaControler();
 				ArtikalKontroler ak=new ArtikalKontroler();
 				String [] str=kc.vrati((String)comboBox.getSelectedItem());
-				ak.dodajArtikal(NazivArtikla.getText(), Double.parseDouble(CijenaArtikla.getText()), textJedinica.getText(), textField.getText(), Integer.parseInt(Kolicina.getText()), textOpis.getText(), Long.parseLong(str[0]));
+				Long l;
+				l=ak.dodajArtikal(NazivArtikla.getText(), Double.parseDouble(CijenaArtikla.getText()), textJedinica.getText(), textField.getText(), Integer.parseInt(Kolicina.getText()), textOpis.getText(), Long.parseLong(str[0]));
+				if(l==-1)
+				{
+					JOptionPane.showMessageDialog(null, "BARKOD mora biti u standardnom obliku 1-13", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 		btnDodaj.setBounds(181, 409, 90, 27);
