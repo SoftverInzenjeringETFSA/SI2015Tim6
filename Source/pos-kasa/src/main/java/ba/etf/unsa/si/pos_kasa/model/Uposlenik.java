@@ -53,8 +53,8 @@ public long getId() {
 		return datumRodjenja;
 	}
 
-	public void setDatumRodjenja(String datumRodjenja) {
-		this.datumRodjenja = datumRodjenja;
+	public void setDatumRodjenja(String _datum_rodjenja) {
+		this.datumRodjenja = _datum_rodjenja;
 	}
 
 	public String getJmbg() {
