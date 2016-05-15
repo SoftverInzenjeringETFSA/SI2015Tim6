@@ -51,7 +51,11 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `tim6`.`artikal` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `naziv` VARCHAR(205) NOT NULL,
+<<<<<<< HEAD
   `barkod` VARCHAR(13) NOT NULL UNIQUE,
+=======
+  `barkod` VARCHAR(13) NOT NULL,
+>>>>>>> 957b98c11b85a76b8ba7559ac54f3d53506d0e92
   `jedinica_mjere` VARCHAR(45) NOT NULL,
   `cijena` DECIMAL NOT NULL,
   `zalihe_stanje` INT NOT NULL,
@@ -74,7 +78,11 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `tim6`.`smjena` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `pocetak_smjene` TIMESTAMP NOT NULL,
+<<<<<<< HEAD
   `kraj_smjene` TIMESTAMP NOT NULL,
+=======
+  `kraj_smjene` TIMESTAMP,
+>>>>>>> 957b98c11b85a76b8ba7559ac54f3d53506d0e92
   `uposlenik_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_racun_smjena1_idx` (`uposlenik_id` ASC),
@@ -105,7 +113,11 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `tim6`.`racun` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `datum_i_vrijeme` DATETIME NULL,
+<<<<<<< HEAD
   `broj_racuna` INT(11) NULL,
+=======
+  `broj_racuna` INT(11) AUTO_INCREMENT NULL,
+>>>>>>> 957b98c11b85a76b8ba7559ac54f3d53506d0e92
   `akcijapopust_id` INT,
   `smjena_id` INT NOT NULL,
   PRIMARY KEY (`id`),

@@ -5,6 +5,8 @@ import junit.framework.TestCase;
 import java.util.List;
 import java.util.Vector;
 
+import org.apache.log4j.Logger;
+
 import ba.etf.unsa.si.pos_kasa.model.*;
 
 public class KategorijaControlerTest extends TestCase {
@@ -14,13 +16,13 @@ public class KategorijaControlerTest extends TestCase {
 		String ime="Ime";
 		String opis="Opis";
 		KategorijaControler kc=new KategorijaControler();
-		List<Kategorija> lista1=new Vector<Kategorija>();
-		lista1=(List<Kategorija>)kc.vratiSveKategorije();
-		kc.dodajKategoriju(ime, opis);
-		
-		List<Kategorija> lista2=new Vector<Kategorija>();
-		lista2=(List<Kategorija>)kc.vratiSveKategorije();
-		assertEquals(lista2.size(), lista1.size()+1);
+		Long a=kc.dodajKategoriju(ime, opis);
+		try {
+			assertEquals("Ime", kc.pronadjiKategorijuPoID(a).getNaziv());
+		} catch (Exception e) {
+			assertEquals(e.getMessage(),"Trazena kategorija ne postoji!");
+			Logger.getLogger(KategorijaControler.class).error(e.getMessage());
+		}
 		
 	}
 
@@ -29,16 +31,15 @@ public class KategorijaControlerTest extends TestCase {
 		String ime="Ime";
 		String opis="Opis";
 		KategorijaControler kc=new KategorijaControler();
-		List<Kategorija> lista1=new Vector<Kategorija>();
-		lista1=(List<Kategorija>)kc.vratiSveKategorije();
 		Long l;
-		
 		l=kc.dodajKategoriju(ime, opis);
 		kc.obrisiKategoriju(l);
-		List<Kategorija> lista2=new Vector<Kategorija>();
-		lista2=(List<Kategorija>)kc.vratiSveKategorije();
-		assertEquals(lista2.size(), lista1.size());
-		
+		try {
+			assertEquals("Ime", kc.pronadjiKategorijuPoID(l).getNaziv());
+		} catch (Exception e) {
+			assertEquals(e.getMessage(),"Trazena kategorija ne postoji!");
+			Logger.getLogger(KategorijaControler.class).error(e.getMessage());
+		}	
 		
 	}
 
@@ -55,6 +56,7 @@ public class KategorijaControlerTest extends TestCase {
 			assertEquals(kat.getNaziv(),"Nesto");
 		} catch (Exception e) {
 			assertEquals(e.getMessage(),"Trazena kategorija ne postoji!");
+			Logger.getLogger(KategorijaControler.class).error(e.getMessage());
 		}
 		
 	}
@@ -72,6 +74,7 @@ public class KategorijaControlerTest extends TestCase {
 				assertEquals(kat.getNaziv(),"Nesto");
 			} catch (Exception e) {
 				assertEquals(e.getMessage(),"Trazena kategorija ne postoji!");
+				Logger.getLogger(KategorijaControler.class).error(e.getMessage());
 			}
 			
 		
@@ -90,6 +93,7 @@ public class KategorijaControlerTest extends TestCase {
 				assertEquals(kat.getOpis(),"Nesto");
 			} catch (Exception e) {
 				assertEquals(e.getMessage(),"Trazena kategorija ne postoji!");
+				Logger.getLogger(KategorijaControler.class).error(e.getMessage());
 			}
 			
 	}
@@ -106,8 +110,22 @@ public class KategorijaControlerTest extends TestCase {
 			assertEquals(kat.getNaziv(),"Ime");
 		} catch (Exception e) {
 			assertEquals(e.getMessage(),"Trazena kategorija ne postoji!");
+			Logger.getLogger(KategorijaControler.class).error(e.getMessage());
 		}
 	}
-
+	
+	public void testVrati(){
+		KategorijaControler ac=new KategorijaControler();
+		String s="ADO ADO";
+		String[] niz=ac.vrati(s);
+		assertEquals(niz.length,2);
+		
+	}
+	public void testVratiRazdovojeno(){
+		KategorijaControler ac=new KategorijaControler();
+		String s="ADO;;ADO";
+		String[] niz=ac.vratiRazdovojeno(s);
+		assertEquals(niz.length,2);
+	}
 
 }

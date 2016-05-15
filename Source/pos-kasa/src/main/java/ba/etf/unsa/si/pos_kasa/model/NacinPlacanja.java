@@ -15,9 +15,6 @@ public class NacinPlacanja implements java.io.Serializable {
 	double iznos;
 	long vrstaplacanja_id;
 	long racun_id;
-    @ManyToOne(fetch=FetchType.EAGER)
-    @JoinColumn(name="racun_id", insertable = false, updatable = false)
-    Racun racun;
 	public long getId() {
 		return id;
 	}
@@ -41,12 +38,6 @@ public class NacinPlacanja implements java.io.Serializable {
 	}
 	public void setRacun_id(long racun_id) {
 		this.racun_id = racun_id;
-	}
-	public Racun getRacun() {
-		return racun;
-	}
-	public void setRacun(Racun racun) {
-		this.racun = racun;
 	}
 	public NacinPlacanja() {
 		super();

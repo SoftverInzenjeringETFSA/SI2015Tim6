@@ -8,14 +8,22 @@ import java.awt.BorderLayout;
 import javax.swing.JTextArea;
 
 import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
+import ba.etf.unsa.si.pos_kasa.model.Uposlenik;
+import ba.etf.unsa.si.pos_kasa.validator.JMBGVerifier;
 
 import javax.swing.JButton;
+import java.awt.Font;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class BrisanjeKorisnika {
 
 	private JFrame frmBrisanjeKorisnika;
 	private SefKontroler sefKontroler;
-
+	private JTextField textJMBGBrisanje;
+	private JButton btnPrikaziRezultatePretrage;
+	private Uposlenik u=null;
 	/**
 	 * Create the application.
 	 */
@@ -26,7 +34,9 @@ public class BrisanjeKorisnika {
 	
 	public void setVisible(boolean visible) {
 		this.frmBrisanjeKorisnika.setVisible(visible);
+	  //this.btnPrikaziRezultatePretrage.setEnabled(true);
 	}
+
 	
 
 	/**
@@ -36,19 +46,52 @@ public class BrisanjeKorisnika {
 		frmBrisanjeKorisnika = new JFrame();
 		frmBrisanjeKorisnika.setTitle("Brisanje korisnika");
 		frmBrisanjeKorisnika.setBounds(100, 100, 407, 208);
-		frmBrisanjeKorisnika.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmBrisanjeKorisnika.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmBrisanjeKorisnika.getContentPane().setLayout(null);
 		
 		JLabel lblJmbg = new JLabel("JMBG:");
-		lblJmbg.setBounds(68, 32, 30, 40);
+		lblJmbg.setBounds(77, 32, 47, 23);
 		frmBrisanjeKorisnika.getContentPane().add(lblJmbg);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(120, 38, 162, 23);
-		frmBrisanjeKorisnika.getContentPane().add(textArea);
-		
 		JButton btnPronai = new JButton("Pronađi");
-		btnPronai.setBounds(148, 72, 113, 29);
+		btnPronai.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//ovdje se poziva forma za prikaz korisnika za brisanje
+			 u= sefKontroler.pronadjiKorisnikaPoJMBG(textJMBGBrisanje.getText());
+				if(u!=null) {
+					prikaziButtonZaPrikazRezultataPretrage(true);
+				}
+			}
+		});
+		btnPronai.setBounds(134, 66, 138, 23);
 		frmBrisanjeKorisnika.getContentPane().add(btnPronai);
+		
+		textJMBGBrisanje = new JTextField();
+		textJMBGBrisanje.setBounds(134, 33, 138, 20);
+		frmBrisanjeKorisnika.getContentPane().add(textJMBGBrisanje);
+		textJMBGBrisanje.setColumns(10);
+		textJMBGBrisanje.setInputVerifier(new JMBGVerifier(textJMBGBrisanje, "Unesite validan JMBG!"));
+		
+		//button koji treba ili ne treba da se prikaze
+		btnPrikaziRezultatePretrage = new JButton("Prikaži rezultate pretrage");
+		btnPrikaziRezultatePretrage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sefKontroler.prikaziFormuZaPrikazBrisanjaKorisnika(sefKontroler,u);
+			}
+		});
+		btnPrikaziRezultatePretrage.setEnabled(false);
+		btnPrikaziRezultatePretrage.setBounds(10, 136, 182, 23);
+		//prikaziButtonZaPrikazRezultataPretrage();
+		frmBrisanjeKorisnika.getContentPane().add(btnPrikaziRezultatePretrage);
+		
+
+		
 	}
+
+	public void prikaziButtonZaPrikazRezultataPretrage(boolean postavi) {
+		this.btnPrikaziRezultatePretrage.setEnabled(postavi);
+		
+	}
+
+	
 }

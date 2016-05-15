@@ -27,7 +27,20 @@ public class Izvjestaji {
 
 	public static void main(String[] args) {
     }
-    
+	public static List<Artikal> dajArtiklePoNacinuPlacanjaOdDo(Date date1, Date date2){
+	    Session session = HibernateUtil.getSessionFactory().openSession(); 
+		String hql = "Select new ba.etf.unsa.si.pos_kasa.model.Artikal(a.id, a.naziv,sr.artikal_id, sr.racun_id,s.pocetak_smjene,r.id,r.smjena_id,s.id,np.racun_id,np.vrsta_placanja_id,vp.id) "
+				+ "FROM Artikal a, StavkaRacuna sr,Racun r,Smjena s,NacinPlacanja np,VrstaPlacanja vp "
+				+ "WHERE s.pocetak_smjene BETWEEN STR_TO_DATE(:datum1, \'%Y-%m-%d\') AND STR_TO_DATE(:datum2, \'%Y-%m-%d\') AND sr.racun_id = r.id AND sr.racun_id=r.id AND r.smjena_id=s.id AND np.vrsta_placanja_id=vp.id AND np.racun_id=r.id ";
+		Query q = session.createQuery(hql);
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		q.setString("datum1",		df.format(date1));
+		q.setString("datum2", 		df.format(date2));
+		List redovi = q.list();
+	    session.close(); 
+	    return redovi;
+	}
+
     private static List<StavkaRacuna> dajStavkeRacunaOdDo(Date date1, Date date2){
         Session session = HibernateUtil.getSessionFactory().openSession(); //otvaranje sesije, obavezno na pocetku metodeu
 		String hql = "Select new ba.etf.unsa.si.pos_kasa.model.StavkaRacuna(sr.id, sr.kolicina, sr.ukupna_cijena, sr.artikal_id) "
@@ -131,7 +144,7 @@ public class Izvjestaji {
     	aps.jedinicnaCijena = artikal.get(0).getCijena();
     	aps.sifraArtikla = barKod;
     	aps.nazivArtikla = artikal.get(0).getNaziv();
-       	String hql = "Select ba.etf.unsa.si.pos_kasa.model.StavkaRacuna(sr.id, sr.kolicina, sr.ukupna_cijena, sr.artikal_id) "
+       	String hql = "Select new ba.etf.unsa.si.pos_kasa.model.StavkaRacuna(sr.id, sr.kolicina, sr.ukupna_cijena, sr.artikal_id) "
     	+ "FROM Racun r, StavkaRacuna sr "
     	+ "WHERE r.id = sr.racun_id AND r.datum_i_vrijeme BETWEEN STR_TO_DATE(:datum1, \'%Y-%m-%d\') AND STR_TO_DATE(:datum2, \'%Y-%m-%d\') AND artikal_id = :aid";
        	q0 = session.createQuery(hql);

@@ -7,22 +7,27 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+@SuppressWarnings("serial")
 @Entity
 public class Uposlenik implements java.io.Serializable{
 	@Id
 	@GeneratedValue
-	long id;
+	long id=0;
 	@Column(name="ime_prezime")
 	String imePrezime;
-	@Column(name="datum_rodjenja")
-	Date datumRodjenja;
+	@Column(name="datum_rođenja")
+	String datumRodjenja;
+	@Column(name="jmbg")
 	String jmbg;
 	@Column(name="broj_telefona")
 	String brojTelefona;
 	@Column(name="datum_zaposlenja")
 	Date datumZaposlenja;
+	@Column(name="username")
 	String username;
+	@Column(name="password")
 	String password;
+	@Column(name="uloga")
 	String uloga;
 	
 
@@ -44,12 +49,12 @@ public long getId() {
 		this.imePrezime = imePrezime;
 	}
 
-	public Date getDatumRodjenja() {
+	public String getDatumRodjenja() {
 		return datumRodjenja;
 	}
 
-	public void setDatumRodjenja(Date datumRodjenja) {
-		this.datumRodjenja = datumRodjenja;
+	public void setDatumRodjenja(String _datum_rodjenja) {
+		this.datumRodjenja = _datum_rodjenja;
 	}
 
 	public String getJmbg() {
@@ -100,9 +105,7 @@ public long getId() {
 		this.uloga = uloga;
 	}
 
-public Uposlenik(long id, String imePrezime, Date datumRodjenja, String jmbg, String brojTelefona, String username, String password,String uloga) {
-		super();
-		this.id = id;
+public Uposlenik(String imePrezime, String datumRodjenja, String jmbg, String brojTelefona, String username, String password,String uloga) {
 		this.uloga = uloga;
 		this.imePrezime = imePrezime;
 		this.datumRodjenja = datumRodjenja;
@@ -116,7 +119,7 @@ public Uposlenik(long id, String imePrezime, Date datumRodjenja, String jmbg, St
 public Uposlenik()
 {
 	this.imePrezime = new String();
-	this.datumRodjenja = new Date();
+	this.datumRodjenja = new String();
 	this.jmbg = new String();
 	this.brojTelefona = new String();
 	this.id= 0;

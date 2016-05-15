@@ -20,12 +20,9 @@ public class Racun implements java.io.Serializable {
 	Date datum_i_vrijeme;
 	long akcijapopust_id;
 	//long smjena_id;
+	@GeneratedValue
 	long broj_racuna;
 	long smjena_id;
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,targetEntity=StavkaRacuna.class)
-    List stavkeRacuna;
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,targetEntity=NacinPlacanja.class)
-    List naciniPlacanja;
 	
 	//List<Racun> _racuni;
     
@@ -42,12 +39,11 @@ public class Racun implements java.io.Serializable {
 		this.akcijapopust_id = akcijapopust_id;
 		this.broj_racuna = broj_racuna;
 	}
-	public List<StavkaRacuna> getStavkeRacuna() {
-		return stavkeRacuna;
+
+	public long getAkcijapopust_id() {
+		return akcijapopust_id;
 	}
-	public void setStavkeRacuna(List<StavkaRacuna> stavkeRacuna) {
-		this.stavkeRacuna = stavkeRacuna;
-	}
+
 	public Racun() {
 		// TODO Auto-generated constructor stub
 	}

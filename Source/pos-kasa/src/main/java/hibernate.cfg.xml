@@ -8,7 +8,7 @@
   <property name="hibernate.connection.password">2015SIEtf</property>
   <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/tim6</property>
   <property name="hibernate.connection.username">EtfSI2015</property>
-  <property name="hibernate.default_schema">mydb</property>
+  <property name="hibernate.default_schema">tim6</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
   <property name="hibernate.hbm2ddl.auto">update</property>
   <mapping class="ba.etf.unsa.si.pos_kasa.model.Kategorija"/>
@@ -19,5 +19,6 @@
   <mapping class="ba.etf.unsa.si.pos_kasa.model.Uposlenik"/>
   <mapping class="ba.etf.unsa.si.pos_kasa.model.Smjena"/>
   <mapping class="ba.etf.unsa.si.pos_kasa.model.StornoRacun"/>
+  <mapping class="ba.etf.unsa.si.pos_kasa.model.AkcijaPopust"/>
  </session-factory>
 </hibernate-configuration>

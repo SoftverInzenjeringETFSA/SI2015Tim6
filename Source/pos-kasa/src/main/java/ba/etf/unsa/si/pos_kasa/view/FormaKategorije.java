@@ -12,6 +12,9 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
 import javax.swing.JTextField;
+
+import org.apache.log4j.Logger;
+
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
 import java.awt.Label;
@@ -21,7 +24,10 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
+
+import ba.etf.unsa.si.pos_kasa.controller.ArtikalKontroler;
 import ba.etf.unsa.si.pos_kasa.controller.KategorijaControler;
+import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
 import ba.etf.unsa.si.pos_kasa.model.Kategorija;
 
 public class FormaKategorije {
@@ -30,6 +36,8 @@ public class FormaKategorije {
 	private JTextField opisKategorijeText;
 	private JList listKategorije;
 	private DefaultListModel dlm=new DefaultListModel();
+	private SefKontroler sefKontroler;
+	
 	
 	/**
 	 * Launch the application.
@@ -42,6 +50,7 @@ public class FormaKategorije {
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					Logger.getLogger(FormaKategorije.class).error(e.getMessage());
 				}
 			}
 		});
@@ -53,7 +62,10 @@ public class FormaKategorije {
 	public FormaKategorije() {
 		initialize();
 	}
-
+	public FormaKategorije(SefKontroler sefKontroler) {
+		this.sefKontroler=sefKontroler;
+		initialize();
+	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -145,6 +157,11 @@ public class FormaKategorije {
 		{
 			dlm.addElement(dio);
 		}
+		
+	}
+
+	public void setVisible(boolean b) {
+		this.frame.setVisible(true);
 		
 	}
 }
