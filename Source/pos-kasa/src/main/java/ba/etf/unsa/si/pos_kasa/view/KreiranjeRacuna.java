@@ -114,6 +114,11 @@ public class KreiranjeRacuna {
 		btnReklamniRacun.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		
 				JButton btntStampajRacun = new JButton("Štampaj račun");
+				btntStampajRacun.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+					}
+				});
 				btntStampajRacun.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		GroupLayout groupLayout = new GroupLayout(KreiranjeRacuna.getContentPane());
 		groupLayout.setHorizontalGroup(

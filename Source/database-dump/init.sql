@@ -74,7 +74,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `tim6`.`smjena` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `pocetak_smjene` TIMESTAMP NOT NULL,
-  `kraj_smjene` TIMESTAMP NOT NULL,
+  `kraj_smjene` TIMESTAMP,
   `uposlenik_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_racun_smjena1_idx` (`uposlenik_id` ASC),

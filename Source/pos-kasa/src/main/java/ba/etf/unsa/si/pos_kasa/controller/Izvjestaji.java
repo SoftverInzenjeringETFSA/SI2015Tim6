@@ -131,7 +131,7 @@ public class Izvjestaji {
     	aps.jedinicnaCijena = artikal.get(0).getCijena();
     	aps.sifraArtikla = barKod;
     	aps.nazivArtikla = artikal.get(0).getNaziv();
-       	String hql = "Select ba.etf.unsa.si.pos_kasa.model.StavkaRacuna(sr.id, sr.kolicina, sr.ukupna_cijena, sr.artikal_id) "
+       	String hql = "Select new ba.etf.unsa.si.pos_kasa.model.StavkaRacuna(sr.id, sr.kolicina, sr.ukupna_cijena, sr.artikal_id) "
     	+ "FROM Racun r, StavkaRacuna sr "
     	+ "WHERE r.id = sr.racun_id AND r.datum_i_vrijeme BETWEEN STR_TO_DATE(:datum1, \'%Y-%m-%d\') AND STR_TO_DATE(:datum2, \'%Y-%m-%d\') AND artikal_id = :aid";
        	q0 = session.createQuery(hql);

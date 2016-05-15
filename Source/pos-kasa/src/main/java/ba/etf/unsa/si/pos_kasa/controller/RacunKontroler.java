@@ -24,19 +24,12 @@ public class RacunKontroler {
 	{
 	}
 	
-	public static Long dodajStavku(long _id, int _kolicina, double _ukupna_cijena, long _artikal_id)
+	public static Long dodajStavku(StavkaRacuna stavkaRac, long racun_id)
 	{
-	 
 		session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
-		StavkaRacuna sr = new StavkaRacuna();
-		
-		sr.setId(_id);
-		sr.setKolicina(_kolicina);
-		sr.setUkupna_cijena(_ukupna_cijena);
-		sr.setArtikal_id(_artikal_id);
-		
-		Long id = (Long) session.save(sr);
+		stavkaRac.setRacun_id(racun_id);
+		Long id = (Long) session.save(stavkaRac);
 		t.commit();
 		session.close();
 		return id;
@@ -62,17 +55,11 @@ public class RacunKontroler {
 		session.close();
 	}
 	
-	public static Long dodajNacinPlacanja(long _id, double _iznos, long _vrsteplacanja_id, long _racun_id)
+	public static Long dodajNacinPlacanja(NacinPlacanja np, long racun_id)
 	{
 		session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
-		 NacinPlacanja np = new NacinPlacanja();
-		 
-		 np.setId(_id);
-		 np.setIznos(_iznos);
-		 np.setVrstaplacanja_id(_vrsteplacanja_id);
-		 np.setRacun_id(_racun_id);
-		 
+		np.setRacun_id(racun_id);
 		 Long id = (Long) session.save(np);
 		 t.commit(); 
 		 session.close();
@@ -105,7 +92,12 @@ public class RacunKontroler {
     	    	 throw new Exception("Pretraživanje nije uspjelo.");
     	    
 	}
-
+	
+	public static void kreirajRacun()
+	{
+		
+	}
+	
 	public Artikal dajArtikal(String barKod) {
 		session = HibernateUtil.getSessionFactory().openSession();
 		Criteria crit = session.createCriteria(Artikal.class);
