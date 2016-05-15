@@ -18,6 +18,7 @@ import ba.etf.unsa.si.pos_kasa.view.BrisanjeKorisnika;
 import ba.etf.unsa.si.pos_kasa.view.BrisanjeKorisnika_PrikazRezultata;
 import ba.etf.unsa.si.pos_kasa.view.DodavanjeNovogArtikla;
 import ba.etf.unsa.si.pos_kasa.view.DodavanjeNovogKorisnika;
+import ba.etf.unsa.si.pos_kasa.view.FormaKategorije;
 import ba.etf.unsa.si.pos_kasa.view.FormaZaKasira;
 import ba.etf.unsa.si.pos_kasa.view.KreiranjeRacuna;
 import ba.etf.unsa.si.pos_kasa.view.OpcijeSefa;
@@ -45,6 +46,8 @@ public class SefKontroler {
 	// instance formi za fiskalni racun
 	KreiranjeRacuna kreiranjeRacuna;
 	Popust popust;
+	FormaKategorije formaKategorije;
+	
 	// instance formi za odjavu i kraj smjene
 
 	public SefKontroler() {
@@ -314,6 +317,20 @@ public class SefKontroler {
 				try {
 					pretragaKorisnikaPrikaz = new PretragaKorisnika_prikaz(SefKontroler.this, uposlenik);
 					pretragaKorisnikaPrikaz.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+					Logger.getLogger(PretragaKorisnika_prikaz.class).error(e.getMessage());
+				}
+			}
+		});
+	}
+	public void prikaziFormuKategorije()
+	{
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					formaKategorije = new FormaKategorije();
+					formaKategorije.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 					Logger.getLogger(PretragaKorisnika_prikaz.class).error(e.getMessage());

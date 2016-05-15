@@ -153,4 +153,9 @@ public class FormaKategorije {
 		}
 		
 	}
+
+	public void setVisible(boolean b) {
+		this.frame.setVisible(true);
+		
+	}
 }

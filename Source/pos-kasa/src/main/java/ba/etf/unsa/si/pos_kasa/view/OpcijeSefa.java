@@ -51,7 +51,7 @@ public class OpcijeSefa {
 	private void initialize() {
 		frmOpcijeefa = new JFrame();
 		frmOpcijeefa.setTitle("Opcije Šefa");
-		frmOpcijeefa.setBounds(100, 100, 765, 405);
+		frmOpcijeefa.setBounds(100, 100, 871, 405);
 		frmOpcijeefa.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmOpcijeefa.getContentPane().setLayout(null);
 
@@ -104,7 +104,7 @@ public class OpcijeSefa {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 128, 128)));
 		panel_1.setBackground(new Color(0, 128, 128));
-		panel_1.setBounds(249, 27, 177, 307);
+		panel_1.setBounds(425, 27, 177, 307);
 		frmOpcijeefa.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 
@@ -146,7 +146,7 @@ public class OpcijeSefa {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new LineBorder(new Color(0, 128, 128), 2));
 		panel_2.setBackground(new Color(0, 128, 128));
-		panel_2.setBounds(478, 27, 233, 181);
+		panel_2.setBounds(612, 27, 233, 181);
 		frmOpcijeefa.getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 
@@ -187,7 +187,7 @@ public class OpcijeSefa {
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(128, 128, 128));
-		panel_3.setBounds(478, 219, 233, 115);
+		panel_3.setBounds(612, 219, 233, 115);
 		frmOpcijeefa.getContentPane().add(panel_3);
 		panel_3.setLayout(null);
 
@@ -207,5 +207,42 @@ public class OpcijeSefa {
 		btnKrajSmjene.setFont(new Font("Times New Roman", Font.BOLD, 13));
 		btnKrajSmjene.setBounds(119, 33, 104, 53);
 		panel_3.add(btnKrajSmjene);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBounds(237, 27, 169, 121);
+		frmOpcijeefa.getContentPane().add(panel_4);
+		panel_4.setBackground(new Color(0, 128, 128));
+		panel_4.setLayout(null);
+		
+		JLabel Kategorije = new JLabel("Kategorije");
+		Kategorije.setBounds(10, 11, 58, 16);
+		panel_4.add(Kategorije);
+		Kategorije.setFont(new Font("Times New Roman", Font.BOLD, 13));
+		
+		JButton btnNewButton_1 = new JButton("Kategorije");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sefKontroler.prikaziFormuKategorije();
+			}
+		});
+		btnNewButton_1.setFont(new Font("Times New Roman", Font.BOLD, 13));
+		btnNewButton_1.setBounds(10, 54, 149, 53);
+		panel_4.add(btnNewButton_1);
+		
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(new Color(128, 128, 128));
+		panel_5.setBounds(237, 169, 169, 165);
+		frmOpcijeefa.getContentPane().add(panel_5);
+		panel_5.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Izvjestaji");
+		lblNewLabel_1.setBounds(10, 11, 49, 16);
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 13));
+		panel_5.add(lblNewLabel_1);
+		
+		JButton btnIzvjestaji = new JButton("Izvjestaji");
+		btnIzvjestaji.setFont(new Font("Times New Roman", Font.BOLD, 13));
+		btnIzvjestaji.setBounds(10, 62, 149, 60);
+		panel_5.add(btnIzvjestaji);
 	}
 }
