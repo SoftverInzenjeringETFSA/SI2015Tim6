@@ -105,7 +105,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `tim6`.`racun` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `datum_i_vrijeme` DATETIME NULL,
-  `broj_racuna` INT(11) NULL,
+  `broj_racuna` INT(11) AUTO_INCREMENT NULL,
   `akcijapopust_id` INT,
   `smjena_id` INT NOT NULL,
   PRIMARY KEY (`id`),

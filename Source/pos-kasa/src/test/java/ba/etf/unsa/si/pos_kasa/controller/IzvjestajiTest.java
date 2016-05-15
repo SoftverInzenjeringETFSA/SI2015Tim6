@@ -7,7 +7,7 @@ import java.util.Date;
 import junit.framework.TestCase;
 
 public class IzvjestajiTest extends TestCase {
-
+//Treba se dopuniti kad se zavrsi Racun
 	public void test() throws ParseException
 	{
 		String date_s = "2016-05-12";  

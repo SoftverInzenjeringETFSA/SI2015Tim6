@@ -12,7 +12,8 @@ import org.hibernate.Transaction;
 import Tools.HibernateUtil;
 import ba.etf.unsa.si.pos_kasa.model.Smjena;
 import ba.etf.unsa.si.pos_kasa.model.Uposlenik;
-import ba.etf.unsa.si.pos_kasa.view.BrisanjeArtikla;
+import ba.etf.unsa.si.pos_kasa.view.BrisanjeArtikala;
+//import ba.etf.unsa.si.pos_kasa.view.BrisanjeArtikla;
 import ba.etf.unsa.si.pos_kasa.view.BrisanjeKorisnika;
 import ba.etf.unsa.si.pos_kasa.view.BrisanjeKorisnika_PrikazRezultata;
 import ba.etf.unsa.si.pos_kasa.view.DodavanjeNovogArtikla;
@@ -36,7 +37,7 @@ public class SefKontroler {
 	BrisanjeKorisnika_PrikazRezultata brisanjeKorisnikaPrikazRezultata;
 	// instance formi za artikle
 	DodavanjeNovogArtikla dodavanjeNovogArtikla;
-	BrisanjeArtikla brisanjeArtikla;
+	BrisanjeArtikala brisanjeArtikla;
 	PretragaArtikla pretragaArtikla;
 	// instance formi za fiskalni racun
 	KreiranjeRacuna kreiranjeRacuna;
@@ -190,12 +191,14 @@ public class SefKontroler {
 		});
 	}
 
+
+
 	public void prikaziFormuZaBrisanjeArtikla() {
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					brisanjeArtikla = new BrisanjeArtikla(SefKontroler.this);
+					brisanjeArtikla = new BrisanjeArtikala(SefKontroler.this);
 					brisanjeArtikla.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -204,19 +207,20 @@ public class SefKontroler {
 		});
 	}
 
-	public void prikaziFormuZaPretraguArtikla() {
 
+	public void prikaziFormuZaPretraguArtikla() {
 		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					pretragaArtikla = new PretragaArtikla(SefKontroler.this);
-					pretragaArtikla.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+
+	public void run() {
+		try {
+			pretragaArtikla = new PretragaArtikla(SefKontroler.this);
+			pretragaArtikla.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
+
+	});}
 
 	public void prikaziFormuZaDodavanjeNovogArtikla() {
 
@@ -275,14 +279,13 @@ public class SefKontroler {
 			}
 		});
 	}
-	
+
 	public void prikaziFormuPretragaKorisnikaPrikaz(SefKontroler sefKontroler, final Uposlenik uposlenik) {
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					pretragaKorisnikaPrikaz = new PretragaKorisnika_prikaz(SefKontroler.this,
-							uposlenik);
+					pretragaKorisnikaPrikaz = new PretragaKorisnika_prikaz(SefKontroler.this, uposlenik);
 					pretragaKorisnikaPrikaz.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

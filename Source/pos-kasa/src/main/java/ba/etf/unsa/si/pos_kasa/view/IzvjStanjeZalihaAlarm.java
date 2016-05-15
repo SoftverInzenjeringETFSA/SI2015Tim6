@@ -10,6 +10,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import org.apache.log4j.Logger;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -34,6 +37,7 @@ public class IzvjStanjeZalihaAlarm {
 					IzvjStanjeZalihaAlarm window = new IzvjStanjeZalihaAlarm();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
+					Logger.getLogger(IzvjStanjeZalihaAlarm.class).error(e.getMessage());
 					e.printStackTrace();
 				}
 			}

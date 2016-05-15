@@ -37,7 +37,7 @@ public class PopustControler {
 			session.close();
 			return id;
 		} else {
-			throw new Exception("Datum poceta je nakon datuma kraja!");
+			throw new Exception("Datum pocetka je nakon datuma kraja!");
 		}
 	}
 
@@ -76,7 +76,7 @@ public class PopustControler {
 				session.close();
 				return true;
 			} else {
-				throw new Exception("Datum poceta je nakon datuma kraja!");
+				throw new Exception("Datum pocetka je nakon datuma kraja!");
 			}
 
 		}
@@ -99,7 +99,7 @@ public class PopustControler {
 				session.close();
 				return true;
 			} else {
-				throw new Exception("Datum poceta je nakon datuma kraja!");
+				throw new Exception("Datum pocetka je nakon datuma kraja!");
 			}
 
 		}
@@ -113,6 +113,7 @@ public class PopustControler {
 			session.close();
 			return false;
 		} else {
+			
 			if (provjeriIspravnost(ap.getDatum_pocetka(), kraj) == true) {
 				ap.setDatum_kraja(kraj);
 				session.update(ap);

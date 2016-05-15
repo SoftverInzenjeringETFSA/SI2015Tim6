@@ -5,10 +5,13 @@ import ba.etf.unsa.si.pos_kasa.view.*;
 
 import java.util.*;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+
 import Tools.HibernateUtil;
 
 @SuppressWarnings("unused")
@@ -101,6 +104,19 @@ public class RacunKontroler {
     	    	 
     	    	 throw new Exception("Pretraživanje nije uspjelo.");
     	    
+	}
+
+	public Artikal dajArtikal(String barKod) {
+		session = HibernateUtil.getSessionFactory().openSession();
+		Criteria crit = session.createCriteria(Artikal.class);
+		crit.add(Restrictions.eq("barkod", barKod));
+		List list = crit.list();
+		Iterator itr = list.iterator();
+		Artikal art = null;
+		while (itr.hasNext()) {
+		art = (Artikal) itr.next();}
+		session.close();
+		return art;
 	}
 	
 }
