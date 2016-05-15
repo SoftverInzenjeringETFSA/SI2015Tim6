@@ -74,12 +74,14 @@ public class LoginKontroler {
 				String imePrezime=uposlenik.getImePrezime();
 				if (uposlenik.getUloga().equals("Kasir")) {
 					kasirKontroler = new KasirKontroler();
-					loginForma.setVisible(false);
 					messageBox.infoBox("Kasir: " +imePrezime+" je uspješno logovan na kasu.", "Info Login");
+					loginForma.setVisible(false);
+					
 				} else if (uposlenik.getUloga().equals("Sef")) {
 					sefKontroler = new SefKontroler();
-					loginForma.setVisible(false);
 					messageBox.infoBox("Šef: " +imePrezime+" je uspješno logovan na kasu.", "Info Login");
+					loginForma.setVisible(false);
+					
 				} else {
 					//messageBox.infoBox("Neuspješan Login", "Info Login");
 				}
