@@ -18,7 +18,6 @@ import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
 import ba.etf.unsa.si.pos_kasa.model.AkcijaPopust;
 import ba.etf.unsa.si.pos_kasa.model.Artikal;
 import ba.etf.unsa.si.pos_kasa.model.Kategorija;
-import ba.etf.unsa.si.pos_kasa.validator.DateValidator;
 import ba.etf.unsa.si.pos_kasa.validator.KolicinaValidator;
 
 import javax.swing.JTextField;
@@ -176,11 +175,10 @@ public class PopustPromjenaIBrisanje {
 		
 		dateChooser.setBounds(10, 175, 98, 20);
 		frame.getContentPane().add(dateChooser);
-		dateChooser.setInputVerifier(new DateValidator(dateChooser, "Morate ispravno odabrati datum!"));
-
 		
 		dateChooser_1.setBounds(127, 176, 98, 20);
 		frame.getContentPane().add(dateChooser_1);
+		
 
 		textField = new JTextField();
 		textField.setBounds(238, 176, 92, 20);
