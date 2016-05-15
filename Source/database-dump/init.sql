@@ -52,7 +52,6 @@ CREATE TABLE IF NOT EXISTS `tim6`.`artikal` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `naziv` VARCHAR(205) NOT NULL,
   `barkod` VARCHAR(13) NOT NULL UNIQUE,
-  `barkod` VARCHAR(13) NOT NULL,
   `jedinica_mjere` VARCHAR(45) NOT NULL,
   `cijena` DECIMAL NOT NULL,
   `zalihe_stanje` INT NOT NULL,
@@ -75,7 +74,6 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `tim6`.`smjena` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `pocetak_smjene` TIMESTAMP NOT NULL,
-  `kraj_smjene` TIMESTAMP NOT NULL,
   `kraj_smjene` TIMESTAMP,
   `uposlenik_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -108,7 +106,6 @@ CREATE TABLE IF NOT EXISTS `tim6`.`racun` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `datum_i_vrijeme` DATETIME NULL,
   `broj_racuna` INT(11) NULL,
-  `broj_racuna` INT(11) AUTO_INCREMENT NULL,
   `akcijapopust_id` INT,
   `smjena_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -199,6 +196,7 @@ CREATE TABLE IF NOT EXISTS `tim6`.`nacinplacanja` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+INSERT INTO `tim6`.`uposlenik` VALUES(1,'Sef Sef','0000-00-00','9999999999999','+0000-000-000','0000-00-00','SefAdmin','adminSef1234','Sef');
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
