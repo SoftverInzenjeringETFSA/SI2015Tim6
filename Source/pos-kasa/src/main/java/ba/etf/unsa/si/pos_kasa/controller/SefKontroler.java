@@ -47,7 +47,7 @@ public class SefKontroler {
 	KreiranjeRacuna kreiranjeRacuna;
 	Popust popust;
 	FormaKategorije formaKategorije;
-	
+	final static Logger logger = Logger.getLogger(SefKontroler.class.toString());
 	// instance formi za odjavu i kraj smjene
 
 	public SefKontroler() {
@@ -57,8 +57,11 @@ public class SefKontroler {
 					formaZaSefa = new OpcijeSefa(SefKontroler.this);
 					formaZaSefa.setVisible(true);
 				} catch (Exception e) {
-					Logger.getLogger(OpcijeSefa.class).error(e.getMessage());
+					
 					e.printStackTrace();
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});
@@ -71,8 +74,10 @@ public class SefKontroler {
 					popusti = new PopustPromjenaIBrisanje(SefKontroler.this);
 					popusti.setVisible(true);
 				} catch (Exception e) {
-					Logger.getLogger(PopustPromjenaIBrisanje.class).error(e.getMessage());
 					e.printStackTrace();
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});
@@ -85,8 +90,10 @@ public class SefKontroler {
 				dodavanjeNovogKorisnika = new DodavanjeNovogKorisnika(SefKontroler.this);
 				dodavanjeNovogKorisnika.setVisible(true);
 			} catch (Exception e) {
-				Logger.getLogger(DodavanjeNovogKorisnika.class).error(e.getMessage());
 				e.printStackTrace();
+				String poruka=e.getMessage();
+				logger.info(poruka);
+				throw new RuntimeException(e);
 			}
 		}
 	});
@@ -104,8 +111,10 @@ public class SefKontroler {
 			t.commit();
 		} catch (HibernateException e) {
 			// System.out.println("DAJ VISE UNESI cath");
-			Logger.getLogger(SefKontroler.class).error(e.getMessage());
 			success = false;
+			String poruka=e.getMessage();
+			logger.info(poruka);
+			throw new RuntimeException(e);
 		} finally {
 			// System.out.println("DAJ VISE UNESI finally");
 			if (session != null) {
@@ -134,9 +143,11 @@ public class SefKontroler {
 				messageBox.infoBox("Uposlenik nije pronađen!", "Info o pretragi");
 			}
 		} catch (HibernateException e) {
-			Logger.getLogger(SefKontroler.class).error(e.getMessage());
 			messageBox.infoBox("GREŠKA!", "Info o pretragi za brisanje");
 			e.printStackTrace();
+			String poruka=e.getMessage();
+			logger.info(poruka);
+			throw new RuntimeException(e);
 		} finally {
 			if (session != null) {
 				session.close();
@@ -175,8 +186,10 @@ public class SefKontroler {
 
 		HibernateException e) {
 			messageBox.infoBox("GREŠKA exception", "Brisanje uposlenika!!!");
-			Logger.getLogger(SefKontroler.class).error(e.getMessage());
 			e.printStackTrace();
+			String poruka=e.getMessage();
+			logger.info(poruka);
+			throw new RuntimeException(e);
 		} finally {
 			if (session != null) {
 				session.close();
@@ -193,8 +206,10 @@ public class SefKontroler {
 					pretragaKorisnika = new PretragaKorisnika(SefKontroler.this);
 					pretragaKorisnika.setVisible(true);
 				} catch (Exception e) {
-					Logger.getLogger(PretragaKorisnika.class).error(e.getMessage());
 					e.printStackTrace();
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});
@@ -209,7 +224,9 @@ public class SefKontroler {
 					brisanjeKorisnika.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-					Logger.getLogger(BrisanjeKorisnika.class).error(e.getMessage());
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});
@@ -226,7 +243,9 @@ public class SefKontroler {
 					brisanjeArtikla.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-					Logger.getLogger(BrisanjeArtikala.class).error(e.getMessage());
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});
@@ -242,7 +261,9 @@ public class SefKontroler {
 			pretragaArtikla.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
-			Logger.getLogger(PretragaArtikla.class).error(e.getMessage());
+			String poruka=e.getMessage();
+			logger.info(poruka);
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -257,7 +278,9 @@ public class SefKontroler {
 					dodavanjeNovogArtikla.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-					Logger.getLogger(DodavanjeNovogArtikla.class).error(e.getMessage());
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});
@@ -272,7 +295,9 @@ public class SefKontroler {
 					kreiranjeRacuna.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-					Logger.getLogger(KreiranjeRacuna.class).error(e.getMessage());
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});
@@ -287,7 +312,9 @@ public class SefKontroler {
 					popust.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-					Logger.getLogger(Popust.class).error(e.getMessage());
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});
@@ -304,7 +331,9 @@ public class SefKontroler {
 					brisanjeKorisnikaPrikazRezultata.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-					Logger.getLogger(BrisanjeKorisnika_PrikazRezultata.class).error(e.getMessage());
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});
@@ -319,7 +348,9 @@ public class SefKontroler {
 					pretragaKorisnikaPrikaz.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-					Logger.getLogger(PretragaKorisnika_prikaz.class).error(e.getMessage());
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});
@@ -333,7 +364,9 @@ public class SefKontroler {
 					formaKategorije.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-					Logger.getLogger(PretragaKorisnika_prikaz.class).error(e.getMessage());
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});

@@ -43,7 +43,7 @@ public class DodavanjeNovogArtikla {
     private SefKontroler sefKontroler;
     private JTextField textJedinica;
     private JTextField textOpis;
-	
+    final static Logger logger = Logger.getLogger(DodavanjeNovogArtikla.class.toString());
     private List<String> kategorijaId;
 	/**
 	 * Create the application.
@@ -67,7 +67,9 @@ public class DodavanjeNovogArtikla {
 					DodavanjeNovogArtikla window = new DodavanjeNovogArtikla();
 					window.DodavanjeNovogArtikla.setVisible(true);
 				} catch (Exception e) {
-					Logger.getLogger(DodavanjeNovogArtikla.class).error(e.getMessage());
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});

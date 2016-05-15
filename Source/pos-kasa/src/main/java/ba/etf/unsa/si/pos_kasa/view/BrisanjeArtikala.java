@@ -28,9 +28,11 @@ public class BrisanjeArtikala {
 	private JTable table;
 	private String id;
     private SefKontroler sefKontroler;
+    final static Logger logger = Logger.getLogger(BrisanjeArtikala.class.toString());
 	/**
 	 * Launch the application.
 	 */
+    
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -38,7 +40,9 @@ public class BrisanjeArtikala {
 					BrisanjeArtikala window = new BrisanjeArtikala();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					Logger.getLogger(BrisanjeArtikala.class).error(e.getMessage());	
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});

@@ -22,7 +22,7 @@ public class LoginKontroler {
 	static LoginKontroler loginKontroler;
 	static SefKontroler sefKontroler;
 	static Smjena smjena;
-
+	final static Logger logger = Logger.getLogger(LoginKontroler.class.toString());
 	PrikazForma loginForma;
 
 	public static void main(String[] args) {
@@ -35,9 +35,12 @@ public class LoginKontroler {
 				try {
 					loginForma = new PrikazForma(LoginKontroler.this);
 					loginForma.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-					Logger.getLogger(PrikazForma.class).error(e.getMessage());
+				} catch (Exception e)
+				{
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
+					
 				}
 			}
 		});
@@ -85,12 +88,15 @@ public class LoginKontroler {
 				// Prikazi poruku pogresno korisnicko ime ili password
 				messageBox.infoBox("Login Podaci Nisu Validni. Provjerite unos!!!", "Info Login");
 			}
-		} catch (HibernateException e) {
-			Logger.getLogger(SefKontroler.class).error(e.getMessage());
-			e.printStackTrace();
+		} catch (Exception e)
+		{
+			String poruka=e.getMessage();
+			logger.info(poruka);
+			throw new RuntimeException(e);
+			
 		} finally {
 			if (session != null) {
-				session.close();
+				session.close();				
 			}
 		}
 	}

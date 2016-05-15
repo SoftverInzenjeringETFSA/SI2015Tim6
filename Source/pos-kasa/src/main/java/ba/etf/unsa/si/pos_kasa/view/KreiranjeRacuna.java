@@ -57,7 +57,7 @@ public class KreiranjeRacuna {
 	JLabel lblNaziv;
 	JSpinner spinner;
 	Artikal artikal;
-	
+	final static Logger logger = Logger.getLogger(KreiranjeRacuna.class.toString());
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -66,7 +66,9 @@ public class KreiranjeRacuna {
 					window.KreiranjeRacuna.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-					Logger.getLogger(KreiranjeRacuna.class).error(e.getMessage());
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});

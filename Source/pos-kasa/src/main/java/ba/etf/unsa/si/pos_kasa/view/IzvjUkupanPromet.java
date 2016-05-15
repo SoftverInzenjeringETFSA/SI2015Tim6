@@ -29,7 +29,7 @@ public class IzvjUkupanPromet {
 	JLabel lblIzvjestajZa;
 	JLabel lblPromet;
 	JLabel lblProdato;
-
+	final static Logger logger = Logger.getLogger(IzvjUkupanPromet.class.toString());
 	/**
 	 * Launch the application.
 	 */
@@ -41,7 +41,9 @@ public class IzvjUkupanPromet {
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-					Logger.getLogger(IzvjUkupanPromet.class).error(e.getMessage());
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});

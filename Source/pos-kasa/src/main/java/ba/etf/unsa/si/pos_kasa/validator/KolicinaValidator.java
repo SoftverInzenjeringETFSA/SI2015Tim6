@@ -12,6 +12,7 @@ import ba.etf.unsa.si.pos_kasa.view.FormaKategorije;
 
 public class KolicinaValidator extends AbstractValidator {
 
+	final static Logger logger = Logger.getLogger(KolicinaValidator.class.toString());
 	public KolicinaValidator(JComponent c, String message) {
 		 super(c,message);
 		}
@@ -25,8 +26,11 @@ public class KolicinaValidator extends AbstractValidator {
 		}
 		catch(Exception e)
 		{
-			Logger.getLogger(Integer.class).error(e.getMessage());
+			
+			String poruka=e.getMessage();
+			logger.info(poruka);
 			return false;
+			//throw new RuntimeException(e);
 		}
 	}
 
