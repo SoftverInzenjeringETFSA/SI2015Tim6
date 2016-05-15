@@ -23,7 +23,7 @@ public class LoginKontroler {
 	static SefKontroler sefKontroler;
 	static Smjena smjena;
 	final static Logger logger = Logger.getLogger(LoginKontroler.class.toString());
-	PrikazForma loginForma;
+	static PrikazForma loginForma;
 
 	public static void main(String[] args) {
 		loginKontroler = new LoginKontroler();
@@ -48,7 +48,7 @@ public class LoginKontroler {
 		// login view prikazati, login metodu pozvati sa viewa
 	}
 
-	public void login(String korisnickoIme, String password) {
+	public static void login(String korisnickoIme, String password) {
 
 		Session session = null;
 		try {
