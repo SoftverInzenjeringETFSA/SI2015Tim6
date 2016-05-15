@@ -3,6 +3,7 @@ package ba.etf.unsa.si.pos_kasa.controller;
 
 
 import java.awt.EventQueue;
+import java.util.Date;
 
 //<<<<<<< HEAD
 import org.hibernate.Session;
@@ -64,8 +65,18 @@ public class SmjenaKontroler {
     	return new Smjena();
 	}
 	
-	//public static kreirajSmjenu()
-	
+
+	public static String VrijemeSmjene(Date datumSmjene,Date VrijemeSmjene)
+	{
+		Smjena.setPocetakSmjene(datumSmjene);
+		Smjena.setKrajSmjene(VrijemeSmjene);
+		return datumSmjene.toString() + " " + VrijemeSmjene.toString();
+		
+		
+		
+	}
+
+
 	
 	
 }
