@@ -20,6 +20,7 @@ public class PasswordVerifier extends AbstractValidator{
 		boolean isValid = true;
 		if (password.matches(reg1) &&  password.matches(reg2) && password.matches(reg3) && password.length()> 7) {
 			return true;
+			
 		}
 		else{return false;}
 		
