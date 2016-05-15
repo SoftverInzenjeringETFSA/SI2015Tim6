@@ -141,10 +141,16 @@ public class DodavanjeNovogArtikla {
 				ArtikalKontroler ak=new ArtikalKontroler();
 				String [] str=kc.vrati((String)comboBox.getSelectedItem());
 				Long l;
+				try{
 				l=ak.dodajArtikal(NazivArtikla.getText(), Double.parseDouble(CijenaArtikla.getText()), textJedinica.getText(), textField.getText(), Integer.parseInt(Kolicina.getText()), textOpis.getText(), Long.parseLong(str[0]));
 				if(l==-1)
 				{
-					JOptionPane.showMessageDialog(null, "BARKOD mora biti u standardnom obliku 1-13", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "BARKOD mora biti u standardnom obliku 1-13!", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+				}}
+				catch(Exception e)
+				{
+					JOptionPane.showMessageDialog(null, "BARKOD vec postoji!", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+
 				}
 			}
 		});
