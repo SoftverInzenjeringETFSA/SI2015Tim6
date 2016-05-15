@@ -53,7 +53,6 @@ public class SmjenaKontroler {
 					Zakljucivanje  = new Zakljucivanje(SmjenaKontroler.this);
 					Zakljucivanje.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);

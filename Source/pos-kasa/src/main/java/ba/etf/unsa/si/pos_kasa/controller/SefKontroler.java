@@ -182,7 +182,6 @@ public class SefKontroler {
 
 		HibernateException e) {
 			messageBox.infoBox("GREŠKA exception", "Brisanje uposlenika!!!");
-			e.printStackTrace();
 			String poruka=e.getMessage();
 			logger.info(poruka);
 			throw new RuntimeException(e);

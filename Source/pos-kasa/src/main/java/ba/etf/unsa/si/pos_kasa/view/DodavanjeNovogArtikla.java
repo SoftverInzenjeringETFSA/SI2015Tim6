@@ -152,7 +152,9 @@ public class DodavanjeNovogArtikla {
 				catch(Exception e)
 				{
 					JOptionPane.showMessageDialog(null, "BARKOD vec postoji!", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
-
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});

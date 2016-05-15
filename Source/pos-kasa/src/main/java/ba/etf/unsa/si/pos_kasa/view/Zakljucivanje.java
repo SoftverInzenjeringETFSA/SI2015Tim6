@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
-
+import org.apache.log4j.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,7 +21,7 @@ public class Zakljucivanje {
 	/**
 	 * Launch the application.
 	 */
-	
+	final static Logger logger = Logger.getLogger(Zakljucivanje.class.toString());
 	public Zakljucivanje(SmjenaKontroler smjenaKontroler) {
 		this.smjenaKontroler = smjenaKontroler;
 		initialize();
@@ -38,7 +38,9 @@ public class Zakljucivanje {
 					Zakljucivanje window = new Zakljucivanje();
 					window.Zakljucivanje.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});

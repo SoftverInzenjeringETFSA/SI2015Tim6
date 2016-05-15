@@ -18,7 +18,7 @@ import Tools.HibernateUtil;
 
 public class RacunKontroler {
  
-	private static Session session;
+	//private static Session session;
   
 	public static void main(String[] args)
 	{
@@ -27,7 +27,7 @@ public class RacunKontroler {
 	
 	public static Long dodajStavku(StavkaRacuna stavkaRac, long racun_id)
 	{
-		session = HibernateUtil.getSessionFactory().openSession();
+		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		stavkaRac.setRacun_id(racun_id);
 		Long id = (Long) session.save(stavkaRac);
@@ -38,7 +38,7 @@ public class RacunKontroler {
 	
 	public static void ukloniStavku(long _id)
 	{
-		session = HibernateUtil.getSessionFactory().openSession();
+		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		StavkaRacuna sr = new StavkaRacuna();
 		
@@ -59,7 +59,7 @@ public class RacunKontroler {
 	
 	public static Long dodajNacinPlacanja(NacinPlacanja np, long racun_id)
 	{
-		session = HibernateUtil.getSessionFactory().openSession();
+		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		np.setRacun_id(racun_id);
 		 Long id = (Long) session.save(np);
@@ -81,7 +81,7 @@ public class RacunKontroler {
 	
 	public static Racun pretraziRacunePoDatumu(Date _datum)throws Exception
 	{
-	     session = HibernateUtil.getSessionFactory().openSession();
+	     Session session = HibernateUtil.getSessionFactory().openSession();
 	     Transaction t=session.beginTransaction(); 
     	 Racun _racun = new Racun();
     	     
@@ -94,7 +94,7 @@ public class RacunKontroler {
 	
 	public static long kreirajRacun(Date datum_i_vrijeme, long smjena_id, long akcijapopust_id)
 	{
-		session = HibernateUtil.getSessionFactory().openSession();
+		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		Racun racun = new Racun();
 		racun.setDatum_i_vrijeme(new Date());
@@ -106,7 +106,7 @@ public class RacunKontroler {
 	}
 	
 	public Artikal dajArtikal(String barKod) {
-		session = HibernateUtil.getSessionFactory().openSession();
+		Session session = HibernateUtil.getSessionFactory().openSession();
 		Criteria crit = session.createCriteria(Artikal.class);
 		crit.add(Restrictions.eq("barkod", barKod));
 		List list = crit.list();
