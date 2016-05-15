@@ -125,6 +125,7 @@ public class BrisanjeArtikala {
 		           dtm.removeRow(table.getSelectedRow());
 		           ArtikalKontroler ac = new ArtikalKontroler();
 		           ac.obrisiArtikal(Long.parseLong(id));
+		     
 		           
 		        }
 			}

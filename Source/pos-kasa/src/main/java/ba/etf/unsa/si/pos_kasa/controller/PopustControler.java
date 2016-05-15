@@ -3,6 +3,7 @@ package ba.etf.unsa.si.pos_kasa.controller;
 import Tools.HibernateUtil;
 import ba.etf.unsa.si.pos_kasa.model.*;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -191,6 +192,17 @@ public class PopustControler {
 			
 			return true;
 		}
+	}
+	public String vratiFormatDatuma(Date d)
+	{
+		DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+		String reportDate = df.format(d);
+		return reportDate;
+	}
+	public boolean provjeriDatumeNull(Date d)
+	{
+		if(d==null)return false;
+		return true;
 	}
 
 }
