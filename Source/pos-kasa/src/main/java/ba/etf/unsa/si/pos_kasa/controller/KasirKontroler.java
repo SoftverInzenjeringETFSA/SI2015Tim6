@@ -19,11 +19,10 @@ public class KasirKontroler {
 					formaZaKasira = new FormaZaKasira(KasirKontroler.this);
 					formaZaKasira.setVisible(true);
 				} catch (Exception e) {
-					Logger.getLogger(FormaZaKasira.class).error(e.getMessage());
-					}
-			}
-		});
-	}
+					Logger.getLogger(KasirKontroler.class).error(e.getMessage());}					}
+			});
+		};
+	
 
 	public void prikaziFormuZaKreiranjeRacuna() {
 		EventQueue.invokeLater(new Runnable() {

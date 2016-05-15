@@ -61,7 +61,7 @@ public class SmjenaKontroler {
 	{
     	Session session = HibernateUtil.getSessionFactory().openSession();
     	Uposlenik uposlenik = (Uposlenik) session.get(Uposlenik.class, uposlenik_id);
-    	
+    	return new Smjena();
 	}
 	
 	
