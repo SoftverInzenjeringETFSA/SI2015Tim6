@@ -5,6 +5,7 @@ import ba.etf.unsa.si.pos_kasa.model.Kategorija;
 import viewmodel.ArtikalZaIzvjestajProdato;
 
 import java.util.Vector;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -28,8 +29,14 @@ import org.hibernate.cfg.Configuration;
 public class IzvjestajArtikliControler {
 	
 	
-	public static void main(String[] args){
-		//List<ArtikalZaIzvjestajProdato>lista=vratiArtikleZaIzvjestajOProdatima();
+	public static void main(String[] args) throws ParseException{
+		//String date_s = "2016-08-08";
+		//SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+		//Date datum1 = dt.parse(date_s);
+		//String date_s1 = "2016-11-21";
+		//SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MM-dd");
+		//Date datum2 = dt.parse(date_s1);
+		//List<ArtikalZaIzvjestajProdato>lista=vratiArtikleZaIzvjestajOProdatima(datum1,datum2);
 		//System.out.println(lista.size());
 		
 	}
@@ -54,7 +61,7 @@ public class IzvjestajArtikliControler {
 	public static List<ArtikalZaIzvjestajProdato> vratiArtikleZaIzvjestajOProdatima(Date date1, Date date2)
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		String hql ="select new viewmodel.ArtikalZaIzvjestajProdato(sum(sr.kolicina),a.naziv,a.barkod,a.cijena) from  Racun r, StavkaRacuna sr, Artikal a where r.id=sr.racun_id and sr.artikal_id=a.id and r.datum_i_vrijeme BETWEEN STR_TO_DATE(:datum1, \'%Y-%m-%d\') AND STR_TO_DATE(:datum2, \'%Y-%m-%d\') group by a.id";
+		String hql ="select new viewmodel.ArtikalZaIzvjestajProdato(sum(sr.kolicina) as tab,a.naziv,a.barkod,a.cijena) from  Racun r, StavkaRacuna sr, Artikal a where r.id=sr.racun_id and sr.artikal_id=a.id and r.datum_i_vrijeme BETWEEN STR_TO_DATE(:datum1, \'%Y-%m-%d\') AND STR_TO_DATE(:datum2, \'%Y-%m-%d\') group by a.id order by tab desc";
 		Query q = session.createQuery(hql);
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		q.setString("datum1",		df.format(date1));

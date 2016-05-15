@@ -114,6 +114,7 @@ public class IzvjestajOBrojuProdatih {
 				listic=iac.vratiArtikleZaIzvjestajOProdatima(dateChooserOd.getDate(), dateChooserDo.getDate());
 				lista=iac.vratiSortirano(listic);
 				int broj=Integer.parseInt(textFieldTop.getText());
+				if(broj>lista.size())broj=lista.size();
 				for (int i = 0; i < broj; i++) {
 					redovi[0] =lista.get(i).naziv;
 					redovi[1] = lista.get(i).barkod;
