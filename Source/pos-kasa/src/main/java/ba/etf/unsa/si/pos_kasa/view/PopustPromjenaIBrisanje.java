@@ -18,7 +18,6 @@ import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
 import ba.etf.unsa.si.pos_kasa.model.AkcijaPopust;
 import ba.etf.unsa.si.pos_kasa.model.Artikal;
 import ba.etf.unsa.si.pos_kasa.model.Kategorija;
-import ba.etf.unsa.si.pos_kasa.validator.DateValidator;
 import ba.etf.unsa.si.pos_kasa.validator.KolicinaValidator;
 
 import javax.swing.JTextField;
