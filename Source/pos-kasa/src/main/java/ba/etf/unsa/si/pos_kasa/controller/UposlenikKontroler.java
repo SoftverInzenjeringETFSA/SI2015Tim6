@@ -286,5 +286,23 @@ public class UposlenikKontroler
 				session.close();
 				return results;	
 			}
-	}
 	
+public static Uposlenik pronadjiUposlenikaPoID(Long id) throws Exception
+{
+	Session session = HibernateUtil.getSessionFactory().openSession();
+	Uposlenik u = new Uposlenik();
+	Transaction t=session.beginTransaction();
+	
+	u = (Uposlenik)session.get(Uposlenik.class,id);
+	if( u == null)
+	{
+		session.close();
+		throw new Exception("Trazeni uposlenik ne postoji!");
+	}
+	else
+	{
+		session.close();
+		return u;
+	}
+}
+}
