@@ -57,8 +57,6 @@ public class SefKontroler {
 					formaZaSefa = new OpcijeSefa(SefKontroler.this);
 					formaZaSefa.setVisible(true);
 				} catch (Exception e) {
-					
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -74,7 +72,6 @@ public class SefKontroler {
 					popusti = new PopustPromjenaIBrisanje(SefKontroler.this);
 					popusti.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -144,7 +141,6 @@ public class SefKontroler {
 			}
 		} catch (HibernateException e) {
 			messageBox.infoBox("GREŠKA!", "Info o pretragi za brisanje");
-			e.printStackTrace();
 			String poruka=e.getMessage();
 			logger.info(poruka);
 			throw new RuntimeException(e);
@@ -206,7 +202,7 @@ public class SefKontroler {
 					pretragaKorisnika = new PretragaKorisnika(SefKontroler.this);
 					pretragaKorisnika.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -223,7 +219,6 @@ public class SefKontroler {
 					brisanjeKorisnika = new BrisanjeKorisnika(SefKontroler.this);
 					brisanjeKorisnika.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -242,7 +237,6 @@ public class SefKontroler {
 					brisanjeArtikla = new BrisanjeArtikala(SefKontroler.this);
 					brisanjeArtikla.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -260,7 +254,6 @@ public class SefKontroler {
 			pretragaArtikla = new PretragaArtikla(SefKontroler.this);
 			pretragaArtikla.setVisible(true);
 		} catch (Exception e) {
-			e.printStackTrace();
 			String poruka=e.getMessage();
 			logger.info(poruka);
 			throw new RuntimeException(e);
@@ -277,7 +270,6 @@ public class SefKontroler {
 					dodavanjeNovogArtikla = new DodavanjeNovogArtikla(SefKontroler.this);
 					dodavanjeNovogArtikla.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -294,7 +286,6 @@ public class SefKontroler {
 					kreiranjeRacuna = new KreiranjeRacuna(SefKontroler.this);
 					kreiranjeRacuna.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -311,7 +302,6 @@ public class SefKontroler {
 					popust = new Popust(SefKontroler.this);
 					popust.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -330,7 +320,6 @@ public class SefKontroler {
 							uposlenik);
 					brisanjeKorisnikaPrikazRezultata.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -347,7 +336,6 @@ public class SefKontroler {
 					pretragaKorisnikaPrikaz = new PretragaKorisnika_prikaz(SefKontroler.this, uposlenik);
 					pretragaKorisnikaPrikaz.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -363,7 +351,6 @@ public class SefKontroler {
 					formaKategorije = new FormaKategorije();
 					formaKategorije.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);

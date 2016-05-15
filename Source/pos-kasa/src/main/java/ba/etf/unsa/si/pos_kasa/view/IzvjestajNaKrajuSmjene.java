@@ -86,7 +86,9 @@ public class IzvjestajNaKrajuSmjene {
 				t.addCell(Izvjestaji.dajArtiklePoNacinuPlacanjaOdDo(pocetakSmjene, krajSmjene).toString());
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				String poruka=e.getMessage();
+				logger.info(poruka);
+				throw new RuntimeException(e);
 			}
 			t.addCell(String.valueOf(artikal.getCijena()));
 		

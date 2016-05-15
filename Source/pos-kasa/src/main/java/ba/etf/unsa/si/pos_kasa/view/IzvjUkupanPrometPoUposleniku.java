@@ -44,7 +44,6 @@ public class IzvjUkupanPrometPoUposleniku {
 					IzvjUkupanPrometPoUposleniku window = new IzvjUkupanPrometPoUposleniku();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);

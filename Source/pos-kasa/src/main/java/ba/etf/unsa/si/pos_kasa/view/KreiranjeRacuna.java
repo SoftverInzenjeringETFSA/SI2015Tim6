@@ -65,7 +65,6 @@ public class KreiranjeRacuna {
 					KreiranjeRacuna window = new KreiranjeRacuna();
 					window.KreiranjeRacuna.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);

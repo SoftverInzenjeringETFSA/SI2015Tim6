@@ -50,7 +50,6 @@ public class PopustPromjenaIBrisanje {
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					//Logger.getLogger(PopustPromjenaIBrisanje.class).error(e.getMessage());
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
