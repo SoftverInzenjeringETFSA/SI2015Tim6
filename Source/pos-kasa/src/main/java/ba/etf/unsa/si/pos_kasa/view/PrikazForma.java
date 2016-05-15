@@ -2,6 +2,8 @@ package ba.etf.unsa.si.pos_kasa.view;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -59,7 +61,7 @@ public class PrikazForma {
 		korisnickoIme.setColumns(10);
 		korisnickoIme.setInputVerifier(new userNameVerifier(korisnickoIme,"Polje za unos Username mora biti dužine minimalno 4 i maksimalno 20 slova. "));
 
-		password = new JTextField();
+		password = new JPasswordField();
 		password.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		password.setBounds(153, 53, 183, 20);
 		prikazForma.getContentPane().add(password);
