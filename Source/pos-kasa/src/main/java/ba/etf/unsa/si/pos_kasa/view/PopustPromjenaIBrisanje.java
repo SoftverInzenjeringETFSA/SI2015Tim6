@@ -14,6 +14,7 @@ import com.toedter.calendar.JDateChooser;
 import ba.etf.unsa.si.pos_kasa.controller.ArtikalKontroler;
 import ba.etf.unsa.si.pos_kasa.controller.KategorijaControler;
 import ba.etf.unsa.si.pos_kasa.controller.PopustControler;
+import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
 import ba.etf.unsa.si.pos_kasa.model.AkcijaPopust;
 import ba.etf.unsa.si.pos_kasa.model.Artikal;
 import ba.etf.unsa.si.pos_kasa.model.Kategorija;
@@ -36,7 +37,7 @@ public class PopustPromjenaIBrisanje {
 	private JTable table;
 	Object[] kolone = { "Id popusta", "Pocetak akcije", "Kraj akcije", "Iznos popusta" };
 	DefaultTableModel dtm = new DefaultTableModel();
-
+	private SefKontroler sefKontroler;
 	/**
 	 * Launch the application.
 	 */
@@ -60,7 +61,10 @@ public class PopustPromjenaIBrisanje {
 	public PopustPromjenaIBrisanje() {
 		initialize();
 	}
-
+	public PopustPromjenaIBrisanje(SefKontroler sefKontroler) {
+		this.sefKontroler=sefKontroler;
+		initialize();
+	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -176,6 +180,11 @@ public class PopustPromjenaIBrisanje {
 		textField.setInputVerifier(new KolicinaValidator(textField,"Morate unijeti ispravan broj!"));
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
+	}
+
+	public void setVisible(boolean b) {
+		this.frame.setVisible(true);
+		
 	}
 
 }

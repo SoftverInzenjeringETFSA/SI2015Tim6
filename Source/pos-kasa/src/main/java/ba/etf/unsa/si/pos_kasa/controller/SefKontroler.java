@@ -21,6 +21,7 @@ import ba.etf.unsa.si.pos_kasa.view.DodavanjeNovogKorisnika;
 import ba.etf.unsa.si.pos_kasa.view.KreiranjeRacuna;
 import ba.etf.unsa.si.pos_kasa.view.OpcijeSefa;
 import ba.etf.unsa.si.pos_kasa.view.Popust;
+import ba.etf.unsa.si.pos_kasa.view.PopustPromjenaIBrisanje;
 import ba.etf.unsa.si.pos_kasa.view.PretragaArtikla;
 import ba.etf.unsa.si.pos_kasa.view.PretragaKorisnika;
 import ba.etf.unsa.si.pos_kasa.view.PretragaKorisnika_prikaz;
@@ -35,6 +36,7 @@ public class SefKontroler {
 	PretragaKorisnika pretragaKorisnika;
 	PretragaKorisnika_prikaz pretragaKorisnikaPrikaz;
 	BrisanjeKorisnika_PrikazRezultata brisanjeKorisnikaPrikazRezultata;
+	PopustPromjenaIBrisanje popusti;
 	// instance formi za artikle
 	DodavanjeNovogArtikla dodavanjeNovogArtikla;
 	BrisanjeArtikala brisanjeArtikla;
@@ -57,18 +59,31 @@ public class SefKontroler {
 		});
 	}
 
-	public void prikaziFormuZaUnosKorisnika() {
-
-		EventQueue.invokeLater(new Runnable() {
+	public void prikaziFormuZaModifikacijuPopusta() {
+		EventQueue.invokeLater(new Runnable(){
 			public void run() {
 				try {
-					dodavanjeNovogKorisnika = new DodavanjeNovogKorisnika(SefKontroler.this);
-					dodavanjeNovogKorisnika.setVisible(true);
+					popusti = new PopustPromjenaIBrisanje(SefKontroler.this);
+					popusti.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
+}
+	
+	public void prikaziFormuZaUnosKorisnika(){
+		EventQueue.invokeLater(new Runnable(){
+		public void run() {
+			try {
+				dodavanjeNovogKorisnika = new DodavanjeNovogKorisnika(SefKontroler.this);
+				dodavanjeNovogKorisnika.setVisible(true);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	});
+	
 	}
 
 	public boolean dodajNovogKorisnika(Uposlenik uposlenik) {
@@ -293,5 +308,6 @@ public class SefKontroler {
 			}
 		});
 	}
+	
 
 }

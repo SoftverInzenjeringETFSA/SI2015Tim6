@@ -5,11 +5,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import java.awt.EventQueue;
+
 import javax.swing.JLabel;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
 import ba.etf.unsa.si.pos_kasa.controller.SmjenaKontroler;
 import java.awt.Font;
+import java.awt.Window;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -17,9 +21,10 @@ import java.awt.event.ActionEvent;
 public class OpcijeSefa {
 
 	private JFrame frmOpcijeefa;
+	private JFrame frame;
 	private SefKontroler sefKontroler;
 	private SmjenaKontroler smjenaKontroler;
-	
+	private PopustPromjenaIBrisanje popusti;
 
 	/**
 	 * Create the application.
@@ -141,7 +146,7 @@ public class OpcijeSefa {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new LineBorder(new Color(0, 128, 128), 2));
 		panel_2.setBackground(new Color(0, 128, 128));
-		panel_2.setBounds(478, 27, 233, 142);
+		panel_2.setBounds(478, 27, 233, 181);
 		frmOpcijeefa.getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 
@@ -167,8 +172,18 @@ public class OpcijeSefa {
 			}
 		});
 		btnPopust.setFont(new Font("Times New Roman", Font.BOLD, 13));
-		btnPopust.setBounds(64, 99, 94, 23);
+		btnPopust.setBounds(32, 99, 162, 23);
 		panel_2.add(btnPopust);
+		
+		JButton btnPromjenaPopusta = new JButton("Promjena popusta");
+		btnPromjenaPopusta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				sefKontroler.prikaziFormuZaModifikacijuPopusta();
+			}
+		});
+		btnPromjenaPopusta.setFont(new Font("Times New Roman", Font.BOLD, 13));
+		btnPromjenaPopusta.setBounds(32, 133, 162, 23);
+		panel_2.add(btnPromjenaPopusta);
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(128, 128, 128));
