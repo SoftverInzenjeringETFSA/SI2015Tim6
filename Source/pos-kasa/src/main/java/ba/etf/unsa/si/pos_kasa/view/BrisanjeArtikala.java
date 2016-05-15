@@ -9,6 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import org.apache.log4j.Logger;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -24,7 +27,7 @@ public class BrisanjeArtikala {
 	DefaultTableModel dtm = new DefaultTableModel();
 	private JTable table;
 	private String id;
-
+    private SefKontroler sefKontroler;
 	/**
 	 * Launch the application.
 	 */
@@ -35,10 +38,14 @@ public class BrisanjeArtikala {
 					BrisanjeArtikala window = new BrisanjeArtikala();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					Logger.getLogger(BrisanjeArtikala.class).error(e.getMessage());	
 				}
 			}
 		});
+	}
+	public BrisanjeArtikala(SefKontroler sefKontroler) {
+		this.sefKontroler=sefKontroler;
+		initialize();
 	}
 
 	/**
@@ -47,6 +54,9 @@ public class BrisanjeArtikala {
 	public BrisanjeArtikala() {
 		initialize();
 	}
+	public void setVisible(boolean visible) {
+		this.frame.setVisible(visible);
+	}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -54,7 +64,7 @@ public class BrisanjeArtikala {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Barkod artikla:");
@@ -114,6 +124,7 @@ public class BrisanjeArtikala {
 		           dtm.removeRow(table.getSelectedRow());
 		           ArtikalKontroler ac = new ArtikalKontroler();
 		           ac.obrisiArtikal(Long.parseLong(id));
+		     
 		           
 		        }
 			}

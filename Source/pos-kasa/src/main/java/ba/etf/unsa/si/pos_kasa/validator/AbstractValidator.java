@@ -2,6 +2,8 @@ package ba.etf.unsa.si.pos_kasa.validator;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.InputStream;
+
 import javax.swing.*;
  
 /**
@@ -17,10 +19,11 @@ public abstract class AbstractValidator extends InputVerifier implements KeyList
     private JDialog popup;
     private Object parent;
     private JLabel messageLabel;
-    //private JLabel image;
+    private JLabel imagelbl;
     private Point point;
     private Dimension cDim;
     private Color color;
+    private ImageIcon imageIcon;
 	
     public AbstractValidator() {
         color = new Color(243, 255, 159);
@@ -30,8 +33,24 @@ public abstract class AbstractValidator extends InputVerifier implements KeyList
         this();
         c.addKeyListener(this);
         messageLabel = new JLabel(message + " ");
-      //  image = new JLabel(new ImageIcon("exception16x16.png"));
+       
+       
+       imagelbl = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("resources/exception16x16.png")));
+        //ImageIcon im = new ImageIcon(ImageUtilities.loadImage("webPagesBadge.gif"));
         initComponents();
+       
+    }
+    
+    public AbstractValidator(JPasswordField c, String message) {
+    	this();
+        c.addKeyListener(this);
+        messageLabel = new JLabel(message + " ");
+       
+       
+       imagelbl = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("resources/exception16x16.png")));
+        //ImageIcon im = new ImageIcon(ImageUtilities.loadImage("webPagesBadge.gif"));
+        initComponents();
+    	
     }
 	
     /**
@@ -45,6 +64,7 @@ public abstract class AbstractValidator extends InputVerifier implements KeyList
         this.parent = parent;
         popup = new JDialog(parent);
         initComponents();
+        System.out.println("POZVVANOOO");
     }
 	
     /**
@@ -145,8 +165,10 @@ public abstract class AbstractValidator extends InputVerifier implements KeyList
         popup.getContentPane().setLayout(new FlowLayout());
         popup.setUndecorated(true);
         popup.getContentPane().setBackground(color);
-    //    popup.getContentPane().add(image);
+        popup.getContentPane().add(imagelbl);
         popup.getContentPane().add(messageLabel);
         popup.setFocusableWindowState(false);
     }
+
+	protected abstract boolean validationCriteria(JPasswordField textFieldpasswordConfirm);
 }

@@ -12,6 +12,9 @@ import ba.etf.unsa.si.pos_kasa.controller.Izvjestaji;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import org.apache.log4j.Logger;
+
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -38,6 +41,7 @@ public class IzvjUkupanPromet {
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					Logger.getLogger(IzvjUkupanPromet.class).error(e.getMessage());
 				}
 			}
 		});

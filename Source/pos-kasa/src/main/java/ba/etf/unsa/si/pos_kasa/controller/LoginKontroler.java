@@ -12,7 +12,9 @@ import org.hibernate.Transaction;
 import Tools.HibernateUtil;
 import ba.etf.unsa.si.pos_kasa.model.Smjena;
 import ba.etf.unsa.si.pos_kasa.model.Uposlenik;
+import ba.etf.unsa.si.pos_kasa.view.FormaZaKasira;
 import ba.etf.unsa.si.pos_kasa.view.PrikazForma;
+import ba.etf.unsa.si.pos_kasa.view.messageBox;
 
 public class LoginKontroler {
 
@@ -35,6 +37,7 @@ public class LoginKontroler {
 					loginForma.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					Logger.getLogger(PrikazForma.class).error(e.getMessage());
 				}
 			}
 		});
@@ -50,6 +53,7 @@ public class LoginKontroler {
 			Query query = session.createQuery("FROM Uposlenik where username= :korisnickoIme and password= :password");
 			query.setParameter("korisnickoIme", korisnickoIme);
 			query.setParameter("password", password);
+			@SuppressWarnings("unchecked")
 			List<Uposlenik> uposlenici = query.list();
 			if (uposlenici != null && uposlenici.size() == 1) {
 				Uposlenik uposlenik = uposlenici.get(0);
@@ -63,16 +67,23 @@ public class LoginKontroler {
 				//asdfas
 				
 				//TODO napravit zapis u bazu za smjenu pocetak 
+				
+				String imePrezime=uposlenik.getImePrezime();
 				if (uposlenik.getUloga().equals("Kasir")) {
 					kasirKontroler = new KasirKontroler();
+					loginForma.setVisible(false);
+					messageBox.infoBox("Kasir: " +imePrezime+" je uspješno logovan na kasu.", "Info Login");
 				} else if (uposlenik.getUloga().equals("Sef")) {
 					sefKontroler = new SefKontroler();
+					loginForma.setVisible(false);
+					messageBox.infoBox("Šef: " +imePrezime+" je uspješno logovan na kasu.", "Info Login");
 				} else {
+					//messageBox.infoBox("Neuspješan Login", "Info Login");
 				}
 
 			} else {
 				// Prikazi poruku pogresno korisnicko ime ili password
-				System.out.println("error");
+				messageBox.infoBox("Login Podaci Nisu Validni. Provjerite unos!!!", "Info Login");
 			}
 		} catch (HibernateException e) {
 			Logger.getLogger(SefKontroler.class).error(e.getMessage());

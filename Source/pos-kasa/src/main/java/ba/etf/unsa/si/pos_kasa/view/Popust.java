@@ -13,10 +13,12 @@ import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
 
 import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
+import ba.etf.unsa.si.pos_kasa.validator.KolicinaValidator;
 import ba.etf.unsa.si.pos_kasa.controller.*;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import org.apache.log4j.Logger;
 
 public class Popust {
 
@@ -49,7 +51,7 @@ public class Popust {
 					Popust window = new Popust();
 					window.frmPopust.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					Logger.getLogger(Popust.class).error(e.getMessage());
 				}
 			}
 		});
@@ -69,6 +71,7 @@ public class Popust {
 		
 		txtIznosPopusta = new JTextField();
 		txtIznosPopusta.setColumns(10);
+		txtIznosPopusta.setInputVerifier(new KolicinaValidator(txtIznosPopusta,"Iznos popusta mora biti broj!"));
 		
 		
 		
@@ -94,9 +97,11 @@ public class Popust {
 						pc.dodajAkcijaPopust(datePocetak.getDate(),dateKraj.getDate(), textAreaOpis.getText(), Integer.parseInt(txtIznosPopusta.getText()));
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(null, e.getMessage(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+						Logger.getLogger(PopustControler.class).error(e.getMessage());
 					}
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, e.getMessage(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+					Logger.getLogger(PopustControler.class).error(e.getMessage());
 				} 
 				
 			}

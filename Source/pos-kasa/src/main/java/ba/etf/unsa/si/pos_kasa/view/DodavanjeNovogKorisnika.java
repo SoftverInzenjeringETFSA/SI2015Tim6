@@ -6,7 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
 import javax.swing.ButtonGroup;
+import javax.swing.InputVerifier;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,7 +17,14 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
 import ba.etf.unsa.si.pos_kasa.model.Uposlenik;
+import ba.etf.unsa.si.pos_kasa.validator.BrojTelVerifier;
+import ba.etf.unsa.si.pos_kasa.validator.DatumRodjenjaVerifier;
 import ba.etf.unsa.si.pos_kasa.validator.ImeVerifier;
+import ba.etf.unsa.si.pos_kasa.validator.JMBGVerifier;
+import ba.etf.unsa.si.pos_kasa.validator.PasswordConfirmVerifier;
+import ba.etf.unsa.si.pos_kasa.validator.PasswordVerifier;
+import ba.etf.unsa.si.pos_kasa.validator.PrezimeVerifier;
+import ba.etf.unsa.si.pos_kasa.validator.userNameVerifier;
 
 public class DodavanjeNovogKorisnika {
 
@@ -79,20 +88,24 @@ public class DodavanjeNovogKorisnika {
 		textIme.setBounds(120, 49, 167, 20);
 		DodavnjeNovogKorisnika.getContentPane().add(textIme);
 		textIme.setColumns(10);
-		textIme.setInputVerifier(new ImeVerifier(textIme,"Ime mora biti duze od 2 a krace od 20 slova"));
+		textIme.setInputVerifier(new ImeVerifier(textIme,"Ime mora biti duze od 2 a krace od 20 slova!"));
+		
 		textPrezime = new JTextField();
 		textPrezime.setBounds(120, 74, 167, 20);
 		DodavnjeNovogKorisnika.getContentPane().add(textPrezime);
 		textPrezime.setColumns(10);
+		textPrezime.setInputVerifier(new PrezimeVerifier(textPrezime,"Prezime mora biti duze od 2 a kraće od 25 slova!"));
 
 		textJMBG = new JTextField();
 		textJMBG.setColumns(10);
 		textJMBG.setBounds(120, 99, 167, 20);
+		textJMBG.setInputVerifier(new JMBGVerifier(textJMBG,"JMBG mora imati tačno 13 brojeva i biti validan JMBG!"));
 		DodavnjeNovogKorisnika.getContentPane().add(textJMBG);
 
 		textKorIme = new JTextField();
 		textKorIme.setColumns(10);
 		textKorIme.setBounds(120, 124, 167, 20);
+		textKorIme.setInputVerifier(new userNameVerifier(textKorIme,"Korisničko ime mora biti duže od 3 i ne veće od 20 slova!"));
 		DodavnjeNovogKorisnika.getContentPane().add(textKorIme);
 
 		JLabel lblPasswordConfirm_1 = new JLabel("Password Confirm:");
@@ -103,12 +116,14 @@ public class DodavanjeNovogKorisnika {
 		JLabel lblBrojTel = new JLabel("Broj tel:");
 		lblBrojTel.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		lblBrojTel.setBounds(10, 158, 46, 14);
+		
 		DodavnjeNovogKorisnika.getContentPane().add(lblBrojTel);
 
 		textBrojTel = new JTextField();
 		textBrojTel.setBounds(120, 155, 167, 20);
 		DodavnjeNovogKorisnika.getContentPane().add(textBrojTel);
 		textBrojTel.setColumns(10);
+		textBrojTel.setInputVerifier(new BrojTelVerifier(textBrojTel,"Broj tel mora biti u formatu +xxxx-xxx-xxx"));
 
 		textPassword = new JPasswordField();
 		textPassword.setBounds(120, 224, 167, 20);
@@ -116,6 +131,8 @@ public class DodavanjeNovogKorisnika {
 
 		textPasswordConfirm = new JPasswordField();
 		textPasswordConfirm.setBounds(120, 258, 167, 20);
+		textPassword.setInputVerifier(new PasswordVerifier(textPassword,"Password ne smije biti kraći od 5 znakova!"));
+		textPasswordConfirm.setInputVerifier(new PasswordConfirmVerifier(textPasswordConfirm,"Potvrda Passworda nije uredu!",textPassword));
 		DodavnjeNovogKorisnika.getContentPane().add(textPasswordConfirm);
 
 		JLabel lblDatumRoenja = new JLabel("Datum Rođenja:");
@@ -127,6 +144,7 @@ public class DodavanjeNovogKorisnika {
 		textDatumRodjenja.setBounds(120, 186, 167, 20);
 		DodavnjeNovogKorisnika.getContentPane().add(textDatumRodjenja);
 		textDatumRodjenja.setColumns(10);
+		textDatumRodjenja.setInputVerifier(new DatumRodjenjaVerifier(textDatumRodjenja,"Datum mora biti u formatu YYYY-MM-DD"));
 
 		JLabel lblUloga = new JLabel("Uloga:");
 		lblUloga.setFont(new Font("Times New Roman", Font.PLAIN, 13));
@@ -176,16 +194,19 @@ public class DodavanjeNovogKorisnika {
 				} else if (rdbtnSef.isSelected()) {
 					pUloga = rdbtnSef.getText();
 				}
-				Uposlenik uposlenik = new Uposlenik(pIme + " " + pPrezime, new Date(), pJMBG, pBrojTel, pKorisnickoIme,
+				Uposlenik uposlenik = new Uposlenik(pIme + " " + pPrezime, pDatumRodjenja, pJMBG, pBrojTel, pKorisnickoIme,
 						pPassword, pUloga);
-				if (validate(uposlenik)) {
 					if (sefKontroler.dodajNovogKorisnika(uposlenik)) {
-						System.out.println("Uspjesan unos.");
+						//System.out.println("Uspjesan unos.");
+						messageBox.infoBox("Uspješan unos korisnika u bazu!", "Info o unosu novog korisnika");
+						setVisible(false);
 						// odradi nesto
 					} else {
-						System.out.println("NE VALJA IMPORT korisnika");
+						//System.out.println("NE VALJA IMPORT korisnika");
+						messageBox.infoBox("Neuspješan unos korisnika u bazu!", "Info o unosu novog korisnika");
+						setVisible(false);
 					}
-				}
+				
 			}
 
 		});
@@ -194,8 +215,5 @@ public class DodavanjeNovogKorisnika {
 
 	}
 
-	private boolean validate(Uposlenik uposlenik) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 }

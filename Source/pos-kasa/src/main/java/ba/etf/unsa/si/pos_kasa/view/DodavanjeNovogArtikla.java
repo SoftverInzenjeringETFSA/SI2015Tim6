@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Panel;
@@ -21,11 +23,15 @@ import ba.etf.unsa.si.pos_kasa.controller.ArtikalKontroler;
 import ba.etf.unsa.si.pos_kasa.controller.IzvjestajArtikliControler;
 import ba.etf.unsa.si.pos_kasa.controller.KategorijaControler;
 import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
+import ba.etf.unsa.si.pos_kasa.validator.CijenaValidator;
+import ba.etf.unsa.si.pos_kasa.validator.KolicinaValidator;
+
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
+import org.apache.log4j.Logger;
 
 public class DodavanjeNovogArtikla {
 
@@ -61,7 +67,7 @@ public class DodavanjeNovogArtikla {
 					DodavanjeNovogArtikla window = new DodavanjeNovogArtikla();
 					window.DodavanjeNovogArtikla.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					Logger.getLogger(DodavanjeNovogArtikla.class).error(e.getMessage());
 				}
 			}
 		});
@@ -106,10 +112,12 @@ public class DodavanjeNovogArtikla {
 		CijenaArtikla = new JTextField();
 		CijenaArtikla.setBounds(170, 131, 196, 20);
 		CijenaArtikla.setColumns(10);
+		CijenaArtikla.setInputVerifier(new CijenaValidator(CijenaArtikla,"Cijena artikla mora biti broj!"));
 		
 		Kolicina = new JTextField();
 		Kolicina.setBounds(170, 173, 196, 20);
 		Kolicina.setColumns(10);
+		Kolicina.setInputVerifier(new KolicinaValidator(Kolicina,"Kolicina mora biti broj!"));
 		
 		textField = new JTextField();
 		textField.setBounds(170, 90, 196, 20);
@@ -132,7 +140,12 @@ public class DodavanjeNovogArtikla {
 				KategorijaControler kc=new KategorijaControler();
 				ArtikalKontroler ak=new ArtikalKontroler();
 				String [] str=kc.vrati((String)comboBox.getSelectedItem());
-				ak.dodajArtikal(NazivArtikla.getText(), Double.parseDouble(CijenaArtikla.getText()), textJedinica.getText(), textField.getText(), Integer.parseInt(Kolicina.getText()), textOpis.getText(), Long.parseLong(str[0]));
+				Long l;
+				l=ak.dodajArtikal(NazivArtikla.getText(), Double.parseDouble(CijenaArtikla.getText()), textJedinica.getText(), textField.getText(), Integer.parseInt(Kolicina.getText()), textOpis.getText(), Long.parseLong(str[0]));
+				if(l==-1)
+				{
+					JOptionPane.showMessageDialog(null, "BARKOD mora biti u standardnom obliku 1-13", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 		btnDodaj.setBounds(181, 409, 90, 27);

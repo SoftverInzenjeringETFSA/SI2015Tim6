@@ -10,6 +10,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
 import ba.etf.unsa.si.pos_kasa.controller.ArtikalKontroler;
+import ba.etf.unsa.si.pos_kasa.controller.KategorijaControler;
 import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
 import ba.etf.unsa.si.pos_kasa.model.Artikal;
 
@@ -33,6 +34,7 @@ import java.util.List;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
+import org.apache.log4j.Logger;
 
 public class PretragaArtikla {
 
@@ -55,18 +57,7 @@ public class PretragaArtikla {
 	public PretragaArtikla() {
 		initialize();
 	}
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PretragaArtikla window = new PretragaArtikla();
-					window.frmPretragaArtikala.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */

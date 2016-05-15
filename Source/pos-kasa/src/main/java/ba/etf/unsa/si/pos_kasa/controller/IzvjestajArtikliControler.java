@@ -47,6 +47,18 @@ public class IzvjestajArtikliControler {
 		return rezultati;
 		
 	}
+	public static List<String> vratiArtikleZaIzvjestajOProdatima()
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		List<String> rez=new Vector<String>();
+		String hql = "Select new ba.etf.unsa.si.pos_kasa.model.StavkaRacuna(sr.id, sr.kolicina, sr.ukupna_cijena, sr.artikal_id) "
+				+ "FROM Racun r, StavkaRacuna sr "
+				+ "WHERE r.datum_i_vrijeme BETWEEN STR_TO_DATE(:datum1, \'%Y-%m-%d\') AND STR_TO_DATE(:datum2, \'%Y-%m-%d\') AND sr.racun_id = r.id";
+		Query q = session.createQuery(hql);
+		
+		session.close();
+		return rez;
+	}
 	public String[] vratiRazdovojeno(String str)
 	{
 		String[] novo=str.split(";;");

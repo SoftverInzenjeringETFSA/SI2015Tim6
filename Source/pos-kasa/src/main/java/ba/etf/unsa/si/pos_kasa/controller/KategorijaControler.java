@@ -12,6 +12,7 @@ import org.hibernate.Transaction;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.apache.log4j.Logger;
 
 @SuppressWarnings("unused")
 public class KategorijaControler {
@@ -160,7 +161,7 @@ public class KategorijaControler {
 		session.close();
 		return rezultati;
 	}
-	
+	//UPIT
 	public static List<String> vratiId(String id)
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -176,6 +177,7 @@ public class KategorijaControler {
 		session.close();
 		return rezultati;
 	}
+	
 	public String[] vratiRazdovojeno(String str)
 	{
 		String[] novo=str.split(";;");
