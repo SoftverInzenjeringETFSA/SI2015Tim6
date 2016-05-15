@@ -24,6 +24,7 @@ public class RacunKontroler {
 	{
 	}
 	
+	
 	public static Long dodajStavku(StavkaRacuna stavkaRac, long racun_id)
 	{
 		session = HibernateUtil.getSessionFactory().openSession();
@@ -34,6 +35,7 @@ public class RacunKontroler {
 		session.close();
 		return id;
 	}
+	
 	public static void ukloniStavku(long _id)
 	{
 		session = HibernateUtil.getSessionFactory().openSession();
@@ -51,7 +53,7 @@ public class RacunKontroler {
 		{
 			System.out.println("Ne postoji ta stavka");
 		}
-		
+	
 		session.close();
 	}
 	
@@ -84,18 +86,23 @@ public class RacunKontroler {
     	 Racun _racun = new Racun();
     	     
     	     if( _racun.getDatum_i_vrijeme() == _datum)
-    		 
-    	    	 return _racun;
-    	     
+     	    	 return _racun;
     	     else 
-    	    	 
     	    	 throw new Exception("Pretraživanje nije uspjelo.");
     	    
 	}
 	
-	public static void kreirajRacun()
+	public static long kreirajRacun(Date datum_i_vrijeme, long smjena_id, long akcijapopust_id)
 	{
-		
+		session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		Racun racun = new Racun();
+		racun.setDatum_i_vrijeme(new Date());
+		racun.setSmjena_id(smjena_id);
+		Long id = (Long) session.save(racun);
+		t.commit();
+		session.close();
+		return id;
 	}
 	
 	public Artikal dajArtikal(String barKod) {

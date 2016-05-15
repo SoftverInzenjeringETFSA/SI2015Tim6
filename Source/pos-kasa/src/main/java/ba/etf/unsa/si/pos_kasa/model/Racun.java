@@ -40,6 +40,10 @@ public class Racun implements java.io.Serializable {
 		this.broj_racuna = broj_racuna;
 	}
 
+	public long getAkcijapopust_id() {
+		return akcijapopust_id;
+	}
+
 	public Racun() {
 		// TODO Auto-generated constructor stub
 	}

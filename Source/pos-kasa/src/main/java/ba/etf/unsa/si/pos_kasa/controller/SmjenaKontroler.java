@@ -4,6 +4,11 @@ package ba.etf.unsa.si.pos_kasa.controller;
 
 import java.awt.EventQueue;
 
+import org.hibernate.Session;
+
+import Tools.HibernateUtil;
+import ba.etf.unsa.si.pos_kasa.model.Smjena;
+import ba.etf.unsa.si.pos_kasa.model.Uposlenik;
 import ba.etf.unsa.si.pos_kasa.view.DodavanjeNovogKorisnika;
 import ba.etf.unsa.si.pos_kasa.view.OpcijeSefa;
 import ba.etf.unsa.si.pos_kasa.view.Zakljucivanje;
@@ -44,9 +49,12 @@ public class SmjenaKontroler {
 		});
 	}
 	
-	
-	
-	
+	public static Smjena dajTrenutnoAktivnuSmjenu(long uposlenik_id)
+	{
+    	Session session = HibernateUtil.getSessionFactory().openSession();
+    	Uposlenik uposlenik = (Uposlenik) session.get(Uposlenik.class, uposlenik_id);
+    	
+	}
 	
 	
 	
