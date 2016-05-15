@@ -44,6 +44,7 @@ public class IzvjUkupanPrometPoUposleniku {
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					Logger.getLogger(IzvjUkupanPrometPoUposleniku.class).error(e.getMessage());
 				}
 			}
 		});

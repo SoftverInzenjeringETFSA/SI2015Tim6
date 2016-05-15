@@ -38,8 +38,7 @@ public class BrisanjeArtikala {
 					BrisanjeArtikala window = new BrisanjeArtikala();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					Logger.getLogger(BrisanjeArtikala.class).error(e.getMessage());
-					
+					Logger.getLogger(BrisanjeArtikala.class).error(e.getMessage());	
 				}
 			}
 		});

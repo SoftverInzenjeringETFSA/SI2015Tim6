@@ -5,6 +5,9 @@ import java.util.regex.Pattern;
 import javax.swing.JComponent;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import org.apache.log4j.Logger;
+
+import ba.etf.unsa.si.pos_kasa.view.FormaKategorije;
 
 public class CijenaValidator extends AbstractValidator{
 
@@ -21,6 +24,7 @@ public class CijenaValidator extends AbstractValidator{
 		}
 		catch(Exception e)
 		{
+			Logger.getLogger(Double.class).error(e.getMessage());
 			return false;
 		}
 	}

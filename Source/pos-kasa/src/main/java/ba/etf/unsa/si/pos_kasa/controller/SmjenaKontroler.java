@@ -4,7 +4,10 @@ package ba.etf.unsa.si.pos_kasa.controller;
 
 import java.awt.EventQueue;
 
+import org.apache.log4j.Logger;
+
 import ba.etf.unsa.si.pos_kasa.view.DodavanjeNovogKorisnika;
+import ba.etf.unsa.si.pos_kasa.view.FormaZaKasira;
 import ba.etf.unsa.si.pos_kasa.view.OpcijeSefa;
 import ba.etf.unsa.si.pos_kasa.view.Zakljucivanje;
 
@@ -23,6 +26,7 @@ public class SmjenaKontroler {
 					formaZaSefa.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					Logger.getLogger(OpcijeSefa.class).error(e.getMessage());
 				}
 			}
 		});
@@ -39,6 +43,7 @@ public class SmjenaKontroler {
 					Zakljucivanje.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					Logger.getLogger(Zakljucivanje.class).error(e.getMessage());
 				}
 			}
 		});

@@ -6,6 +6,9 @@ import java.util.regex.Pattern;
 import javax.swing.JComponent;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import org.apache.log4j.Logger;
+
+import ba.etf.unsa.si.pos_kasa.view.FormaKategorije;
 
 public class KolicinaValidator extends AbstractValidator {
 
@@ -22,6 +25,7 @@ public class KolicinaValidator extends AbstractValidator {
 		}
 		catch(Exception e)
 		{
+			Logger.getLogger(Integer.class).error(e.getMessage());
 			return false;
 		}
 	}

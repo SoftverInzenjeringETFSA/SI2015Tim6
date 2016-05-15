@@ -12,6 +12,7 @@ import org.hibernate.Transaction;
 import Tools.HibernateUtil;
 import ba.etf.unsa.si.pos_kasa.model.Smjena;
 import ba.etf.unsa.si.pos_kasa.model.Uposlenik;
+import ba.etf.unsa.si.pos_kasa.view.FormaZaKasira;
 import ba.etf.unsa.si.pos_kasa.view.PrikazForma;
 import ba.etf.unsa.si.pos_kasa.view.messageBox;
 
@@ -36,6 +37,7 @@ public class LoginKontroler {
 					loginForma.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					Logger.getLogger(PrikazForma.class).error(e.getMessage());
 				}
 			}
 		});

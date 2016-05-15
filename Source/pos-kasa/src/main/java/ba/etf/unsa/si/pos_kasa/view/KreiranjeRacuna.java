@@ -19,6 +19,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import org.apache.log4j.Logger;
+
 import antlr.collections.impl.Vector;
 import ba.etf.unsa.si.pos_kasa.controller.KasirKontroler;
 import ba.etf.unsa.si.pos_kasa.controller.RacunKontroler;
@@ -64,6 +66,7 @@ public class KreiranjeRacuna {
 					window.KreiranjeRacuna.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					Logger.getLogger(KreiranjeRacuna.class).error(e.getMessage());
 				}
 			}
 		});

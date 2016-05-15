@@ -11,6 +11,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 
+import ba.etf.unsa.si.pos_kasa.view.FormaKategorije;
+
+import org.apache.log4j.Logger;
+
 public class DateValidator extends AbstractValidator {
 
 	
@@ -35,6 +39,7 @@ public class DateValidator extends AbstractValidator {
 		}
 		catch(Exception e)
 		{
+			Logger.getLogger(Date.class).error(e.getMessage());
 			return false;
 		}
 	}

@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import org.apache.log4j.Logger;
 
 import ba.etf.unsa.si.pos_kasa.controller.SmjenaKontroler;
 import javax.swing.JButton;
@@ -42,6 +43,7 @@ public class Zakljucivanje {
 					window.Zakljucivanje.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					Logger.getLogger(Zakljucivanje.class).error(e.getMessage());
 				}
 			}
 		});

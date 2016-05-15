@@ -18,6 +18,7 @@ import ba.etf.unsa.si.pos_kasa.view.BrisanjeKorisnika;
 import ba.etf.unsa.si.pos_kasa.view.BrisanjeKorisnika_PrikazRezultata;
 import ba.etf.unsa.si.pos_kasa.view.DodavanjeNovogArtikla;
 import ba.etf.unsa.si.pos_kasa.view.DodavanjeNovogKorisnika;
+import ba.etf.unsa.si.pos_kasa.view.FormaZaKasira;
 import ba.etf.unsa.si.pos_kasa.view.KreiranjeRacuna;
 import ba.etf.unsa.si.pos_kasa.view.OpcijeSefa;
 import ba.etf.unsa.si.pos_kasa.view.Popust;
@@ -53,6 +54,7 @@ public class SefKontroler {
 					formaZaSefa = new OpcijeSefa(SefKontroler.this);
 					formaZaSefa.setVisible(true);
 				} catch (Exception e) {
+					Logger.getLogger(OpcijeSefa.class).error(e.getMessage());
 					e.printStackTrace();
 				}
 			}
@@ -66,6 +68,7 @@ public class SefKontroler {
 					popusti = new PopustPromjenaIBrisanje(SefKontroler.this);
 					popusti.setVisible(true);
 				} catch (Exception e) {
+					Logger.getLogger(PopustPromjenaIBrisanje.class).error(e.getMessage());
 					e.printStackTrace();
 				}
 			}
@@ -79,6 +82,7 @@ public class SefKontroler {
 				dodavanjeNovogKorisnika = new DodavanjeNovogKorisnika(SefKontroler.this);
 				dodavanjeNovogKorisnika.setVisible(true);
 			} catch (Exception e) {
+				Logger.getLogger(DodavanjeNovogKorisnika.class).error(e.getMessage());
 				e.printStackTrace();
 			}
 		}
@@ -186,6 +190,7 @@ public class SefKontroler {
 					pretragaKorisnika = new PretragaKorisnika(SefKontroler.this);
 					pretragaKorisnika.setVisible(true);
 				} catch (Exception e) {
+					Logger.getLogger(PretragaKorisnika.class).error(e.getMessage());
 					e.printStackTrace();
 				}
 			}
@@ -201,6 +206,7 @@ public class SefKontroler {
 					brisanjeKorisnika.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					Logger.getLogger(BrisanjeKorisnika.class).error(e.getMessage());
 				}
 			}
 		});
@@ -217,6 +223,7 @@ public class SefKontroler {
 					brisanjeArtikla.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					Logger.getLogger(BrisanjeArtikala.class).error(e.getMessage());
 				}
 			}
 		});
@@ -232,6 +239,7 @@ public class SefKontroler {
 			pretragaArtikla.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
+			Logger.getLogger(PretragaArtikla.class).error(e.getMessage());
 		}
 	}
 
@@ -246,6 +254,7 @@ public class SefKontroler {
 					dodavanjeNovogArtikla.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					Logger.getLogger(DodavanjeNovogArtikla.class).error(e.getMessage());
 				}
 			}
 		});
@@ -260,6 +269,7 @@ public class SefKontroler {
 					kreiranjeRacuna.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					Logger.getLogger(KreiranjeRacuna.class).error(e.getMessage());
 				}
 			}
 		});
@@ -274,6 +284,7 @@ public class SefKontroler {
 					popust.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					Logger.getLogger(Popust.class).error(e.getMessage());
 				}
 			}
 		});
@@ -290,6 +301,7 @@ public class SefKontroler {
 					brisanjeKorisnikaPrikazRezultata.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					Logger.getLogger(BrisanjeKorisnika_PrikazRezultata.class).error(e.getMessage());
 				}
 			}
 		});
@@ -304,6 +316,7 @@ public class SefKontroler {
 					pretragaKorisnikaPrikaz.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					Logger.getLogger(PretragaKorisnika_prikaz.class).error(e.getMessage());
 				}
 			}
 		});
