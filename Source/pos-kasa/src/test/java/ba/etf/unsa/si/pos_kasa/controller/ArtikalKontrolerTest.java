@@ -293,7 +293,7 @@ public class ArtikalKontrolerTest extends TestCase
 		Long art;
 		art=ak.dodajArtikal(_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, a);
 		List<Artikal> list=ak.vratiSveArtiklePoNazivu("Neki12345");
-		assertEquals(list.size(),1);
+		assertTrue(list.size()>0);
 		
 	}
 	public void testVratiSveArtiklePoBarkodu(){
@@ -309,7 +309,7 @@ public class ArtikalKontrolerTest extends TestCase
 		Long art;
 		art=ak.dodajArtikal(_naziv, _cijena, _jedinica_mjere, _barkod, _zalihe_stanje, _opis, a);
 		List<Artikal> list=ak.vratiSveArtiklePoBarkodu("3871234567888");
-		assertEquals(list.size(),1);
+		assertTrue(list.size()>0);
 	}
 	public void testVratiSveArtiklePoKategoriji(){
 		List<String>rijeci=new Vector<String>();
