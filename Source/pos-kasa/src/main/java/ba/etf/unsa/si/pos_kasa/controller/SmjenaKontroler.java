@@ -64,6 +64,7 @@ public class SmjenaKontroler {
     	return new Smjena();
 	}
 	
+	//public static kreirajSmjenu()
 	
 	
 	

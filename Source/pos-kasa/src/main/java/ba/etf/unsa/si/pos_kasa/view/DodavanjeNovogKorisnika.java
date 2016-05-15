@@ -123,7 +123,7 @@ public class DodavanjeNovogKorisnika {
 		textBrojTel.setBounds(120, 155, 167, 20);
 		DodavnjeNovogKorisnika.getContentPane().add(textBrojTel);
 		textBrojTel.setColumns(10);
-		textBrojTel.setInputVerifier(new BrojTelVerifier(textBrojTel,"Broj tel mora biti u formatu +xxxx-xxx-xxx"));
+		textBrojTel.setInputVerifier(new BrojTelVerifier(textBrojTel,"Broj tel mora biti u formatu +xxxxx-xxx-xxx"));
 
 		textPassword = new JPasswordField();
 		textPassword.setBounds(120, 224, 167, 20);
@@ -131,7 +131,7 @@ public class DodavanjeNovogKorisnika {
 
 		textPasswordConfirm = new JPasswordField();
 		textPasswordConfirm.setBounds(120, 258, 167, 20);
-		textPassword.setInputVerifier(new PasswordVerifier(textPassword,"Password ne smije biti kraći od 5 znakova!"));
+		textPassword.setInputVerifier(new PasswordVerifier(textPassword,"Password ne smije biti kraći od 8 znakova, mora sadrzavati malo, veliko slovo i broj!"));
 		textPasswordConfirm.setInputVerifier(new PasswordConfirmVerifier(textPasswordConfirm,"Potvrda Passworda nije uredu!",textPassword));
 		DodavnjeNovogKorisnika.getContentPane().add(textPasswordConfirm);
 

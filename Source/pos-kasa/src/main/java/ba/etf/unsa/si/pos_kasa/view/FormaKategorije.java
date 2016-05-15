@@ -27,6 +27,7 @@ import java.awt.event.ActionEvent;
 
 import ba.etf.unsa.si.pos_kasa.controller.ArtikalKontroler;
 import ba.etf.unsa.si.pos_kasa.controller.KategorijaControler;
+import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
 import ba.etf.unsa.si.pos_kasa.model.Kategorija;
 
 public class FormaKategorije {
@@ -35,6 +36,8 @@ public class FormaKategorije {
 	private JTextField opisKategorijeText;
 	private JList listKategorije;
 	private DefaultListModel dlm=new DefaultListModel();
+	private SefKontroler sefKontroler;
+	
 	
 	/**
 	 * Launch the application.
@@ -59,7 +62,10 @@ public class FormaKategorije {
 	public FormaKategorije() {
 		initialize();
 	}
-
+	public FormaKategorije(SefKontroler sefKontroler) {
+		this.sefKontroler=sefKontroler;
+		initialize();
+	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
