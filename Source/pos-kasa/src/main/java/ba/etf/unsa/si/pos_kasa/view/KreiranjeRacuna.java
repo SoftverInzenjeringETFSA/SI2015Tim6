@@ -111,7 +111,7 @@ public class KreiranjeRacuna {
 	 */
 	private void initialize() {
 		KreiranjeRacuna = new JFrame();
-		KreiranjeRacuna.setBounds(100, 100, 726, 411);
+		KreiranjeRacuna.setBounds(100, 100, 816, 411);
 		KreiranjeRacuna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel ElementiRacuna = new JPanel();
