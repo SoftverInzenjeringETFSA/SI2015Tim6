@@ -179,6 +179,7 @@ public class PopustPromjenaIBrisanje {
 		
 		dateChooser_1.setBounds(127, 176, 98, 20);
 		frame.getContentPane().add(dateChooser_1);
+		
 
 		textField = new JTextField();
 		textField.setBounds(238, 176, 92, 20);
