@@ -87,7 +87,6 @@ public class SefKontroler {
 				dodavanjeNovogKorisnika = new DodavanjeNovogKorisnika(SefKontroler.this);
 				dodavanjeNovogKorisnika.setVisible(true);
 			} catch (Exception e) {
-				e.printStackTrace();
 				String poruka=e.getMessage();
 				logger.info(poruka);
 				throw new RuntimeException(e);
