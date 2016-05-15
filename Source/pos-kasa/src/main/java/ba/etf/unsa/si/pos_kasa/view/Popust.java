@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
 
 import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
+import ba.etf.unsa.si.pos_kasa.validator.KolicinaValidator;
 import ba.etf.unsa.si.pos_kasa.controller.*;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
@@ -70,6 +71,7 @@ public class Popust {
 		
 		txtIznosPopusta = new JTextField();
 		txtIznosPopusta.setColumns(10);
+		txtIznosPopusta.setInputVerifier(new KolicinaValidator(txtIznosPopusta,"Iznos popusta mora biti broj!"));
 		
 		
 		

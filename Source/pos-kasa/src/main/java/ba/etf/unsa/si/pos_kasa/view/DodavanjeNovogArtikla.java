@@ -23,6 +23,9 @@ import ba.etf.unsa.si.pos_kasa.controller.ArtikalKontroler;
 import ba.etf.unsa.si.pos_kasa.controller.IzvjestajArtikliControler;
 import ba.etf.unsa.si.pos_kasa.controller.KategorijaControler;
 import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
+import ba.etf.unsa.si.pos_kasa.validator.CijenaValidator;
+import ba.etf.unsa.si.pos_kasa.validator.KolicinaValidator;
+
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -109,10 +112,12 @@ public class DodavanjeNovogArtikla {
 		CijenaArtikla = new JTextField();
 		CijenaArtikla.setBounds(170, 131, 196, 20);
 		CijenaArtikla.setColumns(10);
+		CijenaArtikla.setInputVerifier(new CijenaValidator(CijenaArtikla,"Cijena artikla mora biti broj!"));
 		
 		Kolicina = new JTextField();
 		Kolicina.setBounds(170, 173, 196, 20);
 		Kolicina.setColumns(10);
+		Kolicina.setInputVerifier(new KolicinaValidator(Kolicina,"Kolicina mora biti broj!"));
 		
 		textField = new JTextField();
 		textField.setBounds(170, 90, 196, 20);
