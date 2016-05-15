@@ -51,7 +51,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `tim6`.`artikal` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `naziv` VARCHAR(205) NOT NULL,
-  `barkod` VARCHAR(13) NOT NULL,
+  `barkod` VARCHAR(13) NOT NULL UNIQUE,
   `jedinica_mjere` VARCHAR(45) NOT NULL,
   `cijena` DECIMAL NOT NULL,
   `zalihe_stanje` INT NOT NULL,
