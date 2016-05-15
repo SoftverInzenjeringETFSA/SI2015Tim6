@@ -26,6 +26,7 @@ public class SmjenaKontroler {
 	OpcijeSefa formaZaSefa;
 	Zakljucivanje formaKrajSmjene;
 	protected Zakljucivanje Zakljucivanje;
+	final static Logger logger = Logger.getLogger(SmjenaKontroler.class.toString());
 	
 	public SmjenaKontroler() {
 		EventQueue.invokeLater(new Runnable() {
@@ -35,7 +36,9 @@ public class SmjenaKontroler {
 					formaZaSefa.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-					Logger.getLogger(OpcijeSefa.class).error(e.getMessage());
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});
@@ -52,7 +55,9 @@ public class SmjenaKontroler {
 					Zakljucivanje.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-					Logger.getLogger(Zakljucivanje.class).error(e.getMessage());
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});

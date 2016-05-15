@@ -41,6 +41,7 @@ public class PopustPromjenaIBrisanje {
 	/**
 	 * Launch the application.
 	 */
+	final static Logger logger = Logger.getLogger(PopustPromjenaIBrisanje.class.toString());
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -48,8 +49,11 @@ public class PopustPromjenaIBrisanje {
 					PopustPromjenaIBrisanje window = new PopustPromjenaIBrisanje();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					Logger.getLogger(PopustPromjenaIBrisanje.class).error(e.getMessage());
+					//Logger.getLogger(PopustPromjenaIBrisanje.class).error(e.getMessage());
 					e.printStackTrace();
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});
@@ -143,10 +147,14 @@ public class PopustPromjenaIBrisanje {
 						}
 					} catch (NumberFormatException e) {
 						// TODO Auto-generated catch block
-						Logger.getLogger(Integer.class).error(e.getMessage());
+						String poruka=e.getMessage();
+						logger.info(poruka);
+						throw new RuntimeException(e);
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
-						Logger.getLogger(Integer.class).error(e.getMessage());
+						String poruka=e.getMessage();
+						logger.info(poruka);
+						throw new RuntimeException(e);
 					}
 				
 			}

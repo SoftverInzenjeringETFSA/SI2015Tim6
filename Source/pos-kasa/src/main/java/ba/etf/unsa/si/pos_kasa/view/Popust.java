@@ -28,7 +28,7 @@ public class Popust {
 	private JButton btnKreirajPopust;
 	private JLabel label;
     private SefKontroler sefKontroler;
-
+    final static Logger logger = Logger.getLogger(Popust.class.toString());
 	/**
 	 * Create the application.
 	 */
@@ -51,7 +51,9 @@ public class Popust {
 					Popust window = new Popust();
 					window.frmPopust.setVisible(true);
 				} catch (Exception e) {
-					Logger.getLogger(Popust.class).error(e.getMessage());
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});
@@ -97,11 +99,15 @@ public class Popust {
 						pc.dodajAkcijaPopust(datePocetak.getDate(),dateKraj.getDate(), textAreaOpis.getText(), Integer.parseInt(txtIznosPopusta.getText()));
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(null, e.getMessage(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
-						Logger.getLogger(PopustControler.class).error(e.getMessage());
+						String poruka=e.getMessage();
+						logger.info(poruka);
+						throw new RuntimeException(e);
 					}
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, e.getMessage(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
-					Logger.getLogger(PopustControler.class).error(e.getMessage());
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				} 
 				
 			}

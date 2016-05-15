@@ -19,7 +19,7 @@ import java.util.regex.*;
 		private static Session session;
 		private static String pattern="[0-9]{13}";
 		public static void main(String[] args){
-			
+	    final Logger logger = Logger.getLogger(ArtikalKontroler.class.toString());	
 		}
 
 		public static Long dodajArtikal(String naziv, double cijena, String jedinica_mjere, String barkod,int zalihe_stanje,String opis,long kategorija_id)

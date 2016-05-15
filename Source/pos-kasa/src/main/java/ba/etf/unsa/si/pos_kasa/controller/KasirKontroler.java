@@ -11,15 +11,20 @@ public class KasirKontroler {
 
 	FormaZaKasira formaZaKasira;
 	KreiranjeRacuna formaZaKreiranjeRacuna;
-
+	final static Logger logger = Logger.getLogger(KasirKontroler.class.toString());
 	public KasirKontroler() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					formaZaKasira = new FormaZaKasira(KasirKontroler.this);
 					formaZaKasira.setVisible(true);
-				} catch (Exception e) {
-					Logger.getLogger(KasirKontroler.class).error(e.getMessage());}					}
+				} catch (Exception e)
+				{
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
+					
+				}					}
 			});
 		};
 	
@@ -31,11 +36,16 @@ public class KasirKontroler {
 					formaZaKasira.setVisible(false);
 					formaZaKreiranjeRacuna = new KreiranjeRacuna(KasirKontroler.this);
 					formaZaKreiranjeRacuna.setVisible(true);
-				} catch (Exception e) {
-					Logger.getLogger(KreiranjeRacuna.class).error(e.getMessage());
-					e.printStackTrace();
+				} 
+					catch (Exception e)
+					{
+						String poruka=e.getMessage();
+						logger.info(poruka);
+						throw new RuntimeException(e);
+						
+					}
 				}
-			}
+			
 		});
 	}
 

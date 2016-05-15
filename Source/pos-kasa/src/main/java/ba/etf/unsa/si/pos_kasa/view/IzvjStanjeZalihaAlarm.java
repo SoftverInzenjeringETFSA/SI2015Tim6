@@ -26,7 +26,7 @@ public class IzvjStanjeZalihaAlarm {
 	private JTable table;
 	Object[] kolone = { "Artikal", "Sifra", "Zalihe" };
 	DefaultTableModel dtm = new DefaultTableModel();
-
+	final static Logger logger = Logger.getLogger(IzvjStanjeZalihaAlarm.class.toString());
 	/**
 	 * Launch the application.
 	 */
@@ -37,8 +37,10 @@ public class IzvjStanjeZalihaAlarm {
 					IzvjStanjeZalihaAlarm window = new IzvjStanjeZalihaAlarm();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					Logger.getLogger(IzvjStanjeZalihaAlarm.class).error(e.getMessage());
 					e.printStackTrace();
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});

@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
 
 public class DateValidator extends AbstractValidator {
 
-	
+	final static Logger logger = Logger.getLogger(DateValidator.class.toString());
 	public DateValidator(JComponent c, String message) {
 		super(c, message);
 	}
@@ -39,7 +39,9 @@ public class DateValidator extends AbstractValidator {
 		}
 		catch(Exception e)
 		{
-			Logger.getLogger(Date.class).error(e.getMessage());
+			String poruka=e.getMessage();
+			logger.info(poruka);
+			//throw new RuntimeException(e);
 			return false;
 		}
 	}

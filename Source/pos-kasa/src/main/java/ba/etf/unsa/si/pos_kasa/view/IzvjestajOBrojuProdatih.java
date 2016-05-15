@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
+import org.apache.log4j.Logger;
 
 public class IzvjestajOBrojuProdatih {
 
@@ -32,6 +33,7 @@ public class IzvjestajOBrojuProdatih {
 	/**
 	 * Launch the application.
 	 */
+	final static Logger logger = Logger.getLogger(IzvjestajOBrojuProdatih.class.toString());
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -39,7 +41,9 @@ public class IzvjestajOBrojuProdatih {
 					IzvjestajOBrojuProdatih window = new IzvjestajOBrojuProdatih();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});

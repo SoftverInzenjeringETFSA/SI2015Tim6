@@ -38,6 +38,7 @@ public class IzvjUkupanPrometPoNP {
 	/**
 	 * Launch the application.
 	 */
+	final static Logger logger = Logger.getLogger(IzvjUkupanPrometPoNP.class.toString());
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -46,7 +47,9 @@ public class IzvjUkupanPrometPoNP {
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-					Logger.getLogger(IzvjUkupanPrometPoNP.class).error(e.getMessage());
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});

@@ -36,6 +36,7 @@ public class IzvjUkupanPrometPoUposleniku {
 	/**
 	 * Launch the application.
 	 */
+	final static Logger logger = Logger.getLogger(IzvjUkupanPrometPoUposleniku.class.toString());
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -44,7 +45,9 @@ public class IzvjUkupanPrometPoUposleniku {
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-					Logger.getLogger(IzvjUkupanPrometPoUposleniku.class).error(e.getMessage());
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});
@@ -96,8 +99,11 @@ public class IzvjUkupanPrometPoUposleniku {
 					lblIzvjestajZa.setText("Izvjestaj o prometu za period " + sdf.format(pocDatum.getDate()) + " - " + sdf.format(krajDatum.getDate()) + " za: " + Izvjestaji.dajImePrezimeUposlenika(textField.getText()) + " .");
 					panelIzvjestaj.setVisible(true);
 				} catch (Exception e) {
-					Logger.getLogger(Izvjestaji.class).error(e.getMessage());
+					//Logger.getLogger(Izvjestaji.class).error(e.getMessage());
 			        JOptionPane.showMessageDialog(null, e.getMessage(), "Izuzetak", JOptionPane.INFORMATION_MESSAGE);
+			        String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});

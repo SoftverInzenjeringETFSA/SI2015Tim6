@@ -37,7 +37,7 @@ public class FormaKategorije {
 	private JList listKategorije;
 	private DefaultListModel dlm=new DefaultListModel();
 	private SefKontroler sefKontroler;
-	
+	final static Logger logger = Logger.getLogger(FormaKategorije.class.toString());
 	
 	/**
 	 * Launch the application.
@@ -50,7 +50,9 @@ public class FormaKategorije {
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-					Logger.getLogger(FormaKategorije.class).error(e.getMessage());
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});
