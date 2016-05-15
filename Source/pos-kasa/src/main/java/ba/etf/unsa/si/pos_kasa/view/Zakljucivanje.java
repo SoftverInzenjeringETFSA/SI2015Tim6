@@ -1,25 +1,21 @@
 package ba.etf.unsa.si.pos_kasa.view;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Date;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 
-import org.apache.log4j.Logger;
+import com.toedter.calendar.JDateChooser;
 
 import ba.etf.unsa.si.pos_kasa.controller.SmjenaKontroler;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.awt.event.ActionEvent;
 
 public class Zakljucivanje {
 
 	private JFrame Zakljucivanje;
-	private JTextField text_datumSmjene;
-	private JTextField text_VrijemeZavrsetkaSmjene;
 	private SmjenaKontroler smjenaKontroler;
 
 	/**
@@ -43,7 +39,6 @@ public class Zakljucivanje {
 					window.Zakljucivanje.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-					Logger.getLogger(Zakljucivanje.class).error(e.getMessage());
 				}
 			}
 		});
@@ -74,27 +69,35 @@ public class Zakljucivanje {
 		lblNewLabel.setBounds(37, 95, 126, 21);
 		Zakljucivanje.getContentPane().add(lblNewLabel);
 		
-		text_datumSmjene = new JTextField();
-		text_datumSmjene.setBounds(185, 49, 119, 20);
-		Zakljucivanje.getContentPane().add(text_datumSmjene);
-		text_datumSmjene.setColumns(10);
+		final JDateChooser datumSmjene = new JDateChooser();
+		datumSmjene.setDateFormatString("yyyy-MM-dd");
+		datumSmjene.setBounds(185, 49, 91, 20);
+		Zakljucivanje.getContentPane().add(datumSmjene);
 		
-		text_VrijemeZavrsetkaSmjene = new JTextField();
-		text_VrijemeZavrsetkaSmjene.setColumns(10);
-		text_VrijemeZavrsetkaSmjene.setBounds(185, 95, 119, 20);
-		Zakljucivanje.getContentPane().add(text_VrijemeZavrsetkaSmjene);
+		final JDateChooser vrijemeKrajaSmjene = new JDateChooser();
+		vrijemeKrajaSmjene.setBounds(185, 95, 91, 20);
+		Zakljucivanje.getContentPane().add(vrijemeKrajaSmjene);
 		
 		JButton btnZakljuciSmjenu = new JButton("Zakljuci smjenu");
 		btnZakljuciSmjenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				String datum_smjene=(text_datumSmjene).getText();
-				String vrijeme_zavrsetka_smjene=(text_VrijemeZavrsetkaSmjene).getText();
+				
+				Date datum_smjene=(Date) datumSmjene.getDate();
+				Date vrijeme_kraja_smjene=(Date) vrijemeKrajaSmjene.getDate();
+				
 				
 			}
 		});
 		btnZakljuciSmjenu.setBounds(135, 201, 113, 23);
 		Zakljucivanje.getContentPane().add(btnZakljuciSmjenu);
+		
+		
+		
+	
+		
+		
+		}
 	}
-}
+
 
