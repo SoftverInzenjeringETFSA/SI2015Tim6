@@ -19,6 +19,7 @@ public class ArtikalKontrolerTest extends TestCase
 	    a=kc.dodajKategoriju("Kategorija","Opis");
 	    Kategorija kTest = new Kategorija();	
 	    aTest=kc.dodajKategoriju("Kategorija","Opis");
+	       	    
 	}
 	public void testDodajArtikal()
 	{			

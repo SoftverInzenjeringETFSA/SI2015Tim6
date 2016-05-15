@@ -92,11 +92,6 @@ public class Zakljucivanje {
 		btnZakljuciSmjenu.setBounds(135, 201, 113, 23);
 		Zakljucivanje.getContentPane().add(btnZakljuciSmjenu);
 		
-		
-		
-	
-		
-		
 		}
 	}
 
