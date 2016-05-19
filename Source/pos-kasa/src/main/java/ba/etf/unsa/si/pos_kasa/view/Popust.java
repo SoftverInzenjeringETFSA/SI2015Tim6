@@ -19,6 +19,8 @@ import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import org.apache.log4j.Logger;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class Popust {
 
@@ -65,9 +67,17 @@ public class Popust {
 	
 	private void initialize() {
 		frmPopust = new JFrame();
+		frmPopust.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentHidden(ComponentEvent e) {
+				setVisible(false);
+				
+			}
+		});
 		frmPopust.setTitle("Popust");
 		frmPopust.setBounds(100, 100, 310, 281);
-		frmPopust.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frmPopust.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		
 		
 		lblIznosRaunaS = new JLabel("Iznos popusta:");
 		
@@ -98,16 +108,17 @@ public class Popust {
 					try {
 						pc.dodajAkcijaPopust(datePocetak.getDate(),dateKraj.getDate(), textAreaOpis.getText(), Integer.parseInt(txtIznosPopusta.getText()));
 					} catch (Exception e) {
-						JOptionPane.showMessageDialog(null, e.getMessage(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+						//JOptionPane.showMessageDialog(null, e.getMessage(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+						messageBox.infoBox("Prije klika na dugme odaberite datume i unesite iznos popusta!", "Info Popust");
 						String poruka=e.getMessage();
 						logger.info(poruka);
-						throw new RuntimeException(e);
+						//throw new RuntimeException(e);
 					}
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, e.getMessage(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
 					String poruka=e.getMessage();
 					logger.info(poruka);
-					throw new RuntimeException(e);
+					//throw new RuntimeException(e);
 				} 
 				
 			}

@@ -18,12 +18,12 @@ import ba.etf.unsa.si.pos_kasa.view.messageBox;
 
 public class LoginKontroler {
 
-	static KasirKontroler kasirKontroler;
-	static LoginKontroler loginKontroler;
-	static SefKontroler sefKontroler;
-	static Smjena smjena;
+	private KasirKontroler kasirKontroler;
+	private static LoginKontroler loginKontroler;
+	private SefKontroler sefKontroler;
+	private Smjena smjena;
 	final static Logger logger = Logger.getLogger(LoginKontroler.class.toString());
-	static PrikazForma loginForma;
+	private PrikazForma loginForma;
 
 	public static void main(String[] args) {
 		loginKontroler = new LoginKontroler();
@@ -48,17 +48,20 @@ public class LoginKontroler {
 		// login view prikazati, login metodu pozvati sa viewa
 	}
 
-	public static void login(String korisnickoIme, String password) {
+	public void login(String korisnickoIme, String password)
+	{
 
 		Session session = null;
-		try {
+		try 
+		{
 			session = HibernateUtil.getSessionFactory().openSession();
 			Query query = session.createQuery("FROM Uposlenik where username= :korisnickoIme and password= :password");
 			query.setParameter("korisnickoIme", korisnickoIme);
 			query.setParameter("password", password);
 			@SuppressWarnings("unchecked")
 			List<Uposlenik> uposlenici = query.list();
-			if (uposlenici != null && uposlenici.size() == 1) {
+			if (uposlenici != null && uposlenici.size() == 1) 
+			{
 				Uposlenik uposlenik = uposlenici.get(0);
 				smjena = new Smjena();
                 //setovat sve osim kraja smjenen
@@ -72,23 +75,27 @@ public class LoginKontroler {
 				//TODO napravit zapis u bazu za smjenu pocetak 
 				
 				String imePrezime=uposlenik.getImePrezime();
-				if (uposlenik.getUloga().equals("Kasir")) {
+				if (uposlenik.getUloga().equals("Kasir")) 
+				{
 					kasirKontroler = new KasirKontroler();
 					messageBox.infoBox("Kasir: " +imePrezime+" je uspješno logovan na kasu.", "Info Login");
 					loginForma.setVisible(false);
 					
-				} else if (uposlenik.getUloga().equals("Sef")) {
+				} else if (uposlenik.getUloga().equals("Sef"))
+				{
 					sefKontroler = new SefKontroler();
 					messageBox.infoBox("Šef: " +imePrezime+" je uspješno logovan na kasu.", "Info Login");
 					loginForma.setVisible(false);
 					
-				} else {
+				} else 
+				{
 					//messageBox.infoBox("Neuspješan Login", "Info Login");
 				}
 
-			} else {
+			} else 
+			{
 				// Prikazi poruku pogresno korisnicko ime ili password
-				messageBox.infoBox("Login Podaci Nisu Validni. Provjerite unos!!!", "Info Login");
+				messageBox.infoBox("Korisnik sa unijetim podacima ne postoji. Provjerite unos!!!", "Info Login");
 			}
 		} catch (Exception e)
 		{
@@ -96,11 +103,13 @@ public class LoginKontroler {
 			logger.info(poruka);
 			throw new RuntimeException(e);
 			
-		} finally {
-			if (session != null) {
+		} finally 
+		{
+			if (session != null) 
+			{
 				session.close();				
 			}
-		}
+		}//finally end
 	}
 
 }

@@ -1,8 +1,14 @@
 package ba.etf.unsa.si.pos_kasa.validator;
 
+
+
+import java.util.Date;
+
 import javax.swing.JComponent;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import ba.etf.unsa.si.pos_kasa.view.messageBox;
 
 public class JMBGVerifier extends AbstractValidator {
 	
@@ -32,7 +38,24 @@ public class JMBGVerifier extends AbstractValidator {
 	
 	private Boolean validirajIspravnostJMBG(String JMBG) {
 		String s = "";
+		//String validacijaDatuma="";
         String input = JMBG.substring(0,JMBG.length() - 1);
+        //validacijaDatumaRodjenja=JMBG.substring(0,4);
+        //messageBox.infoBox(validacijaDatuma, "info o validaciji jmbg datuma");
+        String validacijaDan=JMBG.substring(0,2);
+        String validacijaMjesec=JMBG.substring(2,4);
+        int dan=Integer.parseInt(validacijaDan);
+        int mjesec=Integer.parseInt(validacijaMjesec);
+        //messageBox.infoBox(String.valueOf(dan), "dan");
+        String godinaRodjenja=JMBG.substring(4,7);
+        int godina =Integer.parseInt(godinaRodjenja);
+        Date trenutnaGodinaDatum= new Date();
+        String trenutnaGodinaString = trenutnaGodinaDatum.toString();
+       // messageBox.infoBox(trenutnaGodinaString.substring(25, trenutnaGodinaString.length()), "info o godini");
+       // messageBox.infoBox(trenutnaGodinaString, "info o godini");
+        int trenutnaGodina =Integer.parseInt((trenutnaGodinaDatum.toString()).substring(25, trenutnaGodinaString.length()));
+        
+        if(dan>31||mjesec>12||godina<900||godina>trenutnaGodina) return false;
         int i = 0, i1 = 0, diff = 0;
         i = i + (Integer.valueOf(String.valueOf(JMBG.charAt(0))).intValue() * 7);
         i = i + (Integer.valueOf(String.valueOf(JMBG.charAt(1))).intValue() * 6);

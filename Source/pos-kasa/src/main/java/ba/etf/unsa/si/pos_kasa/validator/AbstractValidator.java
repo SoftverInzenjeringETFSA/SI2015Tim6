@@ -64,7 +64,7 @@ public abstract class AbstractValidator extends InputVerifier implements KeyList
         this.parent = parent;
         popup = new JDialog(parent);
         initComponents();
-        System.out.println("POZVVANOOO");
+        //System.out.println("POZVVANOOO");
     }
 	
     /**
@@ -170,5 +170,8 @@ public abstract class AbstractValidator extends InputVerifier implements KeyList
         popup.setFocusableWindowState(false);
     }
 
+    public void changeErrorMessage(String message) {
+    	messageLabel.setText(message);
+    }
 	protected abstract boolean validationCriteria(JPasswordField textFieldpasswordConfirm);
 }

@@ -22,6 +22,7 @@ public class PrikazForma {
 	private JTextField password;
 	private LoginKontroler loginKontroler;
 	JButton btnPrijava;
+	PasswordVerifier passwordVer;
 
 	/**
 	 * Create the application.
@@ -72,10 +73,13 @@ public class PrikazForma {
 		btnPrijava.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		btnPrijava.setBounds(178, 84, 122, 25);
 		prikazForma.getContentPane().add(btnPrijava);
+		
+		passwordVer = new PasswordVerifier(password, "");
 
 		btnPrijava.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//if(password.getInputVerifier() != null)
+				if(password.getText().equals("")||!passwordVer.ispravnostLozinke(password))
+					return;
 				loginKontroler.login(korisnickoIme.getText(), password.getText());
 			}
 		});

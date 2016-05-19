@@ -16,9 +16,9 @@ public class BrojTelVerifier extends AbstractValidator {
 	protected boolean validationCriteria(JComponent c) {
 		String brojTel = ((JTextField) c).getText();
 		boolean isValid = true;
-		Pattern p = Pattern.compile("^([\\+]{1}[0-9]{5}[\\-]{1}[0-9]{3}[\\-]{1}[0-9]{3})");
+		Pattern p = Pattern.compile("^([\\+]{1}[\0-9]{5}[\\-]{1}[\0-9]{3}[\\-]{1}[\0-9]{3})");
 		Matcher m = p.matcher(brojTel);
-		if (brojTel == null || !m.find()) {
+		if (brojTel == null || !m.find()|| brojTel.length()>14) {
 			isValid = false;
 		}
 		return isValid;

@@ -27,6 +27,8 @@ import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class PopustPromjenaIBrisanje {
 
@@ -72,8 +74,15 @@ public class PopustPromjenaIBrisanje {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentHidden(ComponentEvent arg0) {
+				
+				setVisible(false);
+			}
+		});
 		frame.setBounds(100, 100, 607, 300);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -147,12 +156,14 @@ public class PopustPromjenaIBrisanje {
 						// TODO Auto-generated catch block
 						String poruka=e.getMessage();
 						logger.info(poruka);
-						throw new RuntimeException(e);
+						return;
+						//throw new RuntimeException(e); NEMOJ BACATI EXCEPTION BEZ DA GA HENDLAS ODE APLIKACIJA U NEISPRAVNO STANJE
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						String poruka=e.getMessage();
 						logger.info(poruka);
-						throw new RuntimeException(e);
+						return;
+						//hrow new RuntimeException(e); NEMOJ BACATI EXCEPTION NE HENDLAS GA NIGDJE APLIKACIJA NE RADI DALJE
 					}
 				
 			}

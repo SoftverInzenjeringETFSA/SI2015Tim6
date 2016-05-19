@@ -70,7 +70,7 @@ public class BrisanjeKorisnika_PrikazRezultata {
 		frmBrisanjeKorisnika.getContentPane().add(btnNewButton);
 		
 		JLabel lblImeIPrezime = new JLabel("Ime i Prezime:");
-		lblImeIPrezime.setBounds(10, 61, 75, 14);
+		lblImeIPrezime.setBounds(10, 61, 100, 14);
 		frmBrisanjeKorisnika.getContentPane().add(lblImeIPrezime);
 		
 		JLabel lblJmbg = new JLabel("JMBG:");
