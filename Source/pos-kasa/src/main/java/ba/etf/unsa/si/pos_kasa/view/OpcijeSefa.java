@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
 import ba.etf.unsa.si.pos_kasa.controller.SmjenaKontroler;
@@ -17,6 +19,8 @@ import java.awt.Window;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class OpcijeSefa {
 
@@ -194,7 +198,7 @@ public class OpcijeSefa {
 		JButton btnNewButton = new JButton("Odjava");
 		btnNewButton.setFont(new Font("Times New Roman", Font.BOLD, 13));
 
-		btnNewButton.setBounds(10, 33, 99, 53);
+		btnNewButton.setBounds(10, 11, 99, 35);
 		panel_3.add(btnNewButton);
 
 		JButton btnKrajSmjene = new JButton("Kraj smjene");
@@ -205,8 +209,24 @@ public class OpcijeSefa {
 		});
 
 		btnKrajSmjene.setFont(new Font("Times New Roman", Font.BOLD, 13));
-		btnKrajSmjene.setBounds(119, 33, 104, 53);
+		btnKrajSmjene.setBounds(119, 11, 104, 35);
 		panel_3.add(btnKrajSmjene);
+		
+		JButton btnPomoc = new JButton("Pomoć");
+		btnPomoc.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				String help = "<html><body>" + 
+			                  "<h1>Pomoc</h1>" + 
+						      "<p>Forma je podijeljena na 6 panela radi lakše preglednosti funkcionalnosti koje se nude</p><br>" +
+			                  "<p>Prikazane su sve mogućnosti koje se stavljaju na raspolaganje šefu</p>";
+			
+			JOptionPane.showMessageDialog(null,help);
+			}
+		});
+		btnPomoc.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		btnPomoc.setBounds(117, 57, 106, 29);
+		panel_3.add(btnPomoc);
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBounds(237, 27, 169, 121);
