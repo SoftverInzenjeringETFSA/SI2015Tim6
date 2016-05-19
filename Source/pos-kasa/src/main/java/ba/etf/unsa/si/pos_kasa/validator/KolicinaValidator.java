@@ -17,6 +17,7 @@ public class KolicinaValidator extends AbstractValidator {
 		 super(c,message);
 		}
 
+	//almir-vršio sam izmjene ovdje ne postoji validacija
 	@Override
 	protected boolean validationCriteria(JComponent c) {
 		try{
