@@ -328,7 +328,16 @@ public class ArtikalKontrolerTest extends TestCase
 		
 		
 	}
-
+		public void testVratiSveArtikle(){
+			List<Artikal>lista1=new Vector<Artikal>();
+			List<Artikal>lista2=new Vector<Artikal>();
+			ArtikalKontroler ak = new ArtikalKontroler();
+			lista1=(List<Artikal>)ak.vratiSveArtikle();
+			ak.dodajArtikal("Proba", 2.2,"Komad", "1231231231232", 4,"Test", aTest);
+			lista2=(List<Artikal>)ak.vratiSveArtikle();
+			assertEquals(lista2.size(),lista1.size()+1);
+			
+		}
 	
 	
 

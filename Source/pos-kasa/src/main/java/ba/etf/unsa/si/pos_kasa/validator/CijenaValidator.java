@@ -11,7 +11,7 @@ import ba.etf.unsa.si.pos_kasa.view.FormaKategorije;
 
 public class CijenaValidator extends AbstractValidator{
 
-	final static Logger logger = Logger.getLogger(CijenaValidator.class.toString());
+	final Logger logger = Logger.getLogger(CijenaValidator.class.toString());
 	public CijenaValidator(JComponent c, String message) {
 		 super(c,message);
 		}
@@ -28,7 +28,6 @@ public class CijenaValidator extends AbstractValidator{
 			
 			String poruka=e.getMessage();
 			logger.info(poruka);
-			
 			//throw new RuntimeException(e);
 			return false;
 		}

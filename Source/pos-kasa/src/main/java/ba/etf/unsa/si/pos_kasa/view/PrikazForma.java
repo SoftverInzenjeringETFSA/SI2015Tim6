@@ -67,7 +67,7 @@ public class PrikazForma {
 		password.setBounds(153, 53, 183, 20);
 		prikazForma.getContentPane().add(password);
 		password.setColumns(10);
-		password.setInputVerifier(new PasswordVerifier(password, "Password mora biti minimalno 8 znakova!"));
+		password.setInputVerifier(new PasswordVerifier(password, "Password mora biti minimalno 8 znakova, imati barem 1 malo, veliko slovo i broj!"));
 
 	    btnPrijava = new JButton("Prijava");
 		btnPrijava.setFont(new Font("Times New Roman", Font.PLAIN, 13));
