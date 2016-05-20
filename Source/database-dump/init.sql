@@ -111,11 +111,6 @@ CREATE TABLE IF NOT EXISTS `tim6`.`racun` (
   PRIMARY KEY (`id`),
   INDEX `fk_racun_akcijapopust1_idx` (`akcijapopust_id` ASC),
   INDEX `fk_racun_smjena1_idx` (`smjena_id` ASC),
-  CONSTRAINT `fk_racun_akcijapopust1`
-    FOREIGN KEY (`akcijapopust_id`)
-    REFERENCES `tim6`.`akcijapopust` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_racun_smjena11`
     FOREIGN KEY (`smjena_id`)
     REFERENCES `tim6`.`smjena` (`id`)
@@ -179,16 +174,10 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `tim6`.`nacinplacanja` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `iznos` DECIMAL NOT NULL,
-  `vrstaplacanja_id` INT NOT NULL,
+  `vrstaplacanja_id` VARCHAR(50) NOT NULL,
   `racun_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_nacinplacanja_vrstaplacanja1_idx` (`vrstaplacanja_id` ASC),
   INDEX `fk_nacinplacanja_racun1_idx` (`racun_id` ASC),
-  CONSTRAINT `fk_nacinplacanja_vrstaplacanja1`
-    FOREIGN KEY (`vrstaplacanja_id`)
-    REFERENCES `tim6`.`vrstaplacanja` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_nacinplacanja_racun1`
     FOREIGN KEY (`racun_id`)
     REFERENCES `tim6`.`racun` (`id`)
@@ -197,6 +186,12 @@ CREATE TABLE IF NOT EXISTS `tim6`.`nacinplacanja` (
 ENGINE = InnoDB;
 
 INSERT INTO `tim6`.`uposlenik` VALUES(1,'Sef Sef','1991-09-02','9999999999999','+0000-000-000','1991-09-01','SefAdmin','adminSef1234','Sef');
+
+INSERT INTO `tim6`.`uposlenik` VALUES(2,'Kasir Kasirko','1989-01-22','9999399999999','+0000-000-000','1991-09-01','kasir','kasir','Sef');
+
+INSERT INTO `tim6`.`kategorija` (`id`, `naziv`, `opis`) VALUES ('1', 'Prehrana', 'Prehrambeni proizvodi');
+INSERT INTO `tim6`.`artikal` (`id`, `naziv`, `barkod`, `jedinica_mjere`, `cijena`, `zalihe_stanje`, `opis`, `kategorija_id`) VALUES ('1', 'Krompir', '1234567891234', 'kg', '0.55', '25', 'Konopir', '1');
+INSERT INTO `tim6`.`smjena` (`id`, `pocetak_smjene`, `kraj_smjene`, `uposlenik_id`) VALUES ('1', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), '2');
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
