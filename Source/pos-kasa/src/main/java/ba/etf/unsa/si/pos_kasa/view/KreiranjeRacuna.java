@@ -133,7 +133,7 @@ public class KreiranjeRacuna {
 				btntStampajRacun.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						racunKontroler = new RacunKontroler();
-						racunKontroler.kreirajRacun(Integer.parseInt(System.getProperty("smjena_id")));
+						racunKontroler.kreirajRacun(1, String.valueOf(NacinPlacanja.getSelectedItem()), (DefaultTableModel) Stavke.getModel());
 					}
 				});
 				btntStampajRacun.setFont(new Font("Times New Roman", Font.PLAIN, 13));
@@ -247,7 +247,7 @@ public class KreiranjeRacuna {
 		btnDodajStavku.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				DefaultTableModel model = (DefaultTableModel) Stavke.getModel();
-				if(artikal.getZalihe_stanje() < Integer.parseInt(lblIznos.getText())){JOptionPane.showMessageDialog(null, "Artikla " + lblNaziv.getText() + " nema dovoljno na stanju!");
+				if(artikal.getZalihe_stanje() < Double.parseDouble(lblIznos.getText())){JOptionPane.showMessageDialog(null, "Artikla " + lblNaziv.getText() + " nema dovoljno na stanju!");
 				return;
 				}
 				model.addRow(new Object[]{artikal.getBarkod(), artikal.getNaziv(), spinner.getValue(), artikal.getCijena(), lblIznos.getText()});

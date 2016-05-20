@@ -3,6 +3,7 @@ package ba.etf.unsa.si.pos_kasa.controller;
 import ba.etf.unsa.si.pos_kasa.model.*;
 import ba.etf.unsa.si.pos_kasa.view.*;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.swing.table.DefaultTableModel;
@@ -94,25 +95,52 @@ public class RacunKontroler {
     	    
 	}
 	
-	public long kreirajRacun(long smjena_id)
+	public long kreirajRacun(long smjena_id, String nacinPlacanja, DefaultTableModel model)
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		Racun racun = new Racun();
 		racun.setDatum_i_vrijeme(new Date());
+		racun.setSmjena_id(smjena_id);
+		racun.setBroj_racuna((int) (new Date().getTime()/1000));
+		AkcijaPopust ap = this.dajAktivniPopust();
+		if(ap != null) racun.setAkcijapopust_id(ap.getId());
 		Long id = (Long) session.save(racun);
 		t.commit();
 		session.close();
+		double ukupno = kreirajStavkeRacuna(model, id);
+		if(ap != null)
+			kreirajNacinPlacanja(nacinPlacanja, ukupno -ap.getIznos_popusta()*ukupno, id);
+		else
+			kreirajNacinPlacanja(nacinPlacanja, ukupno , id);
 		return id;
 	}
 	
-	public void kreirajStavkeRacuna(DefaultTableModel model, long racun_id){
-	for (int count = 0; count < model.getRowCount(); count++){
-			  this.kreirajStavkuRacuna(model.getValueAt(count, 0).toString(), Integer.parseInt(model.getValueAt(count, 2).toString()), racun_id);
-			} 
+		
+	private AkcijaPopust dajAktivniPopust(){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		String hql = "Select new ba.etf.unsa.si.pos_kasa.model.AkcijaPopust(a.id, a.datum_pocetka, a.datum_kraja, a.opis, a.iznos_popusta) "
+				+ "FROM AkcijaPopust a "
+				+ "WHERE a.datum_kraja > STR_TO_DATE(:datum1, \'%Y-%m-%d\')";
+		Query q = session.createQuery(hql);
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		q.setString("datum1",		df.format(new Date()));
+		List redovi = q.list();
+		if(redovi.size() > 0) return (AkcijaPopust) redovi.get(0);
+		return null;
 	}
 	
-	private long kreirajStavkuRacuna(String barKod, int kolicina, long racun_id){
+	
+	public double kreirajStavkeRacuna(DefaultTableModel model, long racun_id){
+		double iznos = 0.0;
+		for (int count = 0; count < model.getRowCount(); count++){
+				  iznos += this.kreirajStavkuRacuna(model.getValueAt(count, 0).toString(), Integer.parseInt(model.getValueAt(count, 2).toString()), racun_id);
+				} 
+		return iznos;
+	}
+	
+	private double kreirajStavkuRacuna(String barKod, int kolicina, long racun_id){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		StavkaRacuna sr = new StavkaRacuna();
@@ -125,7 +153,19 @@ public class RacunKontroler {
 		Long id = (Long) session.save(sr);
 		t.commit();
 		session.close();
-		return id;
+		return sr.getUkupna_cijena();
+	}
+	
+	private void kreirajNacinPlacanja(String nacinPlacanja, double iznos, long racun_id){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		NacinPlacanja np = new NacinPlacanja();
+		np.setIznos(iznos);
+		np.setRacun_id(racun_id);
+		np.setVrstaplacanja_id(nacinPlacanja);
+		Long id = (Long) session.save(np);
+		t.commit();
+		session.close();
 	}
 	
 	private void umanjiStanjeArtikla(Artikal artikal, int kolicina){

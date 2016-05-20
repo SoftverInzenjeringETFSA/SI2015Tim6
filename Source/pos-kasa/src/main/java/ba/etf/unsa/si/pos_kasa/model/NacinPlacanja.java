@@ -13,7 +13,7 @@ public class NacinPlacanja implements java.io.Serializable {
 	@GeneratedValue
 	long id;
 	double iznos;
-	long vrstaplacanja_id;
+	String vrstaplacanja_id;
 	long racun_id;
 	public long getId() {
 		return id;
@@ -27,10 +27,10 @@ public class NacinPlacanja implements java.io.Serializable {
 	public void setIznos(double iznos) {
 		this.iznos = iznos;
 	}
-	public long getVrstaplacanja_id() {
+	public String getVrstaplacanja_id() {
 		return vrstaplacanja_id;
 	}
-	public void setVrstaplacanja_id(long vrstaplacanja_id) {
+	public void setVrstaplacanja_id(String vrstaplacanja_id) {
 		this.vrstaplacanja_id = vrstaplacanja_id;
 	}
 	public long getRacun_id() {
@@ -42,7 +42,7 @@ public class NacinPlacanja implements java.io.Serializable {
 	public NacinPlacanja() {
 		super();
 	}
-	public NacinPlacanja(long id, double iznos, long vrstaplacanja_id, long racun_id) {
+	public NacinPlacanja(long id, double iznos, String vrstaplacanja_id, long racun_id) {
 		super();
 		this.id = id;
 		this.iznos = iznos;
