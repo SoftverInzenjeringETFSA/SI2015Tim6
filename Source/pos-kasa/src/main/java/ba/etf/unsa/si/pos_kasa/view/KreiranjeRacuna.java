@@ -7,6 +7,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.List;
 
@@ -47,6 +49,7 @@ public class KreiranjeRacuna {
 	private JTable Stavke;
 	private KasirKontroler kasirKontroler;
 	private SefKontroler sefKontroler;
+	private RacunKontroler racunKontroler;
 	double ukupniIznos = 0;
 	JComboBox NacinPlacanja;
 	JLabel lblDatum;
@@ -129,7 +132,8 @@ public class KreiranjeRacuna {
 				JButton btntStampajRacun = new JButton("Štampaj račun");
 				btntStampajRacun.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+						racunKontroler = new RacunKontroler();
+						racunKontroler.kreirajRacun(Integer.parseInt(System.getProperty("smjena_id")));
 					}
 				});
 				btntStampajRacun.setFont(new Font("Times New Roman", Font.PLAIN, 13));
@@ -243,6 +247,9 @@ public class KreiranjeRacuna {
 		btnDodajStavku.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				DefaultTableModel model = (DefaultTableModel) Stavke.getModel();
+				if(artikal.getZalihe_stanje() < Integer.parseInt(lblIznos.getText())){JOptionPane.showMessageDialog(null, "Artikla " + lblNaziv.getText() + " nema dovoljno na stanju!");
+				return;
+				}
 				model.addRow(new Object[]{artikal.getBarkod(), artikal.getNaziv(), spinner.getValue(), artikal.getCijena(), lblIznos.getText()});
 				ukupniIznos += Double.parseDouble(lblIznos.getText());
 				UkupniIznos.setText(Double.toString(ukupniIznos));

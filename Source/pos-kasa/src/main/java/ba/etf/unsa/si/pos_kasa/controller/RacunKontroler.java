@@ -5,6 +5,8 @@ import ba.etf.unsa.si.pos_kasa.view.*;
 
 import java.util.*;
 
+import javax.swing.table.DefaultTableModel;
+
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
@@ -92,17 +94,47 @@ public class RacunKontroler {
     	    
 	}
 	
-	public static long kreirajRacun(Date datum_i_vrijeme, long smjena_id, long akcijapopust_id)
+	public long kreirajRacun(long smjena_id)
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		Racun racun = new Racun();
 		racun.setDatum_i_vrijeme(new Date());
-		racun.setSmjena_id(smjena_id);
 		Long id = (Long) session.save(racun);
 		t.commit();
 		session.close();
 		return id;
+	}
+	
+	public void kreirajStavkeRacuna(DefaultTableModel model, long racun_id){
+	for (int count = 0; count < model.getRowCount(); count++){
+			  this.kreirajStavkuRacuna(model.getValueAt(count, 0).toString(), Integer.parseInt(model.getValueAt(count, 2).toString()), racun_id);
+			} 
+	}
+	
+	private long kreirajStavkuRacuna(String barKod, int kolicina, long racun_id){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		StavkaRacuna sr = new StavkaRacuna();
+		Artikal art = this.dajArtikal(barKod);
+		this.umanjiStanjeArtikla(art, kolicina);
+		sr.setArtikal_id(art.getId());
+		sr.setKolicina(kolicina);
+		sr.setRacun_id(racun_id);
+		sr.setUkupna_cijena(kolicina * art.getCijena());
+		Long id = (Long) session.save(sr);
+		t.commit();
+		session.close();
+		return id;
+	}
+	
+	private void umanjiStanjeArtikla(Artikal artikal, int kolicina){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		artikal.setZalihe_stanje((int) (artikal.getZalihe_stanje() - kolicina));
+		session.update(artikal);
+		t.commit();
+		session.close();
 	}
 	
 	public Artikal dajArtikal(String barKod) {
