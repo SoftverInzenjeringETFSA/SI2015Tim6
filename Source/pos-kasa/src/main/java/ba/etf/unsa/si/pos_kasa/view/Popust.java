@@ -70,7 +70,7 @@ public class Popust {
 		frmPopust.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentHidden(ComponentEvent e) {
-				setVisible(false);
+				
 				
 			}
 		});

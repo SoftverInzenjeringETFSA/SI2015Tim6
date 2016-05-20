@@ -24,6 +24,7 @@ public class LoginKontroler {
 	private Smjena smjena;
 	final static Logger logger = Logger.getLogger(LoginKontroler.class.toString());
 	private PrikazForma loginForma;
+	public String userName,password;
 
 	public static void main(String[] args) {
 		loginKontroler = new LoginKontroler();
@@ -50,7 +51,7 @@ public class LoginKontroler {
 
 	public void login(String korisnickoIme, String password)
 	{
-
+        
 		Session session = null;
 		try 
 		{
@@ -86,6 +87,9 @@ public class LoginKontroler {
 					sefKontroler = new SefKontroler();
 					messageBox.infoBox("Šef: " +imePrezime+" je uspješno logovan na kasu.", "Info Login");
 					loginForma.setVisible(false);
+					//privremeni fix kako ne bi obrisao sam sebe
+					userName=korisnickoIme;
+					this.password=password;
 					
 				} else 
 				{

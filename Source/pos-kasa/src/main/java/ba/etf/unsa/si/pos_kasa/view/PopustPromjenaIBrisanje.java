@@ -78,7 +78,7 @@ public class PopustPromjenaIBrisanje {
 			@Override
 			public void componentHidden(ComponentEvent arg0) {
 				
-				setVisible(false);
+			
 			}
 		});
 		frame.setBounds(100, 100, 607, 300);

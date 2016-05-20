@@ -54,6 +54,7 @@ public class SefKontroler {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					formaZaSefa = new OpcijeSefa(SefKontroler.this);
 					formaZaSefa.setVisible(true);
 				} catch (Exception e) {
@@ -64,6 +65,7 @@ public class SefKontroler {
 			}
 		});
 	}
+	
 
 	public void prikaziFormuZaModifikacijuPopusta() {
 		EventQueue.invokeLater(new Runnable(){
@@ -99,25 +101,31 @@ public class SefKontroler {
 	public boolean dodajNovogKorisnika(Uposlenik uposlenik) {
 		Session session = null;
 		boolean success = true;
+		if(!pronadjiKorisnikaPoUsername(uposlenik.getUsername())) {
 		try {
-			// System.out.println("DAJ VISE UNESI try block");
+			
 			session = HibernateUtil.getSessionFactory().openSession();
 			Transaction t = session.beginTransaction();
 			session.save(uposlenik);
 			t.commit();
 		} catch (HibernateException e) {
-			// System.out.println("DAJ VISE UNESI cath");
+			
 			success = false;
 			String poruka=e.getMessage();
 			logger.info(poruka);
 			throw new RuntimeException(e);
 		} finally {
-			// System.out.println("DAJ VISE UNESI finally");
+			
 			if (session != null) {
 				session.close();
 			}
 		}
 		return success;
+		}
+		else {
+			messageBox.infoBox("Korisnik sa unijetim korisničkim imenom postoji. Nije moguć unos korisnika sa tim korisničkim imenom.", "Info o unosu");
+			return false;
+		}
 	}
 
 	// pretrazuje bazu i vraca uposlenika ukoliko je pronadjen
@@ -150,11 +158,42 @@ public class SefKontroler {
 		}
 		return null;
 	}
+	
+	public boolean pronadjiKorisnikaPoUsername(String username) {
+
+		Session session = null;
+		boolean provjera=false;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			Query query = session.createQuery("FROM Uposlenik where username= :username");
+			query.setParameter("username", username);
+			@SuppressWarnings("unchecked")
+			List<Uposlenik> uposlenici = query.list();
+			if (uposlenici != null && uposlenici.size() == 1) {
+				Uposlenik uposlenik = uposlenici.get(0);
+				provjera = true;
+
+			} 
+			
+		} catch (HibernateException e) {
+			//messageBox.infoBox("GREŠKA!", "Info o pretragi za brisanje");
+			String poruka=e.getMessage();
+			logger.info(poruka);
+			//throw new RuntimeException(e);
+		} finally {
+			if (session != null) {
+				session.close();
+
+			}
+		}
+		return provjera;
+	}
 
 	// za brisanje uposlenika metoda prima uposlenika kao parametar
 	public void obrisiKorisnikaPoJMBG(Uposlenik uposlenik) {
 
 		Session session = null;
+		boolean provjera=false;//ovo pokusat skontat 
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			Transaction t = session.beginTransaction();
