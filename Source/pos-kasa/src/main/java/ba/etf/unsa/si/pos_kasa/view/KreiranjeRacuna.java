@@ -127,6 +127,12 @@ public class KreiranjeRacuna {
 		UkupniIznos.setColumns(10);
 
 		JButton btnReklamniRacun = new JButton("Reklamni račun");
+		btnReklamniRacun.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				StornoRacun window = new StornoRacun();
+				window.frame.setVisible(true);
+			}
+		});
 		btnReklamniRacun.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		
 				JButton btntStampajRacun = new JButton("Štampaj račun");

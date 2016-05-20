@@ -1,12 +1,15 @@
 package ba.etf.unsa.si.pos_kasa.controller;
 
 import ba.etf.unsa.si.pos_kasa.model.*;
+import ba.etf.unsa.si.pos_kasa.model.StornoRacun;
 import ba.etf.unsa.si.pos_kasa.view.*;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.swing.table.DefaultTableModel;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -14,6 +17,10 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import Tools.HibernateUtil;
 
@@ -116,6 +123,40 @@ public class RacunKontroler {
 		return id;
 	}
 	
+	public String kreirajStornoRacun(long brojRacuna) //broj a ne ID!!
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		Criteria crit = session.createCriteria(Racun.class);
+		crit.add(Restrictions.eq("broj_racuna", brojRacuna));
+		List list = crit.list();
+		Racun rac = (Racun) list.get(0);
+		
+		crit = session.createCriteria(NacinPlacanja.class);
+		crit.add(Restrictions.eq("racun_id", rac.getId()));
+		list = crit.list();
+		NacinPlacanja np = (NacinPlacanja) list.get(0);
+		
+		crit = session.createCriteria(StornoRacun.class);
+		crit.add(Restrictions.eq("racun_id", rac.getId()));
+		list = crit.list();
+		
+		String poruka = "";
+		if(rac != null && list.size() > 0) 
+		{
+			StornoRacun sracun = new StornoRacun();
+			sracun.setDatum_i_vrijeme(new Date());
+			sracun.setIznos(np.getIznos());
+			sracun.setRacun_id(rac.getId());
+			Long id = (Long) session.save(sracun);
+			poruka = "Uspješno ste kreirali storno račun za račun br: " + rac.getBroj_racuna() +" na iznos od: "+np.getIznos();
+		}
+		else 
+			poruka = "Ne postoji račun sa datim brojem ili je storno račun već kreiran. Neuspješno kreiranje storno računa!";
+		t.commit();
+		session.close();
+		return poruka;
+	}
 		
 	private AkcijaPopust dajAktivniPopust(){
 		Session session = HibernateUtil.getSessionFactory().openSession();
