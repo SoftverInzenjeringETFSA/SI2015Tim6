@@ -50,6 +50,7 @@ public class KreiranjeRacuna {
 	private KasirKontroler kasirKontroler;
 	private SefKontroler sefKontroler;
 	private RacunKontroler racunKontroler;
+	
 	double ukupniIznos = 0;
 	JComboBox NacinPlacanja;
 	JLabel lblDatum;
@@ -139,7 +140,12 @@ public class KreiranjeRacuna {
 				btntStampajRacun.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						racunKontroler = new RacunKontroler();
-						racunKontroler.kreirajRacun(1, String.valueOf(NacinPlacanja.getSelectedItem()), (DefaultTableModel) Stavke.getModel());
+						try{
+								racunKontroler.kreirajRacun(Long.parseLong(System.getProperty("smjena_id")), String.valueOf(NacinPlacanja.getSelectedItem()), (DefaultTableModel) Stavke.getModel());
+						
+						}catch (Exception e1){
+							logger.info(e1.getMessage());
+						}
 					}
 				});
 				btntStampajRacun.setFont(new Font("Times New Roman", Font.PLAIN, 13));
@@ -228,6 +234,7 @@ public class KreiranjeRacuna {
 		StavkeRacuna.add(scrollPane);
 
 		Stavke = new JTable();
+		Stavke.setEnabled(false);
 		Stavke.setModel(new DefaultTableModel(
 			new Object[][] {
 			},

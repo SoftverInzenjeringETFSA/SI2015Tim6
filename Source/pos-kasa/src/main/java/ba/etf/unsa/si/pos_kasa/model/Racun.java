@@ -20,7 +20,6 @@ public class Racun implements java.io.Serializable {
 	Date datum_i_vrijeme;
 	long akcijapopust_id;
 	//long smjena_id;
-	@GeneratedValue
 	long broj_racuna;
 	long smjena_id;
     
