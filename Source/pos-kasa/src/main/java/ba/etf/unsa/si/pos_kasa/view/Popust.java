@@ -132,6 +132,7 @@ public class Popust {
 					JOptionPane.showMessageDialog(null, e.getMessage(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
 					String poruka=e.getMessage();
 					logger.info(poruka);
+					
 					throw new RuntimeException(e);
 				} 
 						}
