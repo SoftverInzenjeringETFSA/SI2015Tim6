@@ -157,8 +157,8 @@ public class SefKontroler {
 			
 			success = false;
 			String poruka=e.getMessage();
-			logger.info(poruka);
-			throw new RuntimeException(e);
+			logger.info(e);
+			//throw new RuntimeException(e);
 		} finally {
 			
 			if (session != null) {
@@ -200,8 +200,8 @@ public class SefKontroler {
 		} catch (HibernateException e) {
 			messageBox.infoBox("GREŠKA!", "Info o pretragi za brisanje");
 			String poruka=e.getMessage();
-			logger.info(poruka);
-			throw new RuntimeException(e);
+			logger.info(e);
+			//throw new RuntimeException(e);
 		} finally {
 			if (session != null) {
 				session.close();
@@ -229,7 +229,7 @@ public class SefKontroler {
 		} catch (HibernateException e) {
 			//messageBox.infoBox("GREŠKA!", "Info o pretragi za brisanje");
 			String poruka=e.getMessage();
-			logger.info(poruka);
+			logger.info(e);
 			//throw new RuntimeException(e);
 		} finally {
 			if (session != null) {
@@ -259,7 +259,7 @@ public class SefKontroler {
 		} catch (HibernateException e) {
 			//messageBox.infoBox("GREŠKA!", "Info o pretragi za brisanje");
 			String poruka=e.getMessage();
-			logger.info(poruka);
+			logger.info(e);
 			//throw new RuntimeException(e);
 		} finally {
 			if (session != null) {
@@ -304,8 +304,8 @@ public class SefKontroler {
 		HibernateException e) {
 			messageBox.infoBox("GREŠKA exception", "Brisanje uposlenika!!!");
 			String poruka=e.getMessage();
-			logger.info(poruka);
-			throw new RuntimeException(e);
+			logger.info(e);
+			//throw new RuntimeException(e);
 		} finally {
 			if (session != null) {
 				session.close();
@@ -513,6 +513,7 @@ public class SefKontroler {
 		 catch(Exception e)
 		 {
 			messageBox.infoBox(e.getMessage(), "exception");
+			logger.info(e);
 			 
 		 }
 		 finally 
@@ -549,10 +550,12 @@ public class SefKontroler {
 				generisiPdfNaKrajuSmjene("Vejsil Hrustic", ukupnoPoNp);
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
+				logger.info(e);
 			} catch (DocumentException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
+				logger.info(e);
 			}
 	}
 	
@@ -599,11 +602,13 @@ public class SefKontroler {
 		  }
 		  catch (DocumentException dex)
 		  {
-		   dex.printStackTrace();
+		   //dex.printStackTrace();
+		   logger.info(dex);
 		  }
 		  catch (Exception ex)
 		  {
-		   ex.printStackTrace();
+		   //ex.printStackTrace();
+			  logger.info(ex);
 		  }
 		  finally
 		  {

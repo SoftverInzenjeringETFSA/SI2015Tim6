@@ -128,14 +128,14 @@ public class Popust {
 											"Prije klika na dugme odaberite datume u ispravnom poretku i unesite iznos popusta!",
 											"Info Popust");
 									String poruka = e.getMessage();
-									logger.info(poruka);
+									logger.info(e);
 									// throw new RuntimeException(e);
 								}
 							} catch (NumberFormatException e) {
 								JOptionPane.showMessageDialog(null, "Morate unijeti podatke u formu!", "InfoBox",
 										JOptionPane.INFORMATION_MESSAGE);
 								String poruka = e.getMessage();
-								logger.info(poruka);
+								logger.info(e);
 								// throw new RuntimeException(e);
 							}
 						} else {
