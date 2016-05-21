@@ -1,12 +1,16 @@
 package ba.etf.unsa.si.pos_kasa.view;
 
 import java.awt.EventQueue;
+import java.awt.Toolkit;
+
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import java.awt.Choice;
+import java.awt.Dimension;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -76,8 +80,11 @@ public class Popust {
 		});
 		frmPopust.setTitle("Popust");
 		frmPopust.setBounds(100, 100, 310, 281);
-		frmPopust.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		
+		frmPopust.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - frmPopust.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - frmPopust.getHeight()) / 2);
+		frmPopust.setLocation(x, y);
 		
 		lblIznosRaunaS = new JLabel("Iznos popusta:");
 		

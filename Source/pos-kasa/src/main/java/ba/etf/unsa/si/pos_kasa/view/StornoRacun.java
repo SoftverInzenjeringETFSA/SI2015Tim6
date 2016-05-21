@@ -1,12 +1,15 @@
 package ba.etf.unsa.si.pos_kasa.view;
 
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import javax.swing.JTextField;
 
 import ba.etf.unsa.si.pos_kasa.controller.RacunKontroler;
@@ -49,8 +52,12 @@ public class StornoRacun {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 313, 187);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+		frame.setLocation(x, y);
 		
 		JLabel lblBrojOriginalnogRauna = new JLabel("Broj originalnog računa:");
 		lblBrojOriginalnogRauna.setBounds(12, 13, 176, 16);

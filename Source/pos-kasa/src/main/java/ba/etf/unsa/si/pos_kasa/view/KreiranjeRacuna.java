@@ -1,5 +1,6 @@
 package ba.etf.unsa.si.pos_kasa.view;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -11,6 +12,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.awt.List;
+import java.awt.Toolkit;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
@@ -116,7 +118,10 @@ public class KreiranjeRacuna {
 		KreiranjeRacuna = new JFrame();
 		KreiranjeRacuna.setBounds(100, 100, 816, 411);
 		KreiranjeRacuna.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - KreiranjeRacuna.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - KreiranjeRacuna.getHeight()) / 2);
+		KreiranjeRacuna.setLocation(x, y);
 		JPanel ElementiRacuna = new JPanel();
 
 		JPanel StavkeRacuna = new JPanel();

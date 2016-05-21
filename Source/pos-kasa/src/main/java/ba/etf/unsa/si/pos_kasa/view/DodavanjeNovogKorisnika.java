@@ -1,7 +1,9 @@
 package ba.etf.unsa.si.pos_kasa.view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -61,7 +63,11 @@ public class DodavanjeNovogKorisnika {
 		DodavnjeNovogKorisnika.setTitle("Dodavanje Novog Korisnika");
 		DodavnjeNovogKorisnika.setBounds(100, 100, 436, 431);
 		DodavnjeNovogKorisnika.getContentPane().setLayout(null);
-
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - DodavnjeNovogKorisnika.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - DodavnjeNovogKorisnika.getHeight()) / 2);
+		DodavnjeNovogKorisnika.setLocation(x, y);
+		
 		JLabel lblIme = new JLabel("Ime:");
 		lblIme.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		lblIme.setBounds(10, 47, 33, 14);

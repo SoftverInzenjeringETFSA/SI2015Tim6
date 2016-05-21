@@ -15,7 +15,9 @@ import ba.etf.unsa.si.pos_kasa.model.Uposlenik;
 
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -50,6 +52,10 @@ public class PretragaKorisnika_prikaz {
 		PretragaKorisnika_prikaz.getContentPane().setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		PretragaKorisnika_prikaz.setBounds(100, 100, 450, 300);
 		PretragaKorisnika_prikaz.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - PretragaKorisnika_prikaz.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - PretragaKorisnika_prikaz.getHeight()) / 2);
+		PretragaKorisnika_prikaz.setLocation(x, y);
 		
 		JLabel lblPodaciOKorisniku = new JLabel("Podaci o korisniku:");
 		lblPodaciOKorisniku.setFont(new Font("Times New Roman", Font.BOLD, 17));

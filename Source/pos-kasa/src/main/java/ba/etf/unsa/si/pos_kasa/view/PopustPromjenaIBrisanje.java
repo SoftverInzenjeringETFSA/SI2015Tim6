@@ -1,6 +1,9 @@
 package ba.etf.unsa.si.pos_kasa.view;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
+
 import org.apache.log4j.Logger;
 
 import javax.swing.JFrame;
@@ -82,8 +85,12 @@ public class PopustPromjenaIBrisanje {
 			}
 		});
 		frame.setBounds(100, 100, 607, 300);
-		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+		frame.setLocation(x, y);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 22, 408, 110);

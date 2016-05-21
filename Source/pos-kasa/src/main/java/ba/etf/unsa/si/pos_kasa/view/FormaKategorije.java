@@ -11,6 +11,8 @@ import com.jgoodies.forms.layout.RowSpec;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import javax.swing.JTextField;
 
 import org.apache.log4j.Logger;
@@ -18,6 +20,8 @@ import org.apache.log4j.Logger;
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
 import java.awt.Label;
+import java.awt.Toolkit;
+
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
@@ -75,6 +79,10 @@ public class FormaKategorije {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+		frame.setLocation(x, y);
 		
 		imeKategorijeText = new JTextField();
 		imeKategorijeText.setBounds(104, 24, 143, 20);
