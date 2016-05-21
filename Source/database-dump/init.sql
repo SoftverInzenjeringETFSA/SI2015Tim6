@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `tim6`.`artikal` (
   `naziv` VARCHAR(205) NOT NULL,
   `barkod` VARCHAR(13) NOT NULL UNIQUE,
   `jedinica_mjere` VARCHAR(45) NOT NULL,
-  `cijena` DECIMAL NOT NULL,
+  `cijena` DECIMAL(10,2) NOT NULL,
   `zalihe_stanje` INT NOT NULL,
   `opis` VARCHAR(245) NULL,
   `kategorija_id` INT NOT NULL,
