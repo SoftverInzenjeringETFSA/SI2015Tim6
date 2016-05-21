@@ -210,7 +210,7 @@ public class OpcijeSefa {
 				int dialogResult = JOptionPane.showConfirmDialog(btnNewButton,"Da li ste sigurni da se želite zaključiti smjenu?");
 						if(dialogResult == 0) {
 							 // System.out.println("Yes option");
-							
+							sefKontroler.odjaviSefa();
 							  
 						    } else {
 							  //System.out.println("No Option");

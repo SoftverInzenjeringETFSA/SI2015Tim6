@@ -33,6 +33,19 @@ public class PrikazForma {
 	/**
 	 * Create the application.
 	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					PrikazForma window = new PrikazForma();
+					window.prikazForma.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
 	public PrikazForma() {
 		initialize();
 	}
