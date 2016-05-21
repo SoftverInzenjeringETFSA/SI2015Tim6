@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.Priority;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -163,6 +164,8 @@ public class PopustPromjenaIBrisanje {
 					} catch (NumberFormatException e) {
 						// TODO Auto-generated catch block
 						String poruka=e.getMessage();
+						Priority p = null;
+						logger.log(p, e);
 						logger.info(poruka);
 						return;
 						//throw new RuntimeException(e); NEMOJ BACATI EXCEPTION BEZ DA GA HENDLAS ODE APLIKACIJA U NEISPRAVNO STANJE
@@ -172,7 +175,8 @@ public class PopustPromjenaIBrisanje {
 						JOptionPane.showMessageDialog(null,
 								"Datumi moraju biti u ispravnom poretku!", "InfoBox",
 								JOptionPane.INFORMATION_MESSAGE);
-						
+						Priority p = null;
+						logger.log(p, e);
 						logger.info(poruka);
 						return;
 						//throw new RuntimeException(e); NEMOJ BACATI EXCEPTION NE HENDLAS GA NIGDJE APLIKACIJA NE RADI DALJE
