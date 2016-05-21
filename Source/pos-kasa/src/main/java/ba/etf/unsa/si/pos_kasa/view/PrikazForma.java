@@ -4,8 +4,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTextField;
@@ -53,6 +55,11 @@ public class PrikazForma {
 		prikazForma.setBounds(100, 100, 433, 183);
 		prikazForma.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		prikazForma.getContentPane().setLayout(null);
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - prikazForma.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - prikazForma.getHeight()) / 2);
+		prikazForma.setLocation(x, y);
+		
 
 		JLabel lblKorisnikoIme = new JLabel("Korisničko ime:");
 		lblKorisnikoIme.setFont(new Font("Times New Roman", Font.PLAIN, 13));

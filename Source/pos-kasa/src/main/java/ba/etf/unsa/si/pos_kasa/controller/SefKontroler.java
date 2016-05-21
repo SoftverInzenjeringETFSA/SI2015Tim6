@@ -1,7 +1,9 @@
 package ba.etf.unsa.si.pos_kasa.controller;
 
 import java.awt.EventQueue;
+import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
@@ -27,7 +29,9 @@ import ba.etf.unsa.si.pos_kasa.view.PopustPromjenaIBrisanje;
 import ba.etf.unsa.si.pos_kasa.view.PretragaArtikla;
 import ba.etf.unsa.si.pos_kasa.view.PretragaKorisnika;
 import ba.etf.unsa.si.pos_kasa.view.PretragaKorisnika_prikaz;
+import ba.etf.unsa.si.pos_kasa.view.Zakljucivanje;
 import ba.etf.unsa.si.pos_kasa.view.messageBox;
+import javafx.application.Application;
 
 public class SefKontroler {
 
@@ -47,6 +51,8 @@ public class SefKontroler {
 	KreiranjeRacuna kreiranjeRacuna;
 	Popust popust;
 	FormaKategorije formaKategorije;
+	Zakljucivanje formaZakljucivanjeSmjene;
+	LoginKontroler loginKontroler;
 	final static Logger logger = Logger.getLogger(SefKontroler.class.toString());
 	// instance formi za odjavu i kraj smjene
 
@@ -73,6 +79,21 @@ public class SefKontroler {
 				try {
 					popusti = new PopustPromjenaIBrisanje(SefKontroler.this);
 					popusti.setVisible(true);
+				} catch (Exception e) {
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
+				}
+			}
+		});
+}
+	
+	public void prikaziFormuZaZakljucivanjeSmjene() {
+		EventQueue.invokeLater(new Runnable(){
+			public void run() {
+				try {
+					formaZakljucivanjeSmjene = new Zakljucivanje(SefKontroler.this);
+					formaZakljucivanjeSmjene.setVisible(true);
 				} catch (Exception e) {
 					String poruka=e.getMessage();
 					logger.info(poruka);
@@ -397,5 +418,51 @@ public class SefKontroler {
 		});
 	}
 	
+	public void zaključiSmjenu() {
+		 Properties p = System.getProperties();
+		 //System.out.println(p.getProperty("uloga"));
+		 //System.out.println(p.getProperty("zaposlenik_id"));
+		 Session session = null;
+		 try 
+		 {
+			 long uposlenik_id=Long.parseLong(p.getProperty("zaposlenik_id"));
+			    session = HibernateUtil.getSessionFactory().openSession();
+				Transaction t = session.beginTransaction();
+		        Query query = session.createQuery("FROM Smjena where uposlenik_id= :uposlenik_id and pocetak_smjene = kraj_smjene");
+		        query.setParameter("uposlenik_id", uposlenik_id);
+		        @SuppressWarnings("unchecked")
+				List<Smjena> smjenaLista = query.list();
+				Smjena s = smjenaLista.get(0);
+				System.out.println("ovo je prije ifa");
+				
+				if(smjenaLista.size()==1) {
+					//messageBox.infoBox("Unutar if-a", "");
+					s.setKraj_smjene(new Date());
+				    session.save(s);
+					t.commit();
+				    messageBox.infoBox("Uspješno ste zaključili smjenu.", "Info o zaključivanju smjene");
+				    formaZaSefa.setVisible(false);
+				    formaZakljucivanjeSmjene.setVisible(false);
+				    loginKontroler = new LoginKontroler();
+				    
+				}
+				
+		 }
+		 catch(Exception e)
+		 {
+			messageBox.infoBox(e.getMessage(), "exception");
+			 
+		 }
+		 finally 
+		 {
+			 if(session!=null)
+			 {
+				 session.clear();
+			 session.close();
+			 
+			 }
+		 }
+		
+	 }
 
 }

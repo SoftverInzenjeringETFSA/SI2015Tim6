@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JLabel;
@@ -14,6 +15,7 @@ import com.jgoodies.forms.factories.DefaultComponentFactory;
 import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
 import ba.etf.unsa.si.pos_kasa.controller.SmjenaKontroler;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.Window;
 
 import javax.swing.JButton;
@@ -58,6 +60,10 @@ public class OpcijeSefa {
 		frmOpcijeefa.setBounds(100, 100, 871, 405);
 		frmOpcijeefa.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmOpcijeefa.getContentPane().setLayout(null);
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - frmOpcijeefa.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - frmOpcijeefa.getHeight()) / 2);
+		frmOpcijeefa.setLocation(x, y);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 128, 128));
@@ -204,7 +210,7 @@ public class OpcijeSefa {
 		JButton btnKrajSmjene = new JButton("Kraj smjene");
 		btnKrajSmjene.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				smjenaKontroler.prikaziFormuZaZakljucivanje();
+				sefKontroler.prikaziFormuZaZakljucivanjeSmjene();
 			}
 		});
 
