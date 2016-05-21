@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.BoxLayout;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import com.toedter.calendar.JDateChooser;
 
 import ba.etf.unsa.si.pos_kasa.controller.Izvjestaji;
@@ -22,6 +24,8 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class IzvjUkupanPrometPoNP {
 
@@ -96,6 +100,11 @@ public class IzvjUkupanPrometPoNP {
 		JButton btnPrikaiIzvjetaj = new JButton("Prikaži izvještaj");
 		btnPrikaiIzvjetaj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				Date d1 = pocDatum.getDate();
+				Date d2 = krajDatum.getDate();
+				if(d1 != null && d2 != null){
+					if(d1.after(d2)) { JOptionPane.showMessageDialog(null, "Krajnji datum mora biti veći od početnog."); return;}
+				}
 				Izvjestaji izvjCtrl = new Izvjestaji();
 				double[] vrijednosti =  Izvjestaji.dajUkupanPrometIprodateArtikleOdDo(pocDatum.getDate(), krajDatum.getDate());
 				double[] ukupnoPoNacinimaPl = Izvjestaji.dajUkupanPrometPoVrstiPlacanjaOdDo(pocDatum.getDate(), krajDatum.getDate());

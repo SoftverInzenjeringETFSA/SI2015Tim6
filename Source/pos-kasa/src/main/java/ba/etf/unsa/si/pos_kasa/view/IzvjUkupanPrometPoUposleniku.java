@@ -95,6 +95,11 @@ public class IzvjUkupanPrometPoUposleniku {
 		JButton btnPrikaiIzvjetaj = new JButton("Prikaži izvještaj");
 		btnPrikaiIzvjetaj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				Date d1 = pocDatum.getDate();
+				Date d2 = krajDatum.getDate();
+				if(d1 != null && d2 != null){
+					if(d1.after(d2)) { JOptionPane.showMessageDialog(null, "Krajnji datum mora biti veći od početnog."); return;}
+				}
 				Izvjestaji izvjCtrl = new Izvjestaji();
 				double[] vrijednosti;
 				try {

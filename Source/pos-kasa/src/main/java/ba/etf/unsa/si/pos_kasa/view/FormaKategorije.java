@@ -23,6 +23,7 @@ import java.awt.Label;
 import java.awt.Toolkit;
 
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -108,8 +109,18 @@ public class FormaKategorije {
 				String ime=imeKategorijeText.getText();
 				String opis=opisKategorijeText.getText();
 				KategorijaControler kc =new KategorijaControler();
-				kc.dodajKategoriju(ime, opis);
-				prikazi();
+				if(ime.isEmpty() || opis.isEmpty())
+				{
+					JOptionPane.showMessageDialog(null, "Polja ime i opis kategorije ne smiju biti prazna!", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+				}
+				else if(kc.provjeriDaLiImaIme(ime)==false)
+				{
+					JOptionPane.showMessageDialog(null, "Kategorija sa unesenim nazivom vec postoji!", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+				}
+				else{					
+					kc.dodajKategoriju(ime, opis);
+					prikazi();
+				}
 							
 			}
 		});

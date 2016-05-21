@@ -86,6 +86,10 @@ public class IzvjStanjeZalihaAlarm {
 				IzvjestajArtikliControler iac = new IzvjestajArtikliControler();
 				List<String> str = new Vector<String>(); 
 				str=iac.vratiArtikleZaIzvjestaj();
+				int rowCount = dtm.getRowCount();
+				for (int i = rowCount - 1; i >= 0; i--) {
+				    dtm.removeRow(i);
+				}
 				for (int i = 0; i < str.size(); i++) {
 					String[] rijec = iac.vratiRazdovojeno(str.get(i));
 					redovi[0] = rijec[0];

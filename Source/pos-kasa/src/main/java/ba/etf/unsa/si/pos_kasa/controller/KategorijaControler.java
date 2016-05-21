@@ -189,4 +189,24 @@ public class KategorijaControler {
 		String[] novo=str.split(" ");
 		return novo;
 	}
+	
+	public static boolean provjeriDaLiImaIme(String ime)
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		String sql = "select * from tim6.kategorija where naziv= "+ "\"" +ime+"\"";
+		SQLQuery query = session.createSQLQuery(sql);
+		query.addEntity(Kategorija.class);	
+		List<Kategorija> results = query.list();
+		if(results.size()==0)
+		{
+			session.close();
+			return true;
+		}
+		else{
+			session.close();
+			return false;
+		}
+		
+	}
+	
 }
