@@ -27,6 +27,7 @@ import org.apache.log4j.Logger;
 
 import antlr.collections.impl.Vector;
 import ba.etf.unsa.si.pos_kasa.controller.KasirKontroler;
+import ba.etf.unsa.si.pos_kasa.controller.LoginKontroler;
 import ba.etf.unsa.si.pos_kasa.controller.RacunKontroler;
 import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
 import ba.etf.unsa.si.pos_kasa.model.Artikal;
@@ -148,19 +149,37 @@ public class KreiranjeRacuna {
 					}
 				});
 				btntStampajRacun.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		
+		final JButton btnNewButton = new JButton("Povratak na formu kasira");
+		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int dialogButton = JOptionPane.YES_NO_OPTION;
+				int dialogResult = JOptionPane.showConfirmDialog(btnNewButton,"Da li ste sigurni da se želite otići na formu kasira?");
+						if(dialogResult == 0) {
+							 // System.out.println("Yes option");
+							  KreiranjeRacuna.setVisible(false);
+							  kasirKontroler = new KasirKontroler();
+							  
+						    } else {
+							  //System.out.println("No Option");
+							} 
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(KreiranjeRacuna.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(21)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(ElementiRacuna, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
-						.addComponent(StavkeRacuna, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE))
+						.addComponent(ElementiRacuna, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+						.addComponent(StavkeRacuna, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(UkupniIznos, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-						.addComponent(btnReklamniRacun, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-						.addComponent(btntStampajRacun, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
+						.addComponent(UkupniIznos, GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+						.addComponent(btnReklamniRacun, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+						.addComponent(btntStampajRacun, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -175,7 +194,9 @@ public class KreiranjeRacuna {
 						.addComponent(StavkeRacuna, GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(btnReklamniRacun)
-							.addPreferredGap(ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnNewButton)
+							.addPreferredGap(ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
 							.addComponent(btntStampajRacun)))
 					.addContainerGap())
 		);

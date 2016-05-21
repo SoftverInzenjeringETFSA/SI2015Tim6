@@ -122,7 +122,9 @@ public class SefKontroler {
 	public boolean dodajNovogKorisnika(Uposlenik uposlenik) {
 		Session session = null;
 		boolean success = true;
-		if(!pronadjiKorisnikaPoUsername(uposlenik.getUsername())) {
+		boolean provjeraJMBG=provjeriDaLiPostojiKorisnikPoJMBG(uposlenik.getJmbg());
+		boolean provjeraUsername=pronadjiKorisnikaPoUsername(uposlenik.getUsername());
+		if(!provjeraUsername&&!provjeraJMBG) {
 		try {
 			
 			session = HibernateUtil.getSessionFactory().openSession();
@@ -144,7 +146,13 @@ public class SefKontroler {
 		return success;
 		}
 		else {
-			messageBox.infoBox("Korisnik sa unijetim korisničkim imenom postoji. Nije moguć unos korisnika sa tim korisničkim imenom.", "Info o unosu");
+			if(provjeraUsername&&provjeraJMBG)
+			messageBox.infoBox("Korisnik sa unijetim korisničkim imenom i JMBG postoji. Nije moguć unos korisnika sa tim korisničkim imenom i JMBG.", "Info o unosu");
+			else if(provjeraJMBG)
+				messageBox.infoBox("Korisnik sa unijetim JMBG postoji. Nije moguć unos korisnika sa tim JMBG.", "Info o unosu");
+			else
+				messageBox.infoBox("Korisnik sa unijetim korisničkim imenom postoji. Nije moguć unos korisnika sa tim korisničkim imenom .", "Info o unosu");
+
 			return false;
 		}
 	}
@@ -209,23 +217,55 @@ public class SefKontroler {
 		}
 		return provjera;
 	}
+	
+	public boolean provjeriDaLiPostojiKorisnikPoJMBG(String jmbg) {
+
+		Session session = null;
+		boolean provjera=false;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			Query query = session.createQuery("FROM Uposlenik where jmbg= :jmbg");
+			query.setParameter("jmbg", jmbg);
+			@SuppressWarnings("unchecked")
+			List<Uposlenik> uposlenici = query.list();
+			if (uposlenici != null && uposlenici.size() == 1) {
+				Uposlenik uposlenik = uposlenici.get(0);
+				provjera = true;
+
+			} 
+			
+		} catch (HibernateException e) {
+			//messageBox.infoBox("GREŠKA!", "Info o pretragi za brisanje");
+			String poruka=e.getMessage();
+			logger.info(poruka);
+			//throw new RuntimeException(e);
+		} finally {
+			if (session != null) {
+				session.close();
+
+			}
+		}
+		return provjera;
+	}
 
 	// za brisanje uposlenika metoda prima uposlenika kao parametar
 	public void obrisiKorisnikaPoJMBG(Uposlenik uposlenik) {
 
 		Session session = null;
+		Properties p = System.getProperties();
+		String username = p.getProperty("username");
 		boolean provjera=false;//ovo pokusat skontat 
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			Transaction t = session.beginTransaction();
-
-			if (uposlenik.getUloga().equals("Kasir")) {
+            
+			if (uposlenik.getUloga().equals("Kasir")&&!username.equals(uposlenik.getUsername())) {
 				messageBox.infoBox("brisemo kasira", "Brisanje uposlenika!!!");
 				brisanjeKorisnikaPrikazRezultata.setVisible(false);
 				session.delete(uposlenik);
 				t.commit();
 
-			} else if (uposlenik.getUloga().equals("Sef")) {
+			} else if (uposlenik.getUloga().equals("Sef")&&!username.equals(uposlenik.getUsername())) {
 				messageBox.infoBox("brisemo sefa", "Brisanje uposlenika!!!");
 				brisanjeKorisnikaPrikazRezultata.setVisible(false);
 				brisanjeKorisnika.prikaziButtonZaPrikazRezultataPretrage(false);
@@ -235,7 +275,7 @@ public class SefKontroler {
 
 			else {
 
-				messageBox.infoBox("Greška brisanja!", "Brisanje uposlenika!!!");
+				messageBox.infoBox("Pokušali ste obrisati samoga sebe!!!!", "Greška brisanja");
 			}
 		} catch (
 
@@ -464,5 +504,10 @@ public class SefKontroler {
 		 }
 		
 	 }
+	
+	public void odjaviSefa() {
+		formaZaSefa.setVisible(false);
+		loginKontroler = new LoginKontroler();
+	}
 
 }
