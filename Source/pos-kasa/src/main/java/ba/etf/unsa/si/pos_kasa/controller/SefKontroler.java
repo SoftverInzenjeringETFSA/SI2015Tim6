@@ -526,7 +526,7 @@ public class SefKontroler {
 		 }
 	 }
 	
-<<<<<<< HEAD
+
 	public void dajIzvjestaj()
 	{
 		  Session session = HibernateUtil.getSessionFactory().openSession(); //otvaranje sesije, obavezno na pocetku metodeu
@@ -612,11 +612,10 @@ public class SefKontroler {
 		    doc.close();
 		   }
 		  }
-=======
+	}
 	public void odjaviSefa() {
 		formaZaSefa.setVisible(false);
 		loginKontroler = new LoginKontroler();
->>>>>>> branch 'master' of https://github.com/SoftverInzenjeringETFSA/SI2015Tim6.git
 	}
 
 }
