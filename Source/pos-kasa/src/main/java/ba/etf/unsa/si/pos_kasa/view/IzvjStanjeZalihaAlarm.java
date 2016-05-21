@@ -25,7 +25,7 @@ import ba.etf.unsa.si.pos_kasa.controller.*;
 
 public class IzvjStanjeZalihaAlarm {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTable table;
 	Object[] kolone = { "Artikal", "Sifra", "Zalihe" };
 	DefaultTableModel dtm = new DefaultTableModel();

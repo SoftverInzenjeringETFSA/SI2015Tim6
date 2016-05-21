@@ -56,6 +56,8 @@ public class OpcijeSefa {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	public OpcijeSefa(){}
+
 	private void initialize() {
 		frmOpcijeefa = new JFrame();
 		frmOpcijeefa.setTitle("Opcije Šefa");
@@ -282,6 +284,12 @@ public class OpcijeSefa {
 		panel_5.add(lblNewLabel_1);
 		
 		JButton btnIzvjestaji = new JButton("Izvjestaji");
+		btnIzvjestaji.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				IzvjestajiList window = new IzvjestajiList();
+				window.frame.setVisible(true);
+			}
+		});
 		btnIzvjestaji.setFont(new Font("Times New Roman", Font.BOLD, 13));
 		btnIzvjestaji.setBounds(10, 62, 149, 60);
 		panel_5.add(btnIzvjestaji);

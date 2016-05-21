@@ -147,9 +147,12 @@ public class KreiranjeRacuna {
 					public void actionPerformed(ActionEvent e) {
 						racunKontroler = new RacunKontroler();
 						try{
-								racunKontroler.kreirajRacun(Long.parseLong(System.getProperty("smjena_id")), String.valueOf(NacinPlacanja.getSelectedItem()), (DefaultTableModel) Stavke.getModel());
-						
+							Properties p = System.getProperties();
+							p.put("smjena_id", 1);
+							System.setProperties(p);
+							racunKontroler.kreirajRacun(1, String.valueOf(NacinPlacanja.getSelectedItem()), (DefaultTableModel) Stavke.getModel());
 						}catch (Exception e1){
+							System.out.println(e1.getMessage());
 							logger.info(e1.getMessage());
 						}
 					}

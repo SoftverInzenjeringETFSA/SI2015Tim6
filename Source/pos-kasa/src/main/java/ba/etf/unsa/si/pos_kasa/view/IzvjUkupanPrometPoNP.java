@@ -29,7 +29,7 @@ import java.awt.event.FocusEvent;
 
 public class IzvjUkupanPrometPoNP {
 
-	private JFrame frame;
+	JFrame frame;
 	JDateChooser pocDatum;
 	JDateChooser krajDatum;
 	JPanel panelIzvjestaj;

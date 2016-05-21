@@ -27,7 +27,7 @@ import java.awt.event.ActionEvent;
 
 public class IzvjUkupanPromet {
 
-	private JFrame frame;
+	JFrame frame;
 	JDateChooser pocDatum;
 	JDateChooser krajDatum;
 	JPanel panelIzvjestaj;

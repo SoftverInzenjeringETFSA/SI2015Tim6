@@ -27,7 +27,7 @@ import org.apache.log4j.Logger;
 
 public class IzvjUkupanPrometPoUposleniku {
 
-	private JFrame frame;
+	JFrame frame;
 	JDateChooser pocDatum;
 	JDateChooser krajDatum;
 	JPanel panelIzvjestaj;
