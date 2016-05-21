@@ -112,8 +112,8 @@ public class DodavanjeNovogArtikla {
 		lblKoliina.setBounds(77, 174, 48, 17);
 		lblKoliina.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 
-		JLabel lblifraArtikla = new JLabel("Šifra artikla:");
-		lblifraArtikla.setBounds(56, 89, 72, 19);
+		JLabel lblifraArtikla = new JLabel("Barkod:");
+		lblifraArtikla.setBounds(77, 89, 72, 19);
 		lblifraArtikla.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 
 		NazivArtikla = new JTextField();

@@ -164,9 +164,7 @@ public class PopustPromjenaIBrisanje {
 					} catch (NumberFormatException e) {
 						// TODO Auto-generated catch block
 						String poruka=e.getMessage();
-						Priority p = null;
-						logger.log(p, e);
-						logger.info(poruka);
+						logger.info(e);
 						return;
 						//throw new RuntimeException(e); NEMOJ BACATI EXCEPTION BEZ DA GA HENDLAS ODE APLIKACIJA U NEISPRAVNO STANJE
 					} catch (Exception e) {
@@ -175,9 +173,8 @@ public class PopustPromjenaIBrisanje {
 						JOptionPane.showMessageDialog(null,
 								"Datumi moraju biti u ispravnom poretku!", "InfoBox",
 								JOptionPane.INFORMATION_MESSAGE);
-						Priority p = null;
-						logger.log(p, e);
-						logger.info(poruka);
+					
+						logger.info(e);
 						return;
 						//throw new RuntimeException(e); NEMOJ BACATI EXCEPTION NE HENDLAS GA NIGDJE APLIKACIJA NE RADI DALJE
 					}
