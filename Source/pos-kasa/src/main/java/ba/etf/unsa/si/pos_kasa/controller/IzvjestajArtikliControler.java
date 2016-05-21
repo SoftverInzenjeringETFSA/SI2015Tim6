@@ -5,6 +5,7 @@ import ba.etf.unsa.si.pos_kasa.model.Kategorija;
 import viewmodel.ArtikalZaIzvjestajProdato;
 
 import java.util.Vector;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,6 +21,8 @@ import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
+
+import com.toedter.calendar.JDateChooser;
 
 import Tools.HibernateUtil;
 
@@ -91,6 +94,18 @@ public class IzvjestajArtikliControler {
 		}
 		return lisic;
 	}
-	
+	public boolean provjeriDatume(Date date1)
+	{
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		System.out.println(date);
+		if(date1.before(date))
+		{
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
 
 }
