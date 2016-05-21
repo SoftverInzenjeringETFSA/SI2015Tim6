@@ -1,6 +1,9 @@
 package ba.etf.unsa.si.pos_kasa.view;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
+
 import org.apache.log4j.Logger;
 
 import javax.swing.JFrame;
@@ -18,7 +21,6 @@ import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
 import ba.etf.unsa.si.pos_kasa.model.AkcijaPopust;
 import ba.etf.unsa.si.pos_kasa.model.Artikal;
 import ba.etf.unsa.si.pos_kasa.model.Kategorija;
-import ba.etf.unsa.si.pos_kasa.validator.DateValidator;
 import ba.etf.unsa.si.pos_kasa.validator.KolicinaValidator;
 
 import javax.swing.JTextField;
@@ -28,6 +30,8 @@ import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class PopustPromjenaIBrisanje {
 
@@ -50,7 +54,6 @@ public class PopustPromjenaIBrisanje {
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					//Logger.getLogger(PopustPromjenaIBrisanje.class).error(e.getMessage());
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -74,9 +77,20 @@ public class PopustPromjenaIBrisanje {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentHidden(ComponentEvent arg0) {
+				
+			
+			}
+		});
 		frame.setBounds(100, 100, 607, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+		frame.setLocation(x, y);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 22, 408, 110);
@@ -149,12 +163,14 @@ public class PopustPromjenaIBrisanje {
 						// TODO Auto-generated catch block
 						String poruka=e.getMessage();
 						logger.info(poruka);
-						throw new RuntimeException(e);
+						return;
+						//throw new RuntimeException(e); NEMOJ BACATI EXCEPTION BEZ DA GA HENDLAS ODE APLIKACIJA U NEISPRAVNO STANJE
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						String poruka=e.getMessage();
 						logger.info(poruka);
-						throw new RuntimeException(e);
+						return;
+						//hrow new RuntimeException(e); NEMOJ BACATI EXCEPTION NE HENDLAS GA NIGDJE APLIKACIJA NE RADI DALJE
 					}
 				
 			}
@@ -177,11 +193,10 @@ public class PopustPromjenaIBrisanje {
 		
 		dateChooser.setBounds(10, 175, 98, 20);
 		frame.getContentPane().add(dateChooser);
-		dateChooser.setInputVerifier(new DateValidator(dateChooser, "Morate ispravno odabrati datum!"));
-
 		
 		dateChooser_1.setBounds(127, 176, 98, 20);
 		frame.getContentPane().add(dateChooser_1);
+		
 
 		textField = new JTextField();
 		textField.setBounds(238, 176, 92, 20);

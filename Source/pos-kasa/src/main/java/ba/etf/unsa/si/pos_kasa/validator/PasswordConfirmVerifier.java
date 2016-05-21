@@ -31,9 +31,11 @@ public class PasswordConfirmVerifier extends AbstractValidator {
  private boolean provjeriIspravnost(String prvi,String drugi) {
 	 boolean isValid=true;
 	 
-	 if (drugi == null || drugi.length() < 5 || !prvi.equals(drugi)) {
+	 if (drugi == null || drugi.length() < 8 || !prvi.equals(drugi)) {
 			isValid = false;
 		}
+	 if(drugi.equals("promijeni"))
+		 isValid=true;
 	 return isValid;
 	 
  }

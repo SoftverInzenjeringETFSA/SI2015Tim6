@@ -1,5 +1,6 @@
 package ba.etf.unsa.si.pos_kasa.view;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -7,8 +8,11 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.List;
+import java.awt.Toolkit;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
@@ -47,6 +51,7 @@ public class KreiranjeRacuna {
 	private JTable Stavke;
 	private KasirKontroler kasirKontroler;
 	private SefKontroler sefKontroler;
+	private RacunKontroler racunKontroler;
 	double ukupniIznos = 0;
 	JComboBox NacinPlacanja;
 	JLabel lblDatum;
@@ -65,7 +70,6 @@ public class KreiranjeRacuna {
 					KreiranjeRacuna window = new KreiranjeRacuna();
 					window.KreiranjeRacuna.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -112,9 +116,12 @@ public class KreiranjeRacuna {
 	 */
 	private void initialize() {
 		KreiranjeRacuna = new JFrame();
-		KreiranjeRacuna.setBounds(100, 100, 726, 411);
-		KreiranjeRacuna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		KreiranjeRacuna.setBounds(100, 100, 816, 411);
+		KreiranjeRacuna.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - KreiranjeRacuna.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - KreiranjeRacuna.getHeight()) / 2);
+		KreiranjeRacuna.setLocation(x, y);
 		JPanel ElementiRacuna = new JPanel();
 
 		JPanel StavkeRacuna = new JPanel();
@@ -125,12 +132,19 @@ public class KreiranjeRacuna {
 		UkupniIznos.setColumns(10);
 
 		JButton btnReklamniRacun = new JButton("Reklamni račun");
+		btnReklamniRacun.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				StornoRacun window = new StornoRacun();
+				window.frame.setVisible(true);
+			}
+		});
 		btnReklamniRacun.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		
 				JButton btntStampajRacun = new JButton("Štampaj račun");
 				btntStampajRacun.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+						racunKontroler = new RacunKontroler();
+						racunKontroler.kreirajRacun(1, String.valueOf(NacinPlacanja.getSelectedItem()), (DefaultTableModel) Stavke.getModel());
 					}
 				});
 				btntStampajRacun.setFont(new Font("Times New Roman", Font.PLAIN, 13));
@@ -244,6 +258,9 @@ public class KreiranjeRacuna {
 		btnDodajStavku.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				DefaultTableModel model = (DefaultTableModel) Stavke.getModel();
+				if(artikal.getZalihe_stanje() < Double.parseDouble(lblIznos.getText())){JOptionPane.showMessageDialog(null, "Artikla " + lblNaziv.getText() + " nema dovoljno na stanju!");
+				return;
+				}
 				model.addRow(new Object[]{artikal.getBarkod(), artikal.getNaziv(), spinner.getValue(), artikal.getCijena(), lblIznos.getText()});
 				ukupniIznos += Double.parseDouble(lblIznos.getText());
 				UkupniIznos.setText(Double.toString(ukupniIznos));

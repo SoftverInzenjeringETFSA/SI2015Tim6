@@ -7,6 +7,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Scanner;
 import org.hibernate.Transaction;
 import org.hibernate.Session;
@@ -30,8 +31,8 @@ public class Izvjestaji {
 	public static List<Artikal> dajArtiklePoNacinuPlacanjaOdDo(Date date1, Date date2){
 	    Session session = HibernateUtil.getSessionFactory().openSession(); 
 		String hql = "Select new ba.etf.unsa.si.pos_kasa.model.Artikal(a.id, a.naziv,sr.artikal_id, sr.racun_id,s.pocetak_smjene,r.id,r.smjena_id,s.id,np.racun_id,np.vrsta_placanja_id,vp.id) "
-				+ "FROM Artikal a, StavkaRacuna sr,Racun r,Smjena s,NacinPlacanja np,VrstaPlacanja vp "
-				+ "WHERE s.pocetak_smjene BETWEEN STR_TO_DATE(:datum1, \'%Y-%m-%d\') AND STR_TO_DATE(:datum2, \'%Y-%m-%d\') AND sr.racun_id = r.id AND sr.racun_id=r.id AND r.smjena_id=s.id AND np.vrsta_placanja_id=vp.id AND np.racun_id=r.id ";
+				+ "FROM Artikal a, StavkaRacuna sr,Racun r,Smjena s,NacinPlacanja np "
+				+ "WHERE s.pocetak_smjene BETWEEN STR_TO_DATE(:datum1, \'%Y-%m-%d\') AND STR_TO_DATE(:datum2, \'%Y-%m-%d\') AND sr.racun_id = r.id AND sr.racun_id=r.id AND r.smjena_id=s.id AND np.racun_id=r.id ";
 		Query q = session.createQuery(hql);
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		q.setString("datum1",		df.format(date1));
@@ -71,12 +72,16 @@ public class Izvjestaji {
     
     private static double[] obracunajPoNacinuPlacanjaUkupanIznos(List<NacinPlacanja> records)
     {
-    	double[] ukupno = new double[]{0,0,0,0}; // gotovina, kartica, ček, virman
+    	HashMap ukupno = new HashMap(); // gotovina, kartica, ček, virman
+    	ukupno.put("Gotovina", 0.0);
+    	ukupno.put("Kartica", 0.0);
+    	ukupno.put("Cek", 0.0);
+    	ukupno.put("Virman", 0.0);
     	for(NacinPlacanja np : records)
     	{
-    		ukupno[(int)np.getVrstaplacanja_id()-1] += np.getIznos();
+    		ukupno.put(np.getVrstaplacanja_id(), ukupno.get(np.getVrstaplacanja_id() + np.getIznos()));
     	}
-    	return ukupno;
+    	return new double[]{(Double) ukupno.get("Gotovina"), (Double) ukupno.get("Kartica"), (Double) ukupno.get("Cek"), (Double) ukupno.get("Virman")};
     }
     
     public static double[] dajUkupanPrometPoVrstiPlacanjaOdDo(Date date1, Date date2)

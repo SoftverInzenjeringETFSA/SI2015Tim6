@@ -1,5 +1,7 @@
 package ba.etf.unsa.si.pos_kasa.view;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
@@ -35,7 +37,11 @@ public class FormaZaKasira  {
 		frmKasa = new JFrame();
 		frmKasa.setTitle("Kasa");
 		frmKasa.setBounds(100, 100, 435, 409);
-		frmKasa.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmKasa.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - frmKasa.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - frmKasa.getHeight()) / 2);
+		frmKasa.setLocation(x, y);
 		
 		JButton btnKreiranjeRacuna = new JButton("Kreiranje Računa");
 		btnKreiranjeRacuna.addActionListener(new ActionListener() {

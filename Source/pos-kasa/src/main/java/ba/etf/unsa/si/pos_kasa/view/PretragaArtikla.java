@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
@@ -20,6 +22,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.JComboBox;
 import java.awt.Insets;
+import java.awt.Toolkit;
+
 import javax.swing.JRadioButton;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -71,7 +75,11 @@ public class PretragaArtikla {
 		frmPretragaArtikala.setTitle("Pretraga Artikala");
 		frmPretragaArtikala.setBounds(100, 100, 516, 344);
 		frmPretragaArtikala.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - frmPretragaArtikala.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - frmPretragaArtikala.getHeight()) / 2);
+		frmPretragaArtikala.setLocation(x, y);
+		
 		JLabel lblNewLabel = new JLabel("Način pretrage artikla:");
 
 		final JComboBox cboOdabirNacinaPretrage = new JComboBox();
@@ -98,12 +106,17 @@ public class PretragaArtikla {
 				List<String> str = new Vector<String>();
 				ArtikalKontroler ac = new ArtikalKontroler();
 				List<Artikal> lista = new Vector<Artikal>();
+				int rowCount = dtm.getRowCount();
+				for (int i = rowCount - 1; i >= 0; i--) {
+				    dtm.removeRow(i);
+				}
 				if ((String) cboOdabirNacinaPretrage.getSelectedItem() == "Naziv") {
 					lista = ac.vratiSveArtiklePoNazivu((String)txtPretrazi.getText());
 					str = ac.vratiRijeci(lista);
 				} else if ((String) cboOdabirNacinaPretrage.getSelectedItem() == "Kategorija") {
 					lista = ac.vratiSveArtiklePoKategoriji(Long.parseLong(txtPretrazi.getText()));
 					str = ac.vratiRijeci(lista);
+					
 				} else {
 					lista = ac.vratiSveArtiklePoBarkodu((String)txtPretrazi.getText());
 					str = ac.vratiRijeci(lista);

@@ -23,8 +23,6 @@ public class Racun implements java.io.Serializable {
 	@GeneratedValue
 	long broj_racuna;
 	long smjena_id;
-	
-	//List<Racun> _racuni;
     
 	//public List<Racun> get_racuni() {
 	//	return _racuni;

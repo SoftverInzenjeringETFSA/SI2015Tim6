@@ -1,7 +1,9 @@
 package ba.etf.unsa.si.pos_kasa.controller;
 
 import java.awt.EventQueue;
+import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
@@ -27,7 +29,9 @@ import ba.etf.unsa.si.pos_kasa.view.PopustPromjenaIBrisanje;
 import ba.etf.unsa.si.pos_kasa.view.PretragaArtikla;
 import ba.etf.unsa.si.pos_kasa.view.PretragaKorisnika;
 import ba.etf.unsa.si.pos_kasa.view.PretragaKorisnika_prikaz;
+import ba.etf.unsa.si.pos_kasa.view.Zakljucivanje;
 import ba.etf.unsa.si.pos_kasa.view.messageBox;
+import javafx.application.Application;
 
 public class SefKontroler {
 
@@ -47,6 +51,8 @@ public class SefKontroler {
 	KreiranjeRacuna kreiranjeRacuna;
 	Popust popust;
 	FormaKategorije formaKategorije;
+	Zakljucivanje formaZakljucivanjeSmjene;
+	LoginKontroler loginKontroler;
 	final static Logger logger = Logger.getLogger(SefKontroler.class.toString());
 	// instance formi za odjavu i kraj smjene
 
@@ -54,11 +60,10 @@ public class SefKontroler {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					formaZaSefa = new OpcijeSefa(SefKontroler.this);
 					formaZaSefa.setVisible(true);
 				} catch (Exception e) {
-					
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -66,6 +71,7 @@ public class SefKontroler {
 			}
 		});
 	}
+	
 
 	public void prikaziFormuZaModifikacijuPopusta() {
 		EventQueue.invokeLater(new Runnable(){
@@ -74,7 +80,21 @@ public class SefKontroler {
 					popusti = new PopustPromjenaIBrisanje(SefKontroler.this);
 					popusti.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
+				}
+			}
+		});
+}
+	
+	public void prikaziFormuZaZakljucivanjeSmjene() {
+		EventQueue.invokeLater(new Runnable(){
+			public void run() {
+				try {
+					formaZakljucivanjeSmjene = new Zakljucivanje(SefKontroler.this);
+					formaZakljucivanjeSmjene.setVisible(true);
+				} catch (Exception e) {
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -90,7 +110,6 @@ public class SefKontroler {
 				dodavanjeNovogKorisnika = new DodavanjeNovogKorisnika(SefKontroler.this);
 				dodavanjeNovogKorisnika.setVisible(true);
 			} catch (Exception e) {
-				e.printStackTrace();
 				String poruka=e.getMessage();
 				logger.info(poruka);
 				throw new RuntimeException(e);
@@ -103,25 +122,31 @@ public class SefKontroler {
 	public boolean dodajNovogKorisnika(Uposlenik uposlenik) {
 		Session session = null;
 		boolean success = true;
+		if(!pronadjiKorisnikaPoUsername(uposlenik.getUsername())) {
 		try {
-			// System.out.println("DAJ VISE UNESI try block");
+			
 			session = HibernateUtil.getSessionFactory().openSession();
 			Transaction t = session.beginTransaction();
 			session.save(uposlenik);
 			t.commit();
 		} catch (HibernateException e) {
-			// System.out.println("DAJ VISE UNESI cath");
+			
 			success = false;
 			String poruka=e.getMessage();
 			logger.info(poruka);
 			throw new RuntimeException(e);
 		} finally {
-			// System.out.println("DAJ VISE UNESI finally");
+			
 			if (session != null) {
 				session.close();
 			}
 		}
 		return success;
+		}
+		else {
+			messageBox.infoBox("Korisnik sa unijetim korisničkim imenom postoji. Nije moguć unos korisnika sa tim korisničkim imenom.", "Info o unosu");
+			return false;
+		}
 	}
 
 	// pretrazuje bazu i vraca uposlenika ukoliko je pronadjen
@@ -144,7 +169,6 @@ public class SefKontroler {
 			}
 		} catch (HibernateException e) {
 			messageBox.infoBox("GREŠKA!", "Info o pretragi za brisanje");
-			e.printStackTrace();
 			String poruka=e.getMessage();
 			logger.info(poruka);
 			throw new RuntimeException(e);
@@ -155,11 +179,42 @@ public class SefKontroler {
 		}
 		return null;
 	}
+	
+	public boolean pronadjiKorisnikaPoUsername(String username) {
+
+		Session session = null;
+		boolean provjera=false;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			Query query = session.createQuery("FROM Uposlenik where username= :username");
+			query.setParameter("username", username);
+			@SuppressWarnings("unchecked")
+			List<Uposlenik> uposlenici = query.list();
+			if (uposlenici != null && uposlenici.size() == 1) {
+				Uposlenik uposlenik = uposlenici.get(0);
+				provjera = true;
+
+			} 
+			
+		} catch (HibernateException e) {
+			//messageBox.infoBox("GREŠKA!", "Info o pretragi za brisanje");
+			String poruka=e.getMessage();
+			logger.info(poruka);
+			//throw new RuntimeException(e);
+		} finally {
+			if (session != null) {
+				session.close();
+
+			}
+		}
+		return provjera;
+	}
 
 	// za brisanje uposlenika metoda prima uposlenika kao parametar
 	public void obrisiKorisnikaPoJMBG(Uposlenik uposlenik) {
 
 		Session session = null;
+		boolean provjera=false;//ovo pokusat skontat 
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			Transaction t = session.beginTransaction();
@@ -186,7 +241,6 @@ public class SefKontroler {
 
 		HibernateException e) {
 			messageBox.infoBox("GREŠKA exception", "Brisanje uposlenika!!!");
-			e.printStackTrace();
 			String poruka=e.getMessage();
 			logger.info(poruka);
 			throw new RuntimeException(e);
@@ -206,7 +260,7 @@ public class SefKontroler {
 					pretragaKorisnika = new PretragaKorisnika(SefKontroler.this);
 					pretragaKorisnika.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -214,6 +268,7 @@ public class SefKontroler {
 			}
 		});
 	}
+
 
 	public void prikaziFormuZaBrisanjeKorisnika() {
 
@@ -223,7 +278,6 @@ public class SefKontroler {
 					brisanjeKorisnika = new BrisanjeKorisnika(SefKontroler.this);
 					brisanjeKorisnika.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -242,7 +296,6 @@ public class SefKontroler {
 					brisanjeArtikla = new BrisanjeArtikala(SefKontroler.this);
 					brisanjeArtikla.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -260,7 +313,6 @@ public class SefKontroler {
 			pretragaArtikla = new PretragaArtikla(SefKontroler.this);
 			pretragaArtikla.setVisible(true);
 		} catch (Exception e) {
-			e.printStackTrace();
 			String poruka=e.getMessage();
 			logger.info(poruka);
 			throw new RuntimeException(e);
@@ -277,7 +329,6 @@ public class SefKontroler {
 					dodavanjeNovogArtikla = new DodavanjeNovogArtikla(SefKontroler.this);
 					dodavanjeNovogArtikla.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -294,7 +345,6 @@ public class SefKontroler {
 					kreiranjeRacuna = new KreiranjeRacuna(SefKontroler.this);
 					kreiranjeRacuna.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -311,7 +361,6 @@ public class SefKontroler {
 					popust = new Popust(SefKontroler.this);
 					popust.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -330,7 +379,6 @@ public class SefKontroler {
 							uposlenik);
 					brisanjeKorisnikaPrikazRezultata.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -347,7 +395,6 @@ public class SefKontroler {
 					pretragaKorisnikaPrikaz = new PretragaKorisnika_prikaz(SefKontroler.this, uposlenik);
 					pretragaKorisnikaPrikaz.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -363,7 +410,6 @@ public class SefKontroler {
 					formaKategorije = new FormaKategorije();
 					formaKategorije.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -372,5 +418,51 @@ public class SefKontroler {
 		});
 	}
 	
+	public void zaključiSmjenu() {
+		 Properties p = System.getProperties();
+		 //System.out.println(p.getProperty("uloga"));
+		 //System.out.println(p.getProperty("zaposlenik_id"));
+		 Session session = null;
+		 try 
+		 {
+			 long uposlenik_id=Long.parseLong(p.getProperty("zaposlenik_id"));
+			    session = HibernateUtil.getSessionFactory().openSession();
+				Transaction t = session.beginTransaction();
+		        Query query = session.createQuery("FROM Smjena where uposlenik_id= :uposlenik_id and pocetak_smjene = kraj_smjene");
+		        query.setParameter("uposlenik_id", uposlenik_id);
+		        @SuppressWarnings("unchecked")
+				List<Smjena> smjenaLista = query.list();
+				Smjena s = smjenaLista.get(0);
+				System.out.println("ovo je prije ifa");
+				
+				if(smjenaLista.size()==1) {
+					//messageBox.infoBox("Unutar if-a", "");
+					s.setKraj_smjene(new Date());
+				    session.save(s);
+					t.commit();
+				    messageBox.infoBox("Uspješno ste zaključili smjenu.", "Info o zaključivanju smjene");
+				    formaZaSefa.setVisible(false);
+				    formaZakljucivanjeSmjene.setVisible(false);
+				    loginKontroler = new LoginKontroler();
+				    
+				}
+				
+		 }
+		 catch(Exception e)
+		 {
+			messageBox.infoBox(e.getMessage(), "exception");
+			 
+		 }
+		 finally 
+		 {
+			 if(session!=null)
+			 {
+				 session.clear();
+			 session.close();
+			 
+			 }
+		 }
+		
+	 }
 
 }

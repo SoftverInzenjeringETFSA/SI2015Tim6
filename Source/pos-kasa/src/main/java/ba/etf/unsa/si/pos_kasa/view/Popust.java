@@ -1,12 +1,16 @@
 package ba.etf.unsa.si.pos_kasa.view;
 
 import java.awt.EventQueue;
+import java.awt.Toolkit;
+
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import java.awt.Choice;
+import java.awt.Dimension;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -19,6 +23,8 @@ import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import org.apache.log4j.Logger;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class Popust {
 
@@ -65,9 +71,20 @@ public class Popust {
 	
 	private void initialize() {
 		frmPopust = new JFrame();
+		frmPopust.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentHidden(ComponentEvent e) {
+				
+				
+			}
+		});
 		frmPopust.setTitle("Popust");
 		frmPopust.setBounds(100, 100, 310, 281);
 		frmPopust.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - frmPopust.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - frmPopust.getHeight()) / 2);
+		frmPopust.setLocation(x, y);
 		
 		lblIznosRaunaS = new JLabel("Iznos popusta:");
 		
@@ -98,16 +115,17 @@ public class Popust {
 					try {
 						pc.dodajAkcijaPopust(datePocetak.getDate(),dateKraj.getDate(), textAreaOpis.getText(), Integer.parseInt(txtIznosPopusta.getText()));
 					} catch (Exception e) {
-						JOptionPane.showMessageDialog(null, e.getMessage(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+						//JOptionPane.showMessageDialog(null, e.getMessage(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+						messageBox.infoBox("Prije klika na dugme odaberite datume i unesite iznos popusta!", "Info Popust");
 						String poruka=e.getMessage();
 						logger.info(poruka);
-						throw new RuntimeException(e);
+						//throw new RuntimeException(e);
 					}
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, e.getMessage(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
 					String poruka=e.getMessage();
 					logger.info(poruka);
-					throw new RuntimeException(e);
+					//throw new RuntimeException(e);
 				} 
 				
 			}

@@ -1,7 +1,9 @@
 package ba.etf.unsa.si.pos_kasa.view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -25,6 +27,10 @@ import ba.etf.unsa.si.pos_kasa.validator.PasswordConfirmVerifier;
 import ba.etf.unsa.si.pos_kasa.validator.PasswordVerifier;
 import ba.etf.unsa.si.pos_kasa.validator.PrezimeVerifier;
 import ba.etf.unsa.si.pos_kasa.validator.userNameVerifier;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class DodavanjeNovogKorisnika {
 
@@ -55,9 +61,13 @@ public class DodavanjeNovogKorisnika {
 	private void initialize() {
 		DodavnjeNovogKorisnika = new JFrame();
 		DodavnjeNovogKorisnika.setTitle("Dodavanje Novog Korisnika");
-		DodavnjeNovogKorisnika.setBounds(100, 100, 391, 431);
+		DodavnjeNovogKorisnika.setBounds(100, 100, 436, 431);
 		DodavnjeNovogKorisnika.getContentPane().setLayout(null);
-
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - DodavnjeNovogKorisnika.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - DodavnjeNovogKorisnika.getHeight()) / 2);
+		DodavnjeNovogKorisnika.setLocation(x, y);
+		
 		JLabel lblIme = new JLabel("Ime:");
 		lblIme.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		lblIme.setBounds(10, 47, 33, 14);
@@ -79,7 +89,7 @@ public class DodavanjeNovogKorisnika {
 		lblKorisnickoIme.setBounds(10, 125, 90, 14);
 		DodavnjeNovogKorisnika.getContentPane().add(lblKorisnickoIme);
 
-		JLabel lblPassword = new JLabel("Password:");
+		JLabel lblPassword = new JLabel("Lozinka:");
 		lblPassword.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		lblPassword.setBounds(10, 224, 66, 20);
 		DodavnjeNovogKorisnika.getContentPane().add(lblPassword);
@@ -108,7 +118,7 @@ public class DodavanjeNovogKorisnika {
 		textKorIme.setInputVerifier(new userNameVerifier(textKorIme,"Korisničko ime mora biti duže od 3 i ne veće od 20 slova!"));
 		DodavnjeNovogKorisnika.getContentPane().add(textKorIme);
 
-		JLabel lblPasswordConfirm_1 = new JLabel("Password Confirm:");
+		JLabel lblPasswordConfirm_1 = new JLabel("Potvrda lozinke:");
 		lblPasswordConfirm_1.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		lblPasswordConfirm_1.setBounds(10, 257, 100, 23);
 		DodavnjeNovogKorisnika.getContentPane().add(lblPasswordConfirm_1);
@@ -132,7 +142,7 @@ public class DodavanjeNovogKorisnika {
 		textPasswordConfirm = new JPasswordField();
 		textPasswordConfirm.setBounds(120, 258, 167, 20);
 		textPassword.setInputVerifier(new PasswordVerifier(textPassword,"Password ne smije biti kraći od 8 znakova, mora sadrzavati malo, veliko slovo i broj!"));
-		textPasswordConfirm.setInputVerifier(new PasswordConfirmVerifier(textPasswordConfirm,"Potvrda Passworda nije uredu!",textPassword));
+		textPasswordConfirm.setInputVerifier(new PasswordConfirmVerifier(textPasswordConfirm,"Potvrda Lozinke nije uredu. Unesite ispravnu lozinku ili unesite 'promijeni' ukoliko želite izvršiti promijenu lozinke!",textPassword));
 		DodavnjeNovogKorisnika.getContentPane().add(textPasswordConfirm);
 
 		JLabel lblDatumRoenja = new JLabel("Datum Rođenja:");
@@ -144,7 +154,7 @@ public class DodavanjeNovogKorisnika {
 		textDatumRodjenja.setBounds(120, 186, 167, 20);
 		DodavnjeNovogKorisnika.getContentPane().add(textDatumRodjenja);
 		textDatumRodjenja.setColumns(10);
-		textDatumRodjenja.setInputVerifier(new DatumRodjenjaVerifier(textDatumRodjenja,"Datum mora biti u formatu YYYY-MM-DD"));
+		textDatumRodjenja.setInputVerifier(new DatumRodjenjaVerifier(textDatumRodjenja,"Datum mora biti u formatu YYYY-MM-DD",textJMBG));
 
 		JLabel lblUloga = new JLabel("Uloga:");
 		lblUloga.setFont(new Font("Times New Roman", Font.PLAIN, 13));
@@ -156,10 +166,15 @@ public class DodavanjeNovogKorisnika {
 		DodavnjeNovogKorisnika.getContentPane().add(panel);
 		// radio buttons location
 		final JRadioButton rdbtnKasir = new JRadioButton("Kasir");
+		
 		rdbtnKasir.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		panel.add(rdbtnKasir);
 
 		final JRadioButton rdbtnSef = new JRadioButton("Sef");
+		
+		
+		
+		
 		rdbtnSef.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		panel.add(rdbtnSef);
 		// end of radio button location
@@ -169,11 +184,20 @@ public class DodavanjeNovogKorisnika {
 		group.add(rdbtnSef);
 		group.add(rdbtnKasir);
 
-		JButton btnDodajNovogKorisnika = new JButton("Dodaj Novog Korisnika");
+		final JButton btnDodajNovogKorisnika = new JButton("Dodaj Novog Korisnika");
 		btnDodajNovogKorisnika.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		btnDodajNovogKorisnika.setBounds(120, 302, 167, 23);
+		DodavnjeNovogKorisnika.getContentPane().add(btnDodajNovogKorisnika);
+		
+		
 		// action listener za dodavanje novog korisnika
 		btnDodajNovogKorisnika.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(((textIme.getText().equals(""))||(textPrezime.getText().equals(""))||(textJMBG.getText().equals(""))||(textBrojTel.getText().equals(""))||(textDatumRodjenja.getText().equals(""))||(textKorIme.getText().equals(""))|| (new String(textPassword.getPassword()).equals(""))|| (new String(textPasswordConfirm.getPassword()).equals(""))))
+				{
+					messageBox.infoBox("Niste unijeli sva polja prije klika na dugme Dodaj Novog Korisnika!", "Info o unosu");
+					return;
+				}
 
 				String pIme = "";
 				String pPrezime = "";
@@ -191,8 +215,15 @@ public class DodavanjeNovogKorisnika {
 
 				if (rdbtnKasir.isSelected()) {
 					pUloga = rdbtnKasir.getText();
+					
+					
+					
 				} else if (rdbtnSef.isSelected()) {
 					pUloga = rdbtnSef.getText();
+				}
+				else {
+					messageBox.infoBox("Niste odabrali ulogu prije klika na dugme Dodaj novog korisnika!", "Info o unosu");
+					return;
 				}
 				Uposlenik uposlenik = new Uposlenik(pIme + " " + pPrezime, pDatumRodjenja, pJMBG, pBrojTel, pKorisnickoIme,
 						pPassword, pUloga);
@@ -210,10 +241,7 @@ public class DodavanjeNovogKorisnika {
 			}
 
 		});
-		btnDodajNovogKorisnika.setBounds(120, 302, 167, 23);
-		DodavnjeNovogKorisnika.getContentPane().add(btnDodajNovogKorisnika);
+		
 
 	}
-
-	
 }

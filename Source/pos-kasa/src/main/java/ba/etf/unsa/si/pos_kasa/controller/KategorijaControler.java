@@ -169,6 +169,7 @@ public class KategorijaControler {
 		SQLQuery query = session.createSQLQuery(sql);
 		query.addEntity(Kategorija.class);	
 		List<Kategorija> results = query.list();
+		
 		List<String> rezultati=new Vector<String>();
 		for (int i=0;i<results.size();i++)
 		{

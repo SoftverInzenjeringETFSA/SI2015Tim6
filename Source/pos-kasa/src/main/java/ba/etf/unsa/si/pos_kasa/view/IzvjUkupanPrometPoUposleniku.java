@@ -1,10 +1,13 @@
 package ba.etf.unsa.si.pos_kasa.view;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.BoxLayout;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -44,7 +47,6 @@ public class IzvjUkupanPrometPoUposleniku {
 					IzvjUkupanPrometPoUposleniku window = new IzvjUkupanPrometPoUposleniku();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 					String poruka=e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
@@ -67,8 +69,12 @@ public class IzvjUkupanPrometPoUposleniku {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 452, 335);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+		frame.setLocation(x, y);
 		
 		JLabel lblNewLabel = new JLabel("Početni datum");
 		lblNewLabel.setBounds(12, 13, 101, 23);

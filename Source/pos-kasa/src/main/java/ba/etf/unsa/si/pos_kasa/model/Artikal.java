@@ -62,7 +62,7 @@ public class Artikal implements java.io.Serializable{
 	}
 	
 
-	public long getZalihe_stanje() {
+	public int getZalihe_stanje() {
 		return zalihe_stanje;
 	}
 

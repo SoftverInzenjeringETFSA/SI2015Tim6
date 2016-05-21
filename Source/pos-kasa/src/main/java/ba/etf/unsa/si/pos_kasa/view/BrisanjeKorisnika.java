@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import javax.swing.JTextArea;
 
 import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
@@ -13,6 +15,8 @@ import ba.etf.unsa.si.pos_kasa.validator.JMBGVerifier;
 
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -48,7 +52,10 @@ public class BrisanjeKorisnika {
 		frmBrisanjeKorisnika.setBounds(100, 100, 407, 208);
 		frmBrisanjeKorisnika.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmBrisanjeKorisnika.getContentPane().setLayout(null);
-		
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - frmBrisanjeKorisnika.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - frmBrisanjeKorisnika.getHeight()) / 2);
+		frmBrisanjeKorisnika.setLocation(x, y);
 		JLabel lblJmbg = new JLabel("JMBG:");
 		lblJmbg.setBounds(77, 32, 47, 23);
 		frmBrisanjeKorisnika.getContentPane().add(lblJmbg);

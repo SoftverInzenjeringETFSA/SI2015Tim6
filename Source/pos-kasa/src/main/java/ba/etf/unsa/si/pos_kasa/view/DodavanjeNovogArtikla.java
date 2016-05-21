@@ -9,11 +9,14 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Panel;
 import java.awt.BorderLayout;
 import javax.swing.JTextField;
 import javax.swing.DropMode;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
+
 import javax.swing.JButton;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -86,6 +89,10 @@ public class DodavanjeNovogArtikla {
 		DodavanjeNovogArtikla.setForeground(Color.BLACK);
 		DodavanjeNovogArtikla.setBounds(100, 100, 491, 485);
 		DodavanjeNovogArtikla.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - DodavanjeNovogArtikla.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - DodavanjeNovogArtikla.getHeight()) / 2);
+		DodavanjeNovogArtikla.setLocation(x, y);
 		
 		JLabel lblUnesitePodatkeO = new JLabel("Unesite podatke o artiklu:");
 		lblUnesitePodatkeO.setBounds(21, 11, 225, 20);
@@ -152,7 +159,9 @@ public class DodavanjeNovogArtikla {
 				catch(Exception e)
 				{
 					JOptionPane.showMessageDialog(null, "BARKOD vec postoji!", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
-
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});

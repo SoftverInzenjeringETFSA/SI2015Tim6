@@ -1,6 +1,8 @@
 package ba.etf.unsa.si.pos_kasa.view;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -42,6 +44,10 @@ public class PretragaKorisnika {
 		frmPretragaKorisnika.setBounds(100, 100, 455, 196);
 		frmPretragaKorisnika.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmPretragaKorisnika.getContentPane().setLayout(null);
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - frmPretragaKorisnika.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - frmPretragaKorisnika.getHeight()) / 2);
+		frmPretragaKorisnika.setLocation(x, y);
 		
 		JLabel lblUnesiteJmbgKorisnika = new JLabel("Unesite JMBG korisnika:");
 		lblUnesiteJmbgKorisnika.setBounds(10, 32, 143, 29);

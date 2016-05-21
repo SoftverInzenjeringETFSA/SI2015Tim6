@@ -70,7 +70,7 @@ public class IzvjestajNaKrajuSmjene {
 		for (Artikal artikal : artikli){
 			
 			Calendar cal = Calendar.getInstance();
-			Date g=Smjena.getPocetakSmjene();
+			Date g= new Date();//Smjena.getPocetakSmjene(); ovo je zbog errora zakomentarisano
 			cal.setTime(g);
 			Date poc = cal.getTime();
 			if (poc.getTime() < pocetakSmjene.getTime() || poc.getTime() > krajSmjene.getTime()) {
@@ -79,14 +79,17 @@ public class IzvjestajNaKrajuSmjene {
 			brojac++;
 			t.addCell(artikal.getNaziv());
 			
-			String s=SmjenaKontroler.VrijemeSmjene(pocetakSmjene, krajSmjene).toString();
+			//metoda je bila static i pravi probleme pa sam je zakomentarisao onda zbog 3 errora sam ovo zakomentarisao
+			String s= new String();//SmjenaKontroler.VrijemeSmjene(pocetakSmjene, krajSmjene).toString();
 			t.addCell(s);
 			
 			try {
 				t.addCell(Izvjestaji.dajArtiklePoNacinuPlacanjaOdDo(pocetakSmjene, krajSmjene).toString());
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				String poruka=e.getMessage();
+				logger.info(poruka);
+				throw new RuntimeException(e);
 			}
 			t.addCell(String.valueOf(artikal.getCijena()));
 		

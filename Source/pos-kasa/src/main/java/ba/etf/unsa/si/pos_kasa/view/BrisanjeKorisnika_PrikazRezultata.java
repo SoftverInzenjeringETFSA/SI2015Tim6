@@ -1,5 +1,6 @@
 package ba.etf.unsa.si.pos_kasa.view;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,6 +10,8 @@ import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
 import ba.etf.unsa.si.pos_kasa.model.Uposlenik;
 
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -45,6 +48,10 @@ public class BrisanjeKorisnika_PrikazRezultata {
 		frmBrisanjeKorisnika.setBounds(100, 100, 407, 269);
 		frmBrisanjeKorisnika.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmBrisanjeKorisnika.getContentPane().setLayout(null);
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - frmBrisanjeKorisnika.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - frmBrisanjeKorisnika.getHeight()) / 2);
+		frmBrisanjeKorisnika.setLocation(x, y);
 		
 		JLabel lblNewLabel = new JLabel("Podaci o korisniku:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -70,7 +77,7 @@ public class BrisanjeKorisnika_PrikazRezultata {
 		frmBrisanjeKorisnika.getContentPane().add(btnNewButton);
 		
 		JLabel lblImeIPrezime = new JLabel("Ime i Prezime:");
-		lblImeIPrezime.setBounds(10, 61, 75, 14);
+		lblImeIPrezime.setBounds(10, 61, 100, 14);
 		frmBrisanjeKorisnika.getContentPane().add(lblImeIPrezime);
 		
 		JLabel lblJmbg = new JLabel("JMBG:");

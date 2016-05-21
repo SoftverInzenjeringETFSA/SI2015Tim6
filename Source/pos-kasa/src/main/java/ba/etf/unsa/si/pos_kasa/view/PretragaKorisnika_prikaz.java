@@ -15,7 +15,9 @@ import ba.etf.unsa.si.pos_kasa.model.Uposlenik;
 
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -50,6 +52,10 @@ public class PretragaKorisnika_prikaz {
 		PretragaKorisnika_prikaz.getContentPane().setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		PretragaKorisnika_prikaz.setBounds(100, 100, 450, 300);
 		PretragaKorisnika_prikaz.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - PretragaKorisnika_prikaz.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - PretragaKorisnika_prikaz.getHeight()) / 2);
+		PretragaKorisnika_prikaz.setLocation(x, y);
 		
 		JLabel lblPodaciOKorisniku = new JLabel("Podaci o korisniku:");
 		lblPodaciOKorisniku.setFont(new Font("Times New Roman", Font.BOLD, 17));
@@ -71,24 +77,42 @@ public class PretragaKorisnika_prikaz {
 		btnClose.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		
 		JLabel lblDatumrodjenja = new JLabel(uposlenik.getDatumRodjenja());
+		lblDatumrodjenja.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		
 		JLabel lblBrojtelefona = new JLabel(uposlenik.getBrojTelefona());
+		lblBrojtelefona.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		
+		JLabel lblImeIPrezime = new JLabel("Ime i Prezime:");
+		lblImeIPrezime.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		
+		JLabel lblNewLabel = new JLabel("JMBG:");
+		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		
+		JLabel lblDatumRoenja = new JLabel("Datum rođenja:");
+		lblDatumRoenja.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		
+		JLabel lblNewLabel_1 = new JLabel("Broj tel:");
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		GroupLayout groupLayout = new GroupLayout(PretragaKorisnika_prikaz.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(25)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(25)
-							.addComponent(lblPodaciOKorisniku, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(153)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblImeIPrezime)
+								.addComponent(lblNewLabel)
+								.addComponent(lblDatumRoenja)
+								.addComponent(lblNewLabel_1))
+							.addGap(82)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 								.addComponent(lblImePrezimeKorisnika, GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
 								.addComponent(lblJmbgKorisnika, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(lblDatumrodjenja, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(lblBrojtelefona, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnClose))))
+								.addComponent(btnClose)))
+						.addComponent(lblPodaciOKorisniku, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(43, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
@@ -97,13 +121,21 @@ public class PretragaKorisnika_prikaz {
 					.addGap(23)
 					.addComponent(lblPodaciOKorisniku)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(lblImePrezimeKorisnika, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblImePrezimeKorisnika, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblImeIPrezime))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblJmbgKorisnika)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblJmbgKorisnika)
+						.addComponent(lblNewLabel))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblDatumrodjenja)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblDatumrodjenja)
+						.addComponent(lblDatumRoenja))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(lblBrojtelefona)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblBrojtelefona)
+						.addComponent(lblNewLabel_1))
 					.addPreferredGap(ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
 					.addComponent(btnClose)
 					.addGap(31))
