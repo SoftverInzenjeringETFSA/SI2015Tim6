@@ -29,15 +29,15 @@ import Tools.HibernateUtil;
 public class RacunKontroler {
  
 	//private static Session session;
-  
+	private Session session;
 	public static void main(String[] args)
 	{
 	}
 	
 	
-	public static Long dodajStavku(StavkaRacuna stavkaRac, long racun_id)
+	public Long dodajStavku(StavkaRacuna stavkaRac, long racun_id)
 	{
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		stavkaRac.setRacun_id(racun_id);
 		Long id = (Long) session.save(stavkaRac);
@@ -46,9 +46,9 @@ public class RacunKontroler {
 		return id;
 	}
 	
-	public static void ukloniStavku(long _id)
+	public void ukloniStavku(long _id)
 	{
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		StavkaRacuna sr = new StavkaRacuna();
 		
@@ -67,9 +67,9 @@ public class RacunKontroler {
 		session.close();
 	}
 	
-	public static Long dodajNacinPlacanja(NacinPlacanja np, long racun_id)
+	public Long dodajNacinPlacanja(NacinPlacanja np, long racun_id)
 	{
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		np.setRacun_id(racun_id);
 		 Long id = (Long) session.save(np);
@@ -78,9 +78,9 @@ public class RacunKontroler {
 		 return id;
 	}
 	
-	public static List<?> vratiSveRacune()
+	public List<?> vratiSveRacune()
 	{
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		session = HibernateUtil.getSessionFactory().openSession();
 		String sql = "select * from tim6.racun";
 		SQLQuery query = session.createSQLQuery(sql);
 		query.addEntity(Racun.class);	
@@ -89,9 +89,9 @@ public class RacunKontroler {
 		return results;	
 	}
 	
-	public static Racun pretraziRacunePoDatumu(Date _datum)throws Exception
+	public Racun pretraziRacunePoDatumu(Date _datum)throws Exception
 	{
-	     Session session = HibernateUtil.getSessionFactory().openSession();
+	     session = HibernateUtil.getSessionFactory().openSession();
 	     Transaction t=session.beginTransaction(); 
     	 Racun _racun = new Racun();
     	     
@@ -104,7 +104,7 @@ public class RacunKontroler {
 	
 	public long kreirajRacun(long smjena_id, String nacinPlacanja, DefaultTableModel model)
 	{
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		Racun racun = new Racun();
 		racun.setDatum_i_vrijeme(new Date());
@@ -125,7 +125,7 @@ public class RacunKontroler {
 	
 	public String kreirajStornoRacun(long brojRacuna) //broj a ne ID!!
 	{
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		Criteria crit = session.createCriteria(Racun.class);
 		crit.add(Restrictions.eq("broj_racuna", brojRacuna));
@@ -140,6 +140,8 @@ public class RacunKontroler {
 		crit = session.createCriteria(StornoRacun.class);
 		crit.add(Restrictions.eq("racun_id", rac.getId()));
 		list = crit.list();
+		
+		this.povecajZalihe(rac.getId());
 		
 		String poruka = "";
 		if(rac != null && list.size() > 0) 
@@ -157,9 +159,19 @@ public class RacunKontroler {
 		session.close();
 		return poruka;
 	}
+	
+	private void povecajZalihe(long racun_id){
+		Criteria crit = session.createCriteria(StavkaRacuna.class);
+		crit.add(Restrictions.eq("racun_id", racun_id));
+		List<StavkaRacuna> list = crit.list();
+		for(StavkaRacuna sr: list){
+            Artikal art =  session.load(Artikal.class, sr.getArtikal_id());
+            art.setZalihe_stanje(art.getZalihe_stanje() + sr.getKolicina());
+		}
+	}
 		
 	private AkcijaPopust dajAktivniPopust(){
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		String hql = "Select new ba.etf.unsa.si.pos_kasa.model.AkcijaPopust(a.id, a.datum_pocetka, a.datum_kraja, a.opis, a.iznos_popusta) "
 				+ "FROM AkcijaPopust a "
@@ -182,7 +194,7 @@ public class RacunKontroler {
 	}
 	
 	private double kreirajStavkuRacuna(String barKod, int kolicina, long racun_id){
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		StavkaRacuna sr = new StavkaRacuna();
 		Artikal art = this.dajArtikal(barKod);
@@ -198,7 +210,7 @@ public class RacunKontroler {
 	}
 	
 	private void kreirajNacinPlacanja(String nacinPlacanja, double iznos, long racun_id){
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		NacinPlacanja np = new NacinPlacanja();
 		np.setIznos(iznos);
@@ -210,7 +222,7 @@ public class RacunKontroler {
 	}
 	
 	private void umanjiStanjeArtikla(Artikal artikal, int kolicina){
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		artikal.setZalihe_stanje((int) (artikal.getZalihe_stanje() - kolicina));
 		session.update(artikal);
@@ -219,7 +231,7 @@ public class RacunKontroler {
 	}
 	
 	public Artikal dajArtikal(String barKod) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		session = HibernateUtil.getSessionFactory().openSession();
 		Criteria crit = session.createCriteria(Artikal.class);
 		crit.add(Restrictions.eq("barkod", barKod));
 		List list = crit.list();
