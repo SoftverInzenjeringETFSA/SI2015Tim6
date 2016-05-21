@@ -32,6 +32,7 @@ import java.util.regex.*;
 			a.setCijena(cijena);
 			a.setJedinica_mjere(jedinica_mjere);
 			a.setBarkod(barkod);
+			a.setOpis(opis);
 			a.setZalihe_stanje(zalihe_stanje);
 			a.setKategorija_id(kategorija_id);
 			Long id = (Long) session.save(a);
@@ -278,7 +279,7 @@ import java.util.regex.*;
 		{
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			Transaction t=session.beginTransaction();
-			List<Artikal> lista=session.createCriteria(Artikal.class).list();
+			/*List<Artikal> lista=session.createCriteria(Artikal.class).list();
 			List<Artikal> novaLista=new Vector<Artikal>();
 			for(int i=0;i<lista.size();i++)
 			{
@@ -287,8 +288,13 @@ import java.util.regex.*;
 					novaLista.add(lista.get(i));
 				}
 			}
+			*/
+			String sql = "select * from tim6.artikal where kategorija_id ="+ id;
+			SQLQuery query = session.createSQLQuery(sql);
+			query.addEntity(Artikal.class);	
+			List<Artikal> results = query.list();
 			session.close();
-			return novaLista;
+			return results;
 		}
 		 
 		public List<String> vratiRijeci(List<Artikal> lista)
@@ -296,7 +302,7 @@ import java.util.regex.*;
 			List<String>rijeci=new Vector<String>();
 			for(int i=0;i<lista.size();i++)
 			{
-				rijeci.add(lista.get(0).getNaziv()+";;"+lista.get(0).getCijena()+";;"+lista.get(0).getZalihe_stanje()+";;"+lista.get(0).getBarkod());
+				rijeci.add(lista.get(i).getNaziv()+";;"+lista.get(i).getCijena()+";;"+lista.get(i).getZalihe_stanje()+";;"+lista.get(i).getBarkod());
 			}
 			return rijeci;
 		}

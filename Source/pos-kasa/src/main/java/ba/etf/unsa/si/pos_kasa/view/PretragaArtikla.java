@@ -106,12 +106,17 @@ public class PretragaArtikla {
 				List<String> str = new Vector<String>();
 				ArtikalKontroler ac = new ArtikalKontroler();
 				List<Artikal> lista = new Vector<Artikal>();
+				int rowCount = dtm.getRowCount();
+				for (int i = rowCount - 1; i >= 0; i--) {
+				    dtm.removeRow(i);
+				}
 				if ((String) cboOdabirNacinaPretrage.getSelectedItem() == "Naziv") {
 					lista = ac.vratiSveArtiklePoNazivu((String)txtPretrazi.getText());
 					str = ac.vratiRijeci(lista);
 				} else if ((String) cboOdabirNacinaPretrage.getSelectedItem() == "Kategorija") {
 					lista = ac.vratiSveArtiklePoKategoriji(Long.parseLong(txtPretrazi.getText()));
 					str = ac.vratiRijeci(lista);
+					
 				} else {
 					lista = ac.vratiSveArtiklePoBarkodu((String)txtPretrazi.getText());
 					str = ac.vratiRijeci(lista);
