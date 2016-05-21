@@ -33,23 +33,26 @@ public class Popust {
 	private JTextField txtIznosPopusta;
 	private JButton btnKreirajPopust;
 	private JLabel label;
-    private SefKontroler sefKontroler;
-    final static Logger logger = Logger.getLogger(Popust.class.toString());
+	private SefKontroler sefKontroler;
+	final static Logger logger = Logger.getLogger(Popust.class.toString());
+
 	/**
 	 * Create the application.
 	 */
-    public void setVisible(boolean visible) {
+	public void setVisible(boolean visible) {
 		this.frmPopust.setVisible(visible);
 	}
-	
+
 	public Popust(SefKontroler sefKontroler) {
-		this.sefKontroler=sefKontroler;
+		this.sefKontroler = sefKontroler;
 		initialize();
 	}
+
 	public Popust() {
-		
+
 		initialize();
 	}
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -57,7 +60,7 @@ public class Popust {
 					Popust window = new Popust();
 					window.frmPopust.setVisible(true);
 				} catch (Exception e) {
-					String poruka=e.getMessage();
+					String poruka = e.getMessage();
 					logger.info(poruka);
 					throw new RuntimeException(e);
 				}
@@ -111,12 +114,16 @@ public class Popust {
 		btnKreirajPopust.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				PopustControler pc=new PopustControler();
+				IzvjestajArtikliControler iac=new IzvjestajArtikliControler();
+				if(iac.provjeriDatume(datePocetak.getDate()) && iac.provjeriDatume(dateKraj.getDate())){
+				if(pc.provjeriIspravnost(datePocetak.getDate(), dateKraj.getDate()))
+						{
 				try {
 					try {
 						pc.dodajAkcijaPopust(datePocetak.getDate(),dateKraj.getDate(), textAreaOpis.getText(), Integer.parseInt(txtIznosPopusta.getText()));
 					} catch (Exception e) {
 						//JOptionPane.showMessageDialog(null, e.getMessage(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
-						messageBox.infoBox("Prije klika na dugme odaberite datume i unesite iznos popusta!", "Info Popust");
+						messageBox.infoBox("Prije klika na dugme odaberite datume u ispravnom poretku i unesite iznos popusta!", "Info Popust");
 						String poruka=e.getMessage();
 						logger.info(poruka);
 						//throw new RuntimeException(e);
@@ -125,10 +132,19 @@ public class Popust {
 					JOptionPane.showMessageDialog(null, e.getMessage(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
 					String poruka=e.getMessage();
 					logger.info(poruka);
-					//throw new RuntimeException(e);
+					
+					throw new RuntimeException(e);
 				} 
-				
-			}
+						}
+				else{
+					messageBox.infoBox("Datumi moraju biti u ispravnom poretku!", "Info Popust");
+				}
+				}
+				else{
+					messageBox.infoBox("Datumi ne smiju biti zadani u proslosti!", "Info Popust");
+				}
+				}
+			
 		});
 		GroupLayout groupLayout = new GroupLayout(frmPopust.getContentPane());
 		groupLayout.setHorizontalGroup(
