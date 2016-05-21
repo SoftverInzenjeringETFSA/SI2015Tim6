@@ -99,6 +99,7 @@ public class KasirKontroler {
 		 }
 		 catch(Exception e)
 		 {
+			logger.info(e);
 			messageBox.infoBox(e.getMessage(), "exception");
 			 
 		 }

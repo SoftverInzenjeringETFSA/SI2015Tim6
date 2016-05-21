@@ -152,8 +152,7 @@ public class KreiranjeRacuna {
 							System.setProperties(p);
 							racunKontroler.kreirajRacun(1, String.valueOf(NacinPlacanja.getSelectedItem()), (DefaultTableModel) Stavke.getModel());
 						}catch (Exception e1){
-							System.out.println(e1.getMessage());
-							logger.info(e1.getMessage());
+							logger.info(e1);
 						}
 					}
 				});

@@ -3,6 +3,9 @@ package ba.etf.unsa.si.pos_kasa.view;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+
+import org.apache.log4j.Logger;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -14,6 +17,7 @@ public class IzvjestajiList {
 	/**
 	 * Launch the application.
 	 */
+	final static Logger logger = Logger.getLogger(Zakljucivanje.class.toString());
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -21,7 +25,9 @@ public class IzvjestajiList {
 					IzvjestajiList window = new IzvjestajiList();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});

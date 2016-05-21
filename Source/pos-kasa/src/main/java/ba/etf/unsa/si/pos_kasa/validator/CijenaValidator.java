@@ -28,7 +28,7 @@ public class CijenaValidator extends AbstractValidator{
 		{
 			
 			String poruka=e.getMessage();
-			logger.info(poruka);
+			logger.info(e);
 			return false;
 		}
 	}

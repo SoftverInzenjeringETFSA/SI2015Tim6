@@ -30,7 +30,7 @@ public class KolicinaValidator extends AbstractValidator {
 		{
 			
 			String poruka=e.getMessage();
-			logger.info(poruka);
+			logger.info(e);
 			return false;
 			//throw new RuntimeException(e);
 		}
