@@ -114,7 +114,7 @@ public class PretragaArtikla {
 					lista = ac.vratiSveArtiklePoNazivu((String)txtPretrazi.getText());
 					str = ac.vratiRijeci(lista);
 				} else if ((String) cboOdabirNacinaPretrage.getSelectedItem() == "Kategorija") {
-					lista = ac.vratiSveArtiklePoKategoriji(Long.parseLong(txtPretrazi.getText()));
+					lista = ac.vratiSveArtiklePoKategoriji(txtPretrazi.getText());
 					str = ac.vratiRijeci(lista);
 					
 				} else {

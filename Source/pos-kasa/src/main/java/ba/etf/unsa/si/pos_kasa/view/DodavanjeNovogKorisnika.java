@@ -198,7 +198,8 @@ public class DodavanjeNovogKorisnika {
 					messageBox.infoBox("Niste unijeli sva polja prije klika na dugme Dodaj Novog Korisnika!", "Info o unosu");
 					return;
 				}
-
+				
+                 
 				String pIme = "";
 				String pPrezime = "";
 				String pJMBG = "";
@@ -208,6 +209,11 @@ public class DodavanjeNovogKorisnika {
 				String pBrojTel = textBrojTel.getText();
 				String pDatumRodjenja = textDatumRodjenja.getText();
 				String pUloga = "";
+				
+				if(!pPassword.equals(pPasswordConfirm))
+				{
+					messageBox.infoBox("Potvrda lozinke vam se ne slaže.Unesite potvrdu ponovno.", "Greška");
+				}
 
 				pIme = textIme.getText();
 				pPrezime = textPrezime.getText();
@@ -227,16 +233,18 @@ public class DodavanjeNovogKorisnika {
 				}
 				Uposlenik uposlenik = new Uposlenik(pIme + " " + pPrezime, pDatumRodjenja, pJMBG, pBrojTel, pKorisnickoIme,
 						pPassword, pUloga);
-					if (sefKontroler.dodajNovogKorisnika(uposlenik)) {
+				boolean uspjehUnosa=sefKontroler.dodajNovogKorisnika(uposlenik);	
+				if (uspjehUnosa) {
 						//System.out.println("Uspjesan unos.");
 						messageBox.infoBox("Uspješan unos korisnika u bazu!", "Info o unosu novog korisnika");
 						setVisible(false);
 						// odradi nesto
-					} else {
+					} else if(!uspjehUnosa) {
 						//System.out.println("NE VALJA IMPORT korisnika");
 						messageBox.infoBox("Neuspješan unos korisnika u bazu!", "Info o unosu novog korisnika");
-						setVisible(false);
+						
 					}
+					
 				
 			}
 

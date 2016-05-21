@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import com.jgoodies.forms.factories.DefaultComponentFactory;
+
+import ba.etf.unsa.si.pos_kasa.controller.LoginKontroler;
 import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
 import ba.etf.unsa.si.pos_kasa.controller.SmjenaKontroler;
 import java.awt.Font;
@@ -201,7 +203,20 @@ public class OpcijeSefa {
 		frmOpcijeefa.getContentPane().add(panel_3);
 		panel_3.setLayout(null);
 
-		JButton btnNewButton = new JButton("Odjava");
+		final JButton btnNewButton = new JButton("Odjava");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int dialogButton = JOptionPane.YES_NO_OPTION;
+				int dialogResult = JOptionPane.showConfirmDialog(btnNewButton,"Da li ste sigurni da se želite zaključiti smjenu?");
+						if(dialogResult == 0) {
+							 // System.out.println("Yes option");
+							sefKontroler.odjaviSefa();
+							  
+						    } else {
+							  //System.out.println("No Option");
+							} 
+			}
+		});
 		btnNewButton.setFont(new Font("Times New Roman", Font.BOLD, 13));
 
 		btnNewButton.setBounds(10, 11, 99, 35);
