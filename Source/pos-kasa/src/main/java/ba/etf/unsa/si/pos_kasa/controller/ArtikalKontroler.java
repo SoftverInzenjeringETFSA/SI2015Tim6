@@ -275,7 +275,7 @@ import java.util.regex.*;
 			return novaLista;
 		}
 		
-		public List<Artikal> vratiSveArtiklePoKategoriji(Long id)
+		public List<Artikal> vratiSveArtiklePoKategoriji(String ime)
 		{
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			Transaction t=session.beginTransaction();
@@ -289,7 +289,7 @@ import java.util.regex.*;
 				}
 			}
 			*/
-			String sql = "select * from tim6.artikal where kategorija_id ="+ id;
+			String sql = "Select a.* from tim6.artikal a, tim6.kategorija k where a.kategorija_id = k.id and k.naziv=" + "\""+ime+"\"";
 			SQLQuery query = session.createSQLQuery(sql);
 			query.addEntity(Artikal.class);	
 			List<Artikal> results = query.list();

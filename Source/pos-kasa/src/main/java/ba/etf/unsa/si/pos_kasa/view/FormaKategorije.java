@@ -108,14 +108,18 @@ public class FormaKategorije {
 			public void actionPerformed(ActionEvent arg0) {
 				String ime=imeKategorijeText.getText();
 				String opis=opisKategorijeText.getText();
+				KategorijaControler kc =new KategorijaControler();
 				if(ime.isEmpty() || opis.isEmpty())
 				{
 					JOptionPane.showMessageDialog(null, "Polja ime i opis kategorije ne smiju biti prazna!", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
 				}
-				else{
-				KategorijaControler kc =new KategorijaControler();
-				kc.dodajKategoriju(ime, opis);
-				prikazi();
+				else if(kc.provjeriDaLiImaIme(ime)==false)
+				{
+					JOptionPane.showMessageDialog(null, "Kategorija sa unesenim nazivom vec postoji!", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+				}
+				else{					
+					kc.dodajKategoriju(ime, opis);
+					prikazi();
 				}
 							
 			}
