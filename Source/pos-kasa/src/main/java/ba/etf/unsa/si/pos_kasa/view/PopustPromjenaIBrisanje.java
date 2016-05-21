@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -168,9 +169,13 @@ public class PopustPromjenaIBrisanje {
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						String poruka=e.getMessage();
+						JOptionPane.showMessageDialog(null,
+								"Datumi moraju biti u ispravnom poretku!", "InfoBox",
+								JOptionPane.INFORMATION_MESSAGE);
+						
 						logger.info(poruka);
 						return;
-						//hrow new RuntimeException(e); NEMOJ BACATI EXCEPTION NE HENDLAS GA NIGDJE APLIKACIJA NE RADI DALJE
+						//throw new RuntimeException(e); NEMOJ BACATI EXCEPTION NE HENDLAS GA NIGDJE APLIKACIJA NE RADI DALJE
 					}
 				
 			}
