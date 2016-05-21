@@ -32,7 +32,7 @@ import org.apache.log4j.Logger;
 
 public class IzvjestajOBrojuProdatih {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField textFieldTop;
 	private JTable table;
 	Object[] kolone = { "Naziv artikla", "Barkod", "Cijena", "Kolicina" };

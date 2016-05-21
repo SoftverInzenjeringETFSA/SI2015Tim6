@@ -39,7 +39,7 @@ import ba.etf.unsa.si.pos_kasa.model.StavkaRacuna;
 import ba.etf.unsa.si.pos_kasa.model.NacinPlacanja;
 import ba.etf.unsa.si.pos_kasa.model.Racun;
 
-
+/*OVO NIŠTA NE VALJA MOŽE SE IZBRISAT MISLIM I DA NE SLUŽI NIČEMU*/
 public class IzvjestajNaKrajuSmjene {
 
 	final static Logger logger = Logger.getLogger(IzvjestajNaKrajuSmjene.class);
