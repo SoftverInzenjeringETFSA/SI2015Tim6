@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 
+import org.apache.log4j.Logger;
 import org.omg.CORBA.INITIALIZE;
 
 import ba.etf.unsa.si.pos_kasa.controller.LoginKontroler;
@@ -29,7 +30,7 @@ public class PrikazForma {
 	private LoginKontroler loginKontroler;
 	JButton btnPrijava;
 	PasswordVerifier passwordVer;
-
+	 final static Logger logger = Logger.getLogger(Zakljucivanje.class.toString());
 	/**
 	 * Create the application.
 	 */
@@ -40,7 +41,9 @@ public class PrikazForma {
 					PrikazForma window = new PrikazForma();
 					window.prikazForma.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});

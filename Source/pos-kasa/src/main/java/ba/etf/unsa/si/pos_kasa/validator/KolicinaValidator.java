@@ -7,6 +7,7 @@ import javax.swing.JComponent;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import org.apache.log4j.Logger;
+import org.apache.log4j.Priority;
 
 import ba.etf.unsa.si.pos_kasa.view.FormaKategorije;
 

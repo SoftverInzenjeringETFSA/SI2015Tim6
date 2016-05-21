@@ -234,12 +234,12 @@ public class DodavanjeNovogKorisnika {
 				Uposlenik uposlenik = new Uposlenik(pIme + " " + pPrezime, pDatumRodjenja, pJMBG, pBrojTel, pKorisnickoIme,
 						pPassword, pUloga);
 				boolean uspjehUnosa=sefKontroler.dodajNovogKorisnika(uposlenik);	
-				if (uspjehUnosa) {
+				if (uspjehUnosa==true) {
 						//System.out.println("Uspjesan unos.");
 						messageBox.infoBox("Uspješan unos korisnika u bazu!", "Info o unosu novog korisnika");
 						setVisible(false);
 						// odradi nesto
-					} else if(!uspjehUnosa) {
+					} else if(uspjehUnosa==false) {
 						//System.out.println("NE VALJA IMPORT korisnika");
 						messageBox.infoBox("Neuspješan unos korisnika u bazu!", "Info o unosu novog korisnika");
 						

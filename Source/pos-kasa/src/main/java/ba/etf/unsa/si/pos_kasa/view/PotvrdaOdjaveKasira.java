@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import org.apache.log4j.Logger;
+
 import ba.etf.unsa.si.pos_kasa.controller.KasirKontroler;
 import ba.etf.unsa.si.pos_kasa.controller.LoginKontroler;
 
@@ -19,7 +21,7 @@ public class PotvrdaOdjaveKasira {
 	private JFrame frmPovrdaOdjave;
 	private KasirKontroler kasirKontroler;
 	LoginKontroler loginKontroler;
-
+	 final static Logger logger = Logger.getLogger(Zakljucivanje.class.toString());
 	/**
 	 * Launch the application.
 	 */
@@ -30,7 +32,9 @@ public class PotvrdaOdjaveKasira {
 					PotvrdaOdjaveKasira window = new PotvrdaOdjaveKasira();
 					window.frmPovrdaOdjave.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});

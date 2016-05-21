@@ -6,13 +6,14 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
+import org.apache.log4j.Logger;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JTextField;
 
 import ba.etf.unsa.si.pos_kasa.controller.RacunKontroler;
+import ba.etf.unsa.si.pos_kasa.controller.SefKontroler;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -22,7 +23,7 @@ public class StornoRacun {
 
 	public JFrame frame;
 	private JTextField textField;
-
+	final static Logger logger = Logger.getLogger(SefKontroler.class.toString());
 	/**
 	 * Launch the application.
 	 */
@@ -33,7 +34,9 @@ public class StornoRacun {
 					StornoRacun window = new StornoRacun();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
 				}
 			}
 		});

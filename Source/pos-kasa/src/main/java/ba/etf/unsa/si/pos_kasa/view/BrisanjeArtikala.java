@@ -94,6 +94,10 @@ public class BrisanjeArtikala {
 				
 				Object[] redovi = new Object[4];
 				String s=new String();
+				int rowCount = dtm.getRowCount();
+				for (int i = rowCount - 1; i >= 0; i--) {
+					    dtm.removeRow(i);
+				}
 				ArtikalKontroler ac = new ArtikalKontroler();
 				s=ac.vratiArtikleZaBrisanje(textField.getText());
 				String[] rijec = ac.vratiRazdovojeno(s);			
