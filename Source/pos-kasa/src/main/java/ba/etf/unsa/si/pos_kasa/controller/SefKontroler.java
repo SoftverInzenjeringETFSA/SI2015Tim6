@@ -12,6 +12,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import Tools.HibernateUtil;
+import ba.etf.unsa.si.pos_kasa.model.NacinPlacanja;
 import ba.etf.unsa.si.pos_kasa.model.Smjena;
 import ba.etf.unsa.si.pos_kasa.model.Uposlenik;
 import ba.etf.unsa.si.pos_kasa.view.BrisanjeArtikala;
@@ -32,6 +33,27 @@ import ba.etf.unsa.si.pos_kasa.view.PretragaKorisnika_prikaz;
 import ba.etf.unsa.si.pos_kasa.view.Zakljucivanje;
 import ba.etf.unsa.si.pos_kasa.view.messageBox;
 import javafx.application.Application;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.CMYKColor;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
 
 public class SefKontroler {
 
@@ -462,7 +484,93 @@ public class SefKontroler {
 			 
 			 }
 		 }
-		
 	 }
+	
+	public void dajIzvjestaj()
+	{
+		  Session session = HibernateUtil.getSessionFactory().openSession(); //otvaranje sesije, obavezno na pocetku metodeu
+			String hql = "Select new ba.etf.unsa.si.pos_kasa.model.NacinPlacanja(np.id, np.iznos, np.vrstaplacanja_id, np.racun_id) "
+					+ "FROM Racun r, NacinPlacanja np "
+					+ "WHERE r.smjena_id = :smenaId AND np.racun_id = r.id";
+			Query q = session.createQuery(hql);
+			q.setLong("smenaId", 1);
+			List<NacinPlacanja> redovi = q.list();
+	        session.close(); //zatvaranje konekcije, obavezno na kraju metode
+	        double[] ukupnoPoNp = new double[]{0, 0, 0, 0};
+	        for(NacinPlacanja np : redovi)
+	        {
+	        	if(np.getVrstaplacanja_id() == "Gotovina") ukupnoPoNp[0]+= np.getIznos();
+	        	else if(np.getVrstaplacanja_id() == "Kartica") ukupnoPoNp[1] += np.getIznos();
+	        	else if(np.getVrstaplacanja_id() == "Cek") ukupnoPoNp[2] += np.getIznos();
+	        	else ukupnoPoNp[3] += np.getIznos();
+	        }
+	        try {
+				generisiPdfNaKrajuSmjene("Vejsil Hrustic", ukupnoPoNp);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (DocumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
+	
+	private void generisiPdfNaKrajuSmjene(String imePrezime, double[] dnevniPromet) throws FileNotFoundException, DocumentException
+	{
+		double ukupno = dnevniPromet[0] + dnevniPromet[1] + dnevniPromet[2] + dnevniPromet[3];
+		 Document doc = new Document();
+		 PdfWriter writer = PdfWriter.getInstance(doc,new FileOutputStream(System.getProperty("user.dir")+"\\izvjestaj_smjena.pdf"));
+
+		  DecimalFormat df = new DecimalFormat("0.00");
+
+		  try {
+		   
+		   Font bf12 = new Font(FontFamily.TIMES_ROMAN, 12); 
+
+		   //file path
+		   
+		   //document header attributes
+		   doc.addAuthor("vejsilH");
+		   doc.addCreationDate();
+		   doc.addProducer();
+		   doc.addCreator("ICTSolutions");
+		   doc.addTitle("Izvjestaj na kraju smjene");
+		   doc.setPageSize(PageSize.LETTER);
+		  
+		   //open document
+		   doc.open();
+		   doc.add(new Paragraph("Uposlenik:         " + imePrezime + ".", 
+				   FontFactory.getFont(FontFactory.COURIER, 14, Font.BOLD,	new CMYKColor(166, 255, 0, 0))));
+		   doc.add(new Paragraph("Dnevni promet prema nacinu placanja:", 
+				   FontFactory.getFont(FontFactory.COURIER, 14, Font.BOLD,	new CMYKColor(166, 255, 0, 0))));
+		   doc.add(new Paragraph("Gotovina: " + dnevniPromet[0] + " KM, Kartica: " + dnevniPromet[1] +" KM, Cek: " + dnevniPromet[2] + " KM, Virman: " + dnevniPromet[3] + " KM.", 
+				   FontFactory.getFont(FontFactory.COURIER, 14, Font.BOLD,	new CMYKColor(166, 255, 0, 0))));
+		   doc.add(new Paragraph("Ukupno: " + ukupno +" KM.", 
+				   FontFactory.getFont(FontFactory.COURIER, 14, Font.BOLD,	new CMYKColor(166, 255, 0, 0))));
+		   //specify column widths
+		   float[] columnWidths = {1.5f, 2f, 5f, 2f};
+		   //create PDF table with the given widths
+		   PdfPTable table = new PdfPTable(columnWidths);
+		   // set table width a percentage of the page width
+		   table.setWidthPercentage(90f);
+
+
+		  }
+		  catch (DocumentException dex)
+		  {
+		   dex.printStackTrace();
+		  }
+		  catch (Exception ex)
+		  {
+		   ex.printStackTrace();
+		  }
+		  finally
+		  {
+		   if (doc != null){
+		    //close the document
+		    doc.close();
+		   }
+		  }
+	}
 
 }

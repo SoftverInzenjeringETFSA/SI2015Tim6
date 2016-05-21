@@ -1,6 +1,7 @@
 package ba.etf.unsa.si.pos_kasa.view;
 
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,6 +30,24 @@ public class Zakljucivanje {
 		this.sefKontroler = sefKontroler;
 		initialize();
 	}
+    
+    public Zakljucivanje(){
+    	initialize();
+    }
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Zakljucivanje window = new Zakljucivanje();
+					window.Zakljucivanje.setVisible(true);
+				} catch (Exception e) {
+					String poruka=e.getMessage();
+					logger.info(poruka);
+					throw new RuntimeException(e);
+				}
+			}
+		});
+	}
     /*
     public Zakljucivanje(SmjenaKontroler smjenaKontroler) {
 		this.smjenaKontroler = smjenaKontroler;
@@ -46,7 +65,7 @@ public class Zakljucivanje {
 	private void initialize() {
 		Zakljucivanje = new JFrame();
 		Zakljucivanje.setTitle("Zaključivanje smjene");
-		Zakljucivanje.setBounds(100, 100, 388, 137);
+		Zakljucivanje.setBounds(100, 100, 388, 170);
 		Zakljucivanje.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		Zakljucivanje.getContentPane().setLayout(null);
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -77,9 +96,17 @@ public class Zakljucivanje {
 		lblPotvrditeZakljuivanjeSmjene.setBounds(56, 11, 189, 14);
 		Zakljucivanje.getContentPane().add(lblPotvrditeZakljuivanjeSmjene);
 		
+		JButton btnIzvjetaj = new JButton("Izvještaj");
+		btnIzvjetaj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(sefKontroler == null) sefKontroler = new SefKontroler();
+				sefKontroler.dajIzvjestaj();
+			}
+		});
+		btnIzvjetaj.setBounds(212, 85, 97, 25);
+		Zakljucivanje.getContentPane().add(btnIzvjetaj);
+		
 		}
-	
-	
 	}
 
 
