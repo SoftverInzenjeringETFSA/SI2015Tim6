@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `tim6`.`artikal` (
   `naziv` VARCHAR(205) NOT NULL,
   `barkod` VARCHAR(13) NOT NULL UNIQUE,
   `jedinica_mjere` VARCHAR(45) NOT NULL,
-  `cijena` DECIMAL(10,2) NOT NULL,
+  `cijena` DOUBLE NOT NULL,
   `zalihe_stanje` INT NOT NULL,
   `opis` VARCHAR(245) NULL,
   `kategorija_id` INT NOT NULL,
@@ -187,11 +187,6 @@ ENGINE = InnoDB;
 
 INSERT INTO `tim6`.`uposlenik` VALUES(1,'Sef Sef','1991-09-02','9999999999999','+0000-000-000','1991-09-01','SefAdmin','adminSef1234','Sef');
 
-INSERT INTO `tim6`.`uposlenik` VALUES(2,'Kasir Kasirko','1989-01-22','9999399999999','+0000-000-000','1991-09-01','kasir','kasir','Sef');
-
-INSERT INTO `tim6`.`kategorija` (`id`, `naziv`, `opis`) VALUES ('1', 'Prehrana', 'Prehrambeni proizvodi');
-INSERT INTO `tim6`.`artikal` (`id`, `naziv`, `barkod`, `jedinica_mjere`, `cijena`, `zalihe_stanje`, `opis`, `kategorija_id`) VALUES ('1', 'Krompir', '1234567891234', 'kg', '0.55', '25', 'Konopir', '1');
-INSERT INTO `tim6`.`smjena` (`id`, `pocetak_smjene`, `kraj_smjene`, `uposlenik_id`) VALUES ('1', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), '2');
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
