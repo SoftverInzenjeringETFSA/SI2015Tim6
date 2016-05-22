@@ -20,8 +20,9 @@ public class HibernateUtil {
 			properties.load(new FileInputStream("db.properties"));
 
 			Configuration configuration = new Configuration();
+			 	File f = new File("src/main/java/hibernate.cfg.xml");
 
-			configuration.configure("hibernate.cfg.xml").addProperties(properties);
+			configuration.configure(f).addProperties(properties);
 			
 
 			//ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
