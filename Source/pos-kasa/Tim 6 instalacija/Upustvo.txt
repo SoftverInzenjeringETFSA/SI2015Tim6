@@ -1,0 +1,19 @@
+Nakon završetka instalacije potrebno je otiæi na odredište koje ste specificirali kao odredište
+instalacije i pokrenuti POS Kasa.jar ili desni klik  Send to Desktop kako bi napravili preèicu
+pomoæu koje možete pokrenuti aplikaciju ulogujte se podacima 
+Korisnièko ime: SefAdmin
+Lozinka :adminSef1234
+saèekajte koji trenutak dok aplikacije povuèe podatke iz baze i nastavite sa korištenjem
+Ukoliko je lokacija baze na istom raèunaru potrebno je otvorit fajl db.properties tekstualnim 
+editorom i promjenit IP adresu 192.168.0.1 u localhost, a ukoliko se baza nalazi na drugom
+raèunaru ili serveru upišite njegovu IP adresu umjesto postojeæe.
+Inicijalna lokacija instalacije je : C:\Program Files (x86)\Tim6_2015\POSKasa\Tim 6 instalacija
+
+Bazu možete skinuti sa repozitorija na lokaciji:
+https://github.com/SoftverInzenjeringETFSA/SI2015Tim6/tree/master/Source/database-dump
+ili koristiti init.sql fajl na instalacionoj lokaciji
+
+Napomena. Ukoliko nemate instaliran java JRE preuzmite ga i instalirajte sa URL:
+http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html
+
+Ugodno korištenje.
